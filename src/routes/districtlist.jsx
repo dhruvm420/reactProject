@@ -9,6 +9,7 @@ import {
   Th,
   Td,
   TableCaption,
+  Button,
   TableContainer,
 } from "@chakra-ui/react";
 import Action from "../components/action";
@@ -44,7 +45,10 @@ export default function DistrictList() {
   });
   return (
     <Root>
-      <Box mx="auto" mt="4">
+      <Flex direction="column" mx="auto" mt="4">
+        <Button colorScheme="teal" mb="4" mx="auto">
+          Create District
+        </Button>
         <TableContainer
           border="1px"
           borderColor="gray.400"
@@ -68,7 +72,7 @@ export default function DistrictList() {
             <Tbody>{rows}</Tbody>
           </Table>
         </TableContainer>
-      </Box>
+      </Flex>
     </Root>
   );
 }

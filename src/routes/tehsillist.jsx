@@ -4,6 +4,7 @@ import {
   Box,
   Tbody,
   Tfoot,
+  Button,
   Tr,
   Flex,
   Th,
@@ -44,7 +45,10 @@ export default function TehsilList() {
   });
   return (
     <Root>
-      <Box mx="auto" mt="4">
+      <Flex direction="column" mx="auto" mt="4">
+        <Button colorScheme="teal" mb="4" mx="auto">
+          Create Tehsil
+        </Button>
         <TableContainer
           border="1px"
           borderColor="gray.400"
@@ -68,7 +72,7 @@ export default function TehsilList() {
             <Tbody>{rows}</Tbody>
           </Table>
         </TableContainer>
-      </Box>
+      </Flex>
     </Root>
   );
 }

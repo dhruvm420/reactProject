@@ -10,6 +10,7 @@ import {
   Td,
   TableCaption,
   TableContainer,
+  Button,
 } from "@chakra-ui/react";
 import Action from "../components/action";
 import Root from "./root";
@@ -42,7 +43,10 @@ export default function PanchayatList() {
   });
   return (
     <Root>
-      <Box mx="auto" mt="4">
+      <Flex direction="column" mx="auto" mt="4">
+        <Button colorScheme="teal" mb="4" mx="auto">
+          Create Panchayat
+        </Button>
         <TableContainer
           border="1px"
           borderColor="gray.400"
@@ -65,7 +69,7 @@ export default function PanchayatList() {
             <Tbody>{rows}</Tbody>
           </Table>
         </TableContainer>
-      </Box>
+      </Flex>
     </Root>
   );
 }

@@ -6,6 +6,7 @@ import {
   Tfoot,
   Tr,
   Flex,
+  Button,
   Th,
   Td,
   TableCaption,
@@ -44,7 +45,10 @@ export default function StateList() {
   });
   return (
     <Root>
-      <Box mx="auto" mt="4">
+      <Flex direction="column" mx="auto" mt="4">
+        <Button colorScheme="teal" mb="4" mx="auto">
+          Create State
+        </Button>
         <TableContainer
           border="1px"
           borderColor="gray.400"
@@ -68,7 +72,7 @@ export default function StateList() {
             <Tbody>{rows}</Tbody>
           </Table>
         </TableContainer>
-      </Box>
+      </Flex>
     </Root>
   );
 }
