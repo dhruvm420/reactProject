@@ -8,7 +8,7 @@ import Dashboard from "./routes/dashboard.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
+    element: <Dashboard />,
   },
   {
     path: "/dashboard",
