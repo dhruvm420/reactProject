@@ -13,19 +13,18 @@ import {
 } from "@chakra-ui/react";
 import Action from "../components/action";
 import Root from "./root";
-let stateData = [
+let panchayatData = [
   {
     IMAGE: "https://skskf.in/userimg/IMG-20230627-WA0045_09152023162926.jpg",
     NAME: "KESHAW DAS",
     EMAIL: "keshawkwd666@gmail.com",
     DESIGNATION: "s./lohara",
-    "Total District": "2",
     DATE: "2023-09-09 13:24:09",
   },
 ];
 
-export default function StateList() {
-  let rows = stateData.map((data) => {
+export default function PanchayatList() {
+  let rows = panchayatData.map((data) => {
     return (
       <Tr>
         <Td>
@@ -34,7 +33,6 @@ export default function StateList() {
         <Td>{data.NAME}</Td>
         <Td>{data.EMAIL}</Td>
         <Td>{data.DESIGNATION}</Td>
-        <Td>{data["Total District"]}</Td>
         <Td>{data.DATE}</Td>
         <Td>
           <Action />
@@ -60,7 +58,6 @@ export default function StateList() {
                 <Th>Name</Th>
                 <Th>Email</Th>
                 <Th>Designation</Th>
-                <Th>Total Districts</Th>
                 <Th>Date</Th>
                 <Th>Action</Th>
               </Tr>
