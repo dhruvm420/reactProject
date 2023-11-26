@@ -16,10 +16,11 @@ export default function MyCard({ card }) {
       <Card
         w="20vw"
         h="33vh"
-        shadow="xl"
-        bg="teal.200"
-        color="gray.600"
+        shadow="lg"
+        bg="teal.300"
+        color="gray.500"
         borderRadius="3xl"
+        mb="8"
       >
         <CardHeader>
           <Heading size="xl" textAlign="center">
