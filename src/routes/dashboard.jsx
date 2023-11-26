@@ -17,7 +17,7 @@ export default function Dashboard() {
   return (
     <Box w="85vw" p="6">
       <Flex flexDirection="column">
-        <Heading as="h2" fontSize="2xl" color="grey">
+        <Heading as="h2" fontSize="2xl" color="gray.600">
           Admin Dashboard
         </Heading>
         <Flex padding="8" justifyContent="space-evenly">

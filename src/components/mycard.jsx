@@ -13,7 +13,14 @@ export default function MyCard({ card }) {
   let linkDestination = `\${card.title}`;
   return (
     <Link>
-      <Card w="20vw" h="33vh" shadow="xl" bg="beige">
+      <Card
+        w="20vw"
+        h="33vh"
+        shadow="xl"
+        bg="teal.200"
+        color="gray.600"
+        borderRadius="3xl"
+      >
         <CardHeader>
           <Heading size="xl" textAlign="center">
             {" "}
