@@ -1,59 +1,47 @@
 import { Box, Heading, Flex } from "@chakra-ui/react";
-import MyCard from "../components/mycard.jsx";
 import Header from "../components/header.jsx";
 import Sidebar from "../components/sidebar.jsx";
 import ListPreview from "../components/listPreview.jsx";
-let dashboardData = [
-  {
-    title: "State",
+import DashboardCards from "../components/dashboardCards.jsx";
+let dashboardData = {
+  "State": {
     count: "4",
   },
-  {
-    title: "District",
+  "District": {
     count: "7",
   },
-  {
-    title: "Tehsil",
+  "Tehsil": {
     count: "3",
   },
-
+  "Panchayat":
   {
-    title: "Panchayat",
     count: "8",
   },
-  {
-    title: "Verified Members",
+  "Verified Members": {
     count: "4",
   },
-  {
-    title: "Unverified Members",
+  "Unverified Members": {
     count: "6",
   },
-  {
-    title: "Complaints",
+  "Complaints": {
     count: "8",
   },
-  {
-    title: "Testimonials",
+  "Testimonials":{
     count: "8",
   },
-  {
-    title: "Donations",
+  "Donations":{
     count: "8",
   },
-  {
-    title: "Contact Us",
+  "Contact Us":{
     count: "8",
   },
-  {
-    title: "Management",
+  "Management":{
+    count: "5",
+  },
+  "Public User List":{
     count: "8",
   },
-  {
-    title: "Public User List",
-    count: "8",
-  },
-];
+};
 let posts = [
   {
     POSTDATE: "2023-09-07 16:22:24",
@@ -109,9 +97,6 @@ let complaints = [
   },
 ];
 export default function Dashboard() {
-  let cards = dashboardData.map((item) => {
-    return <MyCard card={item} />;
-  });
   let postPreview = (
     <ListPreview data={posts} head="Latest Posts" title="TITLE" />
   );
@@ -129,7 +114,8 @@ export default function Dashboard() {
         <Sidebar />
         <Box w="85vw" p="6">
           <Flex padding="4" justifyContent="space-between" wrap="wrap">
-            {cards} {postPreview} {complaintsPreview}
+          <DashboardCards data = {dashboardData} />
+             {postPreview} {complaintsPreview}
           </Flex>
         </Box>
       </Flex>
