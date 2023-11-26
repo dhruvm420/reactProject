@@ -30,14 +30,24 @@ export default function Sidebar() {
   const list = sideBarData.map((item) => {
     if (item == "DASHBOARD")
       return (
-        <Box
-          as="li"
-          py="2"
-          textAlign="center"
-          _hover={{ background: "gray.400", cursor: "pointer" }}
-        >
-          <Link to={`/dashboard`}>{item}</Link>
-        </Box>
+        <Link to={`/dashboard`}>
+          <Box
+            as="li"
+            py="2"
+            textAlign="center"
+            borderBottom="1px"
+            borderBottomColor="gray.400"
+            borderRight="1px"
+            borderRightColor="gray.400"
+            _hover={{
+              background: "gray.300",
+              color: "gray.600",
+              cursor: "pointer",
+            }}
+          >
+            {item}
+          </Box>
+        </Link>
       );
     else
       return (
@@ -45,7 +55,15 @@ export default function Sidebar() {
           as="li"
           py="2"
           textAlign="center"
-          _hover={{ background: "gray.400", cursor: "pointer" }}
+          borderBottom="1px"
+          borderBottomColor="gray.400"
+          borderRight="1px"
+          borderRightColor="gray.400"
+          _hover={{
+            background: "gray.300",
+            color: "gray.600",
+            cursor: "pointer",
+          }}
         >
           {item}
         </Box>
@@ -53,7 +71,7 @@ export default function Sidebar() {
   });
   return (
     <Box>
-      <Stack as="ul" bg="gray.200" w="15vw" spacing="0">
+      <Stack as="ul" bg="gray.200" w="15vw" color="gray.500" spacing="0">
         {list}
       </Stack>
     </Box>
