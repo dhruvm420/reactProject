@@ -4,7 +4,7 @@ import Sidebar from "../components/sidebar";
 
 export default function Root({ children, title }) {
   return (
-    <Box>
+    <Box bg="#f7fafc">
       <Header title={title} />
       <Flex>
         <Sidebar />
