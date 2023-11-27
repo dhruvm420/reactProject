@@ -1,5 +1,6 @@
 import {
   Card,
+  Flex,
   CardHeader,
   CardBody,
   CardFooter,
@@ -11,8 +12,8 @@ import { Link } from "react-router-dom";
 export default function MyCard({ title, count, link }) {
   return (
     <Card
-      w="17vw"
-      h="35vh"
+      w="64"
+      h="52"
       shadow="xl"
       bg="white"
       color="gray.400"
@@ -22,22 +23,24 @@ export default function MyCard({ title, count, link }) {
       px="9"
     >
       <CardHeader m="0" pb="2">
-        <Text fontSize="5xl" color="gray.600" textAlign="center">
+        <Text fontSize="4xl" color="gray.600" textAlign="center">
           {count}
         </Text>
       </CardHeader>
       <CardBody m="0" p="0">
-        <Heading size="lg" textAlign="center">
+        <Heading size="md" textAlign="center">
           {" "}
           {title}{" "}
         </Heading>
       </CardBody>
       <CardFooter>
-        <Link to={link}>
-          <Button colorScheme="gray" ml="2">
-            View More &rarr;
-          </Button>
-        </Link>
+        <Flex justifyContent="center" w="64">
+          <Link to={link}>
+            <Button colorScheme="gray" fontSize="sm" textAlign="center">
+              View More &rarr;
+            </Button>
+          </Link>
+        </Flex>
       </CardFooter>
     </Card>
   );
