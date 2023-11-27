@@ -4,41 +4,40 @@ import Sidebar from "../components/sidebar.jsx";
 import ListPreview from "../components/listPreview.jsx";
 import DashboardCards from "../components/dashboardCards.jsx";
 let dashboardData = {
-  "State": {
-    count: "4",
+  State: {
+    count: "1",
   },
-  "District": {
-    count: "7",
+  District: {
+    count: "1",
   },
-  "Tehsil": {
-    count: "3",
+  Tehsil: {
+    count: "1",
   },
-  "Panchayat":
-  {
-    count: "8",
+  Panchayat: {
+    count: "1",
   },
   "Verified Members": {
-    count: "4",
+    count: "3",
   },
   "Unverified Members": {
-    count: "6",
+    count: "3",
   },
-  "Complaints": {
+  Complaints: {
+    count: "0",
+  },
+  Testimonials: {
+    count: "0",
+  },
+  Donations: {
     count: "8",
   },
-  "Testimonials":{
+  "Contact Us": {
     count: "8",
   },
-  "Donations":{
-    count: "8",
-  },
-  "Contact Us":{
-    count: "8",
-  },
-  "Management":{
+  Management: {
     count: "5",
   },
-  "Public User List":{
+  "Public User List": {
     count: "8",
   },
 };
@@ -114,8 +113,8 @@ export default function Dashboard() {
         <Sidebar />
         <Box w="85vw" p="6">
           <Flex padding="4" justifyContent="space-between" wrap="wrap">
-          <DashboardCards data = {dashboardData} />
-             {postPreview} {complaintsPreview}
+            <DashboardCards data={dashboardData} />
+            {postPreview} {complaintsPreview}
           </Flex>
         </Box>
       </Flex>

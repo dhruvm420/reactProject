@@ -11,7 +11,7 @@ import {
 export default function MyCard(card) {
   return (
     <Card
-      w="15vw"
+      w="16vw"
       h="33vh"
       shadow="xl"
       bg="gray.300"

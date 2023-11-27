@@ -8,6 +8,9 @@ import StateList from "./routes/statelist.jsx";
 import DistrictList from "./routes/districtlist.jsx";
 import TehsilList from "./routes/tehsillist.jsx";
 import PanchayatList from "./routes/panchayatlist.jsx";
+import VerifiedList from "./routes/verifiedlist.jsx";
+import UnVerifiedList from "./routes/unverifiedlist.jsx";
+import Complaints from "./routes/complaints.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -33,6 +36,18 @@ const router = createBrowserRouter([
   {
     path: "/panchayatlist",
     element: <PanchayatList />,
+  },
+  {
+    path: "/verifiedmembers",
+    element: <VerifiedList />,
+  },
+  {
+    path: "/unverifiedmembers",
+    element: <UnVerifiedList />,
+  },
+  {
+    path: "/complaints",
+    element: <Complaints />,
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(

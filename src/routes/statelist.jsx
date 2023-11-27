@@ -28,7 +28,7 @@ let stateData = [
 export default function StateList() {
   let rows = stateData.map((data) => {
     return (
-      <Tr>
+      <Tr _hover={{ backgroundColor: "gray.300", color: "gray.600" }}>
         <Td>
           <img src={data.IMAGE} alt="" width="50px" height="50px" />
         </Td>
