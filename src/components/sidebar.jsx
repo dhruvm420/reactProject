@@ -33,6 +33,7 @@ export default function Sidebar() {
         <Link to={`/dashboard`}>
           <Box
             as="li"
+            fontWeight="bold"
             py="2"
             textAlign="center"
             backgroundColor="gray.100"
@@ -56,6 +57,7 @@ export default function Sidebar() {
         <Box
           as="li"
           py="2"
+          fontWeight="bold"
           color="gray.400"
           textAlign="center"
           backgroundColor="gray.100"
