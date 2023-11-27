@@ -6,40 +6,40 @@ import DashboardCards from "../components/dashboardCards.jsx";
 import Root from "./root.jsx";
 let dashboardData = {
   State: {
-    count: "1",
+    count: "11",
   },
   District: {
-    count: "1",
+    count: "19",
   },
   Tehsil: {
-    count: "1",
+    count: "33",
   },
   Panchayat: {
-    count: "1",
+    count: "12",
   },
   "Verified Members": {
-    count: "3",
+    count: "31",
   },
   "Unverified Members": {
-    count: "3",
+    count: "39",
   },
   Complaints: {
-    count: "0",
+    count: "40",
   },
   Testimonials: {
-    count: "0",
+    count: "80",
   },
   Donations: {
-    count: "8",
+    count: "98",
   },
   "Contact Us": {
-    count: "8",
+    count: "18",
   },
   Management: {
-    count: "5",
+    count: "53",
   },
   "Public User List": {
-    count: "8",
+    count: "81",
   },
 };
 let posts = [
