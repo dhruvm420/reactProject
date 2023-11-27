@@ -40,8 +40,8 @@ export default function Sidebar() {
             borderRight="1px"
             borderRightColor="gray.400"
             _hover={{
-              background: "gray.300",
-              color: "gray.600",
+              background: "gray.200",
+              color: "gray.500",
               cursor: "pointer",
             }}
           >
@@ -60,8 +60,8 @@ export default function Sidebar() {
           borderRight="1px"
           borderRightColor="gray.400"
           _hover={{
-            background: "gray.300",
-            color: "gray.600",
+            background: "gray.200",
+            color: "gray.500",
             cursor: "pointer",
           }}
         >
@@ -71,7 +71,7 @@ export default function Sidebar() {
   });
   return (
     <Box>
-      <Stack as="ul" bg="gray.200" w="15vw" color="gray.500" spacing="0">
+      <Stack as="ul" bg="gray.100" w="15vw" color="gray.400" spacing="0">
         {list}
       </Stack>
     </Box>

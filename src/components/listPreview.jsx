@@ -22,12 +22,11 @@ export default function ListPreview(props) {
   });
   return (
     <TableContainer
-      border="1px"
-      borderColor="gray.400"
-      bg="gray.200"
+      shadow="xl"
+      bg="white"
+      color="gray.400"
       minW="33vw"
       borderRadius="xl"
-      color="gray.500"
     >
       <Table variant="simple">
         <Thead>

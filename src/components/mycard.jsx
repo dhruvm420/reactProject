@@ -7,40 +7,35 @@ import {
   Heading,
   Text,
 } from "@chakra-ui/react";
-
-export default function MyCard(card) {
+import { Link } from "react-router-dom";
+export default function MyCard({ title, count, link }) {
   return (
     <Card
       w="16vw"
-      h="33vh"
+      h="35vh"
       shadow="xl"
-      bg="gray.300"
-      color="gray.500"
+      bg="white"
+      color="gray.400"
       borderRadius="3xl"
       mb="8"
       mx="4"
-      _hover={{
-        backgroundColor: "gray.400",
-        color: "gray.600",
-        border: "2px",
-        borderColor: "gray.500",
-      }}
+      px="8"
     >
       <CardHeader m="0" pb="2">
-        <Heading size="lg" textAlign="center">
-          {" "}
-          {card.title}{" "}
-        </Heading>
+        <Text fontSize="5xl" color="gray.600" textAlign="left">
+          {count}
+        </Text>
       </CardHeader>
       <CardBody m="0" p="0">
-        <Text fontSize="5xl" color="gray.600" textAlign="center">
-          {card.count}
-        </Text>
+        <Heading size="lg" textAlign="left">
+          {" "}
+          {title}{" "}
+        </Heading>
       </CardBody>
-      <CardFooter>
-        <Text fontSize="xl" w="15vw" textAlign="center">
-          View More
-        </Text>
+      <CardFooter p="4" mt="2">
+        <Link to={link}>
+          <Button colorScheme="gray">View More &rarr;</Button>
+        </Link>
       </CardFooter>
     </Card>
   );
