@@ -3,6 +3,7 @@ import Header from "../components/header.jsx";
 import Sidebar from "../components/sidebar.jsx";
 import ListPreview from "../components/listPreview.jsx";
 import DashboardCards from "../components/dashboardCards.jsx";
+import Root from "./root.jsx";
 let dashboardData = {
   State: {
     count: "1",
@@ -107,17 +108,13 @@ export default function Dashboard() {
     />
   );
   return (
-    <Box>
-      <Header title="Admin Dashboard" />
-      <Flex>
-        <Sidebar />
-        <Box w="85vw" p="6">
-          <Flex padding="4" justifyContent="space-between" wrap="wrap">
-            <DashboardCards data={dashboardData} />
-            {postPreview} {complaintsPreview}
-          </Flex>
-        </Box>
-      </Flex>
-    </Box>
+    <Root title="Admin Dashboard">
+      <Box w="85vw" p="6">
+        <Flex padding="4" justifyContent="space-between" wrap="wrap">
+          <DashboardCards data={dashboardData} />
+          {postPreview} {complaintsPreview}
+        </Flex>
+      </Box>
+    </Root>
   );
 }

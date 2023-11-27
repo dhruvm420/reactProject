@@ -44,7 +44,7 @@ export default function DistrictList() {
     );
   });
   return (
-    <Root>
+    <Root title="District List">
       <Flex direction="column" mx="auto" mt="4">
         <Button colorScheme="teal" mb="4" mx="auto">
           Create District
