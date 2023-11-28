@@ -1,18 +1,5 @@
-import {
-  Table,
-  Thead,
-  Box,
-  Tbody,
-  Tfoot,
-  Tr,
-  Flex,
-  Th,
-  Td,
-  TableCaption,
-  Button,
-  TableContainer,
-} from "@chakra-ui/react";
-import Action from "../components/action";
+import { Flex } from "@chakra-ui/react";
+import TableGenerator from "../components/tableGenerator";
 import Root from "./root";
 let unVerifiedData = [
   {
@@ -42,58 +29,10 @@ let unVerifiedData = [
 ];
 
 export default function UnVerifiedList() {
-  let rows;
-  if (unVerifiedData.length == 0)
-    rows = (
-      <Tr>
-        <Td colSpan="6" textAlign="center">
-          No Unverified Member found
-        </Td>
-      </Tr>
-    );
-  else {
-    rows = unVerifiedData.map((data) => {
-      return (
-        <Tr _hover={{ backgroundColor: "gray.100", color: "gray.600" }}>
-          <Td>{data.USER_ID}</Td>
-          <Td>{data.COORDINATOR_ID}</Td>
-          <Td>{data.NAME}</Td>
-          <Td>{data.MOBILE}</Td>
-          <Td>{data.CITY}</Td>
-          <Td>{data.DATE}</Td>
-          <Td>
-            <Action />
-          </Td>
-        </Tr>
-      );
-    });
-  }
   return (
     <Root title="Unverified Users">
       <Flex direction="column" mx="auto" mt="4">
-        <TableContainer
-          border="1px"
-          borderColor="gray.300"
-          bg="white"
-          minW="80vw"
-          borderRadius="xl"
-          color="gray.500"
-        >
-          <Table variant="simple">
-            <Thead>
-              <Tr>
-                <Th>USER ID</Th>
-                <Th>COORDINATOR ID</Th>
-                <Th>NAME</Th>
-                <Th>MOBILE NO.</Th>
-                <Th>CITY</Th>
-                <Th>APPLY DATE</Th>
-                <Th>Action</Th>
-              </Tr>
-            </Thead>
-            <Tbody>{rows}</Tbody>
-          </Table>
-        </TableContainer>
+        <TableGenerator data={unVerifiedData} title="Unverified Members" />
       </Flex>
     </Root>
   );

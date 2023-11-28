@@ -1,19 +1,6 @@
-import {
-  Table,
-  Thead,
-  Box,
-  Tbody,
-  Tfoot,
-  Tr,
-  Flex,
-  Th,
-  Td,
-  TableCaption,
-  TableContainer,
-  Button,
-} from "@chakra-ui/react";
-import Action from "../components/action";
+import { Flex, Button } from "@chakra-ui/react";
 import Root from "./root";
+import TableGenerator from "../components/tableGenerator";
 let panchayatData = [
   {
     IMAGE: "https://skskf.in/userimg/IMG-20230627-WA0045_09152023162926.jpg",
@@ -25,61 +12,13 @@ let panchayatData = [
 ];
 
 export default function PanchayatList() {
-  let rows;
-  if (panchayatData.length == 0)
-    rows = (
-      <Tr>
-        <Td colSpan="6" textAlign="center">
-          No Registered Panchayat found
-        </Td>
-      </Tr>
-    );
-  else {
-    rows = panchayatData.map((data) => {
-      return (
-        <Tr _hover={{ backgroundColor: "gray.100", color: "gray.600" }}>
-          <Td>
-            <img src={data.IMAGE} alt="" width="50px" height="50px" />
-          </Td>
-          <Td>{data.NAME}</Td>
-          <Td>{data.EMAIL}</Td>
-          <Td>{data.DESIGNATION}</Td>
-          <Td>{data.DATE}</Td>
-          <Td>
-            <Action />
-          </Td>
-        </Tr>
-      );
-    });
-  }
   return (
     <Root title="Panchayat List">
       <Flex direction="column" mx="auto" mt="4">
         <Button colorScheme="teal" mb="4" mx="auto">
           Create Panchayat
         </Button>
-        <TableContainer
-          border="1px"
-          borderColor="gray.300"
-          bg="white"
-          minW="80vw"
-          borderRadius="xl"
-          color="gray.500"
-        >
-          <Table variant="simple">
-            <Thead>
-              <Tr>
-                <Th>Image</Th>
-                <Th>Name</Th>
-                <Th>Email</Th>
-                <Th>Designation</Th>
-                <Th>Date</Th>
-                <Th>Action</Th>
-              </Tr>
-            </Thead>
-            <Tbody>{rows}</Tbody>
-          </Table>
-        </TableContainer>
+        <TableGenerator data={panchayatData} title="Panchayat" />
       </Flex>
     </Root>
   );
