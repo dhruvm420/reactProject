@@ -98,7 +98,7 @@ let complaints = [
 ];
 export default function Dashboard() {
   let postPreview = (
-    <ListPreview data={posts} head="Latest Posts" title="TITLE" />
+    <ListPreview data={posts} head="Latest Posts" title="TITLE" link="/posts" />
   );
   let complaintsPreview = (
     <ListPreview

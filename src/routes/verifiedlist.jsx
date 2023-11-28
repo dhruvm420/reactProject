@@ -39,27 +39,38 @@ let verifiedData = [
 ];
 
 export default function VerifiedList() {
-  let rows = verifiedData.map((data) => {
-    return (
-      <Tr _hover={{ backgroundColor: "gray.300", color: "gray.600" }}>
-        <Td>{data.USER_ID}</Td>
-        <Td>{data.NAME}</Td>
-        <Td>{data.MOBILE}</Td>
-        <Td>{data.CITY}</Td>
-        <Td>{data.AUTHORITY}</Td>
-        <Td>
-          <Action />
+  let rows;
+  if (verifiedData.length == 0)
+    rows = (
+      <Tr>
+        <Td colSpan="6" textAlign="center">
+          No Verified Member found
         </Td>
       </Tr>
     );
-  });
+  else {
+    rows = verifiedData.map((data) => {
+      return (
+        <Tr _hover={{ backgroundColor: "gray.100", color: "gray.600" }}>
+          <Td>{data.USER_ID}</Td>
+          <Td>{data.NAME}</Td>
+          <Td>{data.MOBILE}</Td>
+          <Td>{data.CITY}</Td>
+          <Td>{data.AUTHORITY}</Td>
+          <Td>
+            <Action />
+          </Td>
+        </Tr>
+      );
+    });
+  }
   return (
     <Root title="Verified Users">
       <Flex direction="column" mx="auto" mt="4">
         <TableContainer
           border="1px"
-          borderColor="gray.400"
-          bg="gray.200"
+          borderColor="gray.300"
+          bg="white"
           minW="80vw"
           borderRadius="xl"
           color="gray.500"

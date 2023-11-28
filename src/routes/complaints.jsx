@@ -29,7 +29,7 @@ export default function Complaints() {
   else {
     rows = complaintsData.map((data) => {
       return (
-        <Tr _hover={{ backgroundColor: "gray.300", color: "gray.600" }}>
+        <Tr _hover={{ backgroundColor: "gray.100", color: "gray.600" }}>
           <Td>{data.NAME}</Td>
           <Td>{data.MESSAGE}</Td>
           <Td>{data.DESCRIPTION}</Td>
@@ -47,8 +47,8 @@ export default function Complaints() {
       <Flex direction="column" mx="auto" mt="4">
         <TableContainer
           border="1px"
-          borderColor="gray.400"
-          bg="gray.200"
+          borderColor="gray.300"
+          bg="white"
           minW="80vw"
           borderRadius="xl"
           color="gray.500"

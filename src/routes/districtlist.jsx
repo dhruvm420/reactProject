@@ -26,23 +26,34 @@ let districtData = [
 ];
 
 export default function DistrictList() {
-  let rows = districtData.map((data) => {
-    return (
-      <Tr _hover={{ backgroundColor: "gray.300", color: "gray.600" }}>
-        <Td>
-          <img src={data.IMAGE} alt="" width="50px" height="50px" />
-        </Td>
-        <Td>{data.NAME}</Td>
-        <Td>{data.EMAIL}</Td>
-        <Td>{data.DESIGNATION}</Td>
-        <Td>{data["Total Tehsil"]}</Td>
-        <Td>{data.DATE}</Td>
-        <Td>
-          <Action />
+  let rows;
+  if (districtData.length == 0)
+    rows = (
+      <Tr>
+        <Td colSpan="6" textAlign="center">
+          No Registered District found
         </Td>
       </Tr>
     );
-  });
+  else {
+    rows = districtData.map((data) => {
+      return (
+        <Tr _hover={{ backgroundColor: "gray.100", color: "gray.600" }}>
+          <Td>
+            <img src={data.IMAGE} alt="" width="50px" height="50px" />
+          </Td>
+          <Td>{data.NAME}</Td>
+          <Td>{data.EMAIL}</Td>
+          <Td>{data.DESIGNATION}</Td>
+          <Td>{data["Total Tehsil"]}</Td>
+          <Td>{data.DATE}</Td>
+          <Td>
+            <Action />
+          </Td>
+        </Tr>
+      );
+    });
+  }
   return (
     <Root title="District List">
       <Flex direction="column" mx="auto" mt="4">
@@ -51,8 +62,8 @@ export default function DistrictList() {
         </Button>
         <TableContainer
           border="1px"
-          borderColor="gray.400"
-          bg="gray.200"
+          borderColor="gray.300"
+          bg="white"
           minW="80vw"
           borderRadius="xl"
           color="gray.500"
