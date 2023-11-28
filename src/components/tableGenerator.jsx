@@ -40,7 +40,6 @@ export default function TableGenerator({ data, title }) {
       border="1px"
       borderColor="gray.800"
       bg="white"
-      minW="80vw"
       borderRadius="xl"
       color="gray.500"
     >

@@ -11,6 +11,11 @@ import PanchayatList from "./routes/panchayatlist.jsx";
 import VerifiedList from "./routes/verifiedlist.jsx";
 import UnVerifiedList from "./routes/unverifiedlist.jsx";
 import Complaints from "./routes/complaints.jsx";
+import Testimonials from "./routes/testimonials.jsx";
+import Donors from "./routes/donors.jsx";
+import Contact from "./routes/contacts.jsx";
+import Management from "./routes/management.jsx";
+import PublicUserList from "./routes/publicuserlist.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -48,6 +53,26 @@ const router = createBrowserRouter([
   {
     path: "/complaints",
     element: <Complaints />,
+  },
+  {
+    path: "/testimonials",
+    element: <Testimonials />,
+  },
+  {
+    path: "/donations",
+    element: <Donors />,
+  },
+  {
+    path: "/contactus",
+    element: <Contact />,
+  },
+  {
+    path: "/management",
+    element: <Management />,
+  },
+  {
+    path: "/publicuserlist",
+    element: <PublicUserList />,
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
