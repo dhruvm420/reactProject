@@ -16,6 +16,7 @@ import Donors from "./routes/donors.jsx";
 import Contact from "./routes/contacts.jsx";
 import Management from "./routes/management.jsx";
 import PublicUserList from "./routes/publicuserlist.jsx";
+import Posts from "./routes/posts.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
   {
     path: "/publicuserlist",
     element: <PublicUserList />,
+  },
+  {
+    path: "/posts",
+    element: <Posts />,
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(

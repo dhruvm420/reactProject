@@ -63,7 +63,7 @@ export default function TableGenerator({ data, title }) {
             >
               {headers.map((header, i) => (
                 <Td key={i}>
-                  {header === "IMAGE" ? (
+                  {header === "IMAGE" || header === "TIMELINE POST" ? (
                     <img
                       src={dataItem[header]}
                       alt=""

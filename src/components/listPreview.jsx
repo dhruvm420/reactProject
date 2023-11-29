@@ -17,6 +17,7 @@ export default function ListPreview(props) {
   const head = props.head;
   const title = props.title;
   let link = props.link;
+  const total = data.length;
   data = data.slice(0, 4);
   let rows = data.map((dataItem) => {
     return (
@@ -37,7 +38,7 @@ export default function ListPreview(props) {
         <Thead>
           <Tr>
             <Th fontSize="lg">
-              {head}({data.length})
+              {head}({total})
             </Th>
           </Tr>
         </Thead>

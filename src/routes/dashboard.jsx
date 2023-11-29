@@ -105,6 +105,7 @@ export default function Dashboard() {
       data={complaints}
       head="Latest Suggestions / Complaints"
       title="MESSAGE"
+      link="/complaints"
     />
   );
   return (
