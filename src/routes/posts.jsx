@@ -1,5 +1,5 @@
 import Root from "./root";
-import { Flex } from "@chakra-ui/react";
+import { Flex, Button } from "@chakra-ui/react";
 import TableGenerator from "../components/tableGenerator";
 let postsData = [
   {
