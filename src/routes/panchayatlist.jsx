@@ -1,6 +1,7 @@
 import { Flex, Button } from "@chakra-ui/react";
 import Root from "./root";
 import TableGenerator from "../components/tableGenerator";
+import { Link } from "react-router-dom";
 let panchayatData = [
   {
     IMAGE: "https://skskf.in/userimg/IMG-20230627-WA0045_09152023162926.jpg",
@@ -15,9 +16,11 @@ export default function PanchayatList() {
   return (
     <Root title="Panchayat List">
       <Flex direction="column" mx="auto" mt="4">
-        <Button colorScheme="teal" mb="4" mx="auto">
-          Create Panchayat
-        </Button>
+        <Link to="/createPanchayat">
+          <Button colorScheme="teal" mb="4" mx="auto">
+            Create Panchayat
+          </Button>
+        </Link>
         <TableGenerator data={panchayatData} title="Panchayat" />
       </Flex>
     </Root>

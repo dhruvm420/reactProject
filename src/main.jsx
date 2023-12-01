@@ -17,6 +17,10 @@ import Contact from "./routes/contacts.jsx";
 import Management from "./routes/management.jsx";
 import PublicUserList from "./routes/publicuserlist.jsx";
 import Posts from "./routes/posts.jsx";
+import CreateDistrict from "./routes/createDistrict.jsx";
+import CreateState from "./routes/createState.jsx";
+import CreateTehsil from "./routes/createTehsil.jsx";
+import CreatePanchayat from "./routes/createPanchayat.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -78,6 +82,24 @@ const router = createBrowserRouter([
   {
     path: "/posts",
     element: <Posts />,
+  },
+  {
+    path: "/createDistrict",
+    element: <CreateDistrict />,
+  },
+
+  {
+    path: "/createState",
+    element: <CreateState />,
+  },
+
+  {
+    path: "/createTehsil",
+    element: <CreateTehsil />,
+  },
+  {
+    path: "/createPanchayat",
+    element: <CreatePanchayat />,
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
