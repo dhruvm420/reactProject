@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 let sideBarData = [
   "DASHBOARD",
-  "UNVERIFIED USERS",
-  "VERIFIED USERS",
+  "UNVERIFIED MEMBERS",
+  "VERIFIED MEMBERS",
   "PANCHAYAT LIST",
   "PANCHAYAT REPORT",
   "SEAT BOOKED",

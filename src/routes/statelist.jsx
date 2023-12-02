@@ -1,4 +1,4 @@
-import { Flex, Button } from "@chakra-ui/react";
+import { Flex, Button, Box } from "@chakra-ui/react";
 import Root from "./root";
 import { Link } from "react-router-dom";
 import TableGenerator from "../components/tableGenerator";
@@ -17,11 +17,13 @@ export default function StateList() {
   return (
     <Root title="State List">
       <Flex direction="column" mx="auto" mt="4">
-        <Link to="/createState">
-          <Button colorScheme="teal" mb="4" mx="auto">
-            Create State
-          </Button>
-        </Link>
+        <Box mx="auto">
+          <Link to="/createState">
+            <Button colorScheme="teal" mb="4">
+              Create State
+            </Button>
+          </Link>
+        </Box>
         <TableGenerator data={stateData} title="State" />
       </Flex>
     </Root>

@@ -30,7 +30,7 @@ let unVerifiedData = [
 
 export default function UnVerifiedList() {
   return (
-    <Root title="Unverified Users">
+    <Root title="Unverified Members">
       <Flex direction="column" mx="auto" mt="4">
         <TableGenerator data={unVerifiedData} title="Unverified Members" />
       </Flex>

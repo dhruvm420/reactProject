@@ -1,4 +1,4 @@
-import { Flex, Button } from "@chakra-ui/react";
+import { Flex, Button, Box } from "@chakra-ui/react";
 import Root from "./root";
 import TableGenerator from "../components/tableGenerator";
 import { Link } from "react-router-dom";
@@ -16,11 +16,13 @@ export default function PanchayatList() {
   return (
     <Root title="Panchayat List">
       <Flex direction="column" mx="auto" mt="4">
-        <Link to="/createPanchayat">
-          <Button colorScheme="teal" mb="4" mx="auto">
-            Create Panchayat
-          </Button>
-        </Link>
+        <Box mx="auto">
+          <Link to="/createPanchayat">
+            <Button colorScheme="teal" mb="4">
+              Create Panchayat
+            </Button>
+          </Link>
+        </Box>
         <TableGenerator data={panchayatData} title="Panchayat" />
       </Flex>
     </Root>

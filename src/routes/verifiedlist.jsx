@@ -27,7 +27,7 @@ let verifiedData = [
 
 export default function VerifiedList() {
   return (
-    <Root title="Verified Users">
+    <Root title="Verified Members">
       <Flex direction="column" mx="auto" mt="4">
         <TableGenerator data={verifiedData} title="Verified Members" />
       </Flex>

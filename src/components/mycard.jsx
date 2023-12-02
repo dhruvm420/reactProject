@@ -37,7 +37,7 @@ export default function MyCard({ title, count, link }) {
         <Flex justifyContent="center" w="64">
           <Link to={link}>
             <Button colorScheme="gray" fontSize="sm" textAlign="center">
-              View More &rarr;
+              View All &rarr;
             </Button>
           </Link>
         </Flex>

@@ -1,4 +1,4 @@
-import { Button, Flex } from "@chakra-ui/react";
+import { Button, Flex, Box } from "@chakra-ui/react";
 import TableGenerator from "../components/tableGenerator";
 import { Link } from "react-router-dom";
 import Root from "./root";
@@ -17,11 +17,13 @@ export default function TehsilList() {
   return (
     <Root title="Tehsil List">
       <Flex direction="column" mx="auto" mt="4">
-        <Link to="/createTehsil">
-          <Button colorScheme="teal" mb="4" mx="auto">
-            Create Tehsil
-          </Button>
-        </Link>
+        <Box mx="auto">
+          <Link to="/createTehsil">
+            <Button colorScheme="teal" mb="4">
+              Create Tehsil
+            </Button>
+          </Link>
+        </Box>
         <TableGenerator data={tehsilData} title="Tehsil" />
       </Flex>
     </Root>

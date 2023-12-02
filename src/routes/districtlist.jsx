@@ -1,4 +1,4 @@
-import { Flex, Button } from "@chakra-ui/react";
+import { Flex, Button, Box } from "@chakra-ui/react";
 import Root from "./root";
 import TableGenerator from "../components/tableGenerator";
 import { Link } from "react-router-dom";
@@ -17,11 +17,13 @@ export default function DistrictList() {
   return (
     <Root title="District List">
       <Flex direction="column" mx="auto" mt="4">
-        <Link to="/createDistrict">
-          <Button colorScheme="teal" mb="4" mx="auto">
-            Create District
-          </Button>
-        </Link>
+        <Box mx="auto">
+          <Link to="/createDistrict">
+            <Button colorScheme="teal" mb="4">
+              Create District
+            </Button>
+          </Link>
+        </Box>
         <TableGenerator data={districtData} title="District" />
       </Flex>
     </Root>
