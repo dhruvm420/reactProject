@@ -2,6 +2,8 @@ import { Flex, Button, Box } from "@chakra-ui/react";
 import Root from "./root";
 import TableGenerator from "../components/tableGenerator";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import DeleteOrVerify from "../components/actionButtons/deleteOrVerify";
 let panchayatData = [
   {
     "USER ID": "0134",
@@ -14,18 +16,36 @@ let panchayatData = [
 ];
 
 export default function PanchayatList() {
+  const [dialogIsOpen, setDialogIsOpen] = useState(false);
+  const [id, setId] = useState("");
+  const [action, setAction] = useState("");
   return (
-    <Root title="Panchayat List">
-      <Flex direction="column" mx="auto" mt="4">
-        <Box mx="auto">
-          <Link to="/createPanchayat">
-            <Button colorScheme="teal" mb="4">
-              Create Panchayat
-            </Button>
-          </Link>
-        </Box>
-        <TableGenerator data={panchayatData} title="Panchayat" />
-      </Flex>
-    </Root>
+    <>
+      <DeleteOrVerify
+        formName={"panchayat"}
+        action={action}
+        modifyId={id}
+        isOpen={dialogIsOpen}
+        setIsOpen={setDialogIsOpen}
+      />
+      <Root title="Panchayat List">
+        <Flex direction="column" mx="auto" mt="4">
+          <Box mx="auto">
+            <Link to="/createPanchayat">
+              <Button colorScheme="teal" mb="4">
+                Create Panchayat
+              </Button>
+            </Link>
+          </Box>
+          <TableGenerator
+            data={panchayatData}
+            title="Panchayat"
+            setIsOpen={setDialogIsOpen}
+            setAction={setAction}
+            setId={setId}
+          />
+        </Flex>
+      </Root>
+    </>
   );
 }

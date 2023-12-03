@@ -2,6 +2,8 @@ import { Flex, Button, Box } from "@chakra-ui/react";
 import Root from "./root";
 import { Link } from "react-router-dom";
 import TableGenerator from "../components/tableGenerator";
+import { useState } from "react";
+import DeleteOrVerify from "../components/actionButtons/deleteOrVerify";
 let stateData = [
   {
     "USER ID": "0134",
@@ -15,18 +17,36 @@ let stateData = [
 ];
 
 export default function StateList() {
+  const [dialogIsOpen, setDialogIsOpen] = useState(false);
+  const [id, setId] = useState("");
+  const [action, setAction] = useState("");
   return (
-    <Root title="State List">
-      <Flex direction="column" mx="auto" mt="4">
-        <Box mx="auto">
-          <Link to="/createState">
-            <Button colorScheme="teal" mb="4">
-              Create State
-            </Button>
-          </Link>
-        </Box>
-        <TableGenerator data={stateData} title="State" />
-      </Flex>
-    </Root>
+    <>
+      <DeleteOrVerify
+        formName={"state"}
+        action={action}
+        modifyId={id}
+        isOpen={dialogIsOpen}
+        setIsOpen={setDialogIsOpen}
+      />
+      <Root title="State List">
+        <Flex direction="column" mx="auto" mt="4">
+          <Box mx="auto">
+            <Link to="/createState">
+              <Button colorScheme="teal" mb="4">
+                Create State
+              </Button>
+            </Link>
+          </Box>
+          <TableGenerator
+            data={stateData}
+            title="State"
+            setIsOpen={setDialogIsOpen}
+            setAction={setAction}
+            setId={setId}
+          />
+        </Flex>
+      </Root>
+    </>
   );
 }

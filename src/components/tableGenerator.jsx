@@ -8,7 +8,13 @@ import {
   TableContainer,
 } from "@chakra-ui/react";
 import Action from "./action";
-export default function TableGenerator({ data, title }) {
+export default function TableGenerator({
+  data,
+  title,
+  setIsOpen,
+  setAction,
+  setId,
+}) {
   const headers = Object.keys(data[0]);
   let noData = data == null || data[0][headers[0]] == null;
   let rows;
@@ -39,7 +45,13 @@ export default function TableGenerator({ data, title }) {
           </Td>
         ))}
         <Td>
-          <Action name={title} id={dataItem["USER ID"]} />
+          <Action
+            name={title}
+            id={dataItem["USER ID"]}
+            setIsOpen={setIsOpen}
+            setId={setId}
+            setAction={setAction}
+          />
         </Td>
       </Tr>
     ));
