@@ -1,7 +1,15 @@
 import Root from "./root";
 import { Flex } from "@chakra-ui/react";
 import TableGenerator from "../components/tableGenerator";
-let complaintsData = [];
+let complaintsData = [
+  {
+    NAME: null,
+    MESSAGE: null,
+    DESCRIPTION: null,
+    "REGISTER DATE": null,
+    Status: null,
+  },
+];
 
 export default function Complaints() {
   return (
