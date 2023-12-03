@@ -26,6 +26,7 @@ import CreateTestimonial from "./routes/Forms/testimonialForm.jsx";
 import DonationForm from "./routes/Forms/donationForm.jsx";
 import CreateEvent from "./routes/Forms/createEvent.jsx";
 import CreatePost from "./routes/Forms/createPost.jsx";
+import EditForm from "./components/actionButtons/editForm.jsx";
 export let routesList = [
   {
     path: "/",
@@ -142,5 +143,9 @@ export let routesList = [
   {
     path: "/createPost",
     element: <CreatePost />,
+  },
+  {
+    path: "/edit/:formName/:modifyId",
+    element: <EditForm />,
   },
 ];

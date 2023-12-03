@@ -39,7 +39,7 @@ export default function TableGenerator({ data, title }) {
           </Td>
         ))}
         <Td>
-          <Action />
+          <Action name={title} id={dataItem["USER ID"]} />
         </Td>
       </Tr>
     ));

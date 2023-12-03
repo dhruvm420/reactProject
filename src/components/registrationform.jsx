@@ -199,33 +199,35 @@ const RegistrationForm = (props) => {
             />
           </FormControl>
         </HStack>
-        <FormControl>
-          <FormLabel>Password *</FormLabel>
-          <Input
-            type="password"
-            name="password"
-            border="1px"
-            borderColor="blue.500"
-            w="20vw"
-            value={formData.password}
-            onChange={handleInputChange}
-            required
-          />
-        </FormControl>
+        <HStack>
+          <FormControl>
+            <FormLabel>Password *</FormLabel>
+            <Input
+              type="password"
+              name="password"
+              border="1px"
+              borderColor="blue.500"
+              w="20vw"
+              value={formData.password}
+              onChange={handleInputChange}
+              required
+            />
+          </FormControl>
 
-        <FormControl>
-          <FormLabel>Confirm Password *</FormLabel>
-          <Input
-            type="password"
-            name="confirmPassword"
-            border="1px"
-            borderColor="blue.500"
-            w="20vw"
-            value={formData.confirmPassword}
-            onChange={handleInputChange}
-            required
-          />
-        </FormControl>
+          <FormControl>
+            <FormLabel>Confirm Password *</FormLabel>
+            <Input
+              type="password"
+              name="confirmPassword"
+              border="1px"
+              borderColor="blue.500"
+              w="20vw"
+              value={formData.confirmPassword}
+              onChange={handleInputChange}
+              required
+            />
+          </FormControl>
+        </HStack>
         <HStack>
           <FormControl>
             <FormLabel>State *</FormLabel>
