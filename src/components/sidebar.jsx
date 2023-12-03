@@ -1,77 +1,33 @@
 import { Stack, Box } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import SideBarItem from "./sidebarItem";
 
-let sideBarData = [
-  "DASHBOARD",
-  "UNVERIFIED MEMBERS",
-  "VERIFIED MEMBERS",
-  "PANCHAYAT LIST",
-  "PANCHAYAT REPORT",
-  "SEAT BOOKED",
-  "ALL EVENT",
-  "ALL POST",
-  "MANAGEMENT TEAM",
-  "PUBLIC USER LIST",
-  "RECEIPT APPLICATION LIST",
-  "COMPLAIN / SOLUTION",
-  "TESTIMONIAL",
-  "PRINT DONATION SLIP",
-  "MY MESSAGE",
-  "SLIDER IMAGES",
-  "COMPANY PROFILE",
-  "ABOUT US POST LIST",
-  "OBJECTIVE LIST",
-  "LOG OUT",
-];
+let sideBarRoutes = {
+  "DASHBOARD ": "/dashboard",
+  "UNVERIFIED MEMBERS": "/unverifiedmembers",
+  "VERIFIED MEMBERS": "/verifiedmembers",
+  "PANCHAYAT LIST": "/panchayatlist",
+  "PANCHAYAT REPORT": "/panchayatreport",
+  "SEAT BOOKED": "/eventbooking",
+  "ALL EVENT": "/event",
+  "ALL POST": "/posts",
+  "MANAGEMENT TEAM": "/management",
+  "PUBLIC USER LIST": "/publicuserlist",
+  "RECEIPT APPLICATION LIST": "/receiptapplication",
+  "COMPLAIN / SOLUTION": "/complaints",
+  "TESTIMONIAL ": "/testimonials",
+  "PRINT DONATION SLIP": "/donations",
+  "MY MESSAGE": "/mymessage",
+  // "SLIDER IMAGES",
+  // "COMPANY PROFILE",
+  // "ABOUT US POST LIST",
+  // "OBJECTIVE LIST",
+  // "LOG OUT",
+};
 
 export default function Sidebar() {
-  const list = sideBarData.map((item) => {
-    if (item == "DASHBOARD")
-      return (
-        <Link to={`/dashboard`}>
-          <Box
-            as="li"
-            fontWeight="bold"
-            py="2"
-            textAlign="center"
-            backgroundColor="gray.100"
-            borderBottom="1px"
-            borderBottomColor="gray.400"
-            borderRadius="xl"
-            borderRight="1px"
-            borderRightColor="gray.400"
-            color="gray.400"
-            _hover={{
-              background: "gray.200",
-              cursor: "pointer",
-            }}
-          >
-            {item}
-          </Box>
-        </Link>
-      );
-    else
-      return (
-        <Box
-          as="li"
-          py="2"
-          fontWeight="bold"
-          color="gray.400"
-          textAlign="center"
-          backgroundColor="gray.100"
-          borderBottom="1px"
-          borderRadius="lg"
-          borderBottomColor="gray.400"
-          borderRight="1px"
-          borderRightColor="gray.400"
-          _hover={{
-            background: "gray.200",
-            cursor: "pointer",
-          }}
-        >
-          {item}
-        </Box>
-      );
+  const routes = Object.keys(sideBarRoutes);
+  const list = routes.map((key) => {
+    return <SideBarItem title={key} link={sideBarRoutes[key]} />;
   });
   return (
     <Box>
