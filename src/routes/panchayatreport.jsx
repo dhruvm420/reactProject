@@ -42,6 +42,8 @@ export default function PanchayatReport() {
     handleOption(option);
   };
 
+  const userCount = () =>
+    usersData[0][Object.keys(usersData[0])[0]] == null ? 0 : usersData.length;
   return (
     <Root title="Panchayat List">
       <Flex direction="column" mx="auto" mt="4">
@@ -58,7 +60,7 @@ export default function PanchayatReport() {
           <>
             <TableGenerator data={panchayatData} title="Panchayat" />
             <Box my="4" mx="auto">
-              Total User - {usersData.length}
+              Total User - {userCount()}
             </Box>
             <TableGenerator data={usersData} title="User" />
           </>

@@ -13,14 +13,19 @@ import Contact from "./routes/contacts.jsx";
 import Management from "./routes/management.jsx";
 import PublicUserList from "./routes/publicuserlist.jsx";
 import Posts from "./routes/posts.jsx";
-import CreateDistrict from "./routes/createDistrict.jsx";
-import CreateState from "./routes/createState.jsx";
-import CreateTehsil from "./routes/createTehsil.jsx";
-import CreatePanchayat from "./routes/createPanchayat.jsx";
+import CreateDistrict from "./routes/Forms/createDistrict.jsx";
+import CreateState from "./routes/Forms/createState.jsx";
+import CreateTehsil from "./routes/Forms/createTehsil.jsx";
+import CreatePanchayat from "./routes/Forms/createPanchayat.jsx";
 import MyMessage from "./routes/mymessage.jsx";
 import EventList from "./routes/eventlist.jsx";
 import EventBooking from "./routes/eventBooking.jsx";
 import PanchayatReport from "./routes/panchayatreport.jsx";
+import ManagementForm from "./routes/Forms/managementForm.jsx";
+import CreateTestimonial from "./routes/Forms/testimonialForm.jsx";
+import DonationForm from "./routes/Forms/donationForm.jsx";
+import CreateEvent from "./routes/Forms/createEvent.jsx";
+import CreatePost from "./routes/Forms/createPost.jsx";
 export let routesList = [
   {
     path: "/",
@@ -116,5 +121,26 @@ export let routesList = [
   {
     path: "/panchayatreport",
     element: <PanchayatReport />,
+  },
+  {
+    path: "/createManagement",
+    element: <ManagementForm />,
+  },
+  {
+    path: "/createTestimonial",
+    element: <CreateTestimonial />,
+  },
+  {
+    path: "/donationForm",
+    element: <DonationForm />,
+  },
+  {
+    path: "/createEvent",
+    element: <CreateEvent />,
+  },
+
+  {
+    path: "/createPost",
+    element: <CreatePost />,
   },
 ];

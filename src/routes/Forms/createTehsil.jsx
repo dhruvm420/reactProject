@@ -1,5 +1,5 @@
-import RegistrationForm from "../components/registrationform";
-import Root from "./root";
+import RegistrationForm from "../../components/registrationform";
+import Root from "../root";
 export default function CreateTehsil() {
   return (
     <Root title="Tehsil Form">

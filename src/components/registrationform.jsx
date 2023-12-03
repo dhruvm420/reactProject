@@ -295,7 +295,7 @@ const RegistrationForm = (props) => {
           <FormLabel>Profile Picture</FormLabel>
           <Input type="file" onChange={handleFileChange} accept="image/*" />
         </FormControl>
-        <Button type="submit" mt={4} colorScheme="blue">
+        <Button type="submit" mt={4} colorScheme="blue" w="12vw" mx="auto">
           Submit
         </Button>
       </Stack>

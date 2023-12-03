@@ -1,6 +1,7 @@
 import Root from "./root";
-import { Flex, Button } from "@chakra-ui/react";
+import { Flex, Button, Box } from "@chakra-ui/react";
 import TableGenerator from "../components/tableGenerator";
+import { Link } from "react-router-dom";
 let postsData = [
   {
     "POST DATE": "2023-09-07 16:22:24",
@@ -17,9 +18,13 @@ export default function Posts() {
   return (
     <Root title="Timeline Post List">
       <Flex direction="column" mx="auto" mt="4">
-        <Button colorScheme="teal" mb="4" mx="auto">
-          New Post
-        </Button>
+        <Box mx="auto">
+          <Link to="/createPost">
+            <Button colorScheme="teal" mb="4">
+              New Post
+            </Button>
+          </Link>
+        </Box>
         <TableGenerator data={postsData} title="Posts" />
       </Flex>
     </Root>

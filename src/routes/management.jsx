@@ -1,6 +1,7 @@
-import { Flex, Button } from "@chakra-ui/react";
+import { Flex, Button, Box } from "@chakra-ui/react";
 import Root from "./root";
 import TableGenerator from "../components/tableGenerator";
+import { Link } from "react-router-dom";
 let managementData = [
   {
     IMAGE: null,
@@ -15,9 +16,13 @@ export default function Management() {
   return (
     <Root title="Management Team">
       <Flex direction="column" mx="auto" mt="4">
-        <Button colorScheme="teal" mb="4" mx="auto">
-          Create Management
-        </Button>
+        <Box mx="auto">
+          <Link to="/createManagement">
+            <Button colorScheme="teal" mb="4">
+              Create Management
+            </Button>
+          </Link>
+        </Box>
         <TableGenerator data={managementData} title="Management" />
       </Flex>
     </Root>

@@ -1,6 +1,7 @@
-import { Flex, Button } from "@chakra-ui/react";
+import { Flex, Button, Box } from "@chakra-ui/react";
 import Root from "./root";
 import TableGenerator from "../components/tableGenerator";
+import { Link } from "react-router-dom";
 let donorsData = [
   {
     IMAGE: null,
@@ -17,9 +18,13 @@ export default function Donors() {
   return (
     <Root title="Donors List">
       <Flex direction="column" mx="auto" mt="4">
-        <Button colorScheme="teal" mb="4" mx="auto">
-          Add Donor
-        </Button>
+        <Box mx="auto">
+          <Link to="/donationForm">
+            <Button colorScheme="teal" mb="4">
+              Add Donor
+            </Button>
+          </Link>
+        </Box>
         <TableGenerator data={donorsData} title="Donor" />
       </Flex>
     </Root>
