@@ -14,7 +14,9 @@ export default function Action(props) {
   const setAction = props.setAction;
   return (
     <HStack spacing="2">
-      <img src={idCard} alt="" width="30px" />
+      <Link to={`/idcard/${name.toLowerCase()}/${id}`} m="0" p="0">
+        <img src={idCard} alt="" width="30px" />
+      </Link>
       {/* <img src={toggle} alt="" width="30px" /> */}
       <Link to={`/edit/${name.toLowerCase()}/${id}`} m="0" p="0">
         <img src={edit} alt="" width="25px" />

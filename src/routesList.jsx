@@ -28,6 +28,7 @@ import CreateEvent from "./routes/Forms/createEvent.jsx";
 import CreatePost from "./routes/Forms/createPost.jsx";
 import EditForm from "./components/actionButtons/editForm.jsx";
 import RecieptApplication from "./routes/receiptApplication.jsx";
+import Idcard from "./components/actionButtons/IDcard.jsx";
 export let routesList = [
   {
     path: "/",
@@ -152,5 +153,9 @@ export let routesList = [
   {
     path: "/edit/:formName/:modifyId",
     element: <EditForm />,
+  },
+  {
+    path: "/idcard/:name/:userId",
+    element: <Idcard />,
   },
 ];
