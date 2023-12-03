@@ -3,11 +3,11 @@ import Root from "./root";
 import TableGenerator from "../components/tableGenerator";
 let userListData = [
   {
-    PROFILE: "https://skskf.in",
-    "USER ID": "0238",
-    NAME: "KESHAW DAS",
-    EMAIL: "keshawkwd666@gmail.com",
-    "REGISTER DATE": "2023-09-09 13:24:09",
+    PROFILE: null,
+    "USER ID": null,
+    NAME: null,
+    EMAIL: null,
+    "REGISTER DATE": null,
   },
 ];
 export default function PublicUserList() {

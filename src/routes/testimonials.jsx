@@ -3,10 +3,10 @@ import TableGenerator from "../components/tableGenerator";
 import Root from "./root";
 let testimonialData = [
   {
-    IMAGE: "https://skskf.in/userimg/IMG-20230627-WA0045_09152023162926.jpg",
-    NAME: "KESHAW DAS",
-    MESSAGE: "message here...",
-    DESIGNATION: "s./lohara",
+    IMAGE: null,
+    NAME: null,
+    MESSAGE: null,
+    DESIGNATION: null,
   },
 ];
 

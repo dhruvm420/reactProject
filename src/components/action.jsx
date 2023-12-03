@@ -7,7 +7,7 @@ import approve from "../assets/approve.svg";
 import menu from "../assets/menu.svg";
 export default function Action() {
   return (
-    <HStack spacing="3">
+    <HStack spacing="2">
       <img src={id} alt="" width="30px" />
       <img src={toggle} alt="" width="30px" />
       <img src={edit} alt="" width="25px" />

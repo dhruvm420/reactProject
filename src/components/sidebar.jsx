@@ -10,10 +10,8 @@ let sideBarData = [
   "SEAT BOOKED",
   "ALL EVENT",
   "ALL POST",
-  "PARTICIPANT LIST",
   "MANAGEMENT TEAM",
   "PUBLIC USER LIST",
-  "CONTACT LIST",
   "RECEIPT APPLICATION LIST",
   "COMPLAIN / SOLUTION",
   "TESTIMONIAL",
@@ -77,7 +75,7 @@ export default function Sidebar() {
   });
   return (
     <Box>
-      <Stack as="ul" w="15vw" spacing="0">
+      <Stack as="ul" w="13vw" spacing="0">
         {list}
       </Stack>
     </Box>

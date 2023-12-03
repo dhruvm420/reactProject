@@ -3,13 +3,13 @@ import Root from "./root";
 import TableGenerator from "../components/tableGenerator";
 let donorsData = [
   {
-    IMAGE: "https://skskf.in/userimg/IMG-20230627-WA0045_09152023162926.jpg",
-    NAME: "KESHAW DAS",
-    AMOUNT: "4000",
-    EMAIL: "keshawkwd666@gmail.com",
-    "PAYMENT RECIEPT": "https://skskf.in/",
-    MOBILE_NO: "8999323212",
-    MODE: "Online",
+    IMAGE: null,
+    NAME: null,
+    AMOUNT: null,
+    EMAIL: null,
+    "PAYMENT RECIEPT": null,
+    MOBILE_NO: null,
+    MODE: null,
   },
 ];
 
