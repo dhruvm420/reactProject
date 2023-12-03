@@ -27,6 +27,7 @@ import DonationForm from "./routes/Forms/donationForm.jsx";
 import CreateEvent from "./routes/Forms/createEvent.jsx";
 import CreatePost from "./routes/Forms/createPost.jsx";
 import EditForm from "./components/actionButtons/editForm.jsx";
+import RecieptApplication from "./routes/receiptApplication.jsx";
 export let routesList = [
   {
     path: "/",
@@ -84,6 +85,10 @@ export let routesList = [
   {
     path: "/publicuserlist",
     element: <PublicUserList />,
+  },
+  {
+    path: "/receiptapplication",
+    element: <RecieptApplication />,
   },
   {
     path: "/posts",
