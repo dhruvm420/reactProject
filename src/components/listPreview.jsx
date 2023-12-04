@@ -21,7 +21,7 @@ export default function ListPreview(props) {
   data = data.slice(0, 4);
   let rows = data.map((dataItem) => {
     return (
-      <Tr>
+      <Tr color="gray.500">
         <Td>{dataItem[title]}</Td>
       </Tr>
     );
@@ -30,7 +30,7 @@ export default function ListPreview(props) {
     <TableContainer
       shadow="xl"
       bg="white"
-      color="gray.400"
+      color="gray.500"
       minW="30vw"
       borderRadius="xl"
     >
