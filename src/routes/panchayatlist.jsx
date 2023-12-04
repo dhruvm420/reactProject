@@ -3,7 +3,7 @@ import Root from "./root";
 import TableGenerator from "../components/tableGenerator";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import DeleteOrVerify from "../components/actionButtons/deleteOrVerify";
+import ActionPopUp from "../components/actionButtons/actionPopUp";
 let panchayatData = [
   {
     "USER ID": "0134",
@@ -21,7 +21,7 @@ export default function PanchayatList() {
   const [action, setAction] = useState("");
   return (
     <>
-      <DeleteOrVerify
+      <ActionPopUp
         formName={"panchayat"}
         action={action}
         modifyId={id}

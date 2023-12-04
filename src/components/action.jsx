@@ -18,9 +18,20 @@ export default function Action(props) {
         <img src={idCard} alt="" width="30px" />
       </Link>
       {/* <img src={toggle} alt="" width="30px" /> */}
-      <Link to={`/edit/${name.toLowerCase()}/${id}`} m="0" p="0">
+      {/* <Link to={`/edit/${name.toLowerCase()}/${id}`} m="0" p="0"> */}
+      <Button
+        colorScheme="white"
+        p="0"
+        mx="-1"
+        onClick={() => {
+          setId(id);
+          setAction("edit");
+          setIsOpen(true);
+        }}
+      >
         <img src={edit} alt="" width="25px" />
-      </Link>
+      </Button>
+      {/* </Link> */}
       <Button
         colorScheme="white"
         p="0"
@@ -45,7 +56,18 @@ export default function Action(props) {
       >
         <img src={approve} alt="" width="25px" />
       </Button>
-      <img src={menu} alt="" width="30px" />
+      <Button
+        colorScheme="white"
+        p="0"
+        mx="-1"
+        onClick={() => {
+          setId(id);
+          setAction("menu");
+          setIsOpen(true);
+        }}
+      >
+        <img src={menu} alt="" width="30px" />
+      </Button>
     </HStack>
   );
 }

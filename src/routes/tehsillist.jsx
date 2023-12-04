@@ -2,8 +2,8 @@ import { Button, Flex, Box } from "@chakra-ui/react";
 import TableGenerator from "../components/tableGenerator";
 import { Link } from "react-router-dom";
 import Root from "./root";
-import DeleteOrVerify from "../components/actionButtons/deleteOrVerify";
 import { useState } from "react";
+import ActionPopUp from "../components/actionButtons/actionPopUp";
 let tehsilData = [
   {
     "USER ID": "0134",
@@ -22,7 +22,7 @@ export default function TehsilList() {
   const [action, setAction] = useState("");
   return (
     <>
-      <DeleteOrVerify
+      <ActionPopUp
         formName={"tehsil"}
         action={action}
         modifyId={id}

@@ -3,7 +3,7 @@ import Root from "./root";
 import TableGenerator from "../components/tableGenerator";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import DeleteOrVerify from "../components/actionButtons/deleteOrVerify";
+import ActionPopUp from "../components/actionButtons/actionPopUp";
 let districtData = [
   {
     "USER ID": "0134",
@@ -22,7 +22,7 @@ export default function DistrictList() {
   const [action, setAction] = useState("");
   return (
     <>
-      <DeleteOrVerify
+      <ActionPopUp
         formName={"district"}
         action={action}
         modifyId={id}
