@@ -8,17 +8,21 @@ export default function SideBarItem(props) {
         py="2"
         fontSize="sm"
         fontWeight="bold"
-        color="gray.400"
+        color="gray.500"
         textAlign="center"
-        backgroundColor="gray.100"
-        borderBottom="1px"
+        backgroundColor="gray.300"
         borderRadius="lg"
-        borderBottomColor="gray.400"
-        borderRight="1px"
-        borderRightColor="gray.400"
+        border="1px"
+        borderColor="gray.500"
+        // borderBottom="1px"
+        // borderBottomColor="gray.500"
+        // borderRight="1px"
+        // borderRightColor="gray.500"
         _hover={{
-          background: "gray.200",
+          background: "gray.400",
           cursor: "pointer",
+          color: "gray.600",
+          borderColor: "gray.600",
         }}
       >
         {props.title}

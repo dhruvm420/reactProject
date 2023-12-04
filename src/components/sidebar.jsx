@@ -7,7 +7,7 @@ export default function Sidebar() {
     return <SideBarItem title={key} link={sideBarRoutes[key]} />;
   });
   return (
-    <Box>
+    <Box py="3">
       <Stack as="ul" w="13vw" spacing="0">
         {list}
       </Stack>

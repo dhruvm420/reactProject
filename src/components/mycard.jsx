@@ -16,14 +16,19 @@ export default function MyCard({ title, count, link }) {
       h="52"
       shadow="xl"
       bg="white"
-      color="gray.400"
+      color="gray.500"
       borderRadius="3xl"
       mb="8"
       mx="4"
       px="9"
     >
       <CardHeader m="0" pb="2">
-        <Text fontSize="4xl" color="gray.600" textAlign="center">
+        <Text
+          fontSize="4xl"
+          fontWeight="bold"
+          color="gray.600"
+          textAlign="center"
+        >
           {count}
         </Text>
       </CardHeader>
