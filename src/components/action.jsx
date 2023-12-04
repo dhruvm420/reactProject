@@ -13,12 +13,11 @@ export default function Action(props) {
   const setIsOpen = props.setIsOpen;
   const setAction = props.setAction;
   return (
-    <HStack spacing="2">
-      <Link to={`/idcard/${name.toLowerCase()}/${id}`} m="0" p="0">
+    <HStack spacing="0">
+      <Link to={`/idcard/${name.toLowerCase()}/${id}`}>
         <img src={idCard} alt="" width="30px" />
       </Link>
-      {/* <img src={toggle} alt="" width="30px" /> */}
-      {/* <Link to={`/edit/${name.toLowerCase()}/${id}`} m="0" p="0"> */}
+      <img src={toggle} alt="" width="30px" />
       <Button
         colorScheme="white"
         p="0"
