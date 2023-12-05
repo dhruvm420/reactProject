@@ -15,7 +15,11 @@ export default function Complaints() {
   return (
     <Root title="Complaints">
       <Flex direction="column" mx="auto" mt="4">
-        <TableGenerator data={complaintsData} title="Complaints " />
+        <TableGenerator
+          data={complaintsData}
+          title="Complaints "
+          actionItems={["delete"]}
+        />
       </Flex>
     </Root>
   );

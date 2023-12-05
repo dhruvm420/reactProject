@@ -23,7 +23,11 @@ export default function Management() {
             </Button>
           </Link>
         </Box>
-        <TableGenerator data={managementData} title="Management" />
+        <TableGenerator
+          data={managementData}
+          title="Management"
+          actionItems={["edit", "delete"]}
+        />
       </Flex>
     </Root>
   );

@@ -12,61 +12,72 @@ export default function Action(props) {
   const setId = props.setId;
   const setIsOpen = props.setIsOpen;
   const setAction = props.setAction;
+  const items = props.items;
+  let noAction = false;
   return (
     <HStack spacing="0">
-      <Link to={`/idcard/${name.toLowerCase()}/${id}`}>
-        <img src={idCard} alt="" width="30px" />
-      </Link>
-      <img src={toggle} alt="" width="30px" />
-      <Button
-        colorScheme="white"
-        p="0"
-        mx="-1"
-        onClick={() => {
-          setId(id);
-          setAction("edit");
-          setIsOpen(true);
-        }}
-      >
-        <img src={edit} alt="" width="25px" />
-      </Button>
-      {/* </Link> */}
-      <Button
-        colorScheme="white"
-        p="0"
-        mx="-1"
-        onClick={() => {
-          setId(id);
-          setAction("delete");
-          setIsOpen(true);
-        }}
-      >
-        <img src={del} alt="" width="25px" />
-      </Button>
-      <Button
-        colorScheme="white"
-        p="0"
-        mx="-1"
-        onClick={() => {
-          setId(id);
-          setAction("verify");
-          setIsOpen(true);
-        }}
-      >
-        <img src={approve} alt="" width="25px" />
-      </Button>
-      <Button
-        colorScheme="white"
-        p="0"
-        mx="-1"
-        onClick={() => {
-          setId(id);
-          setAction("menu");
-          setIsOpen(true);
-        }}
-      >
-        <img src={menu} alt="" width="30px" />
-      </Button>
+      {items.includes("id") && (
+        <Link to={`/idcard/${name.toLowerCase()}/${id}`}>
+          <img src={idCard} alt="" width="30px" />
+        </Link>
+      )}
+      {items.includes("edit") && (
+        <Button
+          colorScheme="white"
+          p="0"
+          mx="-1"
+          onClick={() => {
+            setId(id);
+            setAction("edit");
+            setIsOpen(true);
+          }}
+        >
+          <img src={edit} alt="" width="25px" />
+        </Button>
+      )}
+
+      {items.includes("verify") && (
+        <Button
+          colorScheme="white"
+          p="0"
+          mx="-1"
+          onClick={() => {
+            setId(id);
+            setAction("verify");
+            setIsOpen(true);
+          }}
+        >
+          <img src={approve} alt="" width="25px" />
+        </Button>
+      )}
+      {items.includes("delete") && (
+        <Button
+          colorScheme="white"
+          p="0"
+          mx="-1"
+          onClick={() => {
+            setId(id);
+            setAction("delete");
+            setIsOpen(true);
+          }}
+        >
+          <img src={del} alt="" width="25px" />
+        </Button>
+      )}
+      {items.includes("menu") && (
+        <Button
+          colorScheme="white"
+          p="0"
+          mx="-1"
+          onClick={() => {
+            setId(id);
+            setAction("menu");
+            setIsOpen(true);
+          }}
+        >
+          <img src={menu} alt="" width="30px" />
+        </Button>
+      )}
     </HStack>
   );
 }

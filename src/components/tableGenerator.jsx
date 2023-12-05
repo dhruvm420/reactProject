@@ -14,6 +14,7 @@ export default function TableGenerator({
   setIsOpen,
   setAction,
   setId,
+  actionItems,
 }) {
   const headers = Object.keys(data[0]);
   let noData = data == null || data[0][headers[0]] == null;
@@ -21,7 +22,10 @@ export default function TableGenerator({
   if (noData) {
     rows = (
       <Tr>
-        <Td colSpan={headers.length + 1} textAlign="center">
+        <Td
+          colSpan={actionItems.length ? headers.length + 1 : headers.length}
+          textAlign="center"
+        >
           No Registered {title} found
         </Td>
       </Tr>
@@ -44,15 +48,18 @@ export default function TableGenerator({
             )}
           </Td>
         ))}
-        <Td>
-          <Action
-            name={title}
-            id={dataItem["USER ID"]}
-            setIsOpen={setIsOpen}
-            setId={setId}
-            setAction={setAction}
-          />
-        </Td>
+        {actionItems.length > 0 && (
+          <Td>
+            <Action
+              name={title}
+              id={dataItem["USER ID"]}
+              setIsOpen={setIsOpen}
+              setId={setId}
+              setAction={setAction}
+              items={actionItems}
+            />
+          </Td>
+        )}
       </Tr>
     ));
   }
@@ -71,7 +78,7 @@ export default function TableGenerator({
             {headers.map((header, index) => (
               <Th key={index}>{header}</Th>
             ))}
-            <Th>ACTION</Th>
+            {actionItems.length > 0 && <Th>ACTION</Th>}
           </Tr>
         </Thead>
         <Tbody>{rows}</Tbody>

@@ -32,7 +32,11 @@ export default function UnVerifiedList() {
   return (
     <Root title="Unverified Members">
       <Flex direction="column" mx="auto" mt="4">
-        <TableGenerator data={unVerifiedData} title="Unverified Members" />
+        <TableGenerator
+          data={unVerifiedData}
+          title="Unverified Members"
+          actionItems={["verify", "delete"]}
+        />
       </Flex>
     </Root>
   );

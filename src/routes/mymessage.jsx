@@ -14,7 +14,11 @@ export default function MyMessage() {
   return (
     <Root title="My Message">
       <Flex direction="column" mx="auto" mt="4">
-        <TableGenerator data={messageData} title="Message" />
+        <TableGenerator
+          data={messageData}
+          title="Message"
+          actionItems={["delete"]}
+        />
       </Flex>
     </Root>
   );

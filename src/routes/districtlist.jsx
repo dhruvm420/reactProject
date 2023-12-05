@@ -45,6 +45,7 @@ export default function DistrictList() {
             setIsOpen={setDialogIsOpen}
             setAction={setAction}
             setId={setId}
+            actionItems={["id", "delete", "menu", "edit"]}
           />
         </Flex>
       </Root>

@@ -25,7 +25,11 @@ export default function Donors() {
             </Button>
           </Link>
         </Box>
-        <TableGenerator data={donorsData} title="Donor" />
+        <TableGenerator
+          data={donorsData}
+          title="Donor"
+          actionItems={["edit", "delete"]}
+        />
       </Flex>
     </Root>
   );

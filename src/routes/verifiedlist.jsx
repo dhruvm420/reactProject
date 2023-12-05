@@ -29,7 +29,11 @@ export default function VerifiedList() {
   return (
     <Root title="Verified Members">
       <Flex direction="column" mx="auto" mt="4">
-        <TableGenerator data={verifiedData} title="Verified Members" />
+        <TableGenerator
+          data={verifiedData}
+          title="Verified Members"
+          actionItems={["id", "certificate", "appointment", "delete", "edit"]}
+        />
       </Flex>
     </Root>
   );

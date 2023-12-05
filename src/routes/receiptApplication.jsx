@@ -15,7 +15,11 @@ export default function RecieptApplication() {
   return (
     <Root title="Receipt Application">
       <Flex direction="column" mx="auto" mt="4">
-        <TableGenerator data={receiptData} title="Contact" />
+        <TableGenerator
+          data={receiptData}
+          title="Contact"
+          actionItems={["delete"]}
+        />
       </Flex>
     </Root>
   );

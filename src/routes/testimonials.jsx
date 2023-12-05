@@ -22,7 +22,11 @@ export default function Testimonials() {
             </Button>
           </Link>
         </Box>
-        <TableGenerator data={testimonialData} title="Testimonial" />
+        <TableGenerator
+          data={testimonialData}
+          title="Testimonial"
+          actionItems={["delete", "edit"]}
+        />
       </Flex>
     </Root>
   );

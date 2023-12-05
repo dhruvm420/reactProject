@@ -25,7 +25,11 @@ export default function Posts() {
             </Button>
           </Link>
         </Box>
-        <TableGenerator data={postsData} title="Posts" />
+        <TableGenerator
+          data={postsData}
+          title="Posts"
+          actionItems={["delete", "edit"]}
+        />
       </Flex>
     </Root>
   );

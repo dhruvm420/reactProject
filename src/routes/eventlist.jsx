@@ -23,7 +23,11 @@ export default function EventList() {
             </Button>
           </Link>
         </Box>
-        <TableGenerator data={eventsData} title="Events" />
+        <TableGenerator
+          data={eventsData}
+          title="Events"
+          actionItems={["edit", "delete"]}
+        />
       </Flex>
     </Root>
   );

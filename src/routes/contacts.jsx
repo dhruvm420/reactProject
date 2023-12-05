@@ -16,7 +16,11 @@ export default function Contact() {
   return (
     <Root title="Contact Us">
       <Flex direction="column" mx="auto" mt="4">
-        <TableGenerator data={contactData} title="Contact" />
+        <TableGenerator
+          data={contactData}
+          title="Contact"
+          actionItems={["delete"]}
+        />
       </Flex>
     </Root>
   );

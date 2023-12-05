@@ -17,7 +17,11 @@ export default function EventBooking() {
   return (
     <Root title="Event Booking">
       <Flex direction="column" mx="auto" mt="4">
-        <TableGenerator data={bookingData} title="Bookings" />
+        <TableGenerator
+          data={bookingData}
+          title="Bookings"
+          actionItems={["delete"]}
+        />
       </Flex>
     </Root>
   );

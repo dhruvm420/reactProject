@@ -58,11 +58,16 @@ export default function PanchayatReport() {
         </FormControl>
         {selectedOption != "Select Panchayat" && (
           <>
-            <TableGenerator data={panchayatData} title="Panchayat" />
+            <TableGenerator
+              data={panchayatData}
+              title="Panchayat"
+              actionItems={[]}
+            />
+
             <Box my="4" mx="auto">
               Total User - {userCount()}
             </Box>
-            <TableGenerator data={usersData} title="User" />
+            <TableGenerator data={usersData} title="User" actionItems={[]} />
           </>
         )}
       </Flex>
