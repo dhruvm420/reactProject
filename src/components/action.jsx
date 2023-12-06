@@ -27,6 +27,13 @@ export default function Action(props) {
           </Box>
         </Link>
       )}
+      {items.includes("certificate") && (
+        <Link to={`/certificate/${name.toLowerCase()}/${id}`}>
+          <Box m="0" p="0" backgroundColor="skyblue">
+            <img src={idCard} alt="" width="30px" />
+          </Box>
+        </Link>
+      )}
       {items.includes("edit") && (
         <Button
           colorScheme="white"

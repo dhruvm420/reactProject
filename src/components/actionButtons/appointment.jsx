@@ -48,7 +48,7 @@ export default function Appointment() {
         setCardImage(dataUrl);
         const link = document.createElement("a");
         link.href = dataUrl;
-        link.download = "certificate.png";
+        link.download = "appointment.png";
         link.click();
       });
     }
