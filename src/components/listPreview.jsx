@@ -13,12 +13,12 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 export default function ListPreview(props) {
-  let data = props.data;
+  let d = props.data;
   const head = props.head;
   const title = props.title;
   let link = props.link;
-  const total = data.length;
-  data = data.slice(0, 4);
+  const total = d.length;
+  let data = d.slice(0, 4);
   let rows = data.map((dataItem) => {
     return (
       <Tr color="gray.500">
@@ -44,20 +44,22 @@ export default function ListPreview(props) {
         </Thead>
         <Tbody>
           {rows}
-          <Tr>
-            <Flex justifyContent="center" w="64" m="auto">
-              <Link to={link}>
-                <Button
-                  colorScheme="gray"
-                  fontSize="sm"
-                  textAlign="center"
-                  my="3"
-                >
-                  View More &rarr;
-                </Button>
-              </Link>
-            </Flex>
-          </Tr>
+          {d.length > 4 && (
+            <Tr>
+              <Flex justifyContent="center" w="64" m="auto">
+                <Link to={link}>
+                  <Button
+                    colorScheme="gray"
+                    fontSize="sm"
+                    textAlign="center"
+                    my="3"
+                  >
+                    View More &rarr;
+                  </Button>
+                </Link>
+              </Flex>
+            </Tr>
+          )}
         </Tbody>
       </Table>
     </TableContainer>

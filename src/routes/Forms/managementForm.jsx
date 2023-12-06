@@ -10,7 +10,7 @@ import {
   HStack,
 } from "@chakra-ui/react";
 import Root from "../root";
-export default function ManagementForm() {
+export default function ManagementForm({ edit = false, modifyId = null }) {
   const [formData, setFormData] = useState({
     fullName: "",
     mobileNumber: "",
@@ -38,6 +38,11 @@ export default function ManagementForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Perform form submission logic with formData
+    if (edit) {
+      // edit person with id = modifyId
+    } else {
+      // create new
+    }
     console.log(formData);
   };
   const allstates = [

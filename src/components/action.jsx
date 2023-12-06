@@ -13,7 +13,6 @@ export default function Action(props) {
   const setIsOpen = props.setIsOpen;
   const setAction = props.setAction;
   const items = props.items;
-  let noAction = false;
   return (
     <HStack spacing="0">
       {items.includes("id") && (

@@ -1,5 +1,7 @@
 import { Flex } from "@chakra-ui/react";
 import TableGenerator from "../components/tableGenerator";
+import { useState } from "react";
+import ActionPopUp from "../components/actionButtons/actionPopUp";
 import Root from "./root";
 let unVerifiedData = [
   {
@@ -29,12 +31,25 @@ let unVerifiedData = [
 ];
 
 export default function UnVerifiedList() {
+  const [dialogIsOpen, setDialogIsOpen] = useState(false);
+  const [id, setId] = useState("");
+  const [action, setAction] = useState("");
   return (
     <Root title="Unverified Members">
       <Flex direction="column" mx="auto" mt="4">
+        <ActionPopUp
+          formName={"unverified"}
+          action={action}
+          modifyId={id}
+          isOpen={dialogIsOpen}
+          setIsOpen={setDialogIsOpen}
+        />
         <TableGenerator
           data={unVerifiedData}
           title="Unverified Members"
+          setIsOpen={setDialogIsOpen}
+          setAction={setAction}
+          setId={setId}
           actionItems={["verify", "delete"]}
         />
       </Flex>

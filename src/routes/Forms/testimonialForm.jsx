@@ -10,7 +10,7 @@ import {
   HStack,
 } from "@chakra-ui/react";
 import Root from "../root";
-export default function CreateTestimonial() {
+export default function CreateTestimonial({ edit = false, modifyId = null }) {
   const [formData, setFormData] = useState({
     name: "",
     photo: null,
@@ -36,6 +36,11 @@ export default function CreateTestimonial() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Perform form submission logic with formData
+    if (edit) {
+      // edit person with id = modifyId
+    } else {
+      // create new
+    }
     console.log(formData);
   };
 

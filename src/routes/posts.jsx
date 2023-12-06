@@ -2,15 +2,25 @@ import Root from "./root";
 import { Flex, Button, Box } from "@chakra-ui/react";
 import TableGenerator from "../components/tableGenerator";
 import { Link } from "react-router-dom";
+// let postsData = [
+//   {
+//     "POST DATE": "2023-09-07 16:22:24",
+//     "TIMELINE POST":
+//       "https://skskf.in/timeline-img/IMG-20230731-WA0036_0972023105224.jpg",
+//     TITLE: "SKSKF FOUNDATION",
+//     DESCRIPTION: "SKSKF foundation",
+//     VENUE: "skskf ",
+//     "EVENT START": "sksksf ",
+//   },
+// ];
 let postsData = [
   {
-    "POST DATE": "2023-09-07 16:22:24",
-    "TIMELINE POST":
-      "https://skskf.in/timeline-img/IMG-20230731-WA0036_0972023105224.jpg",
-    TITLE: "SKSKF FOUNDATION",
-    DESCRIPTION: "SKSKF foundation",
-    VENUE: "skskf ",
-    "EVENT START": "sksksf ",
+    "POST DATE": null,
+    "TIMELINE POST": null,
+    TITLE: null,
+    DESCRIPTION: null,
+    VENUE: null,
+    "EVENT START": null,
   },
 ];
 

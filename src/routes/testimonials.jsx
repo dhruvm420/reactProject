@@ -1,6 +1,8 @@
 import { Box, Button, Flex } from "@chakra-ui/react";
 import TableGenerator from "../components/tableGenerator";
 import Root from "./root";
+import ActionPopUp from "../components/actionButtons/actionPopUp";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 let testimonialData = [
   {
@@ -12,6 +14,9 @@ let testimonialData = [
 ];
 
 export default function Testimonials() {
+  const [dialogIsOpen, setDialogIsOpen] = useState(false);
+  const [id, setId] = useState("");
+  const [action, setAction] = useState("");
   return (
     <Root title="Testimonials">
       <Flex direction="column" mx="auto" mt="4">
@@ -22,9 +27,19 @@ export default function Testimonials() {
             </Button>
           </Link>
         </Box>
+        <ActionPopUp
+          formName={"testimonial"}
+          action={action}
+          modifyId={id}
+          isOpen={dialogIsOpen}
+          setIsOpen={setDialogIsOpen}
+        />
         <TableGenerator
           data={testimonialData}
           title="Testimonial"
+          setIsOpen={setDialogIsOpen}
+          setAction={setAction}
+          setId={setId}
           actionItems={["delete", "edit"]}
         />
       </Flex>

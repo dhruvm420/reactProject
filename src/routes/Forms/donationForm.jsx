@@ -10,7 +10,7 @@ import {
   HStack,
 } from "@chakra-ui/react";
 import Root from "../root";
-export default function DonationForm() {
+export default function DonationForm({ edit = false, modifyId = null }) {
   const [formData, setFormData] = useState({
     name: "",
     mobile: "",
@@ -40,6 +40,11 @@ export default function DonationForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Perform form submission logic with formData
+    if (edit) {
+      // edit donation of person with id = modifyId
+    } else {
+      // create a new donation of person
+    }
     console.log(formData);
   };
 

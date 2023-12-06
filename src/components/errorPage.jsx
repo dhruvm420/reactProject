@@ -1,23 +1,17 @@
 import { useRouteError } from "react-router-dom";
-
+import Root from "../routes/root";
+import { Flex, Heading } from "@chakra-ui/react";
 export default function ErrorPage() {
   const error = useRouteError();
   console.error(error);
 
   return (
-    <div
-      style={{
-        height: "80vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <p style={{ fontSize: "38px" }}>NOT YET IMPLEMENTED !!!!</p>
-      <p>
-        <i>{error.statusText || error.message}</i>
-      </p>
-    </div>
+    <Root title="PAGE NOT FOUND">
+      <Flex flexDirection="column" w="86vw" py="8">
+        <Heading textAlign="center" color="gray.600">
+          NOT YET IMPLEMENTED !!!!
+        </Heading>
+      </Flex>
+    </Root>
   );
 }

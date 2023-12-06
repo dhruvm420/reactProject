@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Root from "../../routes/root";
 import {
   Input,
   Textarea,
@@ -9,7 +8,11 @@ import {
   Box,
   Stack,
   HStack,
+  Heading,
 } from "@chakra-ui/react";
+import CreateTestimonial from "../../routes/Forms/testimonialForm";
+import ManagementForm from "../../routes/Forms/managementForm";
+import DonationForm from "../../routes/Forms/donationForm";
 export default function EditForm(props) {
   let formName = props.formName;
   let modifyId = props.modifyId;
@@ -60,6 +63,14 @@ export default function EditForm(props) {
     props.onClose();
   };
 
+  if (formName == "verified")
+    return <Heading>Member Apply Form will be shown here....</Heading>;
+  if (formName == "testimonial")
+    return <CreateTestimonial edit={true} modifyId={modifyId} />;
+  if (formName == "management")
+    return <ManagementForm edit={true} modifyId={modifyId} />;
+  if (formName == "donation")
+    return <DonationForm edit={true} modifyId={modifyId} />;
   return (
     <form onSubmit={handleSubmit}>
       <Stack p="6" spacing="0">

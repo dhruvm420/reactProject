@@ -26,9 +26,8 @@ import CreateTestimonial from "./routes/Forms/testimonialForm.jsx";
 import DonationForm from "./routes/Forms/donationForm.jsx";
 import CreateEvent from "./routes/Forms/createEvent.jsx";
 import CreatePost from "./routes/Forms/createPost.jsx";
-import EditForm from "./components/actionButtons/editForm.jsx";
 import RecieptApplication from "./routes/receiptApplication.jsx";
-// import Idcard from "./components/actionButtons/IDcard.jsx";
+import Id from "./components/actionButtons/idCards/id.jsx";
 export let routesList = [
   {
     path: "/",
@@ -150,8 +149,8 @@ export let routesList = [
     path: "/createPost",
     element: <CreatePost />,
   },
-  // {
-  //   path: "/idcard/:name/:userId",
-  //   element: <Idcard />,
-  // },
+  {
+    path: "/idcard/:listName/:userId",
+    element: <Id />,
+  },
 ];
