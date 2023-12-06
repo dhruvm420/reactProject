@@ -6,6 +6,7 @@ import bg from "../../../assets/bg.png";
 import qr from "../../../assets/qr.png";
 import seal from "../../../assets/sksk_seal.png";
 import sign from "../../../assets/sign.png";
+import p from "../../../assets/p.jpg";
 import html2canvas from "html2canvas";
 import { useState } from "react";
 export default function IDCard({ userData }) {
@@ -64,7 +65,7 @@ export default function IDCard({ userData }) {
                     margin="auto"
                     my="0"
                   >
-                    <img src={userData.IMAGE} alt="user-image" />
+                    <img src={p} alt="user-image" />
                   </Box>
                   <Text fontSize="xl" my="1" px="2" textAlign="center">
                     {userData.NAME}

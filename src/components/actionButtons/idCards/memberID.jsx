@@ -4,6 +4,7 @@ import MemberBackData from "./memberBackData";
 import MemberFrontData from "./memberFrontData";
 import bg from "../../../assets/bg.png";
 import qr from "../../../assets/qr.png";
+import p from "../../../assets/p.jpg";
 import seal from "../../../assets/sksk_seal.png";
 import sign from "../../../assets/sign.png";
 import html2canvas from "html2canvas";
@@ -72,7 +73,7 @@ export default function MemberId({ userData }) {
                     />
                   </Box>
                   <Text fontSize="xl" my="1" px="2" textAlign="center">
-                    {userData.NAME}
+                    {p}
                   </Text>
                   <MemberFrontData userData={userData} />
                   <Flex justifyContent="end">
