@@ -20,6 +20,13 @@ export default function Action(props) {
           <img src={idCard} alt="" width="30px" />
         </Link>
       )}
+      {items.includes("appointment") && (
+        <Link to={`/appointment/${name.toLowerCase()}/${id}`}>
+          <Box m="0" p="0" backgroundColor="yellow">
+            <img src={idCard} alt="" width="30px" />
+          </Box>
+        </Link>
+      )}
       {items.includes("edit") && (
         <Button
           colorScheme="white"

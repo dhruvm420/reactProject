@@ -28,6 +28,7 @@ import CreateEvent from "./routes/Forms/createEvent.jsx";
 import CreatePost from "./routes/Forms/createPost.jsx";
 import RecieptApplication from "./routes/receiptApplication.jsx";
 import Id from "./components/actionButtons/idCards/id.jsx";
+import Appointment from "./components/actionButtons/appointment.jsx";
 export let routesList = [
   {
     path: "/",
@@ -152,5 +153,9 @@ export let routesList = [
   {
     path: "/idcard/:listName/:userId",
     element: <Id />,
+  },
+  {
+    path: "/appointment/:listName/:userId",
+    element: <Appointment />,
   },
 ];
