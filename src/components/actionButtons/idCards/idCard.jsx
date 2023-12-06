@@ -1,95 +1,120 @@
-import { Flex, Box, Text } from "@chakra-ui/react";
+import { Flex, Box, Text, Button } from "@chakra-ui/react";
 import Root from "../../../routes/root";
 import FrontID from "./frontID";
 import BackID from "./backID";
+import bg from "../../../assets/bg.png";
+import qr from "../../../assets/qr.png";
+import seal from "../../../assets/sksk_seal.png";
+import sign from "../../../assets/sign.png";
+import html2canvas from "html2canvas";
+import { useState } from "react";
 export default function IDCard({ userData }) {
+  const [cardImage, setCardImage] = useState("");
+
+  const handleDownload = () => {
+    const idCardElement = document.getElementById("id-card");
+    if (idCardElement) {
+      html2canvas(idCardElement, {
+        allowTaint: true,
+        useCORS: true,
+        scrollX: 0,
+        scrollY: 0,
+        windowWidth: document.documentElement.offsetWidth,
+        windowHeight: document.documentElement.offsetHeight,
+      }).then((canvas) => {
+        const dataUrl = canvas.toDataURL("image/png");
+        setCardImage(dataUrl);
+        const link = document.createElement("a");
+        link.href = dataUrl;
+        link.download = "id-card.png";
+        link.click();
+      });
+    }
+  };
   return (
     <>
       <Root title="ID Card">
-        <Flex
-          justifyContent="space-around"
-          py="8"
-          wrap="wrap"
-          mx="auto"
-          id="id-card"
-        >
+        <Box mx="auto">
           <Flex flexDirection="column">
             <Flex
-              id="front-side"
-              w="360px"
-              h="550px"
-              flexDirection="column"
-              justifyContent="end"
-              px="6"
-              pb="8"
-              backgroundImage={
-                "https://skskf.in/webimg/idfront_08102023091854.png"
-              }
-              backgroundPosition="center"
-              backgroundSize="cover"
+              justifyContent="space-around"
+              py="8"
+              wrap="wrap"
+              mx="auto"
+              id="id-card"
             >
-              <Box
-                w="150px"
-                h="150px"
-                borderRadius="xl"
-                overflow="auto"
-                margin="auto"
-                my="0"
-              >
-                <img src={userData.IMAGE} alt="user-image" />
-              </Box>
-              <Text fontSize="xl" my="1" px="2" textAlign="center">
-                {userData.NAME}
-              </Text>
-              <Text fontSize="lg" px="2" textAlign="center">
-                MEMBER
-              </Text>
-              <FrontID userData={userData} />
-              <Flex justifyContent="end">
-                <img
-                  src="https://skskf.in/webimg/WhatsApp_Image_2023-09-04_at_16.50.20-removebg-preview%20(1)_0952023080126.png"
-                  alt=""
-                  width="90px"
-                />
+              <Flex flexDirection="column">
+                <Flex
+                  id="front-side"
+                  w="360px"
+                  h="550px"
+                  flexDirection="column"
+                  justifyContent="end"
+                  px="6"
+                  pb="8"
+                  backgroundImage={bg}
+                  backgroundPosition="center"
+                  backgroundSize="cover"
+                >
+                  <Box
+                    w="150px"
+                    h="150px"
+                    borderRadius="xl"
+                    overflow="auto"
+                    margin="auto"
+                    my="0"
+                  >
+                    <img src={userData.IMAGE} alt="user-image" />
+                  </Box>
+                  <Text fontSize="xl" my="1" px="2" textAlign="center">
+                    {userData.NAME}
+                  </Text>
+                  <Text fontSize="lg" px="2" textAlign="center">
+                    MEMBER
+                  </Text>
+                  <FrontID userData={userData} />
+                  <Flex justifyContent="end">
+                    <img src={sign} alt="" width="90px" />
+                  </Flex>
+                </Flex>
+              </Flex>
+              <Flex flexDirection="column" mx="4">
+                <Flex
+                  id="back-side"
+                  w="360px"
+                  h="550px"
+                  flexDirection="column"
+                  justifyContent="end"
+                  px="6"
+                  pb="8"
+                  backgroundImage={bg}
+                  backgroundPosition="center"
+                  backgroundSize="cover"
+                >
+                  <Box
+                    w="150px"
+                    h="150px"
+                    borderRadius="xl"
+                    overflow="auto"
+                    margin="auto"
+                    my="0"
+                  >
+                    <img src={qr} alt="user-image" />
+                  </Box>
+                  <BackID userData={userData} />
+                  <Flex justifyContent="end">
+                    <img src={seal} alt="" width="90px" />
+                  </Flex>
+                </Flex>
               </Flex>
             </Flex>
+            <Box textAlign="center" mt="4">
+              <Button onClick={handleDownload} colorScheme="teal">
+                Download ID Card
+              </Button>
+            </Box>
           </Flex>
-          <Flex flexDirection="column" mx="4">
-            <Flex
-              id="back-side"
-              w="360px"
-              h="550px"
-              flexDirection="column"
-              justifyContent="end"
-              px="6"
-              pb="8"
-              backgroundImage={
-                "https://skskf.in/webimg/idfront_08102023091854.png"
-              }
-              backgroundPosition="center"
-              backgroundSize="cover"
-            >
-              <Box
-                w="150px"
-                h="150px"
-                borderRadius="xl"
-                overflow="auto"
-                margin="auto"
-                my="0"
-              >
-                <img src={"https://skskf.in/qr-img/.png"} alt="user-image" />
-              </Box>
-              <BackID userData={userData} />
-              <Flex justifyContent="end">
-                <img
-                  src="https://skskf.in/webimg/sksk_seal.png"
-                  alt=""
-                  width="90px"
-                />
-              </Flex>
-            </Flex>
-          </Flex>
-        </Flex>
+        </Box>
       </Root>
     </>
   );
