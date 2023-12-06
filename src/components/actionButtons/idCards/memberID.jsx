@@ -65,7 +65,11 @@ export default function MemberId({ userData }) {
                     margin="auto"
                     my="0"
                   >
-                    <img src={userData.IMAGE} alt="user-image" />
+                    <img
+                      src={userData.IMAGE}
+                      alt="user-image"
+                      crossorigin="anonymous"
+                    />
                   </Box>
                   <Text fontSize="xl" my="1" px="2" textAlign="center">
                     {userData.NAME}
