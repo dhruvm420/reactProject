@@ -66,14 +66,10 @@ export default function MemberId({ userData }) {
                     margin="auto"
                     my="0"
                   >
-                    <img
-                      src={userData.IMAGE}
-                      alt="user-image"
-                      crossorigin="anonymous"
-                    />
+                    <img src={p} alt="user-image" />
                   </Box>
                   <Text fontSize="xl" my="1" px="2" textAlign="center">
-                    {p}
+                    {userData.NAME}
                   </Text>
                   <MemberFrontData userData={userData} />
                   <Flex justifyContent="end">
