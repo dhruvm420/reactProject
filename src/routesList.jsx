@@ -49,6 +49,7 @@ export let routesList = [
   {
     path: "/dashboard",
     element: <Dashboard />,
+    errorElement: <ErrorPage />,
   },
   {
     path: "/statelist",

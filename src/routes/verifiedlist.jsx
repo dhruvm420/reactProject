@@ -2,7 +2,6 @@ import {
   Flex,
   Box,
   Input,
-  Button,
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/react";
