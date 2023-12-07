@@ -8,6 +8,7 @@ import {
   Box,
   Stack,
   HStack,
+  Flex,
 } from "@chakra-ui/react";
 const RegistrationForm = (props) => {
   const [formData, setFormData] = useState({
@@ -98,7 +99,18 @@ const RegistrationForm = (props) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Stack p="6" spacing="0">
+      <Flex
+        flexDirection="column"
+        mx="auto"
+        shadow="2xl"
+        h="100vh"
+        px="6"
+        py="2"
+        bg="white"
+        borderRadius="3xl"
+        m="4"
+        justifyContent="space-evenly"
+      >
         <HStack>
           {formName !== "state" && stateInput}
           {formName !== "state" && formName !== "district" && districtInput}
@@ -300,7 +312,7 @@ const RegistrationForm = (props) => {
         <Button type="submit" mt={4} colorScheme="blue" w="12vw" mx="auto">
           Submit
         </Button>
-      </Stack>
+      </Flex>
     </form>
   );
 };

@@ -40,7 +40,7 @@ export default function Testimonials() {
           setIsOpen={setDialogIsOpen}
           setAction={setAction}
           setId={setId}
-          actionItems={["delete", "edit"]}
+          actionItems={["delete"]}
         />
       </Flex>
     </Root>
