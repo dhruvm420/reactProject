@@ -1,5 +1,25 @@
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
+// export default function Pagination({ handlePageChange, currentPage , totalPages }) {
 export default function Pagination({ handlePageChange, currentPage }) {
+  const totalPages = 20;
+
+  let startPage = Math.max(1, currentPage - 2);
+  let endPage = Math.min(totalPages, currentPage + 3);
+
+  const pageNumbers = [];
+  for (let i = startPage; i < endPage; i++) {
+    pageNumbers.push(
+      <Button
+        key={i}
+        onClick={() => handlePageChange(i)}
+        colorScheme={currentPage === i ? "teal" : "gray"}
+        disabled={currentPage == i}
+      >
+        {i}
+      </Button>
+    );
+  }
+
   return (
     <Box alignSelf="center" mt="4">
       <Flex alignItems="center">
@@ -12,8 +32,8 @@ export default function Pagination({ handlePageChange, currentPage }) {
             &larr; Previous
           </Button>
         )}
-
-        <Text mx="2">{`Page ${currentPage}`}</Text>
+        {pageNumbers}
+        {/* <Text mx="2">{`Page ${currentPage}`}</Text> */}
 
         <Button
           onClick={() => handlePageChange(currentPage + 1)}
