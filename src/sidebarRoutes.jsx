@@ -18,5 +18,5 @@ export let sideBarRoutes = {
   "COMPANY PROFILE": "/error",
   "ABOUT US POST LIST": "/error",
   "OBJECTIVE LIST": "/error",
-  "LOG OUT": "/error",
+  "LOG OUT": "/",
 };

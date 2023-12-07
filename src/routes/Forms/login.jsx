@@ -97,14 +97,6 @@ const LogIn = () => {
                   Log In
                 </Button>
               </Link>
-              <Text textAlign="center" my="2">
-                Create an account{" "}
-                <Link to="/signup">
-                  <Button as="span" variant="link" color="blue.500">
-                    Sign Up
-                  </Button>
-                </Link>
-              </Text>
             </Form>
           )}
         </Formik>
