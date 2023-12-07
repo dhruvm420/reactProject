@@ -30,11 +30,21 @@ import RecieptApplication from "./routes/receiptApplication.jsx";
 import Id from "./components/actionButtons/idCards/id.jsx";
 import Appointment from "./components/actionButtons/appointment.jsx";
 import Certificate from "./components/actionButtons/certificate.jsx";
+import SignUp from "./routes/Forms/signup.jsx";
+import LogIn from "./routes/Forms/login.jsx";
 export let routesList = [
   {
     path: "/",
     element: <Dashboard />,
     errorElement: <ErrorPage />,
+  },
+  {
+    path: "/signup",
+    element: <SignUp />,
+  },
+  {
+    path: "/login",
+    element: <LogIn />,
   },
   {
     path: "/dashboard",
