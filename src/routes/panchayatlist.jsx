@@ -8,6 +8,7 @@ import {
 } from "@chakra-ui/react";
 import Root from "./root";
 import TableGenerator from "../components/tableGenerator";
+import Pagination from "../components/pagination";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import ActionPopUp from "../components/actionButtons/actionPopUp";
@@ -29,6 +30,10 @@ export default function PanchayatList() {
   const [action, setAction] = useState("");
   const [panchayatData, setPanchayatData] = useState(dummyData);
   const [searchVal, setSearchVal] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
   const handleInputChange = (e) => {
     setSearchVal(e.target.value);
     // You can perform filtering or any other actions based on the search value here
@@ -84,6 +89,10 @@ export default function PanchayatList() {
             setAction={setAction}
             setId={setId}
             actionItems={["id", "delete", "menu", "edit"]}
+          />
+          <Pagination
+            handlePageChange={handlePageChange}
+            currentPage={currentPage}
           />
         </Flex>
       </Root>

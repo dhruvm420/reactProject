@@ -6,6 +6,7 @@ import {
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/react";
+import Pagination from "../components/pagination";
 import TableGenerator from "../components/tableGenerator";
 import { Link } from "react-router-dom";
 import Root from "./root";
@@ -30,6 +31,10 @@ export default function TehsilList() {
   const [action, setAction] = useState("");
   const [tehsilData, setTehsilData] = useState(dummyData);
   const [searchVal, setSearchVal] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
   const handleInputChange = (e) => {
     setSearchVal(e.target.value);
     // You can perform filtering or any other actions based on the search value here
@@ -86,6 +91,10 @@ export default function TehsilList() {
             setAction={setAction}
             setId={setId}
             actionItems={["id", "delete", "menu", "edit"]}
+          />
+          <Pagination
+            handlePageChange={handlePageChange}
+            currentPage={currentPage}
           />
         </Flex>
       </Root>

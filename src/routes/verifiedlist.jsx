@@ -6,6 +6,7 @@ import {
   InputRightElement,
 } from "@chakra-ui/react";
 import Root from "./root";
+import Pagination from "../components/pagination";
 import TableGenerator from "../components/tableGenerator";
 import { useState, useEffect } from "react";
 import ActionPopUp from "../components/actionButtons/actionPopUp";
@@ -40,6 +41,10 @@ export default function VerifiedList() {
   const [action, setAction] = useState("");
   const [verifiedData, setVerifiedData] = useState(dummyData);
   const [searchVal, setSearchVal] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
   const handleInputChange = (e) => {
     setSearchVal(e.target.value);
     // You can perform filtering or any other actions based on the search value here
@@ -87,6 +92,10 @@ export default function VerifiedList() {
           setAction={setAction}
           setId={setId}
           actionItems={["id", "certificate", "appointment", "delete", "edit"]}
+        />
+        <Pagination
+          handlePageChange={handlePageChange}
+          currentPage={currentPage}
         />
       </Flex>
     </Root>

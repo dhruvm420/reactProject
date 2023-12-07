@@ -2,6 +2,7 @@ import {
   Flex,
   Box,
   Input,
+  Text,
   InputGroup,
   Button,
   InputRightElement,
@@ -13,6 +14,7 @@ import { useState, useEffect } from "react";
 import ActionPopUp from "../components/actionButtons/actionPopUp";
 import { SearchIcon } from "@chakra-ui/icons";
 import axios from "axios";
+import Pagination from "../components/pagination";
 let dummyData = [
   {
     "USER ID": "0134",
@@ -31,9 +33,12 @@ export default function StateList() {
   const [action, setAction] = useState("");
   const [stateData, setStateData] = useState(dummyData);
   const [searchVal, setSearchVal] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
   const handleInputChange = (e) => {
     setSearchVal(e.target.value);
-    // You can perform filtering or any other actions based on the search value here
   };
   useEffect(() => {
     const fetchStateData = async () => {
@@ -87,6 +92,10 @@ export default function StateList() {
             setAction={setAction}
             setId={setId}
             actionItems={["id", "delete", "menu", "edit"]}
+          />
+          <Pagination
+            handlePageChange={handlePageChange}
+            currentPage={currentPage}
           />
         </Flex>
       </Root>
