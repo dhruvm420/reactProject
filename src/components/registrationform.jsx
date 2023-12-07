@@ -5,6 +5,7 @@ import {
   FormControl,
   FormLabel,
   Button,
+  Select,
   Box,
   Stack,
   HStack,
@@ -28,6 +29,9 @@ const RegistrationForm = (props) => {
     designation: "",
     profilePicture: null,
   });
+  const [selectedState, setSelectedState] = useState("select-state");
+  const [selectedDistrict, setSelectedDistrict] = useState("select-district");
+  const [selectedTehsil, setSelectedTehsil] = useState("select-tehsil");
   const formName = props.title;
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -36,6 +40,7 @@ const RegistrationForm = (props) => {
       [name]: value,
     });
   };
+  const handleOptionChange = (e) => {};
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -50,52 +55,54 @@ const RegistrationForm = (props) => {
     // Perform form submission logic with formData
     console.log(formData);
   };
-
-  const stateInput = (
-    <FormControl>
-      <FormLabel>State Name*</FormLabel>
-      <Input
-        type="text"
-        name="stateName"
-        border="1px"
-        w="20vw"
-        borderColor="blue.500"
-        value={formData.stateName}
-        onChange={handleInputChange}
-        required
-      />
-    </FormControl>
-  );
-  const districtInput = (
-    <FormControl>
-      <FormLabel>District Name*</FormLabel>
-      <Input
-        type="text"
-        name="districtName"
-        border="1px"
-        w="20vw"
-        borderColor="blue.500"
-        value={formData.districtName}
-        onChange={handleInputChange}
-        required
-      />
-    </FormControl>
-  );
-  const tehsilInput = (
-    <FormControl>
-      <FormLabel>Tehsil Name*</FormLabel>
-      <Input
-        type="text"
-        name="tehsilName"
-        border="1px"
-        w="20vw"
-        borderColor="blue.500"
-        value={formData.tehsilName}
-        onChange={handleInputChange}
-        required
-      />
-    </FormControl>
-  );
+  let stateList, stateInput;
+  let districtList, districtInput;
+  let tehsilList, tehsilInput;
+  if (formName !== "state") {
+    stateList = ["state-1", "state-2", "state-3"];
+    stateInput = (
+      <FormControl w="15vw" my="4">
+        <FormLabel>State Name *</FormLabel>
+        <Select onChange={handleOptionChange} value={selectedState}>
+          {stateList.map((option, index) => (
+            <option key={index} value={option}>
+              {option}
+            </option>
+          ))}
+        </Select>
+      </FormControl>
+    );
+  }
+  if (formName !== "state" && formName !== "district") {
+    districtList = ["district-1", "district-2", "district-3"];
+    districtInput = (
+      <FormControl w="15vw" m="4">
+        <FormLabel>District Name *</FormLabel>
+        <Select onChange={handleOptionChange} value={selectedDistrict}>
+          {districtList.map((option, index) => (
+            <option key={index} value={option}>
+              {option}
+            </option>
+          ))}
+        </Select>
+      </FormControl>
+    );
+  }
+  if (formName === "panchayat") {
+    tehsilList = ["tehsil-1", "tehsil-2", "tehsil-3"];
+    tehsilInput = (
+      <FormControl w="15vw" m="4">
+        <FormLabel>Tehsil Name *</FormLabel>
+        <Select onChange={handleOptionChange} value={selectedTehsil}>
+          {tehsilList.map((option, index) => (
+            <option key={index} value={option}>
+              {option}
+            </option>
+          ))}
+        </Select>
+      </FormControl>
+    );
+  }
 
   return (
     <form onSubmit={handleSubmit}>

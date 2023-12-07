@@ -14,7 +14,7 @@ export default function MyCard({ title, count, link }) {
     <Card
       w="64"
       h="52"
-      shadow="xl"
+      shadow="2xl"
       bg="white"
       borderRadius="3xl"
       color="gray.500"
