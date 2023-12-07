@@ -1,10 +1,18 @@
-import { Button, Flex, Box } from "@chakra-ui/react";
+import {
+  Flex,
+  Button,
+  Box,
+  Input,
+  InputGroup,
+  InputRightElement,
+} from "@chakra-ui/react";
 import TableGenerator from "../components/tableGenerator";
 import { Link } from "react-router-dom";
 import Root from "./root";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ActionPopUp from "../components/actionButtons/actionPopUp";
-let tehsilData = [
+import { SearchIcon } from "@chakra-ui/icons";
+let dummyData = [
   {
     "USER ID": "0134",
     IMAGE: "https://skskf.in/userimg/IMG-20230627-WA0045_09152023162926.jpg",
@@ -20,6 +28,27 @@ export default function TehsilList() {
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
   const [id, setId] = useState("");
   const [action, setAction] = useState("");
+  const [tehsilData, setTehsilData] = useState(dummyData);
+  const [searchVal, setSearchVal] = useState("");
+  const handleInputChange = (e) => {
+    setSearchVal(e.target.value);
+    // You can perform filtering or any other actions based on the search value here
+  };
+  useEffect(() => {
+    const fetchTehsilData = async () => {
+      // try {
+      //   const response = await axios.get("YOUR_BACKEND_ENDPOINT_HERE");
+      //   setTehsilData(response.data); // Assuming response.data contains the Tehsil data
+      // } catch (error) {
+      //   console.error("Error fetching Tehsil data:", error);
+      //   // Handle error Tehsil here if needed
+      // }
+      setTehsilData(dummyData);
+    };
+
+    fetchTehsilData();
+  }, []);
+
   return (
     <>
       <ActionPopUp
@@ -37,6 +66,18 @@ export default function TehsilList() {
                 Create Tehsil
               </Button>
             </Link>
+          </Box>
+          <Box alignSelf="flex-end">
+            <InputGroup my="2">
+              <InputRightElement pointerEvents="none">
+                <SearchIcon />
+              </InputRightElement>
+              <Input
+                placeholder="Search"
+                value={searchVal}
+                onChange={handleInputChange}
+              />
+            </InputGroup>
           </Box>
           <TableGenerator
             data={tehsilData}

@@ -1,10 +1,18 @@
-import { Flex, Button, Box } from "@chakra-ui/react";
+import {
+  Flex,
+  Box,
+  Button,
+  Input,
+  InputGroup,
+  InputRightElement,
+} from "@chakra-ui/react";
 import Root from "./root";
 import TableGenerator from "../components/tableGenerator";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ActionPopUp from "../components/actionButtons/actionPopUp";
-let panchayatData = [
+import { SearchIcon } from "@chakra-ui/icons";
+let dummyData = [
   {
     "USER ID": "0134",
     IMAGE: "https://skskf.in/userimg/IMG-20230627-WA0045_09152023162926.jpg",
@@ -19,6 +27,26 @@ export default function PanchayatList() {
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
   const [id, setId] = useState("");
   const [action, setAction] = useState("");
+  const [panchayatData, setPanchayatData] = useState(dummyData);
+  const [searchVal, setSearchVal] = useState("");
+  const handleInputChange = (e) => {
+    setSearchVal(e.target.value);
+    // You can perform filtering or any other actions based on the search value here
+  };
+  useEffect(() => {
+    const fetchPanchayatData = async () => {
+      // try {
+      //   const response = await axios.get("YOUR_BACKEND_ENDPOINT_HERE");
+      //   setPanchayatData(response.data); // Assuming response.data contains the Panchayat data
+      // } catch (error) {
+      //   console.error("Error fetching Panchayat data:", error);
+      //   // Handle error Panchayat here if needed
+      // }
+      setPanchayatData(dummyData);
+    };
+
+    fetchPanchayatData();
+  }, []);
   return (
     <>
       <ActionPopUp
@@ -36,6 +64,18 @@ export default function PanchayatList() {
                 Create Panchayat
               </Button>
             </Link>
+          </Box>
+          <Box alignSelf="flex-end">
+            <InputGroup my="2">
+              <InputRightElement pointerEvents="none">
+                <SearchIcon />
+              </InputRightElement>
+              <Input
+                placeholder="Search"
+                value={searchVal}
+                onChange={handleInputChange}
+              />
+            </InputGroup>
           </Box>
           <TableGenerator
             data={panchayatData}

@@ -35,7 +35,7 @@ import LogIn from "./routes/Forms/login.jsx";
 export let routesList = [
   {
     path: "/",
-    element: <Dashboard />,
+    element: <SignUp />,
     errorElement: <ErrorPage />,
   },
   {

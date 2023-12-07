@@ -1,10 +1,19 @@
-import { Flex, Button, Box } from "@chakra-ui/react";
+import {
+  Flex,
+  Box,
+  Input,
+  InputGroup,
+  Button,
+  InputRightElement,
+} from "@chakra-ui/react";
 import Root from "./root";
 import { Link } from "react-router-dom";
 import TableGenerator from "../components/tableGenerator";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ActionPopUp from "../components/actionButtons/actionPopUp";
-let stateData = [
+import { SearchIcon } from "@chakra-ui/icons";
+import axios from "axios";
+let dummyData = [
   {
     "USER ID": "0134",
     IMAGE: "https://skskf.in/userimg/IMG-20230627-WA0045_09152023162926.jpg",
@@ -20,6 +29,27 @@ export default function StateList() {
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
   const [id, setId] = useState("");
   const [action, setAction] = useState("");
+  const [stateData, setStateData] = useState(dummyData);
+  const [searchVal, setSearchVal] = useState("");
+  const handleInputChange = (e) => {
+    setSearchVal(e.target.value);
+    // You can perform filtering or any other actions based on the search value here
+  };
+  useEffect(() => {
+    const fetchStateData = async () => {
+      // try {
+      //   const response = await axios.get("YOUR_BACKEND_ENDPOINT_HERE");
+      //   setStateData(response.data); // Assuming response.data contains the state data
+      // } catch (error) {
+      //   console.error("Error fetching state data:", error);
+      //   // Handle error state here if needed
+      // }
+      setStateData(dummyData);
+    };
+
+    fetchStateData();
+  }, []);
+
   return (
     <>
       <ActionPopUp
@@ -37,6 +67,18 @@ export default function StateList() {
                 Create State
               </Button>
             </Link>
+          </Box>
+          <Box alignSelf="flex-end">
+            <InputGroup my="2">
+              <InputRightElement pointerEvents="none">
+                <SearchIcon />
+              </InputRightElement>
+              <Input
+                placeholder="Search"
+                value={searchVal}
+                onChange={handleInputChange}
+              />
+            </InputGroup>
           </Box>
           <TableGenerator
             data={stateData}

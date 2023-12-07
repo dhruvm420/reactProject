@@ -89,9 +89,15 @@ const SignUp = () => {
                 )}
               </Field>
 
-              <Button type="submit" colorScheme="teal" width="full">
+              {/* <Button type="submit" colorScheme="teal" width="full">
                 Sign Up
-              </Button>
+              </Button> */}
+
+              <Link to="/dashboard">
+                <Button colorScheme="teal" width="full">
+                  Sign Up
+                </Button>
+              </Link>
               <Text textAlign="center" my="2">
                 Already have an account?{" "}
                 <Link to="/login">

@@ -89,9 +89,14 @@ const LogIn = () => {
                 )}
               </Field>
 
-              <Button type="submit" colorScheme="teal" width="full">
+              {/* <Button type="submit" colorScheme="teal" width="full">
                 Log In
-              </Button>
+              </Button> */}
+              <Link to="/dashboard">
+                <Button colorScheme="teal" width="full">
+                  Log In
+                </Button>
+              </Link>
               <Text textAlign="center" my="2">
                 Create an account{" "}
                 <Link to="/signup">
