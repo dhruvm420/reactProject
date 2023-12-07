@@ -70,9 +70,6 @@ export default function IDCard({ userData }) {
                   <Text fontSize="xl" my="1" px="2" textAlign="center">
                     {userData.NAME}
                   </Text>
-                  <Text fontSize="lg" px="2" textAlign="center">
-                    MEMBER
-                  </Text>
                   <FrontID userData={userData} />
                   <Flex justifyContent="end">
                     <img src={sign} alt="" width="90px" />
