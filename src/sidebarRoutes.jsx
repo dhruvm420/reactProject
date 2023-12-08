@@ -17,6 +17,6 @@ export let sideBarRoutes = {
   "SLIDER IMAGES": "/slider",
   "COMPANY PROFILE": "/error",
   "ABOUT US POST LIST": "/error",
-  "OBJECTIVE LIST": "/error",
+  "OBJECTIVE LIST": "/objectivelist",
   "LOG OUT": "/",
 };

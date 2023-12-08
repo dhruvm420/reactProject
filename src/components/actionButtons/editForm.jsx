@@ -15,6 +15,7 @@ import CreateTestimonial from "../../routes/Forms/testimonialForm";
 import ManagementForm from "../../routes/Forms/managementForm";
 import DonationForm from "../../routes/Forms/donationForm";
 import SliderForm from "../../routes/Forms/createSlider";
+import ObjectiveForm from "../../routes/Forms/createObjective";
 export default function EditForm(props) {
   let formName = props.formName;
   let modifyId = props.modifyId;
@@ -74,7 +75,9 @@ export default function EditForm(props) {
   if (formName == "donation")
     return <DonationForm edit={true} modifyId={modifyId} />;
   if (formName == "slider")
-    return <SliderForm edit={true} modifyId={position} />;
+    return <SliderForm edit={true} modifyId={modifyId} />;
+  if (formName == "objective")
+    return <ObjectiveForm edit={true} modifyId={modifyId} />;
   return (
     <form onSubmit={handleSubmit}>
       <Stack p="6" spacing="0">

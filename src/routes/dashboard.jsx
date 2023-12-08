@@ -4,7 +4,7 @@ import Sidebar from "../components/sidebar.jsx";
 import ListPreview from "../components/listPreview.jsx";
 import DashboardCards from "../components/dashboardCards.jsx";
 import Root from "./root.jsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 let dummyData = {
   State: {
     count: "11",
@@ -110,22 +110,22 @@ export default function Dashboard() {
       link="/complaints"
     />
   );
-  const fetchDashboardData = async () => {
-    try {
-      const response = await axios.get("https://api.example.com/data");
-      setDashboardData(response.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-  useEffect(() => {
-    fetchDashboardData();
-  }, []);
+  // const fetchDashboardData = async () => {
+  //   try {
+  //     const response = await axios.get("https://api.example.com/data");
+  //     setDashboardData(response.data);
+  //   } catch (error) {
+  //     console.error("Error fetching data:", error);
+  //   }
+  // };
+  // useEffect(() => {
+  //   fetchDashboardData();
+  // }, []);
   return (
     <Root title="Admin Dashboard">
       <Box w="85vw" p="6">
         <Flex padding="4" justifyContent="space-between" wrap="wrap">
-          <DashboardCards data={dashboardData} />
+          <DashboardCards data={dummyData} />
           {postPreview} {complaintsPreview}
         </Flex>
       </Box>

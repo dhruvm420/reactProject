@@ -33,6 +33,8 @@ import Certificate from "./components/actionButtons/certificate.jsx";
 import LogIn from "./routes/Forms/login.jsx";
 import Slider from "./routes/sliderImages.jsx";
 import SliderForm from "./routes/Forms/createSlider.jsx";
+import ObjectiveList from "./routes/objectivelist.jsx";
+import ObjectiveForm from "./routes/Forms/createObjective.jsx";
 export let routesList = [
   {
     path: "/",
@@ -100,7 +102,14 @@ export let routesList = [
     path: "/addSlider",
     element: <SliderForm />,
   },
-
+  {
+    path: "/objectivelist",
+    element: <ObjectiveList />,
+  },
+  {
+    path: "/addObjective",
+    element: <ObjectiveForm />,
+  },
   {
     path: "/publicuserlist",
     element: <PublicUserList />,
