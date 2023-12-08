@@ -14,7 +14,7 @@ export let sideBarRoutes = {
   "TESTIMONIAL ": "/testimonials",
   "PRINT DONATION SLIP": "/donations",
   "MY MESSAGE": "/mymessage",
-  "SLIDER IMAGES": "/error",
+  "SLIDER IMAGES": "/slider",
   "COMPANY PROFILE": "/error",
   "ABOUT US POST LIST": "/error",
   "OBJECTIVE LIST": "/error",

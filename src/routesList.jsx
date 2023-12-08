@@ -31,6 +31,8 @@ import Id from "./components/actionButtons/idCards/id.jsx";
 import Appointment from "./components/actionButtons/appointment.jsx";
 import Certificate from "./components/actionButtons/certificate.jsx";
 import LogIn from "./routes/Forms/login.jsx";
+import Slider from "./routes/sliderImages.jsx";
+import SliderForm from "./routes/Forms/createSlider.jsx";
 export let routesList = [
   {
     path: "/",
@@ -90,6 +92,15 @@ export let routesList = [
     path: "/management",
     element: <Management />,
   },
+  {
+    path: "/slider",
+    element: <Slider />,
+  },
+  {
+    path: "/addSlider",
+    element: <SliderForm />,
+  },
+
   {
     path: "/publicuserlist",
     element: <PublicUserList />,

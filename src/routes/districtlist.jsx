@@ -52,7 +52,7 @@ export default function DistrictList() {
     };
 
     fetchDistrictData();
-  }, []);
+  }, [searchVal, currentPage]);
   return (
     <>
       <ActionPopUp

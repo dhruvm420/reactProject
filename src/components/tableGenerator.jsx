@@ -16,6 +16,7 @@ export default function TableGenerator({
   setId,
   actionItems,
 }) {
+  let name = title;
   const headers = Object.keys(data[0]);
   let noData = data == null || data[0][headers[0]] == null;
   let rows;
@@ -42,7 +43,16 @@ export default function TableGenerator({
         {headers.map((header, i) => (
           <Td key={i}>
             {header === "IMAGE" || header === "TIMELINE POST" ? (
-              <img src={dataItem[header]} alt="" width="50px" height="50px" />
+              title == "slider" ? (
+                <img
+                  src={dataItem[header]}
+                  alt=""
+                  width="350px"
+                  height="350px"
+                />
+              ) : (
+                <img src={dataItem[header]} alt="" width="50px" height="50px" />
+              )
             ) : (
               dataItem[header]
             )}

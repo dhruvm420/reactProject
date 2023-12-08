@@ -9,10 +9,12 @@ import {
   Stack,
   HStack,
   Heading,
+  position,
 } from "@chakra-ui/react";
 import CreateTestimonial from "../../routes/Forms/testimonialForm";
 import ManagementForm from "../../routes/Forms/managementForm";
 import DonationForm from "../../routes/Forms/donationForm";
+import SliderForm from "../../routes/Forms/createSlider";
 export default function EditForm(props) {
   let formName = props.formName;
   let modifyId = props.modifyId;
@@ -71,6 +73,8 @@ export default function EditForm(props) {
     return <ManagementForm edit={true} modifyId={modifyId} />;
   if (formName == "donation")
     return <DonationForm edit={true} modifyId={modifyId} />;
+  if (formName == "slider")
+    return <SliderForm edit={true} modifyId={position} />;
   return (
     <form onSubmit={handleSubmit}>
       <Stack p="6" spacing="0">

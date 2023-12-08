@@ -51,7 +51,7 @@ export default function PanchayatList() {
     };
 
     fetchPanchayatData();
-  }, []);
+  }, [searchVal, currentPage]);
   return (
     <>
       <ActionPopUp

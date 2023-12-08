@@ -53,7 +53,7 @@ export default function StateList() {
     };
 
     fetchStateData();
-  }, []);
+  }, [searchVal, currentPage]);
 
   return (
     <>
