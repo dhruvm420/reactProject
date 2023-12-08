@@ -43,7 +43,14 @@ export default function TableGenerator({
         {headers.map((header, i) => (
           <Td key={i}>
             {header === "IMAGE" || header === "TIMELINE POST" ? (
-              title == "slider" ? (
+              title == "objective" ? (
+                <img
+                  src={dataItem[header]}
+                  alt=""
+                  width="150px"
+                  height="150px"
+                />
+              ) : title == "slider" ? (
                 <img
                   src={dataItem[header]}
                   alt=""

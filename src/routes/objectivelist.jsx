@@ -9,7 +9,7 @@ let data = [
   {
     IMAGE: "https://skskf.in/testinomial-img/1_1272022104258.jpg",
     TITLE: "जैविक खेती",
-    DESCRIPTION: "",
+    DESCRIPTION: "जैविक खेती होने वाले लाभ कृषको की दृस्टि ",
   },
 ];
 
