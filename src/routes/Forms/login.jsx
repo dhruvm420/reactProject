@@ -1,26 +1,49 @@
-import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import React, { useState } from "react";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import {
   FormControl,
   FormLabel,
   Input,
   Button,
   Box,
-  Text,
-  Heading,
   FormErrorMessage,
+  Heading,
+  Text,
 } from "@chakra-ui/react";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../../components/header";
-import { Link } from "react-router-dom";
+import {
+  axiosInstance,
+  setAuthToken,
+} from "../../components/axiosInstance.jsx";
+
 const LogIn = () => {
   const initialValues = {
     email: "",
     password: "",
   };
-
+  const [loginError, setLoginError] = useState(null);
+  let navigate = useNavigate();
   const onSubmit = (values) => {
-    // Perform signup logic with form values (values.email, values.password)
     console.log("Form values:", values);
+    axiosInstance
+      .post("/superadmin/auth/login", values)
+      .then((response) => {
+        console.log(response);
+        const token = response.data.token;
+        localStorage.setItem("jwtToken", token);
+        console.log("token " + localStorage.getItem("jwtToken"));
+        setAuthToken(token);
+        navigate("/dashboard");
+      })
+      .catch((error) => {
+        console.error("Login failed:", error);
+        if (error.response && error.response.status === 401) {
+          setLoginError("The email/username or password is wrong");
+        } else {
+          setLoginError("An error occurred during login");
+        }
+      });
   };
 
   const validate = (values) => {
@@ -28,10 +51,6 @@ const LogIn = () => {
 
     if (!values.email) {
       errors.email = "Email/Username is required";
-    } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-    ) {
-      errors.email = "Invalid email address";
     }
 
     if (!values.password) {
@@ -89,14 +108,14 @@ const LogIn = () => {
                 )}
               </Field>
 
-              {/* <Button type="submit" colorScheme="teal" width="full">
+              <Button type="submit" colorScheme="teal" width="full">
                 Log In
-              </Button> */}
-              <Link to="/dashboard">
-                <Button colorScheme="teal" width="full">
-                  Log In
-                </Button>
-              </Link>
+              </Button>
+              {loginError && (
+                <Text color="red" mt="2" textAlign="center">
+                  {loginError}
+                </Text>
+              )}
             </Form>
           )}
         </Formik>
