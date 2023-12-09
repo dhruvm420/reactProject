@@ -13,48 +13,79 @@ import TableGenerator from "../components/tableGenerator";
 import { useState, useEffect } from "react";
 import ActionPopUp from "../components/actionButtons/actionPopUp";
 import { SearchIcon } from "@chakra-ui/icons";
-import axios from "axios";
+import { setAuthToken, axiosInstance } from "../components/axiosInstance.jsx";
 import Pagination from "../components/pagination";
-let dummyData = [
-  {
-    "USER ID": "0134",
-    IMAGE: "https://skskf.in/userimg/IMG-20230627-WA0045_09152023162926.jpg",
-    NAME: "KESHAW DAS",
-    EMAIL: "keshawkwd666@gmail.com",
-    DESIGNATION: "s./lohara",
-    "Total District": "2",
-    DATE: "2023-09-09 13:24:09",
-  },
-];
-
+import { getCorrectDate } from "../components/date.jsx";
 export default function StateList() {
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
   const [id, setId] = useState("");
   const [action, setAction] = useState("");
-  const [stateData, setStateData] = useState(dummyData);
+  const [stateData, setStateData] = useState([]);
   const [searchVal, setSearchVal] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [dataLoaded, setDataLoaded] = useState(false);
+
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
   const handleInputChange = (e) => {
     setSearchVal(e.target.value);
   };
-  useEffect(() => {
-    const fetchStateData = async () => {
-      // try {
-      //   const response = await axios.get("YOUR_BACKEND_ENDPOINT_HERE");
-      //   setStateData(response.data); // Assuming response.data contains the state data
-      // } catch (error) {
-      //   console.error("Error fetching state data:", error);
-      //   // Handle error state here if needed
-      // }
-      setStateData(dummyData);
+  function putinDummy(obj, d) {
+    let dataItem = {
+      "USER ID": "0134",
+      IMAGE: "https://skskf.in/userimg/IMG-20230627-WA0045_09152023162926.jpg",
+      NAME: "KESHAW DAS",
+      EMAIL: "keshawkwd666@gmail.com",
+      DESIGNATION: "s./lohara",
+      "Total District": "2",
+      DATE: "2023-09-09 13:24:09",
     };
+    dataItem["USER ID"] = obj["_id"];
+    dataItem.IMAGE =
+      "https://sksk-backend.onrender.com/" + obj["profilePictureLink"];
+    dataItem.NAME = obj.name;
+    dataItem.EMAIL = obj["email"];
+    dataItem["Total District"] = obj["totalDistrict"];
+    dataItem.DESIGNATION = obj["designation"];
+    dataItem.DATE = getCorrectDate(obj["joiningDate"]);
 
-    fetchStateData();
+    d.push(dataItem);
+  }
+  const fetch = async () => {
+    const storedToken = localStorage.getItem("jwtToken"); // Fetch the stored token
+
+    if (storedToken) {
+      // Set the token in the Axios headers before making the request
+      setAuthToken(storedToken);
+
+      // Make an authenticated request using axiosInstance
+      await axiosInstance
+        .get(
+          `/superadmin/crud/state?limit=10&fields=${searchVal}&page=${currentPage}`
+        )
+        .then((response) => {
+          console.log(response);
+          let obj = response.data.data.response;
+          let arr = Object.keys(obj);
+          let dumm = [];
+          arr.forEach((element) => {
+            putinDummy(obj[element], dumm);
+          });
+          setDataLoaded(true);
+          setStateData(dumm);
+        })
+        .catch((error) => {
+          // Handle error, e.g., unauthorized access
+          console.error("Error fetching data:", error);
+        });
+    }
+  };
+  useEffect(() => {
+    fetch();
   }, [searchVal, currentPage]);
 
+  if (!dataLoaded) return <></>;
   return (
     <>
       <ActionPopUp

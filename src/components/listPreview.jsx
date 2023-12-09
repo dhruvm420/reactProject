@@ -18,6 +18,7 @@ export default function ListPreview(props) {
   const title = props.title;
   let link = props.link;
   const total = d.length;
+  if (total == 0) return;
   let data = d.slice(0, 4);
   let rows = data.map((dataItem) => {
     return (

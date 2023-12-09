@@ -1,67 +1,50 @@
 import MyCard from "./mycard";
-export default function DashboardCards(props) {
+export default function DashboardCards({ dashboardData }) {
+  console.log(dashboardData);
   return (
     <>
-      <MyCard
-        title="State"
-        count={props.data["State"].count}
-        link="/statelist"
-      />
+      <MyCard title="State" count={dashboardData.state} link="/statelist" />
       <MyCard
         title="District"
-        count={props.data["District"].count}
+        count={dashboardData.district}
         link="/districtlist"
       />
-      <MyCard
-        title="Tehsil"
-        count={props.data["Tehsil"].count}
-        link="/tehsillist"
-      />
+      <MyCard title="Tehsil" count={dashboardData.tehsil} link="/tehsillist" />
       <MyCard
         title="Panchayat"
-        count={props.data["Panchayat"].count}
+        count={dashboardData.panchayat}
         link="/panchayatlist"
       />
       <MyCard
         title="Verified Members"
-        count={props.data["Verified Members"].count}
+        count={dashboardData.verifiedmembers}
         link="/verifiedmembers"
       />
       <MyCard
         title="Unverified Members"
-        count={props.data["Unverified Members"].count}
+        count={dashboardData.unverifiedmembers}
         link="/unverifiedmembers"
       />
       <MyCard
         title="Complaints"
-        count={props.data["Complaints"].count}
+        count={dashboardData.complaints}
         link="/complaints"
       />
       <MyCard
         title="Testimonials"
-        count={props.data["Testimonials"].count}
+        count={dashboardData.testimonials}
         link="/testimonials"
       />
       <MyCard
         title="Donations"
-        count={props.data["Donations"].count}
+        count={dashboardData.donations}
         link="/donations"
       />
       <MyCard
         title="Contact Us"
-        count={props.data["Contact Us"].count}
+        count={dashboardData.contactus}
         link="/contactus"
       />{" "}
-      <MyCard
-        title="Management"
-        count={props.data["Management"].count}
-        link="/management"
-      />
-      <MyCard
-        title="Public User List"
-        count={props.data["Public User List"].count}
-        link="/publicuserlist"
-      />
     </>
   );
 }
