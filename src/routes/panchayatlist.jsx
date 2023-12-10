@@ -62,10 +62,11 @@ export default function PanchayatList() {
       // Set the token in the Axios headers before making the request
       setAuthToken(storedToken);
       // Make an authenticated request using axiosInstance
+      let url = `/superadmin/crud/panchayat?page=${currentPage}&limit=10&sort=name`;
+      if (searchVal != "")
+        url = `/superadmin/crud/search?roleName=panchayat&searchQuery=${searchVal}&page=${currentPage}&limit=10`;
       await axiosInstance
-        .get(
-          `/superadmin/crud/panchayat?limit=10&fields=${searchVal}&page=${currentPage}`
-        )
+        .get(url)
         .then((response) => {
           console.log(response);
           if (response.status != "fail") {
@@ -97,6 +98,7 @@ export default function PanchayatList() {
         });
     }
   };
+
   useEffect(() => {
     fetch();
   }, [searchVal, currentPage]);

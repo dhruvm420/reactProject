@@ -46,7 +46,7 @@ export default function Dashboard() {
       await axiosInstance
         .get("/superadmin/crud/dashboard")
         .then((response) => {
-          console.log(response.data.data.stats);
+          console.log(response.data.data);
           let obj = response.data.data.stats;
           let arr = Object.keys(obj);
           arr.forEach((element) => {
@@ -56,9 +56,10 @@ export default function Dashboard() {
             response.data.data["verifiedMemberCount"].toString();
           dummyData.unverifiedmembers =
             response.data.data["unverifiedMemberCount"].toString();
-          dummyData.complaints = response.data.data["testimonials"].toString();
-          dummyData.testimonials =
+          dummyData.complaints =
             response.data.data["complaintsCount"].toString();
+          dummyData.testimonials =
+            response.data.data["testimonials"].toString();
           dummyData.donations = response.data.data["donationsCount"].toString();
           dummyData.contactus = response.data.data["contactUsCount"].toString();
           localStorage.setItem("myValues", JSON.stringify(dummyData));
@@ -86,7 +87,7 @@ export default function Dashboard() {
       </>
     );
   return (
-    <Root title="Admin Dashboard" data={dashboardData}>
+    <Root title="Admin Dashboard">
       <Box w="85vw" p="6">
         <Flex padding="4" justifyContent="space-between" wrap="wrap">
           <Flex wrap={"wrap"} p="0" m="0">

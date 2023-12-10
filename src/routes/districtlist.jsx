@@ -73,12 +73,12 @@ export default function DistrictList() {
     if (storedToken) {
       // Set the token in the Axios headers before making the request
       setAuthToken(storedToken);
-
+      let url = `/superadmin/crud/district?page=${currentPage}&limit=10&sort=name`;
+      if (searchVal != "")
+        url = `/superadmin/crud/search?roleName=district&searchQuery=${searchVal}&page=${currentPage}&limit=10`;
       // Make an authenticated request using axiosInstance
       await axiosInstance
-        .get(
-          `/superadmin/crud/district?limit=10&fields=${searchVal}&page=${currentPage}`
-        )
+        .get(url)
         .then((response) => {
           console.log(response);
 

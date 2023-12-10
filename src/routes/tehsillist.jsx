@@ -57,14 +57,15 @@ export default function TehsilList() {
   }
   const fetch = async () => {
     const storedToken = localStorage.getItem("jwtToken"); // Fetch the stored token
+    let url = `/superadmin/crud/tehsil?page=${currentPage}&limit=10&sort=name`;
+    if (searchVal != "")
+      url = `/superadmin/crud/search?roleName=tehsil&searchQuery=${searchVal}&page=${currentPage}&limit=10`;
     if (storedToken) {
       // Set the token in the Axios headers before making the request
       setAuthToken(storedToken);
       // Make an authenticated request using axiosInstance
       await axiosInstance
-        .get(
-          `/superadmin/crud/tehsil?limit=10&fields=${searchVal}&page=${currentPage}`
-        )
+        .get(url)
         .then((response) => {
           console.log(response);
           if (response.status != "fail") {

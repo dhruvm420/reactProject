@@ -1,11 +1,11 @@
 import {
   Flex,
   Box,
-  Input,
   Text,
+  Input,
   InputGroup,
-  Button,
   InputRightElement,
+  Button,
 } from "@chakra-ui/react";
 import { Center, Spinner } from "@chakra-ui/react";
 import Root from "./root";
@@ -57,16 +57,16 @@ export default function StateList() {
   }
   const fetch = async () => {
     const storedToken = localStorage.getItem("jwtToken"); // Fetch the stored token
-
+    let url = `/superadmin/crud/state?page=${currentPage}&limit=10&sort=name`;
+    if (searchVal != "")
+      url = `/superadmin/crud/search?roleName=state&searchQuery=${searchVal}&page=${currentPage}&limit=10`;
     if (storedToken) {
       // Set the token in the Axios headers before making the request
       setAuthToken(storedToken);
 
       // Make an authenticated request using axiosInstance
       await axiosInstance
-        .get(
-          `/superadmin/crud/state?limit=10&fields=${searchVal}&page=${currentPage}`
-        )
+        .get(url)
         .then((response) => {
           console.log(response);
           let obj = response.data.data.response;
@@ -79,6 +79,18 @@ export default function StateList() {
           setStateData(dumm);
         })
         .catch((error) => {
+          setStateData([
+            {
+              "USER ID": null,
+              IMAGE: null,
+              NAME: null,
+              EMAIL: null,
+              DESIGNATION: null,
+              "Total District": null,
+              DATE: null,
+            },
+          ]);
+          setDataLoaded(true);
           // Handle error, e.g., unauthorized access
           console.error("Error fetching data:", error);
         });
