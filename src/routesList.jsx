@@ -35,6 +35,7 @@ import Slider from "./routes/sliderImages.jsx";
 import SliderForm from "./routes/Forms/createSlider.jsx";
 import ObjectiveList from "./routes/objectivelist.jsx";
 import ObjectiveForm from "./routes/Forms/createObjective.jsx";
+import LogOut from "./routes/logOut.jsx";
 export let routesList = [
   {
     path: "/",
@@ -53,6 +54,10 @@ export let routesList = [
   {
     path: "/statelist",
     element: <StateList />,
+  },
+  {
+    path: "/logout",
+    element: <LogOut />,
   },
   {
     path: "/districtlist",

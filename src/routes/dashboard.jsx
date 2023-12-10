@@ -1,5 +1,6 @@
-import { Box, Heading, Flex } from "@chakra-ui/react";
+import { Box, Heading, Flex, Text } from "@chakra-ui/react";
 import ListPreview from "../components/listPreview.jsx";
+import { Center, Spinner } from "@chakra-ui/react";
 import Root from "./root.jsx";
 import { setAuthToken, axiosInstance } from "../components/axiosInstance.jsx";
 import { useState, useEffect } from "react";
@@ -75,7 +76,15 @@ export default function Dashboard() {
     // Assuming you have the JWT token stored in localStorage or somewhere else
   }, []);
 
-  if (!dataLoaded) return <></>;
+  if (!dataLoaded)
+    return (
+      <>
+        <Center height="100vh">
+          <Spinner size="xl" color="blue.500" />
+          <Text px="2"> Loading... </Text>
+        </Center>
+      </>
+    );
   return (
     <Root title="Admin Dashboard" data={dashboardData}>
       <Box w="85vw" p="6">

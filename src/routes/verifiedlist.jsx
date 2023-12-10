@@ -2,17 +2,18 @@ import {
   Flex,
   Box,
   Input,
+  Text,
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/react";
 import Root from "./root";
+import { Center, Spinner } from "@chakra-ui/react";
 import Pagination from "../components/pagination";
 import TableGenerator from "../components/tableGenerator";
 import { useState, useEffect } from "react";
 import ActionPopUp from "../components/actionButtons/actionPopUp";
 import { SearchIcon } from "@chakra-ui/icons";
 import { setAuthToken, axiosInstance } from "../components/axiosInstance.jsx";
-import { useParams } from "react-router-dom";
 
 let dummyData = [
   {
@@ -117,7 +118,15 @@ export default function VerifiedList() {
     fetch();
   }, [searchVal, currentPage]);
 
-  if (!dataLoaded) return <></>;
+  if (!dataLoaded)
+    return (
+      <>
+        <Center height="100vh">
+          <Spinner size="xl" color="blue.500" />
+          <Text px="2"> Loading... </Text>
+        </Center>
+      </>
+    );
   return (
     <Root title="Verified Members">
       <Flex direction="column" mx="auto" mt="4">

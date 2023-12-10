@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import { Center, Spinner } from "@chakra-ui/react";
+
 import {
   FormControl,
   FormLabel,
@@ -7,7 +9,6 @@ import {
   Button,
   Box,
   FormErrorMessage,
-  Heading,
   Text,
 } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
@@ -23,8 +24,10 @@ const LogIn = () => {
     password: "",
   };
   const [loginError, setLoginError] = useState(null);
+  const [loginStatus, setLoginStatus] = useState(false);
   let navigate = useNavigate();
   const onSubmit = (values) => {
+    setLoginStatus(true);
     console.log("Form values:", values);
     axiosInstance
       .post("/superadmin/auth/login", values)
@@ -62,6 +65,15 @@ const LogIn = () => {
     return errors;
   };
 
+  if (loginStatus)
+    return (
+      <>
+        <Center height="100vh">
+          <Spinner size="xl" color="blue.500" />
+          <Text px="2"> Loading... </Text>
+        </Center>
+      </>
+    );
   return (
     <>
       <Header title="Log In" />

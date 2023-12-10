@@ -2,10 +2,12 @@ import {
   Flex,
   Button,
   Box,
+  Text,
   Input,
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/react";
+import { Center, Spinner } from "@chakra-ui/react";
 import Pagination from "../components/pagination";
 import Root from "./root";
 import TableGenerator from "../components/tableGenerator";
@@ -113,7 +115,15 @@ export default function DistrictList() {
     fetch();
   }, [searchVal, currentPage]);
 
-  if (!dataLoaded) return <></>;
+  if (!dataLoaded)
+    return (
+      <>
+        <Center height="100vh">
+          <Spinner size="xl" color="blue.500" />
+          <Text px="2"> Loading... </Text>
+        </Center>
+      </>
+    );
   return (
     <>
       <ActionPopUp

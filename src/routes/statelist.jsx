@@ -7,6 +7,7 @@ import {
   Button,
   InputRightElement,
 } from "@chakra-ui/react";
+import { Center, Spinner } from "@chakra-ui/react";
 import Root from "./root";
 import { Link, useParams } from "react-router-dom";
 import TableGenerator from "../components/tableGenerator";
@@ -87,7 +88,15 @@ export default function StateList() {
     fetch();
   }, [searchVal, currentPage]);
 
-  if (!dataLoaded) return <></>;
+  if (!dataLoaded)
+    return (
+      <>
+        <Center height="100vh">
+          <Spinner size="xl" color="blue.500" />
+          <Text px="2"> Loading... </Text>
+        </Center>
+      </>
+    );
   return (
     <>
       <ActionPopUp
