@@ -13,24 +13,15 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import ActionPopUp from "../components/actionButtons/actionPopUp";
 import { SearchIcon } from "@chakra-ui/icons";
-let dummyData = [
-  {
-    "USER ID": "0134",
-    IMAGE: "https://skskf.in/userimg/IMG-20230627-WA0045_09152023162926.jpg",
-    NAME: "KESHAW DAS",
-    EMAIL: "keshawkwd666@gmail.com",
-    DESIGNATION: "s./lohara",
-    DATE: "2023-09-09 13:24:09",
-  },
-];
-
+import { setAuthToken, axiosInstance } from "../components/axiosInstance.jsx";
 export default function PanchayatList() {
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
   const [id, setId] = useState("");
   const [action, setAction] = useState("");
-  const [panchayatData, setPanchayatData] = useState(dummyData);
+  const [panchayatData, setPanchayatData] = useState([]);
   const [searchVal, setSearchVal] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [dataLoaded, setDataLoaded] = useState(false);
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -38,20 +29,70 @@ export default function PanchayatList() {
     setSearchVal(e.target.value);
     // You can perform filtering or any other actions based on the search value here
   };
-  useEffect(() => {
-    const fetchPanchayatData = async () => {
-      // try {
-      //   const response = await axios.get("YOUR_BACKEND_ENDPOINT_HERE");
-      //   setPanchayatData(response.data); // Assuming response.data contains the Panchayat data
-      // } catch (error) {
-      //   console.error("Error fetching Panchayat data:", error);
-      //   // Handle error Panchayat here if needed
-      // }
-      setPanchayatData(dummyData);
+  function putinDummy(obj, d) {
+    let dataItem = {
+      "USER ID": "0134",
+      IMAGE: "https://skskf.in/userimg/IMG-20230627-WA0045_09152023162926.jpg",
+      NAME: "KESHAW DAS",
+      EMAIL: "keshawkwd666@gmail.com",
+      DESIGNATION: "s./lohara",
+      DATE: "2023-09-09 13:24:09",
     };
-
-    fetchPanchayatData();
+    dataItem["USER ID"] = obj["_id"];
+    dataItem.IMAGE =
+      "https://sksk-backend.onrender.com/" + obj["profilePictureLink"];
+    dataItem.NAME = obj.name;
+    dataItem.EMAIL = obj["email"];
+    dataItem.DESIGNATION = obj["designation"];
+    dataItem.DATE = getCorrectDate(obj["joiningDate"]);
+    d.push(dataItem);
+  }
+  const fetch = async () => {
+    const storedToken = localStorage.getItem("jwtToken"); // Fetch the stored token
+    if (storedToken) {
+      // Set the token in the Axios headers before making the request
+      setAuthToken(storedToken);
+      // Make an authenticated request using axiosInstance
+      await axiosInstance
+        .get(
+          `/superadmin/crud/panchayat?limit=10&fields=${searchVal}&page=${currentPage}`
+        )
+        .then((response) => {
+          console.log(response);
+          if (response.status != "fail") {
+            let obj = response.data.data.response;
+            let arr = Object.keys(obj);
+            let dumm = [];
+            arr.forEach((element) => {
+              putinDummy(obj[element], dumm);
+            });
+            setPanchayatData(dumm);
+          }
+          setDataLoaded(true);
+        })
+        .catch((error) => {
+          setPanchayatData([
+            {
+              "USER ID": null,
+              IMAGE: null,
+              NAME: null,
+              EMAIL: null,
+              DESIGNATION: null,
+              "Total Tehsil": null,
+              DATE: null,
+            },
+          ]);
+          setDataLoaded(true);
+          // Handle error, e.g., unauthorized access
+          console.error("Error fetching data:", error);
+        });
+    }
+  };
+  useEffect(() => {
+    fetch();
   }, [searchVal, currentPage]);
+
+  if (!dataLoaded) return <></>;
   return (
     <>
       <ActionPopUp

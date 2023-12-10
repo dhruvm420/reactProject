@@ -11,6 +11,8 @@ import TableGenerator from "../components/tableGenerator";
 import { useState, useEffect } from "react";
 import ActionPopUp from "../components/actionButtons/actionPopUp";
 import { SearchIcon } from "@chakra-ui/icons";
+import { setAuthToken, axiosInstance } from "../components/axiosInstance.jsx";
+
 let dummyData = [
   {
     USER_ID: "0226",
@@ -38,8 +40,9 @@ let dummyData = [
 export default function VerifiedList() {
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
   const [id, setId] = useState("");
+  const [dataLoaded, setDataLoaded] = useState(false);
   const [action, setAction] = useState("");
-  const [verifiedData, setVerifiedData] = useState(dummyData);
+  const [verifiedData, setVerifiedData] = useState([]);
   const [searchVal, setSearchVal] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const handlePageChange = (pageNumber) => {
@@ -49,20 +52,68 @@ export default function VerifiedList() {
     setSearchVal(e.target.value);
     // You can perform filtering or any other actions based on the search value here
   };
-  useEffect(() => {
-    const fetchVerifiedData = async () => {
-      // try {
-      //   const response = await axios.get("YOUR_BACKEND_ENDPOINT_HERE");
-      //   setVerifiedData(response.data); // Assuming response.data contains the Verified data
-      // } catch (error) {
-      //   console.error("Error fetching Verified data:", error);
-      //   // Handle error Verified here if needed
-      // }
-      setVerifiedData(dummyData);
+  function putinDummy(obj, d) {
+    let dataItem = {
+      "USER ID": "0134",
+      NAME: "KESHAW DAS",
+      MOBILE: "9999889999",
+      CITY: "Kawardha",
+      AUTHORITY: "Member",
     };
+    dataItem["USER ID"] = obj["_id"];
+    dataItem.NAME = obj.name;
+    dataItem.MOBILE = obj.mobile;
+    dataItem.CITY = obj.city;
+    dataItem.AUTHORITY = obj.authority;
+    d.push(dataItem);
+  }
+  const fetch = async () => {
+    const storedToken = localStorage.getItem("jwtToken"); // Fetch the stored token
+    if (storedToken) {
+      // Set the token in the Axios headers before making the request
+      setAuthToken(storedToken);
+      // Make an authenticated request using axiosInstance
+      await axiosInstance
 
-    fetchVerifiedData();
-  }, []);
+        .get(
+          `superadmin/crud/member?isVerified=true&limit=10&fields=${searchVal}&page=${currentPage}`
+        )
+        .then((response) => {
+          console.log(response);
+          if (response.status != "fail") {
+            let obj = response.data.data.response;
+            let arr = Object.keys(obj);
+            let dumm = [];
+            arr.forEach((element) => {
+              putinDummy(obj[element], dumm);
+            });
+            setVerifiedData(dumm);
+          }
+          setDataLoaded(true);
+        })
+        .catch((error) => {
+          setVerifiedData([
+            {
+              "USER ID": null,
+              IMAGE: null,
+              NAME: null,
+              EMAIL: null,
+              DESIGNATION: null,
+              "Total Tehsil": null,
+              DATE: null,
+            },
+          ]);
+          setDataLoaded(true);
+          // Handle error, e.g., unauthorized access
+          console.error("Error fetching data:", error);
+        });
+    }
+  };
+  useEffect(() => {
+    fetch();
+  }, [searchVal, currentPage]);
+
+  if (!dataLoaded) return <></>;
   return (
     <Root title="Verified Members">
       <Flex direction="column" mx="auto" mt="4">

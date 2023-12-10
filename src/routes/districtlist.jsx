@@ -84,7 +84,7 @@ export default function DistrictList() {
             arr.forEach((element) => {
               putinDummy(obj[element], dumm);
             });
-            setStateData(dumm);
+            setDistrictData(dumm);
           }
           setDataLoaded(true);
         })

@@ -8,7 +8,7 @@ export let sideBarRoutes = {
   "ALL EVENT": "/event",
   "ALL POST": "/posts",
   "MANAGEMENT TEAM": "/management",
-  "PUBLIC USER LIST": "/publicuserlist",
+  // "PUBLIC USER LIST": "/publicuserlist",
   "RECEIPT APPLICATION LIST": "/receiptapplication",
   "COMPLAIN / SOLUTION": "/complaints",
   "TESTIMONIAL ": "/testimonials",
