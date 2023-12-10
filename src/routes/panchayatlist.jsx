@@ -6,6 +6,7 @@ import {
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/react";
+import { getCorrectDate } from "../components/date.jsx";
 import Root from "./root";
 import TableGenerator from "../components/tableGenerator";
 import Pagination from "../components/pagination";
@@ -38,6 +39,9 @@ export default function PanchayatList() {
       DESIGNATION: "s./lohara",
       DATE: "2023-09-09 13:24:09",
     };
+    console.log(
+      "https://sksk-backend.onrender.com/" + obj["profilePictureLink"]
+    );
     dataItem["USER ID"] = obj["_id"];
     dataItem.IMAGE =
       "https://sksk-backend.onrender.com/" + obj["profilePictureLink"];
