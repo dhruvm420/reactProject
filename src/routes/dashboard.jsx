@@ -60,6 +60,7 @@ export default function Dashboard() {
             response.data.data["complaintsCount"].toString();
           dummyData.donations = response.data.data["donationsCount"].toString();
           dummyData.contactus = response.data.data["contactUsCount"].toString();
+          localStorage.setItem("myValues", JSON.stringify(dummyData));
           setDashboardData(dummyData);
           setDataLoaded(true);
         })
@@ -76,7 +77,7 @@ export default function Dashboard() {
 
   if (!dataLoaded) return <></>;
   return (
-    <Root title="Admin Dashboard">
+    <Root title="Admin Dashboard" data={dashboardData}>
       <Box w="85vw" p="6">
         <Flex padding="4" justifyContent="space-between" wrap="wrap">
           <Flex wrap={"wrap"} p="0" m="0">

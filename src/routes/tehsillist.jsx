@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import Pagination from "../components/pagination";
 import TableGenerator from "../components/tableGenerator";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Root from "./root";
 import { useState, useEffect } from "react";
 import ActionPopUp from "../components/actionButtons/actionPopUp";
@@ -22,6 +22,9 @@ export default function TehsilList() {
   const [action, setAction] = useState("");
   const [tehsilData, setTehsilData] = useState([]);
   const [searchVal, setSearchVal] = useState("");
+  const storedValuesString = localStorage.getItem("myValues");
+  const storedValues = JSON.parse(storedValuesString);
+  const count = (storedValues && storedValues.tehsil) || 0;
   const [currentPage, setCurrentPage] = useState(1);
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -138,6 +141,7 @@ export default function TehsilList() {
           <Pagination
             handlePageChange={handlePageChange}
             currentPage={currentPage}
+            totalPages={count < 10 ? 1 : Math.ceil(count / 10)}
           />
         </Flex>
       </Root>

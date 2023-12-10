@@ -1,6 +1,5 @@
 import MyCard from "./mycard";
 export default function DashboardCards({ dashboardData }) {
-  console.log(dashboardData);
   return (
     <>
       <MyCard title="State" count={dashboardData.state} link="/statelist" />

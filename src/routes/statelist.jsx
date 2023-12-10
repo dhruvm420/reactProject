@@ -8,7 +8,7 @@ import {
   InputRightElement,
 } from "@chakra-ui/react";
 import Root from "./root";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import TableGenerator from "../components/tableGenerator";
 import { useState, useEffect } from "react";
 import ActionPopUp from "../components/actionButtons/actionPopUp";
@@ -24,7 +24,9 @@ export default function StateList() {
   const [searchVal, setSearchVal] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [dataLoaded, setDataLoaded] = useState(false);
-
+  const storedValuesString = localStorage.getItem("myValues");
+  const storedValues = JSON.parse(storedValuesString);
+  const count = (storedValues && storedValues.state) || 0;
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -127,6 +129,7 @@ export default function StateList() {
           <Pagination
             handlePageChange={handlePageChange}
             currentPage={currentPage}
+            totalPages={count < 10 ? 1 : Math.ceil(count / 10)}
           />
         </Flex>
       </Root>

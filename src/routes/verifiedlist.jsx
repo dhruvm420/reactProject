@@ -12,6 +12,7 @@ import { useState, useEffect } from "react";
 import ActionPopUp from "../components/actionButtons/actionPopUp";
 import { SearchIcon } from "@chakra-ui/icons";
 import { setAuthToken, axiosInstance } from "../components/axiosInstance.jsx";
+import { useParams } from "react-router-dom";
 
 let dummyData = [
   {
@@ -42,6 +43,9 @@ export default function VerifiedList() {
   const [id, setId] = useState("");
   const [dataLoaded, setDataLoaded] = useState(false);
   const [action, setAction] = useState("");
+  const storedValuesString = localStorage.getItem("myValues");
+  const storedValues = JSON.parse(storedValuesString);
+  const count = (storedValues && storedValues.verifiedmembers) || 0;
   const [verifiedData, setVerifiedData] = useState([]);
   const [searchVal, setSearchVal] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -147,6 +151,7 @@ export default function VerifiedList() {
         <Pagination
           handlePageChange={handlePageChange}
           currentPage={currentPage}
+          totalPages={count < 10 ? 1 : Math.ceil(count / 10)}
         />
       </Flex>
     </Root>

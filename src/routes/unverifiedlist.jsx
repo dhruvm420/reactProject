@@ -13,7 +13,7 @@ import { useState, useEffect } from "react";
 import ActionPopUp from "../components/actionButtons/actionPopUp";
 import { setAuthToken, axiosInstance } from "../components/axiosInstance.jsx";
 import Root from "./root";
-
+import { useParams } from "react-router-dom";
 export default function UnVerifiedList() {
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
   const [id, setId] = useState("");
@@ -22,6 +22,9 @@ export default function UnVerifiedList() {
   const [unVerifiedData, setUnVerifiedData] = useState([]);
   const [searchVal, setSearchVal] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const storedValuesString = localStorage.getItem("myValues");
+  const storedValues = JSON.parse(storedValuesString);
+  const count = (storedValues && storedValues.unverifiedmembers) || 0;
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -125,6 +128,7 @@ export default function UnVerifiedList() {
         <Pagination
           handlePageChange={handlePageChange}
           currentPage={currentPage}
+          totalPages={count < 10 ? 1 : Math.ceil(count / 10)}
         />
       </Flex>
     </Root>

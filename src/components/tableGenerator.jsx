@@ -45,6 +45,7 @@ export default function TableGenerator({
             {header === "IMAGE" || header === "TIMELINE POST" ? (
               title == "objective" ? (
                 <img
+                  crossorigin="anonymous"
                   src={dataItem[header]}
                   alt=""
                   width="150px"
@@ -52,13 +53,20 @@ export default function TableGenerator({
                 />
               ) : title == "slider" ? (
                 <img
+                  crossorigin="anonymous"
                   src={dataItem[header]}
                   alt=""
                   width="350px"
                   height="350px"
                 />
               ) : (
-                <img src={dataItem[header]} alt="" width="50px" height="50px" />
+                <img
+                  crossorigin="anonymous"
+                  src={dataItem[header]}
+                  alt=""
+                  width="50px"
+                  height="50px"
+                />
               )
             ) : (
               dataItem[header]
