@@ -12,7 +12,7 @@
 //   DESIGNATION: "s./lohara",
 //   DATE: "2023-09-09 13:24:09",
 // };
-// const dummyUsersData = [
+// const dummyTehsilData = [
 //   {
 //     "USER ID": null,
 //     "COORDINATOR ID": null,
@@ -23,13 +23,11 @@
 //   },
 // ];
 // export default function PanchayatReport() {
-//   const [optionList, setOptionList] = useState();
-//   const [list, setList] = useState([]);
+//   const [panchayatList, setPanchayatList] = useState([]);
+//   const [dataLoaded, setDataLoaded] = useState(false);
 //   const [selectedOption, setSelectedOption] = useState("Select Panchayat");
-//   const [panchayatData, setPanchayatData] = useState([dummyPanchayatData]);
-//   // usersData is the data of users under the selected panchayat
-//   const [usersData, setUsersData] = useState(dummyUsersData);
-//   // panchayat list
+//   const [panchayatData, setPanchayatData] = useState([]);
+//   const [tehsilData, setTehsilData] = useState([]); // usersData is the data of users under the selected panchayat
 //   function putinDummy(obj, d) {
 //     let dataItem = {
 //       "USER ID": "0134",
@@ -48,14 +46,30 @@
 //     dataItem.DATE = getCorrectDate(obj["joiningDate"]);
 //     d.push(dataItem);
 //   }
-//   const fetch = async () => {
+//   function processPanchayatData(obj, d) {
+//     let dataItem = {
+//       "USER ID": "0134",
+//       IMAGE: "https://skskf.in/userimg/IMG-20230627-WA0045_09152023162926.jpg",
+//       NAME: "KESHAW DAS",
+//       EMAIL: "keshawkwd666@gmail.com",
+//       DESIGNATION: "s./lohara",
+//       DATE: "2023-09-09 13:24:09",
+//     };
+//     dataItem["USER ID"] = obj["_id"];
+//     dataItem.IMAGE =
+//       "https://sksk-backend.onrender.com/" + obj["profilePictureLink"];
+//     dataItem.NAME = obj.name;
+//     dataItem.EMAIL = obj["email"];
+//     dataItem.DESIGNATION = obj["designation"];
+//     dataItem.DATE = getCorrectDate(obj["joiningDate"]);
+//     d.push(dataItem);
+//   }
+//   const fetchPanchayatData = async () => {
 //     const storedToken = localStorage.getItem("jwtToken"); // Fetch the stored token
 //     let url = `/superadmin/crud/panchayat`;
 //     if (storedToken) {
 //       // Set the token in the Axios headers before making the request
 //       setAuthToken(storedToken);
-
-import ErrorPage from "../components/errorPage";
 
 //       // Make an authenticated request using axiosInstance
 //       await axiosInstance
@@ -66,10 +80,10 @@ import ErrorPage from "../components/errorPage";
 //           let arr = Object.keys(obj);
 //           let dumm = [];
 //           arr.forEach((element) => {
-//             putinDummy(obj[element], dumm);
+//             processPanchayatData(obj[element], dumm);
 //           });
-//           setOptionList(dumm.map((item) => item.name));
-//           setList(dumm);
+//           setPanchayatList(dumm.map((item) => item.name));
+//           setPanchayatData(dumm);
 //           setDataLoaded(true);
 //         })
 //         .catch((error) => {
@@ -79,57 +93,10 @@ import ErrorPage from "../components/errorPage";
 //     }
 //   };
 //   useEffect(() => {
-//     fetch();
+//     fetchPanchayatData();
 //   }, []);
 
-//   const getPanchayatData = async () => {
-//     const storedToken = localStorage.getItem("jwtToken"); // Fetch the stored token
-//     let url = `/superadmin/crud/search?roleName=panchayat&searchQuery=${selectedOption}`;
-//     if (storedToken) {
-//       // Set the token in the Axios headers before making the request
-//       setAuthToken(storedToken);
-
-//       // Make an authenticated request using axiosInstance
-//       await axiosInstance
-//         .get(url)
-//         .then((response) => {
-//           console.log(response);
-//           let obj = response.data.data.response;
-//           let arr = Object.keys(obj);
-//           let dumm = [];
-//           arr.forEach((element) => {
-//             putinDummy(obj[element], dumm);
-//           });
-//           setPanchayatData(dumm);
-//         })
-//         .catch((error) => {
-//           // Handle error, e.g., unauthorized access
-//           console.error("Error fetching data:", error);
-//         });
-//     }
-//   };
-//   function putinDummy2(obj, d) {
-//     let dataItem = {
-//       "USER ID": "0134",
-//       IMAGE: "https://skskf.in/userimg/IMG-20230627-WA0045_09152023162926.jpg",
-//       NAME: "KESHAW DAS",
-//       EMAIL: "keshawkwd666@gmail.com",
-//       DESIGNATION: "s./lohara",
-//       "Total Panchayat": "2",
-//       DATE: "2023-09-09 13:24:09",
-//     };
-//     dataItem["USER ID"] = obj["_id"];
-//     dataItem.IMAGE =
-//       "https://sksk-backend.onrender.com/" + obj["profilePictureLink"];
-//     dataItem.NAME = obj.name;
-//     dataItem.EMAIL = obj["email"];
-//     dataItem.DESIGNATION = obj["designation"];
-//     dataItem["Total Panchayat"] = obj["totalPanchayat"];
-//     dataItem.DATE = getCorrectDate(obj["joiningDate"]);
-//     d.push(dataItem);
-//   }
-
-//   const getUsersData = async () => {
+//   const getTehsilData = async () => {
 //     const storedToken = localStorage.getItem("jwtToken"); // Fetch the stored token
 //     const selectedId = panchayatData.find(
 //       (item) => item.NAME === selectedOption
@@ -148,9 +115,9 @@ import ErrorPage from "../components/errorPage";
 //             let arr = Object.keys(obj);
 //             let dumm = [];
 //             arr.forEach((element) => {
-//               putinDummy2(obj[element], dumm);
+//               processTehsilData(obj[element], dumm);
 //             });
-//             setUsersData(dumm);
+//             setTehsilData(dumm);
 //           }
 //           setDataLoaded(true);
 //         })
@@ -173,21 +140,15 @@ import ErrorPage from "../components/errorPage";
 //     }
 //   };
 //   useEffect(() => {
-//     getPanchayatData();
-//     getUsersData();
+//     getTehsilData();
 //   }, [selectedOption]);
 
-//   function handleOption(option) {
+//   function handleOption(e) {
 //     // logic to change selectedPanchayatData & data of users under this panchayat
 //     // setPanchayatData();
 //     // setUsersData();
 //     setDataLoaded(false);
 //     setSelectedOption(e.target.value);
-//     const selectedObject = list.find((item) => item.NAME === e.target.value);
-//     setFormData({
-//       ...formData,
-//       stateReferenceId: selectedObject["USER ID"],
-//     });
 //   }
 
 //   const handleChange = (event) => {
@@ -198,6 +159,15 @@ import ErrorPage from "../components/errorPage";
 
 //   const userCount = () =>
 //     usersData[0][Object.keys(usersData[0])[0]] == null ? 0 : usersData.length;
+//   if (!dataLoaded)
+//     return (
+//       <>
+//         <Center height="100vh">
+//           <Spinner size="xl" color="blue.500" />
+//           <Text px="2"> Loading... </Text>
+//         </Center>
+//       </>
+//     );
 //   return (
 //     <Root title="Panchayat List">
 //       <Flex direction="column" mx="auto" mt="4">
@@ -228,7 +198,6 @@ import ErrorPage from "../components/errorPage";
 //     </Root>
 //   );
 // }
-
 export default function PanchayatReport() {
-  return <ErrorPage />;
+  return <></>;
 }
