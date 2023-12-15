@@ -106,7 +106,7 @@ export default function CreateDistrict() {
         setAuthToken(token);
       })
       .catch((error) => {
-        console.error("Failed to create State:", error);
+        console.log("Failed to create State:\n", error.response.data.message);
       });
   };
 

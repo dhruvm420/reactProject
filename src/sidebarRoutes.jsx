@@ -15,7 +15,7 @@ export let sideBarRoutes = {
   "PRINT DONATION SLIP": "/donations",
   "MY MESSAGE": "/mymessage",
   "SLIDER IMAGES": "/slider",
-  "COMPANY PROFILE": "/error",
+  "COMPANY PROFILE": "/companyprofile",
   "ABOUT US POST LIST": "/error",
   "OBJECTIVE LIST": "/objectivelist",
   "LOG OUT": "/logout",

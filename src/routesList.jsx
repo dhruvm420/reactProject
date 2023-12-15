@@ -36,6 +36,7 @@ import SliderForm from "./routes/Forms/createSlider.jsx";
 import ObjectiveList from "./routes/objectivelist.jsx";
 import ObjectiveForm from "./routes/Forms/createObjective.jsx";
 import LogOut from "./routes/logOut.jsx";
+import MyCompanyForm from "./routes/Forms/companyProfile.jsx";
 export let routesList = [
   {
     path: "/",
@@ -181,6 +182,10 @@ export let routesList = [
   {
     path: "/createPost",
     element: <CreatePost />,
+  },
+  {
+    path: "/companyprofile",
+    element: <MyCompanyForm />,
   },
   {
     path: "/idcard/:listName/:userId",
