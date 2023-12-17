@@ -68,6 +68,8 @@ export default function TableGenerator({
                   height="50px"
                 />
               )
+            ) : header == "USER ID" ? (
+              dataItem[header].slice(0, 5)
             ) : (
               dataItem[header]
             )}

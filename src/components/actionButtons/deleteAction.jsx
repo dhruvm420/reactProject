@@ -9,7 +9,8 @@ import {
   Text,
   ModalCloseButton,
 } from "@chakra-ui/react";
-
+import { axiosInstance, setAuthToken } from "../axiosInstance";
+import { useNavigate } from "react-router-dom";
 export default function DeleteAction({
   isOpen,
   closeHandler,
@@ -17,8 +18,26 @@ export default function DeleteAction({
   formName,
   setIsOpen,
 }) {
-  function deleteLogic() {
+  const navigate = useNavigate();
+  async function deleteLogic() {
     // delete modifyId user from formName-list
+    const storedToken = localStorage.getItem("jwtToken"); // Fetch the stored token
+    const url = `/superadmin/crud/${formName}/${modifyId}`;
+    if (storedToken) {
+      // Set the token in the Axios headers before making the request
+      setAuthToken(storedToken);
+
+      // Make an authenticated request using axiosInstance
+      await axiosInstance
+        .delete(url)
+        .then(() => {
+          console.log("Successfully Deleted !!");
+          navigate("/dashboard");
+        })
+        .catch((error) => {
+          console.error("Error Deleting data:", error);
+        });
+    }
     setIsOpen(!isOpen);
   }
   return (
