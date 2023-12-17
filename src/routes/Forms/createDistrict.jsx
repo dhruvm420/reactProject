@@ -11,10 +11,12 @@ import {
 } from "@chakra-ui/react";
 import Root from "../root";
 import { axiosInstance, setAuthToken } from "../../components/axiosInstance";
+import { useNavigate } from "react-router-dom";
 export default function CreateDistrict() {
   const [stateList, setStateList] = useState([]);
   const [objectList, setObjectList] = useState([]);
   const [selectedState, setSelectedState] = useState("");
+  const [stateId, setStateId] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
     sonOf: "",
@@ -40,16 +42,15 @@ export default function CreateDistrict() {
       [name]: value,
     });
   };
+
   const handleOptionChange = (e) => {
-    setSelectedState(e.target.value);
-    const selectedObject = objectList.find(
-      (item) => item.name === e.target.value
-    );
-    setFormData({
-      ...formData,
-      stateReferenceId: selectedObject["_id"],
-    });
+    let sri = getIdByName(objectList, e.target.value);
+    console.log(typeof sri);
+    if (typeof sri == "object") sri = sri[0];
+    console.log("sri " + sri);
+    setStateId(sri);
   };
+
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setFormData({
@@ -59,6 +60,13 @@ export default function CreateDistrict() {
   };
   function extractNames(inputArray) {
     return inputArray.map((item) => item.name);
+  }
+  function getIdByName(inputArray, namey) {
+    const matchingIds = inputArray
+      .filter((obj) => obj.name === namey)
+      .map((matchedObj) => matchedObj._id);
+
+    return matchingIds;
   }
   const fetch = async () => {
     const storedToken = localStorage.getItem("jwtToken"); // Fetch the stored token
@@ -70,7 +78,6 @@ export default function CreateDistrict() {
     await axiosInstance
       .get(`/superadmin/crud/state?limit=1000000&fields=&page=1`)
       .then((response) => {
-        console.log(response);
         let obj = response.data.data.response;
         let arr = Object.keys(obj);
         let dumm = [];
@@ -88,31 +95,47 @@ export default function CreateDistrict() {
   useEffect(() => {
     fetch();
   }, []);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const formDataLocal = new FormData(e.target);
+    // Perform form submission logic with formData
+    setFormData((prev) => {
+      return {
+        ...prev,
+        profilePicture: formDataLocal.get("profilePicture"),
+      };
+    });
+
+    console.log("formData");
+    console.log(formData);
+    // Perform form submission logic with formData
+    console.log("🔥", formDataLocal.entries());
+    postData(formDataLocal);
+  };
+
+  const postData = (data) => {
+    console.log("<>----<>form data", formData);
     const storedToken = localStorage.getItem("jwtToken");
     setAuthToken(storedToken);
-
-    // Perform form submission logic with formData
-    console.log(formData);
     axiosInstance
-      .post("/superadmin/crud/state", formData)
+      .post("/superadmin/crud/district", data)
       .then((response) => {
         console.log(response);
-        const token = response.data.token;
-        localStorage.setItem("jwtToken", token);
-        console.log("token " + localStorage.getItem("jwtToken"));
-        setAuthToken(token);
+        navigate("/districtlist");
       })
       .catch((error) => {
-        console.log("Failed to create State:\n", error.response.data.message);
+        console.log(
+          "Failed to create District:\n",
+          error.response.data.message
+        );
       });
   };
 
   return (
-    <Root title="State Form">
-      <form onSubmit={handleSubmit}>
+    <Root title="District Form">
+      <form onSubmit={(e) => handleSubmit(e)}>
         <Flex
           flexDirection="column"
           mx="auto"
@@ -127,13 +150,31 @@ export default function CreateDistrict() {
         >
           <FormControl w="15vw" my="4">
             <FormLabel>State Name *</FormLabel>
-            <Select onChange={handleOptionChange} value={selectedState}>
+            <Select
+              onChange={(e) => {
+                setSelectedState(e.target.value);
+                handleOptionChange(e);
+                console.log(formData);
+              }}
+              value={selectedState}
+            >
               {stateList.map((option, index) => (
                 <option key={index} value={option}>
                   {option}
                 </option>
               ))}
             </Select>
+          </FormControl>
+          <FormControl visibility="hidden" position="absolute">
+            <FormLabel>stateReferenceId *</FormLabel>
+            <Input
+              type="text"
+              name="stateReferenceId"
+              value={stateId}
+              border="1px"
+              borderColor="blue.500"
+              required
+            />
           </FormControl>
           <HStack>
             <FormControl>
@@ -312,12 +353,7 @@ export default function CreateDistrict() {
           </FormControl>
           <FormControl>
             <FormLabel>Profile Picture</FormLabel>
-            <Input
-              type="file"
-              name="profilePicture"
-              onChange={handleFileChange}
-              accept="image/*"
-            />
+            <Input type="file" name="profilePicture" accept="image/*" />
           </FormControl>
           <Button type="submit" mt={4} colorScheme="blue" w="12vw" mx="auto">
             Submit

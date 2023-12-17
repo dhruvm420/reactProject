@@ -13,6 +13,7 @@ import {
   axiosInstance,
   setAuthToken,
 } from "../../components/axiosInstance.jsx";
+import { useNavigate } from "react-router-dom";
 
 const CreateState = () => {
   const [formData, setFormData] = useState({
@@ -39,39 +40,37 @@ const CreateState = () => {
       [name]: value,
     });
   };
-
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setFormData({
-      ...formData,
-      profilePicture: file,
-    });
-  };
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const storedToken = localStorage.getItem("jwtToken");
     setAuthToken(storedToken);
-
+    const formData = new FormData(e.target);
+    console.log(formData.get("profilePicture"));
     // Perform form submission logic with formData
+
+    setFormData((prev) => {
+      return {
+        ...prev,
+        profilePicture: formData.get("profilePicture"),
+      };
+    });
     console.log(formData);
     axiosInstance
       .post("/superadmin/crud/state", formData)
       .then((response) => {
         console.log(response);
-        const token = response.data.token;
-        localStorage.setItem("jwtToken", token);
-        console.log("token " + localStorage.getItem("jwtToken"));
-        setAuthToken(token);
+        navigate("/statelist");
       })
       .catch((error) => {
-        console.log("Failed to create State:\n", error.response.data.message);
+        console.log("Failed to create State:\n", error);
       });
   };
 
   return (
     <Root title="State Form">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <Flex
           flexDirection="column"
           mx="auto"
@@ -261,12 +260,7 @@ const CreateState = () => {
           </FormControl>
           <FormControl>
             <FormLabel>Profile Picture</FormLabel>
-            <Input
-              type="file"
-              name="profilePicture"
-              onChange={handleFileChange}
-              accept="image/*"
-            />
+            <Input type="file" name="profilePicture" accept="image/*" />
           </FormControl>
           <Button type="submit" mt={4} colorScheme="blue" w="12vw" mx="auto">
             Submit
