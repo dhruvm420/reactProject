@@ -17,6 +17,7 @@ import ActionPopUp from "../components/actionButtons/actionPopUp";
 import { SearchIcon } from "@chakra-ui/icons";
 import { setAuthToken, axiosInstance } from "../components/axiosInstance.jsx";
 
+import { getCorrectDate } from "../components/date.jsx";
 export default function TehsilList() {
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
   const [dataLoaded, setDataLoaded] = useState(false);
