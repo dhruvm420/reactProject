@@ -12,6 +12,7 @@ import {
 import Root from "../root";
 import { axiosInstance, setAuthToken } from "../../components/axiosInstance";
 import { useNavigate } from "react-router-dom";
+import FormDialog from "./formDialog";
 function extractNames(inputArray) {
   return inputArray.map((item) => item.name);
 }
@@ -23,6 +24,8 @@ function getIdByName(inputArray, namey) {
   return matchingIds;
 }
 export default function CreateTehsil() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [errorTitle, setErrorTitle] = useState(null);
   const [stateList, setStateList] = useState([]);
   const [objectStateList, setObjectStateList] = useState([]);
   const [objectDistrictList, setObjectDistrictList] = useState([]);
@@ -52,12 +55,18 @@ export default function CreateTehsil() {
         arr.forEach((element) => {
           dumm.push(obj[element]);
         });
+        let array;
         if (listName == "state") {
           setObjectStateList(dumm);
-          setStateList(extractNames(dumm));
+
+          array = extractNames(dumm);
+          array.unshift("select-state");
+          setStateList(array);
         } else {
           setObjectDistrictList(dumm);
-          setDistrictList(extractNames(dumm));
+          array = extractNames(dumm);
+          array.unshift("select-district");
+          setDistrictList(array);
         }
       })
       .catch((error) => {
@@ -76,10 +85,16 @@ export default function CreateTehsil() {
   const navigate = useNavigate();
   const handleStateChange = (e) => {
     let sri = getIdByName(objectStateList, e.target.value);
+    let sl = stateList;
+    sl.shift();
+    setStateList(sl);
     if (typeof sri == "object") sri = sri[0];
     setStateId(sri);
   };
   const handleDistrictChange = (e) => {
+    let sl = districtList;
+    sl.shift();
+    setDistrictList(sl);
     let sri = getIdByName(objectDistrictList, e.target.value);
     if (typeof sri == "object") sri = sri[0];
     setDistrictId(sri);
@@ -103,10 +118,13 @@ export default function CreateTehsil() {
       })
       .catch((error) => {
         console.log("Failed to create Tehsil:\n", error.response.data.message);
+        setErrorTitle(error.response.data.message);
+        setIsOpen(true);
       });
   };
   return (
     <Root title="Tehsil Form">
+      <FormDialog title={errorTitle} isOpen={isOpen} setIsOpen={setIsOpen} />
       <form onSubmit={(e) => handleSubmit(e)}>
         <Flex
           flexDirection="column"

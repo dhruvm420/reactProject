@@ -12,6 +12,7 @@ import {
 import Root from "../root";
 import { axiosInstance, setAuthToken } from "../../components/axiosInstance";
 import { useNavigate } from "react-router-dom";
+import FormDialog from "./formDialog";
 function extractNames(inputArray) {
   return inputArray.map((item) => item.name);
 }
@@ -23,6 +24,8 @@ function getIdByName(inputArray, namey) {
   return matchingIds;
 }
 export default function CreatePanchayat() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [errorTitle, setErrorTitle] = useState(null);
   const [stateList, setStateList] = useState([]);
   const [objectStateList, setObjectStateList] = useState([]);
   const [selectedState, setSelectedState] = useState("");
@@ -37,6 +40,7 @@ export default function CreatePanchayat() {
   const [tehsilId, setTehsilId] = useState(null);
   const fetchList = async (listName) => {
     if (listName == "district" && stateId == null) return;
+    if (listName == "tehsil" && districtId == null) return;
     const storedToken = localStorage.getItem("jwtToken"); // Fetch the stored token
 
     // Set the token in the Axios headers before making the request
@@ -47,7 +51,7 @@ export default function CreatePanchayat() {
         ? `/superadmin/crud/state?limit=1000000&fields=&page=1`
         : listName == "district"
         ? `/superadmin/crud/district?stateReferenceId=${stateId}`
-        : `/superadmin/crud/tehsil?stateReferenceId=${districtId}`;
+        : `/superadmin/crud/tehsil?districtReferenceId=${districtId}`;
     await axiosInstance
       .get(url)
       .then((response) => {
@@ -57,15 +61,22 @@ export default function CreatePanchayat() {
         arr.forEach((element) => {
           dumm.push(obj[element]);
         });
+        let array;
         if (listName == "state") {
           setObjectStateList(dumm);
-          setStateList(extractNames(dumm));
+          array = extractNames(dumm);
+          array.unshift("select-state");
+          setStateList(array);
         } else if (listName == "district") {
           setObjectDistrictList(dumm);
-          setDistrictList(extractNames(dumm));
+          array = extractNames(dumm);
+          array.unshift("select-district");
+          setDistrictList(array);
         } else {
           setObjectTehsilList(dumm);
-          setTehsilList(extractNames(dumm));
+          array = extractNames(dumm);
+          array.unshift("select-tehsil");
+          setTehsilList(array);
         }
       })
       .catch((error) => {
@@ -91,19 +102,31 @@ export default function CreatePanchayat() {
 
   const navigate = useNavigate();
   const handleStateChange = (e) => {
+    let sl = stateList;
+    sl.shift();
+    setStateList(sl);
     let sri = getIdByName(objectStateList, e.target.value);
     if (typeof sri == "object") sri = sri[0];
     setStateId(sri);
   };
   const handleDistrictChange = (e) => {
+    let sl = districtList;
+    sl.shift();
+    setDistrictList(sl);
     let sri = getIdByName(objectDistrictList, e.target.value);
     if (typeof sri == "object") sri = sri[0];
     setDistrictId(sri);
+
+    console.log("districtId set to ", sri);
   };
   const handleTehsilChange = (e) => {
+    let sl = tehsilList;
+    sl.shift();
+    setTehsilList(sl);
     let sri = getIdByName(objectTehsilList, e.target.value);
     if (typeof sri == "object") sri = sri[0];
     setTehsilId(sri);
+    console.log("tehsilId set to ", sri);
   };
 
   const handleSubmit = (e) => {
@@ -127,10 +150,13 @@ export default function CreatePanchayat() {
           "Failed to create Panchayat:\n",
           error.response.data.message
         );
+        setErrorTitle(error.response.data.message);
+        setIsOpen(true);
       });
   };
   return (
     <Root title="Tehsil Form">
+      <FormDialog title={errorTitle} isOpen={isOpen} setIsOpen={setIsOpen} />
       <form onSubmit={(e) => handleSubmit(e)}>
         <Flex
           flexDirection="column"
@@ -226,7 +252,6 @@ export default function CreatePanchayat() {
                 value={tehsilId}
                 border="1px"
                 borderColor="blue.500"
-                required
               />
             </FormControl>
           </HStack>

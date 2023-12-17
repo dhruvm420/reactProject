@@ -14,8 +14,11 @@ import {
   setAuthToken,
 } from "../../components/axiosInstance.jsx";
 import { useNavigate } from "react-router-dom";
+import FormDialog from "./formDialog.jsx";
 
 const CreateState = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [errorTitle, setErrorTitle] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
     sonOf: "",
@@ -65,11 +68,14 @@ const CreateState = () => {
       })
       .catch((error) => {
         console.log("Failed to create State:\n", error);
+        setErrorTitle(error.response.data.message);
+        setIsOpen(true);
       });
   };
 
   return (
     <Root title="State Form">
+      <FormDialog title={errorTitle} isOpen={isOpen} setIsOpen={setIsOpen} />
       <form onSubmit={(e) => handleSubmit(e)}>
         <Flex
           flexDirection="column"

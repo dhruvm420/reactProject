@@ -12,7 +12,10 @@ import {
 import Root from "../root";
 import { axiosInstance, setAuthToken } from "../../components/axiosInstance";
 import { useNavigate } from "react-router-dom";
+import FormDialog from "./formDialog";
 export default function CreateDistrict() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [errorTitle, setErrorTitle] = useState(null);
   const [stateList, setStateList] = useState([]);
   const [objectList, setObjectList] = useState([]);
   const [selectedState, setSelectedState] = useState("");
@@ -44,6 +47,9 @@ export default function CreateDistrict() {
   };
 
   const handleOptionChange = (e) => {
+    let sl = stateList;
+    sl.shift();
+    setStateList(sl);
     let sri = getIdByName(objectList, e.target.value);
     console.log(typeof sri);
     if (typeof sri == "object") sri = sri[0];
@@ -85,11 +91,15 @@ export default function CreateDistrict() {
           dumm.push(obj[element]);
         });
         setObjectList(dumm);
-        setStateList(extractNames(dumm));
+        let array = extractNames(dumm);
+        array.unshift("select-state");
+        setStateList(array);
       })
       .catch((error) => {
         // Handle error, e.g., unauthorized access
         console.error("Error fetching data:", error);
+        setErrorTitle(error.response.data.message);
+        setIsOpen(true);
       });
   };
   useEffect(() => {
@@ -135,6 +145,7 @@ export default function CreateDistrict() {
 
   return (
     <Root title="District Form">
+      <FormDialog title={errorTitle} isOpen={isOpen} setIsOpen={setIsOpen} />
       <form onSubmit={(e) => handleSubmit(e)}>
         <Flex
           flexDirection="column"
