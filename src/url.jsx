@@ -1,1 +1,1 @@
-export const URL = "https://agreeable-red-marlin.cyclic.app";
+export const URL = "https://sksk-backend.onrender.com";

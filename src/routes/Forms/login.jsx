@@ -41,6 +41,7 @@ const LogIn = () => {
       })
       .catch((error) => {
         console.error("Login failed:", error);
+        setLoginStatus(false);
         if (error.response && error.response.status === 401) {
           setLoginError("The email/username or password is wrong");
         } else {

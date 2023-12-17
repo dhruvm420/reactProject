@@ -6,14 +6,14 @@ export default function BackID({ userData }) {
         <Text w="50%">S/D/W of</Text>
         <Text>:</Text>
         <Text w="50%" textAlign="right">
-          {userData["S/D/W of"]}
+          {userData.sonOf}
         </Text>
       </Flex>
       <Flex justifyContent="space-between">
         <Text w="50%">Address</Text>
         <Text>: </Text>
         <Text w="50%" textAlign="right">
-          {userData.Address}
+          {userData.addressResiding}
         </Text>
       </Flex>
     </Flex>
