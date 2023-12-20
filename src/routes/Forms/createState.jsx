@@ -19,6 +19,7 @@ import FormDialog from "./formDialog.jsx";
 const CreateState = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [errorTitle, setErrorTitle] = useState(null);
+  const [errorType, setErrorType] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
     sonOf: "",
@@ -64,18 +65,29 @@ const CreateState = () => {
       .post("/superadmin/crud/state", formData)
       .then((response) => {
         console.log(response);
-        navigate("/statelist");
+        const res = response.data.data.response;
+        setErrorTitle(
+          `Successfully Created State\nUserName: ${res["userName"]}`
+        );
+        setErrorType("state");
+        setIsOpen(true);
       })
       .catch((error) => {
         console.log("Failed to create State:\n", error);
         setErrorTitle(error.response.data.message);
+        setErrorType("error");
         setIsOpen(true);
       });
   };
 
   return (
     <Root title="State Form">
-      <FormDialog title={errorTitle} isOpen={isOpen} setIsOpen={setIsOpen} />
+      <FormDialog
+        title={errorTitle}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        type={errorType}
+      />
       <form onSubmit={(e) => handleSubmit(e)}>
         <Flex
           flexDirection="column"

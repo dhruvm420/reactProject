@@ -1,263 +1,521 @@
-// import React from "react";
-// import { Formik, Form, Field, ErrorMessage } from "formik";
-// import * as Yup from "yup";
-// import {
-//   ChakraProvider,
-//   FormControl,
-//   FormLabel,
-//   Input,
-//   Button,
-//   Textarea,
-//   Box,
-//   Center,
-//   Text,
-//   Select,
-// } from "@chakra-ui/react";
-// import FormElement from "../../components/formelement";
+import React, { useEffect, useState } from "react";
+import {
+  Input,
+  Textarea,
+  FormControl,
+  FormLabel,
+  Button,
+  HStack,
+  Flex,
+  Select,
+  Center,
+  Spinner,
+} from "@chakra-ui/react";
+import Root from "../root.jsx";
+import {
+  axiosInstance,
+  setAuthToken,
+} from "../../components/axiosInstance.jsx";
+import { useNavigate } from "react-router-dom";
+import FormDialog from "./formDialog.jsx";
 
-// const MyCompanyForm = () => {
-//   const validationSchema = Yup.object({
-//     brandName: Yup.string().required("Brand Name is required"),
-//     email: Yup.string()
-//       .email("Invalid email address")
-//       .required("Email is required"),
-//     websiteName: Yup.string().required("Website Name is required"),
-//     facebookLink: Yup.string().required("Facebook Link is required"),
-//     twitterLink: Yup.string().required("Twitter Link is required"),
-//     instagramLink: Yup.string().required("Instagram Link is required"),
-//     youtubeLink: Yup.string().required("YouTube Link is required"),
-//     facebookIframe: Yup.string().required("Facebook Iframe is required"),
-//     whatsAppNumber: Yup.string().required("WhatsApp Number is required"),
-//     mobile: Yup.string().required("Mobile is required"),
-//     siteKey: Yup.string().required("Site Key is required"),
-//     secretKey: Yup.string().required("Secret Key is required"),
-//     address: Yup.string().required("Address is required"),
+const CompanyProfile = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [errorTitle, setErrorTitle] = useState(null);
+  const [errorType, setErrorType] = useState(null);
+  const [sliderState, setSliderState] = useState("");
+  // const [formData, setFormData] = useState(null);
+  // const [dataLoaded,setDataLoaded] = useState(false);]
+  const navigate = useNavigate();
 
-//     aboutUs: Yup.string().required("About Us is required"),
-//     privacyPolicy: Yup.string().required("Privacy Policy is required"),
-//     termsAndConditions: Yup.string().required(
-//       "Terms & Conditions are required"
-//     ),
-//     disclaimer: Yup.string().required("Disclaimer is required"),
-//     refundPolicy: Yup.string().required("Refund Policy is required"),
+  // const fetch = async () => {
+  //   const storedToken = localStorage.getItem("jwtToken"); // Fetch the stored token
 
-//     presidentMessage: Yup.string().required("President Message is required"),
+  //   setAuthToken(storedToken);
 
-//     websiteLogo: Yup.mixed().required("Website Logo is required"),
-//     signaturePic: Yup.mixed().required("Signature Pic is required"),
-//     idCardFront: Yup.mixed().required("ID Card Front is required"),
-//     idCardBack: Yup.mixed().required("ID Card Back is required"),
-//     certificate: Yup.mixed().required("Certificate is required"),
-//     niyukti: Yup.mixed().required("Niyukti is required"),
-//     aboutUsImage: Yup.mixed().required("About Us Image is required"),
-//     slip: Yup.mixed().required("Slip is required"),
-//     presidentImage: Yup.mixed().required("President Image is required"),
+  //   await axiosInstance
+  //     .get('/superadmin/cms/companyProfile')
+  //     .then((response) => {
+  //       let obj = response.data.data.response;
+  //       let dumm = [];
+  //       arr.forEach((element) => {
+  //         dumm.push(obj[element]);
+  //       });
+  //       let array;
+  //       if (listName == "state") {
+  //         setObjectStateList(dumm);
 
-//     websiteLink: Yup.string().required("Website Link is required"),
-//     ytLink1: Yup.string().required("YouTube Link 1 is required"),
-//     ytLink2: Yup.string().required("YouTube Link 2 is required"),
-//     paymentSetting: Yup.string().required("Payment Setting is required"),
-//     playStoreAppLink: Yup.string().required("Play Store App Link is required"),
-//     slider: Yup.string().required("Slider is required"),
-//     qrImage: Yup.mixed().required("QR Image is required"),
-//     paymentGatewayLink: Yup.string().required(
-//       "Payment Gateway Link is required"
-//     ),
-//     paymentDetail: Yup.string().required("Payment Detail is required"),
-//   });
-//   const handleSubmit = (values, { resetForm }) => {
-//     console.log(values); // Handle form submission logic
-//     resetForm();
-//   };
-//   return (
-//     <Formik
-//       initialValues={initialValues}
-//       validationSchema={validationSchema}
-//       onSubmit={handleSubmit}
-//     >
-//       {({ setFieldValue }) => (
-//         <Form>
-//           <FormElement
-//             type="text"
-//             name="Brand Name"
-//             id="brandName"
-//             formData={initialValues}
-//           />
-//           <FormElement
-//             type="text"
-//             name="Email"
-//             id="email"
-//             formData={initialValues}
-//           />
-//           <FormElement
-//             type="text"
-//             name="Website Name"
-//             id="websiteName"
-//             formData={initialValues}
-//           />
-//           <FormElement
-//             type="text"
-//             name="Facebook Link"
-//             id="facebookLink"
-//             formData={initialValues}
-//           />
-//           <FormElement
-//             type="text"
-//             name="Instagram Link"
-//             id="instagramLink"
-//             formData={initialValues}
-//           />
-//           <FormElement
-//             type="text"
-//             name="Youtube Link"
-//             id="youtubeLink"
-//             formData={initialValues}
-//           />
-//           <FormElement
-//             type="text"
-//             name="Twitter Link"
-//             id="twitterLink"
-//             formData={initialValues}
-//           />
-//           <FormElement
-//             type="text"
-//             name="Facebook iframe"
-//             id="facebookIframe"
-//             formData={initialValues}
-//           />
-//           <FormElement
-//             type="text"
-//             name="WhatsApp Link Number"
-//             id="whatsAppNumber"
-//             formData={initialValues}
-//           />
-//           <FormElement
-//             type="text"
-//             name="Mobile"
-//             id="mobile"
-//             formData={initialValues}
-//           />
-//           <FormElement
-//             type="text"
-//             name="Site key"
-//             id="siteKey"
-//             formData={initialValues}
-//           />
-//           <FormElement
-//             type="text"
-//             name="Secret Key"
-//             id="secretKey"
-//             formData={initialValues}
-//           />
-//           <FormElement
-//             type="textarea"
-//             name="Address"
-//             id="address"
-//             formData={initialValues}
-//           />
-//           <FormElement
-//             type="textarea"
-//             name="About Us"
-//             id="aboutUs"
-//             formData={initialValues}
-//           />
-//           <FormElement
-//             type="textarea"
-//             name="Privacy policy"
-//             id="privacyPolicy"
-//             formData={initialValues}
-//           />
-//           <FormElement
-//             type="textarea"
-//             name="Terms & conditions"
-//             id="termsAndConditions"
-//             formData={initialValues}
-//           />
-//           <FormElement
-//             type="textarea"
-//             name="Disclaimer"
-//             id="disclaimer"
-//             formData={initialValues}
-//           />
-//           <FormElement
-//             type="textarea"
-//             name="Refund policy"
-//             id="refundPolicy"
-//             formData={initialValues}
-//           />
-//           <FormElement
-//             type="imagefile"
-//             name="Website logo"
-//             id="websiteLogo"
-//             formData={initialValues}
-//           />
-//           <FormElement
-//             type="imagefile"
-//             name="signature pic"
-//             id="signaturePic"
-//             formData={initialValues}
-//           />
-//           <FormElement
-//             type="imagefile"
-//             name="Id card front"
-//             id="idCardFront"
-//             formData={initialValues}
-//           />
-//           <FormElement
-//             type="imagefile"
-//             name="Id card back"
-//             id="idCardBack"
-//             formData={initialValues}
-//           />
-//           <FormElement
-//             type="imagefile"
-//             name="Certificate"
-//             id="certificate"
-//             formData={initialValues}
-//           />
-//           <FormElement
-//             type="imagefile"
-//             name="Niyukti"
-//             id="niyukti"
-//             formData={initialValues}
-//           />
-//           <FormElement
-//             type="imagefile"
-//             name="About us image"
-//             id="aboutUsImage"
-//             formData={initialValues}
-//           />
-//           <FormElement
-//             type="imagefile"
-//             name="Slip"
-//             id="slip"
-//             formData={initialValues}
-//           />
-//           <FormElement
-//             type="imagefile"
-//             name="President Image"
-//             id="presidentImage"
-//             formData={initialValues}
-//           />
-//         </Form>
-//       )}
-//     </Formik>
-//   );
-// };
+  //         array = extractNames(dumm);
+  //         array.unshift("select-state");
+  //         setStateList(array);
+  //       } else {
+  //         setObjectDistrictList(dumm);
+  //         array = extractNames(dumm);
+  //         array.unshift("select-district");
+  //         setDistrictList(array);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       // Handle error, e.g., unauthorized access
+  //       console.error(`Error fetching ${listName} data:`, error);
+  //       if (listName == "district") setDistrictList([]);
+  //     });
+  // };
+  // useEffect(()=>{
+  //   fetch();
+  // },[]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const storedToken = localStorage.getItem("jwtToken");
+    setAuthToken(storedToken);
+    const formData = new FormData(e.target);
+    // Perform form submission logic with formData
+    axiosInstance
+      .patch("/superadmin/cms/companyProfile", formData)
+      .then((response) => {
+        console.log(response);
+        alert("Submitted");
+        navigate("/dashboard");
+      })
+      .catch((error) => {
+        console.log("Failed to create State:\n", error);
+        setErrorTitle(error.response.data.message);
+        setErrorType("error");
+        setIsOpen(true);
+      });
+  };
+  // if (!dataLoaded)
+  //   return (
+  //     <>
+  //       <Center height="100vh">
+  //         <Spinner size="xl" color="blue.500" />
+  //         <Text px="2"> Loading... </Text>
+  //       </Center>
+  //     </>
+  //   );
+  return (
+    <Root title="Company Profile">
+      <FormDialog
+        title={errorTitle}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        type={errorType}
+      />
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <Flex
+          flexDirection="column"
+          mx="auto"
+          shadow="2xl"
+          // h="105vh"
+          px="4"
+          py="2"
+          bg="white"
+          borderRadius="3xl"
+          m="4"
+          justifyContent="space-evenly"
+        >
+          <HStack>
+            <FormControl>
+              <FormLabel>Brand Name *</FormLabel>
+              <Input
+                type="text"
+                name="brandName"
+                //placeholder={formData.brandName}
+                border="1px"
+                borderColor="blue.500"
+                required
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>email *</FormLabel>
+              <Input
+                type="email"
+                name="email"
+                border="1px"
+                borderColor="blue.500"
+                //placeholder={formData.email}
+                required
+              />
+            </FormControl>
+          </HStack>
+          <HStack>
+            <FormControl>
+              <FormLabel>website Name *</FormLabel>
+              <Input
+                type="text"
+                name="websiteName"
+                border="1px"
+                borderColor="blue.500"
+                w="13vw"
+                //placeholder={formData.websiteName}
+                required
+              />
+            </FormControl>
+          </HStack>
+          <HStack>
+            <FormControl>
+              <FormLabel>website Link *</FormLabel>
+              <Input
+                type="text"
+                name="websiteLink"
+                border="1px"
+                borderColor="blue.500"
+                w="13vw"
+                //placeholder={formData.websiteLink}
+                required
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>facebook Link *</FormLabel>
+              <Input
+                type="text"
+                name="facebookLink"
+                border="1px"
+                borderColor="blue.500"
+                //placeholder={formData.facebookLink}
+                required
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>twitter Link *</FormLabel>
+              <Input
+                type="text"
+                name="twitterLink"
+                border="1px"
+                borderColor="blue.500"
+                w="13vw"
+                //placeholder={formData.twitterLink}
+                required
+              />
+            </FormControl>
+          </HStack>
+          <HStack>
+            <FormControl>
+              <FormLabel>instagram Link *</FormLabel>
+              <Input
+                type="text"
+                name="instagramLink"
+                border="1px"
+                borderColor="blue.500"
+                w="13vw"
+                //placeholder={formData.instagramLink}
+                required
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>youtube Link *</FormLabel>
+              <Input
+                type="text"
+                name="youtubeLink"
+                border="1px"
+                borderColor="blue.500"
+                w="13vw"
+                //placeholder={formData.youtubeLink}
+                required
+              />
+            </FormControl>
+          </HStack>
+          <HStack>
+            <FormControl>
+              <FormLabel>playStoreApp Link*</FormLabel>
+              <Input
+                type="text"
+                name="playStoreAppLink"
+                border="1px"
+                borderColor="blue.500"
+                w="13vw"
+                //placeholder={formData.playStoreAppLink}
+                required
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>facebookIframe *</FormLabel>
+              <Input
+                type="text"
+                name="facebookIframe"
+                border="1px"
+                borderColor="blue.500"
+                w="13vw"
+                //placeholder={formData.facebookIframe}
+                required
+              />
+            </FormControl>
+          </HStack>
+          <HStack>
+            <FormControl>
+              <FormLabel>whatsAppLink Number *</FormLabel>
+              <Input
+                type="tel"
+                name="whatsAppLinkNumber"
+                border="1px"
+                borderColor="blue.500"
+                //placeholder={formData.whatsAppLinkNumber}
+                required
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>Mobile Number *</FormLabel>
+              <Input
+                type="tel"
+                name="mobileNumber"
+                border="1px"
+                borderColor="blue.500"
+                //placeholder={formData.mobileNumber}
+                required
+              />
+            </FormControl>
+          </HStack>
+          <HStack>
+            <FormControl>
+              <FormLabel>siteKey *</FormLabel>
+              <Input
+                type="text"
+                name="siteKey"
+                border="1px"
+                borderColor="blue.500"
+                w="13vw"
+                //placeholder={formData.siteKey}
+                required
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>secretKey *</FormLabel>
+              <Input
+                type="text"
+                name="secretKey"
+                border="1px"
+                borderColor="blue.500"
+                w="13vw"
+                //placeholder={formData.secretKey}
+                required
+              />
+            </FormControl>
+          </HStack>
 
-// export default MyCompanyForm;
-// const initialValues = {
-//   presidentMessage: "",
-//   websiteLink: "",
-//   ytLink1: "",
-//   ytLink2: "",
-//   paymentSetting: "",
-//   playStoreAppLink: "",
-//   slider: "deactivate",
-//   qrImage: null,
-//   paymentGatewayLink: "",
-//   paymentDetail: "",
-// };
-export default function MyCompanyForm() {
-  return <></>;
-}
+          <FormControl>
+            <FormLabel>Address</FormLabel>
+            <Textarea
+              name="addressResiding"
+              border="1px"
+              borderColor="blue.500"
+              //placeholder={formData.addressResiding}
+              required
+            />
+          </FormControl>
+          <HStack>
+            <FormControl>
+              <FormLabel>aboutUs *</FormLabel>
+              <Input
+                type="text"
+                name="aboutUs"
+                border="1px"
+                borderColor="blue.500"
+                w="13vw"
+                //placeholder={formData.aboutUs}
+                required
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>privacyPolicy *</FormLabel>
+              <Input
+                type="text"
+                name="privacyPolicy"
+                border="1px"
+                borderColor="blue.500"
+                w="13vw"
+                //placeholder={formData.privacyPolicy}
+                required
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>termsAndConditions *</FormLabel>
+              <Input
+                type="text"
+                name="termsAndConditions"
+                border="1px"
+                borderColor="blue.500"
+                w="13vw"
+                //placeholder={formData.termsAndConditions}
+                required
+              />
+            </FormControl>
+          </HStack>
+          <HStack>
+            <FormControl>
+              <FormLabel>disclaimer *</FormLabel>
+              <Input
+                type="text"
+                name="disclaimer"
+                border="1px"
+                borderColor="blue.500"
+                w="13vw"
+                //placeholder={formData.disclaimer}
+                required
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>refundPolicy *</FormLabel>
+              <Input
+                type="text"
+                name="refundPolicy"
+                border="1px"
+                borderColor="blue.500"
+                w="13vw"
+                //placeholder={formData.refundPolicy}
+                required
+              />
+            </FormControl>
+          </HStack>
+          <HStack>
+            <FormControl>
+              <FormLabel>youtubeVideo1Link *</FormLabel>
+              <Input
+                type="text"
+                name="youtubeVideo1Link"
+                border="1px"
+                borderColor="blue.500"
+                w="13vw"
+                //placeholder={formData.youtubeVideo1Link}
+                required
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>youtubeVideo2Link *</FormLabel>
+              <Input
+                type="text"
+                name="youtubeVideo2Link"
+                border="1px"
+                borderColor="blue.500"
+                w="13vw"
+                //placeholder={formData.youtubeVideo2Link}
+                required
+              />
+            </FormControl>
+          </HStack>
+          <HStack>
+            <FormControl>
+              <FormLabel>memberShipChargesDetails *</FormLabel>
+              <Input
+                type="text"
+                name="memberShipChargesDetails"
+                border="1px"
+                borderColor="blue.500"
+                w="13vw"
+                //placeholder={formData.memberShipChargesDetails}
+                required
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>paymentGatewayLink *</FormLabel>
+              <Input
+                type="text"
+                name="paymentGatewayLink"
+                border="1px"
+                borderColor="blue.500"
+                w="13vw"
+                //placeholder={formData.paymentGatewayLink}
+                required
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>paymentDetails *</FormLabel>
+              <Input
+                type="text"
+                name="paymentDetails"
+                border="1px"
+                borderColor="blue.500"
+                w="13vw"
+                //placeholder={formData.paymentDetails}
+                required
+              />
+            </FormControl>
+          </HStack>
+
+          <FormControl>
+            <FormLabel>slider *</FormLabel>
+            <Select
+              onChange={(e) => {
+                setSliderState(e.target.value);
+              }}
+              value={sliderState}
+            >
+              <option value={"activate"}>{"activate"}</option>
+              <option value={"deactivate"}>{"deactivate"}</option>
+            </Select>
+          </FormControl>
+          <FormControl visibility="hidden" position="absolute">
+            <FormLabel>Sliderd *</FormLabel>
+            <Input
+              type="text"
+              name="slider"
+              value={sliderState}
+              border="1px"
+              borderColor="blue.500"
+              required
+            />
+          </FormControl>
+
+          <FormControl>
+            <FormLabel>presidentMessage *</FormLabel>
+            <Input
+              type="text"
+              name="presidentMessage"
+              border="1px"
+              borderColor="blue.500"
+              w="13vw"
+              //placeholder={formData.presidentMessage}
+              required
+            />
+          </FormControl>
+
+          <HStack>
+            <FormControl>
+              <FormLabel>qrCodeImage</FormLabel>
+              <Input type="file" name="qrCodeImageLink" accept="image/*" />
+            </FormControl>
+            <FormControl>
+              <FormLabel>websiteLogo</FormLabel>
+              <Input type="file" name="websiteLogoLink" accept="image/*" />
+            </FormControl>
+            <FormControl>
+              <FormLabel>signature</FormLabel>
+              <Input type="file" name="signatureLink" accept="image/*" />
+            </FormControl>
+          </HStack>
+          <HStack>
+            <FormControl>
+              <FormLabel>idFront</FormLabel>
+              <Input type="file" name="idFrontLink" accept="image/*" />
+            </FormControl>
+            <FormControl>
+              <FormLabel>idBack</FormLabel>
+              <Input type="file" name="idBackLink" accept="image/*" />
+            </FormControl>
+          </HStack>
+          <HStack>
+            <FormControl>
+              <FormLabel>certificateLink</FormLabel>
+              <Input type="file" name="certificateLink" accept="image/*" />
+            </FormControl>
+            <FormControl>
+              <FormLabel>aboutUsPhotoLink</FormLabel>
+              <Input type="file" name="aboutUsPhotoLink" accept="image/*" />
+            </FormControl>
+            <FormControl>
+              <FormLabel>slipImageLink</FormLabel>
+              <Input type="file" name="slipImageLink" accept="image/*" />
+            </FormControl>
+          </HStack>
+          <FormControl>
+            <FormLabel>presidentImageLink</FormLabel>
+            <Input type="file" name="presidentImageLink" accept="image/*" />
+          </FormControl>
+          <Button type="submit" mt={4} colorScheme="blue" w="12vw" mx="auto">
+            Submit
+          </Button>
+        </Flex>
+      </form>
+    </Root>
+  );
+};
+export default CompanyProfile;

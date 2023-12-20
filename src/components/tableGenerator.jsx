@@ -17,7 +17,11 @@ export default function TableGenerator({
   actionItems,
 }) {
   let name = title;
-  const headers = Object.keys(data[0]);
+  let headers = Object.keys(data[0]);
+  headers = headers.filter((element) => {
+    return element != "USER ID";
+  });
+
   let noData = data == null || data[0][headers[0]] == null;
   let rows;
   if (noData) {
@@ -68,8 +72,6 @@ export default function TableGenerator({
                   height="50px"
                 />
               )
-            ) : header == "USER ID" ? (
-              dataItem[header].slice(0, 5)
             ) : (
               dataItem[header]
             )}

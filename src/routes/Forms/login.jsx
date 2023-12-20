@@ -6,12 +6,13 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Select,
   Button,
   Box,
   FormErrorMessage,
   Text,
 } from "@chakra-ui/react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Header from "../../components/header";
 import {
   axiosInstance,
@@ -23,21 +24,25 @@ const LogIn = () => {
     email: "",
     password: "",
   };
+  const [loginType, setLoginType] = useState("superadmin");
   const [loginError, setLoginError] = useState(null);
   const [loginStatus, setLoginStatus] = useState(false);
   let navigate = useNavigate();
   const onSubmit = (values) => {
+    let navigatePath;
+    if (loginType == "superadmin") navigatePath = "/dashboard";
+    else navigatePath = `/${loginType}Dashboard`;
     setLoginStatus(true);
     console.log("Form values:", values);
     axiosInstance
-      .post("/superadmin/auth/login", values)
+      .post(`/${loginType}/auth/login`, values)
       .then((response) => {
         console.log(response);
         const token = response.data.token;
         localStorage.setItem("jwtToken", token);
         console.log("token " + localStorage.getItem("jwtToken"));
         setAuthToken(token);
-        navigate("/dashboard");
+        navigate(navigatePath);
       })
       .catch((error) => {
         console.error("Login failed:", error);
@@ -65,7 +70,14 @@ const LogIn = () => {
 
     return errors;
   };
-
+  const loginlist = [
+    "superadmin",
+    "state",
+    "district",
+    "tehsil",
+    "panchayat",
+    "member",
+  ];
   if (loginStatus)
     return (
       <>
@@ -78,6 +90,23 @@ const LogIn = () => {
   return (
     <>
       <Header title="Log In" />
+      <Box mx="auto" w="15vw" my="0" p="0">
+        <FormControl w="15vw" my="4">
+          <FormLabel>Select LogIn Type:-</FormLabel>
+          <Select
+            onChange={(e) => {
+              setLoginType(e.target.value);
+            }}
+            value={loginType}
+          >
+            {loginlist.map((option, index) => (
+              <option key={index} value={option}>
+                {option}
+              </option>
+            ))}
+          </Select>
+        </FormControl>
+      </Box>
       <Box maxW="md" mx="auto" mt="20">
         <Formik
           initialValues={initialValues}

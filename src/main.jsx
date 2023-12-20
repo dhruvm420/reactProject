@@ -8,9 +8,7 @@ import theme from "./theme.jsx";
 import { routesList } from "./routesList.jsx";
 const router = createBrowserRouter(routesList);
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <ChakraProvider theme={theme}>
-      <RouterProvider router={router} />
-    </ChakraProvider>
-  </React.StrictMode>
+  <ChakraProvider theme={theme}>
+    <RouterProvider router={router} />
+  </ChakraProvider>
 );

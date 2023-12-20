@@ -35,6 +35,7 @@ export default function CreatePanchayat() {
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const [districtId, setDistrictId] = useState(null);
   const [tehsilList, setTehsilList] = useState([]);
+  const [errorType, setErrorType] = useState(null);
   const [objectTehsilList, setObjectTehsilList] = useState([]);
   const [selectedTehsil, setSelectedTehsil] = useState("");
   const [tehsilId, setTehsilId] = useState(null);
@@ -143,7 +144,12 @@ export default function CreatePanchayat() {
       .post("/superadmin/crud/panchayat", data)
       .then((response) => {
         console.log(response);
-        navigate("/panchayatlist");
+        const res = response.data.data.response;
+        setErrorTitle(
+          `Successfully Created Panchayat\nUserName: ${res["userName"]}`
+        );
+        setErrorType("panchayat");
+        setIsOpen(true);
       })
       .catch((error) => {
         console.log(
@@ -151,12 +157,18 @@ export default function CreatePanchayat() {
           error.response.data.message
         );
         setErrorTitle(error.response.data.message);
+        setErrorType("error");
         setIsOpen(true);
       });
   };
   return (
     <Root title="Tehsil Form">
-      <FormDialog title={errorTitle} isOpen={isOpen} setIsOpen={setIsOpen} />
+      <FormDialog
+        title={errorTitle}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        type={errorType}
+      />
       <form onSubmit={(e) => handleSubmit(e)}>
         <Flex
           flexDirection="column"

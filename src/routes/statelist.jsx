@@ -35,15 +35,8 @@ export default function StateList() {
     setSearchVal(e.target.value);
   };
   function putinDummy(obj, d) {
-    let dataItem = {
-      "USER ID": "0134",
-      IMAGE: "https://skskf.in/userimg/IMG-20230627-WA0045_09152023162926.jpg",
-      NAME: "KESHAW DAS",
-      EMAIL: "keshawkwd666@gmail.com",
-      DESIGNATION: "s./lohara",
-      "Total District": "2",
-      DATE: "2023-09-09 13:24:09",
-    };
+    let dataItem = {};
+    dataItem["USER NAME"] = obj["userName"];
     dataItem["USER ID"] = obj["_id"];
     dataItem.IMAGE =
       "https://sksk-backend.onrender.com/" + obj["profilePictureLink"];

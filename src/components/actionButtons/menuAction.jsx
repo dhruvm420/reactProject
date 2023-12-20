@@ -9,9 +9,10 @@ import {
   Text,
   ModalCloseButton,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TableGenerator from "../tableGenerator";
-
+import { getCorrectDate } from "../date";
+import { axiosInstance, setAuthToken } from "../axiosInstance";
 export default function MenuAction({
   isOpen,
   closeHandler,
@@ -19,61 +20,61 @@ export default function MenuAction({
   setIsOpen,
   formName,
 }) {
-  const [parentData, setParentData] = useState({});
   const [childData, setChildData] = useState([]);
+  const [dataLoaded, setDataLoaded] = useState(false);
   let childLevel;
-  function menuOpenLogic() {
-    if (formName === "state") childLevel = "District";
-    else if (formName === "district") childLevel = "Tehsil";
-    else childLevel = "Panchayat";
-    // if data is already fetched no need to do again
-    if (childData.length !== 0) return;
-    // get parent data from modifyId
-    setParentData({
-      "USER ID": "0134",
-      IMAGE: "https://skskf.in/userimg/IMG-20230627-WA0045_09152023162926.jpg",
-      NAME: "KESHAW DAS",
-      EMAIL: "keshawkwd666@gmail.com",
-      DESIGNATION: "s./lohara",
-      "Total District": "2",
-      DATE: "2023-09-09 13:24:09",
-    });
-
-    // get child data , i.e ,if formName is state, get data of people under state member with id 'modifyId'
-    setChildData([
-      {
-        "USER ID": "0134",
-        IMAGE:
-          "https://skskf.in/userimg/IMG-20230627-WA0045_09152023162926.jpg",
-        NAME: "KESHAW DAS",
-        EMAIL: "keshawkwd666@gmail.com",
-        DESIGNATION: "s./lohara",
-        "Total District": "2",
-        DATE: "2023-09-09 13:24:09",
-      },
-      {
-        "USER ID": "0134",
-        IMAGE:
-          "https://skskf.in/userimg/IMG-20230627-WA0045_09152023162926.jpg",
-        NAME: "KESHAW DAS",
-        EMAIL: "keshawkwd666@gmail.com",
-        DESIGNATION: "s./lohara",
-        "Total District": "2",
-        DATE: "2023-09-09 13:24:09",
-      },
-      {
-        "USER ID": "0134",
-        IMAGE:
-          "https://skskf.in/userimg/IMG-20230627-WA0045_09152023162926.jpg",
-        NAME: "KESHAW DAS",
-        EMAIL: "keshawkwd666@gmail.com",
-        DESIGNATION: "s./lohara",
-        "Total District": "2",
-        DATE: "2023-09-09 13:24:09",
-      },
-    ]);
+  if (formName === "state") childLevel = "district";
+  else if (formName === "district") childLevel = "tehsil";
+  else childLevel = "panchayat";
+  function putinDummy(obj, d) {
+    let dataItem = {};
+    dataItem["USER ID"] = obj["userName"];
+    dataItem.IMAGE =
+      "https://sksk-backend.onrender.com/" + obj["profilePictureLink"];
+    dataItem.NAME = obj.name;
+    dataItem.EMAIL = obj["email"];
+    if (childLevel == "state")
+      dataItem["Total District"] = obj["totalDistrict"];
+    if (childLevel == "district") dataItem["Total Tehsil"] = obj["totalTehsil"];
+    if (childLevel == "tehsil")
+      dataItem["Total Panchayat"] = obj["totalPanchayat"];
+    dataItem.DESIGNATION = obj["designation"];
+    dataItem.DATE = getCorrectDate(obj["joiningDate"]);
+    d.push(dataItem);
   }
-  menuOpenLogic();
+  const fetchList = async (listName) => {
+    const storedToken = localStorage.getItem("jwtToken"); // Fetch the stored token
+
+    // Set the token in the Axios headers before making the request
+    setAuthToken(storedToken);
+    // Make an authenticated request using axiosInstance
+    const url = `/superadmin/crud/${childLevel}?${formName}ReferenceId=${modifyId}`;
+    console.log("url ", url);
+    await axiosInstance
+      .get(url)
+      .then((response) => {
+        console.log(response.data.data);
+        let obj = response.data.data.response;
+        let arr = Object.keys(obj);
+        let dumm = [];
+        arr.forEach((element) => {
+          putinDummy(obj[element], dumm);
+        });
+        setChildData(dumm);
+        setDataLoaded(true);
+      })
+      .catch((error) => {
+        // Handle error, e.g., unauthorized access
+        console.error(`Error fetching ${listName} data:`, error);
+        setChildData([]);
+        setDataLoaded(true);
+      });
+  };
+  useEffect(() => {
+    console.log("fetching child Data");
+    fetchList(formName);
+  }, []);
+  if (!dataLoaded) return <>Loading....</>;
   return (
     <>
       <Modal
@@ -84,9 +85,7 @@ export default function MenuAction({
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>
-            {parentData.NAME}({childLevel})
-          </ModalHeader>
+          <ModalHeader>({childLevel})</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <TableGenerator

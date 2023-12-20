@@ -31,6 +31,7 @@ export default function CreateTehsil() {
   const [objectDistrictList, setObjectDistrictList] = useState([]);
   const [selectedState, setSelectedState] = useState("");
   const [stateId, setStateId] = useState(null);
+  const [errorType, setErrorType] = useState(null);
   const [districtList, setDistrictList] = useState([]);
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const [districtId, setDistrictId] = useState(null);
@@ -114,17 +115,28 @@ export default function CreateTehsil() {
       .post("/superadmin/crud/tehsil", data)
       .then((response) => {
         console.log(response);
-        navigate("/tehsillist");
+        const res = response.data.data.response;
+        setErrorTitle(
+          `Successfully Created Tehsil\nUserName: ${res["userName"]}`
+        );
+        setErrorType("tehsil");
+        setIsOpen(true);
       })
       .catch((error) => {
         console.log("Failed to create Tehsil:\n", error.response.data.message);
         setErrorTitle(error.response.data.message);
+        setErrorType("error");
         setIsOpen(true);
       });
   };
   return (
     <Root title="Tehsil Form">
-      <FormDialog title={errorTitle} isOpen={isOpen} setIsOpen={setIsOpen} />
+      <FormDialog
+        title={errorTitle}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        type={errorType}
+      />
       <form onSubmit={(e) => handleSubmit(e)}>
         <Flex
           flexDirection="column"

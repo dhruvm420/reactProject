@@ -18,6 +18,7 @@ export default function CreateDistrict() {
   const [errorTitle, setErrorTitle] = useState(null);
   const [stateList, setStateList] = useState([]);
   const [objectList, setObjectList] = useState([]);
+  const [errorType, setErrorType] = useState(null);
   const [selectedState, setSelectedState] = useState("");
   const [stateId, setStateId] = useState(null);
   const [formData, setFormData] = useState({
@@ -133,19 +134,32 @@ export default function CreateDistrict() {
       .post("/superadmin/crud/district", data)
       .then((response) => {
         console.log(response);
-        navigate("/districtlist");
+        const res = response.data.data.response;
+        setErrorTitle(
+          `Successfully Created District\nUserName: ${res["userName"]}`
+        );
+        setErrorType("district");
+        setIsOpen(true);
       })
       .catch((error) => {
         console.log(
           "Failed to create District:\n",
           error.response.data.message
         );
+        setErrorTitle(error.response.data.message);
+        setErrorType("error");
+        setIsOpen(true);
       });
   };
 
   return (
     <Root title="District Form">
-      <FormDialog title={errorTitle} isOpen={isOpen} setIsOpen={setIsOpen} />
+      <FormDialog
+        title={errorTitle}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        type={errorType}
+      />
       <form onSubmit={(e) => handleSubmit(e)}>
         <Flex
           flexDirection="column"
