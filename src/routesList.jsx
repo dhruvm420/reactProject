@@ -37,6 +37,9 @@ import ObjectiveList from "./routes/objectivelist.jsx";
 import ObjectiveForm from "./routes/Forms/createObjective.jsx";
 import LogOut from "./routes/logOut.jsx";
 import MyCompanyForm from "./routes/Forms/companyProfile.jsx";
+import Minidashboard from "./routes/miniDashboard.jsx";
+import UnderData from "./routes/miniTableGenerator.jsx";
+import MiniLogout from "./routes/miniLogout.jsx";
 export let routesList = [
   {
     path: "/",
@@ -198,5 +201,17 @@ export let routesList = [
   {
     path: "/certificate/:listName/:userId",
     element: <Certificate />,
+  },
+  {
+    path: "/minidashboard/:type",
+    element: <Minidashboard />,
+  },
+  {
+    path: "/underdata/:parent",
+    element: <UnderData />,
+  },
+  {
+    path: "/minilogout",
+    element: <MiniLogout />,
   },
 ];

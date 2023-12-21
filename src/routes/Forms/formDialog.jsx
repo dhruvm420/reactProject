@@ -9,7 +9,7 @@ import {
   ModalCloseButton,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-export default function FormDialog({ title, isOpen, setIsOpen }) {
+export default function FormDialog({ title, isOpen, setIsOpen, type }) {
   const navigate = useNavigate();
   return (
     <>
@@ -27,11 +27,11 @@ export default function FormDialog({ title, isOpen, setIsOpen }) {
               colorScheme="blue"
               mr={3}
               onClick={() => {
-                if (title == "error") setIsOpen(false);
-                else if (title == "state") navigate("/statelist");
-                else if (title == "district") navigate("/districtlist");
-                else if (title == "tehsil") navigate("/tehsillist");
-                else if (title == "panchayat") navigate("/panchayatlist");
+                if (type == "error") setIsOpen(false);
+                else if (type == "state") navigate("/statelist");
+                else if (type == "district") navigate("/districtlist");
+                else if (type == "tehsil") navigate("/tehsillist");
+                else if (type == "panchayat") navigate("/panchayatlist");
               }}
             >
               Okay

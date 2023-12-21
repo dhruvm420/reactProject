@@ -31,7 +31,7 @@ const LogIn = () => {
   const onSubmit = (values) => {
     let navigatePath;
     if (loginType == "superadmin") navigatePath = "/dashboard";
-    else navigatePath = `/${loginType}Dashboard`;
+    else navigatePath = `/minidashboard/${loginType}`;
     setLoginStatus(true);
     console.log("Form values:", values);
     axiosInstance
@@ -40,6 +40,16 @@ const LogIn = () => {
         console.log(response);
         const token = response.data.token;
         localStorage.setItem("jwtToken", token);
+        if (loginType != "superadmin") {
+          const data = response.data.user;
+          localStorage.setItem("name", data.name);
+          localStorage.setItem("DOB", data.DOB);
+          localStorage.setItem("aadharNumber", data.aadharNumber);
+          localStorage.setItem("joiningDate", data.joiningDate);
+          localStorage.setItem("mobileNumber", data.mobileNumber);
+          localStorage.setItem("designation", data.designation);
+          localStorage.setItem("profilePictureLink", data.profilePictureLink);
+        }
         console.log("token " + localStorage.getItem("jwtToken"));
         setAuthToken(token);
         navigate(navigatePath);
