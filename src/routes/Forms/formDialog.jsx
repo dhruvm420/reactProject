@@ -13,7 +13,12 @@ export default function FormDialog({ title, isOpen, setIsOpen, type }) {
   const navigate = useNavigate();
   return (
     <>
-      <Modal isOpen={isOpen}>
+      <Modal
+        isOpen={isOpen}
+        onClose={() => {
+          setIsOpen(false);
+        }}
+      >
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
@@ -32,6 +37,7 @@ export default function FormDialog({ title, isOpen, setIsOpen, type }) {
                 else if (type == "district") navigate("/districtlist");
                 else if (type == "tehsil") navigate("/tehsillist");
                 else if (type == "panchayat") navigate("/panchayatlist");
+                else navigate("/dashboard");
               }}
             >
               Okay
