@@ -66,14 +66,24 @@ export default function MenuAction({
       .catch((error) => {
         // Handle error, e.g., unauthorized access
         console.error(`Error fetching ${listName} data:`, error);
-        setChildData([]);
+        setChildData([
+          {
+            "USER ID": null,
+            IMAGE: null,
+            NAME: null,
+            EMAIL: null,
+            DESIGNATION: null,
+            DATE: null,
+          },
+        ]);
         setDataLoaded(true);
       });
   };
   useEffect(() => {
+    setDataLoaded(false);
     console.log("fetching child Data");
     fetchList(formName);
-  }, []);
+  }, [isOpen]);
   if (!dataLoaded) return <>Loading....</>;
   return (
     <>
