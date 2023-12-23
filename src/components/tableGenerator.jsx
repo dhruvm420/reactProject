@@ -5,6 +5,7 @@ import {
   Tr,
   Th,
   Td,
+  Text,
   TableContainer,
 } from "@chakra-ui/react";
 import Action from "./action";
@@ -54,6 +55,7 @@ export default function TableGenerator({
                   alt=""
                   width="150px"
                   height="150px"
+                  p="0"
                 />
               ) : title == "slider" ? (
                 <img
@@ -62,6 +64,7 @@ export default function TableGenerator({
                   alt=""
                   width="350px"
                   height="350px"
+                  p="0"
                 />
               ) : (
                 <img
@@ -70,6 +73,7 @@ export default function TableGenerator({
                   alt=""
                   width="50px"
                   height="50px"
+                  p="0"
                 />
               )
             ) : (
@@ -100,6 +104,7 @@ export default function TableGenerator({
       bg="white"
       borderRadius="xl"
       color="gray.500"
+      overflowX="auto"
     >
       <Table variant="striped" colorScheme="white">
         <Thead>

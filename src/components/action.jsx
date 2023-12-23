@@ -1,4 +1,4 @@
-import { HStack, Box, Button } from "@chakra-ui/react";
+import { HStack, Box, Button, Flex } from "@chakra-ui/react";
 import toggle from "../assets/toggle.svg";
 import edit from "../assets/edit.svg";
 import del from "../assets/delete.svg";
@@ -14,7 +14,7 @@ export default function Action(props) {
   const setAction = props.setAction;
   const items = props.items;
   return (
-    <HStack spacing="0">
+    <Flex wrap="wrap" w="12vw" alignItems="center">
       {items.includes("id") && (
         <Link to={`/idcard/${name.toLowerCase()}/${id}`}>
           <img src={idCard} alt="" width="30px" />
@@ -91,6 +91,6 @@ export default function Action(props) {
           <img src={menu} alt="" width="30px" />
         </Button>
       )}
-    </HStack>
+    </Flex>
   );
 }

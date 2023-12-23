@@ -21,7 +21,15 @@ import SliderForm from "../../routes/Forms/createSlider";
 import ObjectiveForm from "../../routes/Forms/createObjective";
 import FormDialog from "../../routes/Forms/formDialog";
 import { axiosInstance, setAuthToken } from "../axiosInstance";
-import { getCorrectDate } from "../date";
+const formatDateForInput = (dateString) => {
+  const date = new Date(dateString);
+  const year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  month = month < 10 ? `0${month}` : month; // Adding leading zero if needed
+  let day = date.getDate();
+  day = day < 10 ? `0${day}` : day; // Adding leading zero if needed
+  return `${year}-${month}-${day}`;
+};
 export default function EditForm(props) {
   let formName = props.formName;
   let modifyId = props.modifyId;
@@ -101,8 +109,8 @@ export default function EditForm(props) {
           console.log(response);
           let obj = response.data.data.response[0];
           console.log(obj);
-          obj.DOB = getCorrectDate(obj.DOB);
-          obj.joiningDate = getCorrectDate(obj.joiningDate);
+          obj.DOB = formatDateForInput(obj.DOB);
+          obj.joiningDate = formatDateForInput(obj.joiningDate);
           setFormData(obj);
           setDataLoaded(true);
         })

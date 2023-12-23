@@ -7,7 +7,7 @@ export default function FrontID({ userData }) {
         <Text w="50%">ID No.</Text>
         <Text>:</Text>
         <Text w="50%" textAlign="right">
-          {userData._id}
+          {userData.userName}
         </Text>
       </Flex>
       <Flex justifyContent="space-between">
