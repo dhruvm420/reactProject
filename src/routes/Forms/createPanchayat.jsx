@@ -162,7 +162,7 @@ export default function CreatePanchayat() {
       });
   };
   return (
-    <Root title="Tehsil Form">
+    <Root title="Panchayat Form">
       <FormDialog
         title={errorTitle}
         isOpen={isOpen}

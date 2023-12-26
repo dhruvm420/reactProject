@@ -25,7 +25,8 @@ export default function MenuAction({
   let childLevel;
   if (formName === "state") childLevel = "district";
   else if (formName === "district") childLevel = "tehsil";
-  else childLevel = "panchayat";
+  else if (formName == "tehsil") childLevel = "panchayat";
+  else childLevel = "member";
   function putinDummy(obj, d) {
     let dataItem = {};
     dataItem["USER ID"] = obj["userName"];
@@ -95,7 +96,7 @@ export default function MenuAction({
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>({childLevel})</ModalHeader>
+          <ModalHeader>{childLevel}s under him/her</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <TableGenerator

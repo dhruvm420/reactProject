@@ -316,20 +316,20 @@ export default function EditForm(props) {
                 required
               />
             </FormControl>
-            <FormControl>
-              <FormLabel>Designation *</FormLabel>
-              <Input
-                type="text"
-                name="designation"
-                border="1px"
-                borderColor="blue.500"
-                w="20vw"
-                value={formData.designation}
-                onChange={handleInputChange}
-                required
-              />
-            </FormControl>
           </HStack>
+          <FormControl>
+            <FormLabel>Designation *</FormLabel>
+            <Input
+              type="text"
+              name="designation"
+              border="1px"
+              borderColor="blue.500"
+              w="20vw"
+              value={formData.designation}
+              onChange={handleInputChange}
+              required
+            />
+          </FormControl>
           <FormControl>
             <FormLabel>Address</FormLabel>
             <Textarea
