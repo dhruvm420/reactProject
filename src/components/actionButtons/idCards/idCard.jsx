@@ -14,7 +14,6 @@ import bg from "../../../assets/bg.png";
 import qr from "../../../assets/qr.png";
 import seal from "../../../assets/sksk_seal.png";
 import sign from "../../../assets/sign.png";
-import { URL } from "../../../url";
 import p from "../../../assets/p.jpg";
 import html2canvas from "html2canvas";
 import { useEffect, useState } from "react";
@@ -113,7 +112,7 @@ export default function IDCard({ userId, listName }) {
                     my="0"
                   >
                     <img
-                      src={`${URL}/${userData.profilePictureLink}`}
+                      src={`https://sksk-backend.onrender.com/${userData.profilePictureLink}`}
                       alt="user-image"
                       crossorigin="anonymous"
                     />
