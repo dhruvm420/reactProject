@@ -114,7 +114,7 @@ const CompanyProfile = () => {
           m="4"
           justifyContent="space-evenly"
         >
-          <HStack>
+          <HStack marginBottom="3vh">
             <FormControl>
               <FormLabel>Brand Name *</FormLabel>
               <Input
@@ -138,7 +138,7 @@ const CompanyProfile = () => {
               />
             </FormControl>
           </HStack>
-          <HStack>
+          <HStack marginBottom="3vh">
             <FormControl>
               <FormLabel>website Name *</FormLabel>
               <Input
@@ -146,13 +146,10 @@ const CompanyProfile = () => {
                 name="websiteName"
                 border="1px"
                 borderColor="blue.500"
-                w="13vw"
                 //placeholder={formData.websiteName}
                 required
               />
             </FormControl>
-          </HStack>
-          <HStack>
             <FormControl>
               <FormLabel>website Link *</FormLabel>
               <Input
@@ -160,7 +157,6 @@ const CompanyProfile = () => {
                 name="websiteLink"
                 border="1px"
                 borderColor="blue.500"
-                w="13vw"
                 //placeholder={formData.websiteLink}
                 required
               />
@@ -176,6 +172,8 @@ const CompanyProfile = () => {
                 required
               />
             </FormControl>
+          </HStack>
+          <HStack marginBottom="3vh">
             <FormControl>
               <FormLabel>twitter Link *</FormLabel>
               <Input
@@ -183,13 +181,10 @@ const CompanyProfile = () => {
                 name="twitterLink"
                 border="1px"
                 borderColor="blue.500"
-                w="13vw"
                 //placeholder={formData.twitterLink}
                 required
               />
             </FormControl>
-          </HStack>
-          <HStack>
             <FormControl>
               <FormLabel>instagram Link *</FormLabel>
               <Input
@@ -197,7 +192,6 @@ const CompanyProfile = () => {
                 name="instagramLink"
                 border="1px"
                 borderColor="blue.500"
-                w="13vw"
                 //placeholder={formData.instagramLink}
                 required
               />
@@ -209,13 +203,12 @@ const CompanyProfile = () => {
                 name="youtubeLink"
                 border="1px"
                 borderColor="blue.500"
-                w="13vw"
                 //placeholder={formData.youtubeLink}
                 required
               />
             </FormControl>
           </HStack>
-          <HStack>
+          <HStack marginBottom="3vh">
             <FormControl>
               <FormLabel>playStoreApp Link*</FormLabel>
               <Input
@@ -223,7 +216,6 @@ const CompanyProfile = () => {
                 name="playStoreAppLink"
                 border="1px"
                 borderColor="blue.500"
-                w="13vw"
                 //placeholder={formData.playStoreAppLink}
                 required
               />
@@ -235,13 +227,10 @@ const CompanyProfile = () => {
                 name="facebookIframe"
                 border="1px"
                 borderColor="blue.500"
-                w="13vw"
                 //placeholder={formData.facebookIframe}
                 required
               />
             </FormControl>
-          </HStack>
-          <HStack>
             <FormControl>
               <FormLabel>whatsAppLink Number *</FormLabel>
               <Input
@@ -253,6 +242,8 @@ const CompanyProfile = () => {
                 required
               />
             </FormControl>
+          </HStack>
+          <HStack marginBottom="3vh">
             <FormControl>
               <FormLabel>Mobile Number *</FormLabel>
               <Input
@@ -264,8 +255,6 @@ const CompanyProfile = () => {
                 required
               />
             </FormControl>
-          </HStack>
-          <HStack>
             <FormControl>
               <FormLabel>siteKey *</FormLabel>
               <Input
@@ -273,7 +262,6 @@ const CompanyProfile = () => {
                 name="siteKey"
                 border="1px"
                 borderColor="blue.500"
-                w="13vw"
                 //placeholder={formData.siteKey}
                 required
               />
@@ -285,7 +273,6 @@ const CompanyProfile = () => {
                 name="secretKey"
                 border="1px"
                 borderColor="blue.500"
-                w="13vw"
                 //placeholder={formData.secretKey}
                 required
               />
@@ -302,7 +289,7 @@ const CompanyProfile = () => {
               required
             />
           </FormControl>
-          <HStack>
+          <HStack marginBottom="3vh">
             <FormControl>
               <FormLabel>aboutUs *</FormLabel>
               <Input
@@ -310,7 +297,6 @@ const CompanyProfile = () => {
                 name="aboutUs"
                 border="1px"
                 borderColor="blue.500"
-                w="13vw"
                 //placeholder={formData.aboutUs}
                 required
               />
@@ -322,7 +308,6 @@ const CompanyProfile = () => {
                 name="privacyPolicy"
                 border="1px"
                 borderColor="blue.500"
-                w="13vw"
                 //placeholder={formData.privacyPolicy}
                 required
               />
@@ -334,13 +319,12 @@ const CompanyProfile = () => {
                 name="termsAndConditions"
                 border="1px"
                 borderColor="blue.500"
-                w="13vw"
                 //placeholder={formData.termsAndConditions}
                 required
               />
             </FormControl>
           </HStack>
-          <HStack>
+          <HStack marginBottom="3vh">
             <FormControl>
               <FormLabel>disclaimer *</FormLabel>
               <Input
@@ -348,7 +332,6 @@ const CompanyProfile = () => {
                 name="disclaimer"
                 border="1px"
                 borderColor="blue.500"
-                w="13vw"
                 //placeholder={formData.disclaimer}
                 required
               />
@@ -360,13 +343,24 @@ const CompanyProfile = () => {
                 name="refundPolicy"
                 border="1px"
                 borderColor="blue.500"
-                w="13vw"
                 //placeholder={formData.refundPolicy}
                 required
               />
             </FormControl>
+            <FormControl>
+              <FormLabel>slider *</FormLabel>
+              <Select
+                onChange={(e) => {
+                  setSliderState(e.target.value);
+                }}
+                value={sliderState}
+              >
+                <option value={"activate"}>{"activate"}</option>
+                <option value={"deactivate"}>{"deactivate"}</option>
+              </Select>
+            </FormControl>
           </HStack>
-          <HStack>
+          <HStack marginBottom="3vh">
             <FormControl>
               <FormLabel>youtubeVideo1Link *</FormLabel>
               <Input
@@ -374,7 +368,6 @@ const CompanyProfile = () => {
                 name="youtubeVideo1Link"
                 border="1px"
                 borderColor="blue.500"
-                w="13vw"
                 //placeholder={formData.youtubeVideo1Link}
                 required
               />
@@ -386,13 +379,23 @@ const CompanyProfile = () => {
                 name="youtubeVideo2Link"
                 border="1px"
                 borderColor="blue.500"
-                w="13vw"
                 //placeholder={formData.youtubeVideo2Link}
                 required
               />
             </FormControl>
+            <FormControl>
+              <FormLabel>presidentMessage *</FormLabel>
+              <Input
+                type="text"
+                name="presidentMessage"
+                border="1px"
+                borderColor="blue.500"
+                //placeholder={formData.presidentMessage}
+                required
+              />
+            </FormControl>
           </HStack>
-          <HStack>
+          <HStack marginBottom="3vh">
             <FormControl>
               <FormLabel>memberShipChargesDetails *</FormLabel>
               <Input
@@ -400,7 +403,6 @@ const CompanyProfile = () => {
                 name="memberShipChargesDetails"
                 border="1px"
                 borderColor="blue.500"
-                w="13vw"
                 //placeholder={formData.memberShipChargesDetails}
                 required
               />
@@ -412,7 +414,6 @@ const CompanyProfile = () => {
                 name="paymentGatewayLink"
                 border="1px"
                 borderColor="blue.500"
-                w="13vw"
                 //placeholder={formData.paymentGatewayLink}
                 required
               />
@@ -424,25 +425,12 @@ const CompanyProfile = () => {
                 name="paymentDetails"
                 border="1px"
                 borderColor="blue.500"
-                w="13vw"
                 //placeholder={formData.paymentDetails}
                 required
               />
             </FormControl>
           </HStack>
 
-          <FormControl>
-            <FormLabel>slider *</FormLabel>
-            <Select
-              onChange={(e) => {
-                setSliderState(e.target.value);
-              }}
-              value={sliderState}
-            >
-              <option value={"activate"}>{"activate"}</option>
-              <option value={"deactivate"}>{"deactivate"}</option>
-            </Select>
-          </FormControl>
           <FormControl visibility="hidden" position="absolute">
             <FormLabel>Sliderd *</FormLabel>
             <Input
@@ -455,20 +443,7 @@ const CompanyProfile = () => {
             />
           </FormControl>
 
-          <FormControl>
-            <FormLabel>presidentMessage *</FormLabel>
-            <Input
-              type="text"
-              name="presidentMessage"
-              border="1px"
-              borderColor="blue.500"
-              w="13vw"
-              //placeholder={formData.presidentMessage}
-              required
-            />
-          </FormControl>
-
-          <HStack>
+          <HStack marginBottom="3vh">
             <FormControl>
               <FormLabel>qrCodeImage</FormLabel>
               <Input type="file" name="qrCodeImageLink" accept="image/*" />
@@ -482,7 +457,7 @@ const CompanyProfile = () => {
               <Input type="file" name="signatureLink" accept="image/*" />
             </FormControl>
           </HStack>
-          <HStack>
+          <HStack marginBottom="3vh">
             <FormControl>
               <FormLabel>idFront</FormLabel>
               <Input type="file" name="idFrontLink" accept="image/*" />
@@ -491,12 +466,12 @@ const CompanyProfile = () => {
               <FormLabel>idBack</FormLabel>
               <Input type="file" name="idBackLink" accept="image/*" />
             </FormControl>
-          </HStack>
-          <HStack>
             <FormControl>
               <FormLabel>certificateLink</FormLabel>
               <Input type="file" name="certificateLink" accept="image/*" />
             </FormControl>
+          </HStack>
+          <HStack marginBottom="3vh">
             <FormControl>
               <FormLabel>aboutUsPhotoLink</FormLabel>
               <Input type="file" name="aboutUsPhotoLink" accept="image/*" />
@@ -505,11 +480,11 @@ const CompanyProfile = () => {
               <FormLabel>slipImageLink</FormLabel>
               <Input type="file" name="slipImageLink" accept="image/*" />
             </FormControl>
+            <FormControl>
+              <FormLabel>presidentImageLink</FormLabel>
+              <Input type="file" name="presidentImageLink" accept="image/*" />
+            </FormControl>
           </HStack>
-          <FormControl>
-            <FormLabel>presidentImageLink</FormLabel>
-            <Input type="file" name="presidentImageLink" accept="image/*" />
-          </FormControl>
           <Button type="submit" mt={4} colorScheme="blue" w="12vw" mx="auto">
             Submit
           </Button>
