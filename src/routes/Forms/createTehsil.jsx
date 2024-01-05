@@ -317,6 +317,17 @@ export default function CreateTehsil() {
                 required
               />
             </FormControl>
+            <FormControl>
+              <FormLabel>Assign Code *</FormLabel>
+              <Input
+                type="text"
+                name="assignCode"
+                border="1px"
+                w="20vw"
+                borderColor="blue.500"
+                required
+              />
+            </FormControl>
           </HStack>
           <HStack>
             <FormControl>

@@ -342,7 +342,7 @@ export default function EditForm(props) {
               onChange={handleInputChange}
             />
           </FormControl>
-          {changeProfilePic === true ? (
+          {/* {changeProfilePic === true ? (
             <FormControl>
               <FormLabel>Profile Picture</FormLabel>
               <Input type="file" onChange={handleFileChange} accept="image/*" />
@@ -358,7 +358,7 @@ export default function EditForm(props) {
             >
               Change Profile Picture
             </Button>
-          )}
+          )} */}
 
           <Button type="submit" mt={4} colorScheme="blue" w="12vw" mx="auto">
             Submit
