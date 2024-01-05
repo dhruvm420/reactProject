@@ -4,14 +4,7 @@ import { setAuthToken } from "../components/axiosInstance";
 export default function MiniLogout() {
   const navigate = useNavigate();
   useEffect(() => {
-    localStorage.removeItem("jwtToken");
-    localStorage.removeItem("name");
-    localStorage.removeItem("DOB");
-    localStorage.removeItem("aadharNumber");
-    localStorage.removeItem("joiningDate");
-    localStorage.removeItem("mobileNumber");
-    localStorage.removeItem("designation");
-    localStorage.removeItem("profilePictureLink");
+    localStorage.removeItem("userKaData");
     setAuthToken(null);
     navigate("/");
   }, []);

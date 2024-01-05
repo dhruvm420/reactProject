@@ -13,28 +13,30 @@ import {
   Text,
   Heading,
   Flex,
+  HStack,
 } from "@chakra-ui/react";
 import MiniTable from "../components/miniTable";
 import { getCorrectDate } from "../components/date";
 export default function Minidashboard() {
   const { type } = useParams();
-
-  const data = {
-    name: localStorage.getItem("name"),
-    DOB: getCorrectDate(localStorage.getItem("DOB")),
-    joiningDate: getCorrectDate(localStorage.getItem("joiningDate")),
-    aadharNumber: localStorage.getItem("aadharNumber"),
-    mobileNumber: localStorage.getItem("mobileNumber"),
-    designation: localStorage.getItem("designation"),
-  };
+  const data = JSON.parse(localStorage.getItem("userKaData"));
   return (
     <>
-      <Header title={`${type.toUpperCase()} Dashboard`} />
-      <Link to="/minilogout">
-        <Button colorScheme="teal" mt="5" mx="10">
-          Log Out
-        </Button>
-      </Link>
+      <Header title={`${type.toUpperCase()} Dashboard`} noHamburger={true} />
+      <HStack m="2" spacing="2">
+        <Link to="/minilogout">
+          <Button colorScheme="red">Log Out</Button>
+        </Link>
+        <Link to="/id">
+          <Button colorScheme="teal">ID Card</Button>
+        </Link>
+        <Link to="/certifcate">
+          <Button colorScheme="teal">Certificate</Button>
+        </Link>
+        <Link to="/appletter">
+          <Button colorScheme="teal">Appointment Letter</Button>
+        </Link>
+      </HStack>
       <Card align="center">
         <CardHeader>
           <Flex justifyContent="space-between" w="30vw">
@@ -52,7 +54,7 @@ export default function Minidashboard() {
             </Box>
           </Flex>
         </CardHeader>
-        <CardBody>
+        <CardBody border={"1px"} borderColor={"black"} borderRadius="16">
           <MiniTable data={data} />
         </CardBody>
         <CardFooter>
