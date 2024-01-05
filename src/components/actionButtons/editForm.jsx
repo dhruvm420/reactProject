@@ -78,7 +78,7 @@ export default function EditForm(props) {
     setAuthToken(storedToken);
     const formData = new FormData(e.target);
     // Perform form submission logic with formData
-    console.log(formData);
+    console.log(formData.values);
     axiosInstance
       .patch(`/superadmin/crud/${formName}/${modifyId}`, formData)
       .then((response) => {
@@ -111,6 +111,7 @@ export default function EditForm(props) {
           console.log(obj);
           obj.DOB = formatDateForInput(obj.DOB);
           obj.joiningDate = formatDateForInput(obj.joiningDate);
+          obj.password = "";
           setFormData(obj);
           setDataLoaded(true);
         })
@@ -251,7 +252,7 @@ export default function EditForm(props) {
               />
             </FormControl>
           </HStack>
-          {changePassword === true ? (
+          {/* {changePassword === true ? (
             <FormControl>
               <FormLabel>Password *</FormLabel>
               <Input
@@ -260,6 +261,7 @@ export default function EditForm(props) {
                 border="1px"
                 borderColor="blue.500"
                 w="20vw"
+                value={formData.password}
                 onChange={handleInputChange}
                 required
               />
@@ -275,7 +277,7 @@ export default function EditForm(props) {
             >
               Change Password
             </Button>
-          )}
+          )} */}
           <HStack>
             <FormControl>
               <FormLabel>State *</FormLabel>

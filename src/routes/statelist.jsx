@@ -138,7 +138,14 @@ export default function StateList() {
             setIsOpen={setDialogIsOpen}
             setAction={setAction}
             setId={setId}
-            actionItems={["id", "delete", "menu", "edit"]}
+            actionItems={[
+              "id",
+              "certificate",
+              "appointment",
+              "delete",
+              "menu",
+              "edit",
+            ]}
           />
           <Pagination
             handlePageChange={handlePageChange}
