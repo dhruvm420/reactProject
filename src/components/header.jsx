@@ -32,7 +32,7 @@ export default function Header(props) {
         >
           <HamburgerIcon />
         </Flex>
-        <Heading justifySelf="center" as="h1" color="white">
+        <Heading as="h1" color="white">
           {props.title}
         </Heading>
       </Flex>

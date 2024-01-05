@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { Center, Spinner } from "@chakra-ui/react";
-
+import { Center, Heading, Spinner } from "@chakra-ui/react";
 import {
   FormControl,
+  Flex,
   FormLabel,
   Input,
   Select,
@@ -99,7 +99,19 @@ const LogIn = () => {
     );
   return (
     <>
-      <Header title="Log In" />
+      <Flex
+        justifyContent="center"
+        alignItems="center"
+        borderBottomLeftRadius="xl"
+        borderBottomRightRadius="xl"
+        boxShadow="xl"
+        py="5"
+        bg="gray.600"
+      >
+        <Heading as="h1" color="white">
+          Log In
+        </Heading>
+      </Flex>
       <Box mx="auto" w="15vw" my="0" p="0">
         <FormControl w="15vw" my="4">
           <FormLabel>Select LogIn Type:-</FormLabel>
