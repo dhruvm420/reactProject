@@ -13,6 +13,7 @@ import EditForm from "./editForm";
 export default function EditAction({
   isOpen,
   closeHandler,
+  parent,
   modifyId,
   formName,
 }) {
@@ -33,6 +34,7 @@ export default function EditAction({
               formName={formName}
               modifyId={modifyId}
               onClose={closeHandler}
+              parent={parent}
             />
           </ModalBody>
 

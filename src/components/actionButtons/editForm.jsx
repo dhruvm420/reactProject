@@ -33,6 +33,12 @@ const formatDateForInput = (dateString) => {
 export default function EditForm(props) {
   let formName = props.formName;
   let modifyId = props.modifyId;
+  let parent = props.parent;
+  let child;
+  if (parent == "state") child = "district";
+  else if (parent == "district") child = "tehsil";
+  else if (parent == "tehsil") child = "panchayat";
+  else child = "member";
   const [changePassword, setChangePassword] = useState(false);
   const [changeProfilePic, setchangeProfilePic] = useState(false);
   const [dataLoaded, setDataLoaded] = useState(false);
@@ -77,12 +83,12 @@ export default function EditForm(props) {
     const storedToken = localStorage.getItem("jwtToken");
     setAuthToken(storedToken);
     const formData = new FormData(e.target);
+    let url = `/superadmin/crud/${formName}/${modifyId}`;
+    if (parent != "superadmin") url = `/${parent}/crud/${child}/${modifyId}`;
     // Perform form submission logic with formData
-    console.log(formData.values);
     axiosInstance
-      .patch(`/superadmin/crud/${formName}/${modifyId}`, formData)
+      .patch(url, formData)
       .then((response) => {
-        console.log(response);
         setErrorTitle(`Successfully Edited!!!`);
         setErrorType("d");
         setIsOpen(true);
@@ -98,6 +104,7 @@ export default function EditForm(props) {
   const fetch = async () => {
     const storedToken = localStorage.getItem("jwtToken"); // Fetch the stored token
     let url = `/superadmin/crud/${formName}/${modifyId}`;
+    if (parent != "superadmin") url = `/${parent}/crud/${child}/${modifyId}`;
     if (storedToken) {
       // Set the token in the Axios headers before making the request
       setAuthToken(storedToken);
