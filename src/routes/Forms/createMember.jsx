@@ -31,11 +31,11 @@ const CreateMember = () => {
   const [bloodGroup, setBloodGroup] = useState("select");
   const [formData, setFormData] = useState({
     name: "",
-    sonOf: "",
+    fatherName: "",
     DOB: "",
     joiningDate: "",
     aadharNumber: "",
-    prof: "",
+    profession: "",
     mobileNumber: "",
     email: "",
     password: "",
@@ -78,7 +78,6 @@ const CreateMember = () => {
         adharCardImage: formData.get("adharCardImage"),
         idProofImage: formData.get("idProofImage"),
         panCardImage: formData.get("panCardImage"),
-        // .{error<<>>>>dfa}
       };
     });
     let url = `/${parent}/crud/${child}`;
@@ -163,7 +162,7 @@ const CreateMember = () => {
                 name="fatherName"
                 border="1px"
                 borderColor="blue.500"
-                value={formData.sonOf}
+                value={formData.fatherName}
                 onChange={handleInputChange}
                 required
               />
@@ -191,7 +190,7 @@ const CreateMember = () => {
               name="profession"
               border="1px"
               borderColor="blue.500"
-              value={formData.prof}
+              value={formData.profession}
               onChange={handleInputChange}
               required
             />
@@ -285,7 +284,7 @@ const CreateMember = () => {
             <FormControl>
               <FormLabel>Pin Code *</FormLabel>
               <Input
-                type="text"
+                type="number"
                 name="pincodeResiding"
                 border="1px"
                 w="20vw"
@@ -357,6 +356,7 @@ const CreateMember = () => {
                 type="text"
                 name="assignCode"
                 value={formData.assignCode}
+                onChange={handleInputChange}
                 border="1px"
                 w="20vw"
                 borderColor="blue.500"
@@ -371,6 +371,7 @@ const CreateMember = () => {
                 value={formData.idProofType}
                 border="1px"
                 w="20vw"
+                onChange={handleInputChange}
                 borderColor="blue.500"
                 required
               />

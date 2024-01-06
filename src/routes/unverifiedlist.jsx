@@ -15,6 +15,7 @@ import ActionPopUp from "../components/actionButtons/actionPopUp";
 import { setAuthToken, axiosInstance } from "../components/axiosInstance.jsx";
 import Root from "./root";
 import { useParams } from "react-router-dom";
+import { getCorrectDate } from "../components/date.jsx";
 export default function UnVerifiedList() {
   const { parent } = useParams();
   let child;
@@ -45,19 +46,13 @@ export default function UnVerifiedList() {
     // You can perform filtering or any other actions based on the search value here
   };
   function putinDummy(obj, d) {
-    let dataItem = {
-      USER_ID: "0226",
-      NAME: "KESHAW DAS",
-      MOBILE: "9999889999",
-      CITY: "Kawardha",
-      DATE: "2023-09-09 13:24:09",
-    };
+    let dataItem = {};
 
-    dataItem.USER_ID = obj["_id"];
+    dataItem.USER_ID = obj["userName"];
     dataItem.NAME = obj.name;
-    dataItem.MOBILE = obj.mobile;
-    dataItem.CITY = obj.city;
-    dataItem.DATE = getCorrectDate(obj["joiningDate"]);
+    dataItem.DOB = getCorrectDate(obj["DOB"]);
+    dataItem.MOBILE = obj.mobileNumber;
+    dataItem.CITY = obj.districtResiding;
     d.push(dataItem);
   }
   const fetch = async () => {
@@ -69,7 +64,8 @@ export default function UnVerifiedList() {
       if (parent == "superadmin") {
         url = `superadmin/crud/member?isVerified=false&limit=10&fields=${searchVal}&page=${currentPage}`;
       } else {
-        url = `/${parent}/crud/${child}?page=${currentPage}&limit=10&sort=name&${parent}ReferenceId=${refId}`;
+        // url = `/${parent}/crud/${child}?page=${currentPage}&limit=10&sort=name&${parent}ReferenceId=${refId}`;
+        url = `/${parent}/crud/${child}?page=${currentPage}&limit=10`;
         // if (searchVal != "")
         // url = `/superadmin/crud/search?roleName=district&searchQuery=${searchVal}&page=${currentPage}&limit=10`;
       }
@@ -121,10 +117,7 @@ export default function UnVerifiedList() {
       </>
     );
   return (
-    <Root
-      title="Unverified Members"
-      noSideBar={parent == "superadmin" ? null : true}
-    >
+    <Root title="Members" noSideBar={parent == "superadmin" ? null : true}>
       <Flex direction="column" mx="auto" mt="4">
         <ActionPopUp
           formName={"member"}
@@ -155,7 +148,7 @@ export default function UnVerifiedList() {
           setAction={setAction}
           parent={parent}
           setId={setId}
-          actionItems={["verify", "delete"]}
+          actionItems={actionitems}
         />
         <Pagination
           handlePageChange={handlePageChange}
