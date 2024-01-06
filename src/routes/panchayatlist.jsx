@@ -18,6 +18,19 @@ import ActionPopUp from "../components/actionButtons/actionPopUp";
 import { SearchIcon } from "@chakra-ui/icons";
 import { setAuthToken, axiosInstance } from "../components/axiosInstance.jsx";
 export default function PanchayatList() {
+  const { parent } = useParams();
+  let child;
+  if (parent == "state") child = "district";
+  else if (parent == "district") child = "tehsil";
+  else if (parent == "tehsil") child = "panchayat";
+  else child = "member";
+  const data = JSON.parse(localStorage.getItem("userKaData"));
+  let refId;
+  if (parent != "superadmin") refId = data._id;
+  const actionitems =
+    parent == "superadmin"
+      ? ["id", "appointment", "certificate", "delete", "menu", "edit"]
+      : ["id", "appointment", "certificate", "delete", "edit"];
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
   const [id, setId] = useState("");
   const [action, setAction] = useState("");
@@ -53,9 +66,16 @@ export default function PanchayatList() {
       // Set the token in the Axios headers before making the request
       setAuthToken(storedToken);
       // Make an authenticated request using axiosInstance
-      let url = `/superadmin/crud/panchayat?page=${currentPage}&limit=10&sort=name`;
-      if (searchVal != "")
-        url = `/superadmin/crud/search?roleName=panchayat&searchQuery=${searchVal}&page=${currentPage}&limit=10`;
+      let url;
+      if (parent == "superadmin") {
+        url = `/superadmin/crud/panchayat?page=${currentPage}&limit=10&sort=name`;
+        if (searchVal != "")
+          url = `/superadmin/crud/search?roleName=panchayat&searchQuery=${searchVal}&page=${currentPage}&limit=10`;
+      } else {
+        url = `/${parent}/crud/${child}?page=${currentPage}&limit=10&sort=name&${parent}ReferenceId=${refId}`;
+        // if (searchVal != "")
+        // url = `/superadmin/crud/search?roleName=district&searchQuery=${searchVal}&page=${currentPage}&limit=10`;
+      }
       await axiosInstance
         .get(url)
         .then((response) => {
@@ -111,41 +131,45 @@ export default function PanchayatList() {
         isOpen={dialogIsOpen}
         setIsOpen={setDialogIsOpen}
       />
-      <Root title="Panchayat List">
+      <Root
+        title="Panchayat List"
+        noSideBar={parent == "superadmin" ? null : true}
+      >
         <Flex direction="column" mx="auto" mt="4">
           <Box mx="auto">
-            <Link to="/createPanchayat">
+            <Link
+              to={
+                parent == "superadmin"
+                  ? "/createPanchayat"
+                  : "/createChild/tehsil"
+              }
+            >
               <Button colorScheme="teal" mb="4">
                 Create Panchayat
               </Button>
             </Link>
           </Box>
-          <Box alignSelf="flex-end">
-            <InputGroup my="2">
-              <InputRightElement pointerEvents="none">
-                <SearchIcon />
-              </InputRightElement>
-              <Input
-                placeholder="Search"
-                value={searchVal}
-                onChange={handleInputChange}
-              />
-            </InputGroup>
-          </Box>
+          {parent == "superadmin" && (
+            <Box alignSelf="flex-end">
+              <InputGroup my="2">
+                <InputRightElement pointerEvents="none">
+                  <SearchIcon />
+                </InputRightElement>
+                <Input
+                  placeholder="Search"
+                  value={searchVal}
+                  onChange={handleInputChange}
+                />
+              </InputGroup>
+            </Box>
+          )}
           <TableGenerator
             data={panchayatData}
             title="Panchayat"
             setIsOpen={setDialogIsOpen}
             setAction={setAction}
             setId={setId}
-            actionItems={[
-              "id",
-              "appointment",
-              "certificate",
-              "delete",
-              "menu",
-              "edit",
-            ]}
+            actionItems={actionitems}
           />
           <Pagination
             handlePageChange={handlePageChange}

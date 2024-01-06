@@ -12,7 +12,7 @@ export default function Header(props) {
         py="5"
         bg="gray.600"
       >
-        {props.noHamburger ? (
+        {props.noHamburger == true ? (
           <></>
         ) : (
           <Flex

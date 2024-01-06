@@ -19,6 +19,11 @@ import MiniTable from "../components/miniTable";
 import { getCorrectDate } from "../components/date";
 export default function Minidashboard() {
   const { type } = useParams();
+  let url;
+  if (type == "state") url = "/districtlist/state";
+  else if (type == "district") url = "/tehsillist/district";
+  else if (type == "tehsil") url = "/panchayatlist/tehsil";
+  else url = "/unverifiedmembers/panchayat";
   const data = JSON.parse(localStorage.getItem("userKaData"));
   return (
     <>
@@ -58,9 +63,11 @@ export default function Minidashboard() {
           <MiniTable data={data} />
         </CardBody>
         <CardFooter>
-          <Link to={`/underdata/${type}`}>
-            <Button colorScheme="teal">View More &rarr;</Button>
-          </Link>
+          {type != "member" && (
+            <Link to={url}>
+              <Button colorScheme="teal">View More &rarr;</Button>
+            </Link>
+          )}
         </CardFooter>
       </Card>
     </>

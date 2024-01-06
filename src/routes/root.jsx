@@ -3,7 +3,7 @@ import Header from "../components/header";
 import Sidebar from "../components/sidebar";
 import ScrollToTop from "../components/scrollToTop";
 import { useState } from "react";
-export default function Root({ children, title }) {
+export default function Root({ children, title, noSideBar }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -13,7 +13,7 @@ export default function Root({ children, title }) {
   ScrollToTop();
   return (
     <Box bg="#f7fafc">
-      <Header title={title} toggle={toggleSidebar} />
+      <Header title={title} toggle={toggleSidebar} noHamburger={noSideBar} />
       <Flex>
         {isSidebarOpen && <Sidebar />}
         {children}

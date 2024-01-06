@@ -30,6 +30,12 @@ const sample = [
 ];
 import { getCorrectDate } from "../components/date.jsx";
 export default function DistrictList() {
+  const { parent } = useParams();
+  let child;
+  if (parent == "state") child = "district";
+  else if (parent == "district") child = "tehsil";
+  else if (parent == "tehsil") child = "panchayat";
+  else child = "member";
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
   const [id, setId] = useState("");
   const [action, setAction] = useState("");
@@ -40,6 +46,13 @@ export default function DistrictList() {
   const count = (storedValues && storedValues.district) || 0;
   const [currentPage, setCurrentPage] = useState(1);
   const [dataLoaded, setDataLoaded] = useState(false);
+  const data = JSON.parse(localStorage.getItem("userKaData"));
+  let refId;
+  if (parent != "superadmin") refId = data._id;
+  const actionitems =
+    parent == "superadmin"
+      ? ["id", "appointment", "certificate", "delete", "menu", "edit"]
+      : ["id", "appointment", "certificate", "delete", "edit"];
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -66,15 +79,21 @@ export default function DistrictList() {
     if (storedToken) {
       // Set the token in the Axios headers before making the request
       setAuthToken(storedToken);
-      let url = `/superadmin/crud/district?page=${currentPage}&limit=10&sort=name`;
-      if (searchVal != "")
-        url = `/superadmin/crud/search?roleName=district&searchQuery=${searchVal}&page=${currentPage}&limit=10`;
+      let url;
+      if (parent == "superadmin") {
+        url = `/superadmin/crud/district?page=${currentPage}&limit=10&sort=name`;
+        if (searchVal != "")
+          url = `/superadmin/crud/search?roleName=district&searchQuery=${searchVal}&page=${currentPage}&limit=10`;
+      } else {
+        url = `/${parent}/crud/${child}?page=${currentPage}&limit=10&sort=name&${parent}ReferenceId=${refId}`;
+        // if (searchVal != "")
+        // url = `/superadmin/crud/search?roleName=district&searchQuery=${searchVal}&page=${currentPage}&limit=10`;
+      }
       // Make an authenticated request using axiosInstance
       await axiosInstance
         .get(url)
         .then((response) => {
           console.log(response);
-
           if (response.status != "fail") {
             let obj = response.data.data.response;
             let arr = Object.keys(obj);
@@ -127,41 +146,45 @@ export default function DistrictList() {
         setIsOpen={setDialogIsOpen}
       />
 
-      <Root title="District List">
+      <Root
+        title="District List"
+        noSideBar={parent == "superadmin" ? null : true}
+      >
         <Flex direction="column" mx="auto" mt="4">
           <Box mx="auto">
-            <Link to="/createDistrict">
+            <Link
+              to={
+                parent == "superadmin"
+                  ? "/createDistrict"
+                  : "/createChild/state"
+              }
+            >
               <Button colorScheme="teal" mb="4">
                 Create District
               </Button>
             </Link>
           </Box>
-          <Box alignSelf="flex-end">
-            <InputGroup my="2">
-              <InputRightElement pointerEvents="none">
-                <SearchIcon />
-              </InputRightElement>
-              <Input
-                placeholder="Search"
-                value={searchVal}
-                onChange={handleInputChange}
-              />
-            </InputGroup>
-          </Box>
+          {parent == "superadmin" && (
+            <Box alignSelf="flex-end">
+              <InputGroup my="2">
+                <InputRightElement pointerEvents="none">
+                  <SearchIcon />
+                </InputRightElement>
+                <Input
+                  placeholder="Search"
+                  value={searchVal}
+                  onChange={handleInputChange}
+                />
+              </InputGroup>
+            </Box>
+          )}
           <TableGenerator
             data={districtData}
             title="District"
             setIsOpen={setDialogIsOpen}
             setAction={setAction}
             setId={setId}
-            actionItems={[
-              "id",
-              "appointment",
-              "certificate",
-              "delete",
-              "menu",
-              "edit",
-            ]}
+            actionItems={actionitems}
           />
           <Pagination
             handlePageChange={handlePageChange}

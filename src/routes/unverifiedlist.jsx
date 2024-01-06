@@ -16,6 +16,14 @@ import { setAuthToken, axiosInstance } from "../components/axiosInstance.jsx";
 import Root from "./root";
 import { useParams } from "react-router-dom";
 export default function UnVerifiedList() {
+  const { parent } = useParams();
+  let child;
+  if (parent == "state") child = "district";
+  else if (parent == "district") child = "tehsil";
+  else if (parent == "tehsil") child = "panchayat";
+  else child = "member";
+  const actionitems =
+    parent == "superadmin" ? ["verify", "delete"] : ["delete"];
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
   const [id, setId] = useState("");
   const [dataLoaded, setDataLoaded] = useState(false);
@@ -29,6 +37,9 @@ export default function UnVerifiedList() {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+  const data = JSON.parse(localStorage.getItem("userKaData"));
+  let refId;
+  if (parent != "superadmin") refId = data._id;
   const handleInputChange = (e) => {
     setSearchVal(e.target.value);
     // You can perform filtering or any other actions based on the search value here
@@ -54,12 +65,17 @@ export default function UnVerifiedList() {
     if (storedToken) {
       // Set the token in the Axios headers before making the request
       setAuthToken(storedToken);
+      let url;
+      if (parent == "superadmin") {
+        url = `superadmin/crud/member?isVerified=false&limit=10&fields=${searchVal}&page=${currentPage}`;
+      } else {
+        url = `/${parent}/crud/${child}?page=${currentPage}&limit=10&sort=name&${parent}ReferenceId=${refId}`;
+        // if (searchVal != "")
+        // url = `/superadmin/crud/search?roleName=district&searchQuery=${searchVal}&page=${currentPage}&limit=10`;
+      }
       // Make an authenticated request using axiosInstance
       await axiosInstance
-
-        .get(
-          `superadmin/crud/member?isVerified=false&limit=10&fields=${searchVal}&page=${currentPage}`
-        )
+        .get(url)
         .then((response) => {
           console.log(response);
           if (response.status != "fail") {
@@ -105,7 +121,10 @@ export default function UnVerifiedList() {
       </>
     );
   return (
-    <Root title="Unverified Members">
+    <Root
+      title="Unverified Members"
+      noSideBar={parent == "superadmin" ? null : true}
+    >
       <Flex direction="column" mx="auto" mt="4">
         <ActionPopUp
           formName={"unverified"}
@@ -114,18 +133,20 @@ export default function UnVerifiedList() {
           isOpen={dialogIsOpen}
           setIsOpen={setDialogIsOpen}
         />
-        <Box alignSelf="flex-end">
-          <InputGroup my="2">
-            <InputRightElement pointerEvents="none">
-              <SearchIcon />
-            </InputRightElement>
-            <Input
-              placeholder="Search"
-              value={searchVal}
-              onChange={handleInputChange}
-            />
-          </InputGroup>
-        </Box>
+        {parent == "superadmin" && (
+          <Box alignSelf="flex-end">
+            <InputGroup my="2">
+              <InputRightElement pointerEvents="none">
+                <SearchIcon />
+              </InputRightElement>
+              <Input
+                placeholder="Search"
+                value={searchVal}
+                onChange={handleInputChange}
+              />
+            </InputGroup>
+          </Box>
+        )}
         <TableGenerator
           data={unVerifiedData}
           title="Unverified Members"

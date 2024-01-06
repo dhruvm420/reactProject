@@ -7,13 +7,17 @@ export default function DashboardCards({ dashboardData }) {
       <MyCard
         title="District"
         count={dashboardData.district}
-        link="/districtlist"
+        link="/districtlist/superadmin"
       />
-      <MyCard title="Tehsil" count={dashboardData.tehsil} link="/tehsillist" />
+      <MyCard
+        title="Tehsil"
+        count={dashboardData.tehsil}
+        link="/tehsillist/superadmin"
+      />
       <MyCard
         title="Panchayat"
         count={dashboardData.panchayat}
-        link="/panchayatlist"
+        link="/panchayatlist/superadmin"
       />
       <MyCard
         title="Verified Members"
@@ -23,7 +27,7 @@ export default function DashboardCards({ dashboardData }) {
       <MyCard
         title="Unverified Members"
         count={dashboardData.unverifiedmembers}
-        link="/unverifiedmembers"
+        link="/unverifiedmembers/superadmin"
       />
       <MyCard
         title="Complaints"

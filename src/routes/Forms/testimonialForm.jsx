@@ -45,7 +45,7 @@ export default function CreateTestimonial({ edit = false, modifyId = null }) {
   };
 
   return (
-    <Root title="Create Management">
+    <Root title="Create Testimonial">
       <Box mx="auto" shadow="2xl" h="58vh" bg="white" borderRadius="3xl" my="4">
         <form onSubmit={handleSubmit}>
           <Stack p="6" spacing="4" w="55vw">

@@ -43,6 +43,7 @@ import MiniLogout from "./routes/miniLogout.jsx";
 import MiniID from "./routes/miniID.jsx";
 import MiniAppLetter from "./routes/miniappointment.jsx";
 import MiniCertificate from "./routes/miniCertificate.jsx";
+import CreateChild from "./routes/Forms/createChild.jsx";
 export let routesList = [
   {
     path: "/",
@@ -67,15 +68,15 @@ export let routesList = [
     element: <LogOut />,
   },
   {
-    path: "/districtlist",
+    path: "/districtlist/:parent",
     element: <DistrictList />,
   },
   {
-    path: "/tehsillist",
+    path: "/tehsillist/:parent",
     element: <TehsilList />,
   },
   {
-    path: "/panchayatlist",
+    path: "/panchayatlist/:parent",
     element: <PanchayatList />,
   },
   {
@@ -83,7 +84,7 @@ export let routesList = [
     element: <VerifiedList />,
   },
   {
-    path: "/unverifiedmembers",
+    path: "/unverifiedmembers/:parent",
     element: <UnVerifiedList />,
   },
   {
@@ -224,6 +225,10 @@ export let routesList = [
   {
     path: "/underdata/:parent",
     element: <UnderData />,
+  },
+  {
+    path: "/createChild/:parent",
+    element: <CreateChild />,
   },
   {
     path: "/minilogout",
