@@ -83,6 +83,12 @@ export default function EditForm(props) {
     const storedToken = localStorage.getItem("jwtToken");
     setAuthToken(storedToken);
     const formData = new FormData(e.target);
+    setFormData((prev) => {
+      return {
+        ...prev,
+        profilePicture: formData.get("profilePicture"),
+      };
+    });
     let url = `/superadmin/crud/${formName}/${modifyId}`;
     if (parent != "superadmin") url = `/${parent}/crud/${child}/${modifyId}`;
     // Perform form submission logic with formData
@@ -349,10 +355,15 @@ export default function EditForm(props) {
               onChange={handleInputChange}
             />
           </FormControl>
-          {/* {changeProfilePic === true ? (
+          {changeProfilePic === true ? (
             <FormControl>
               <FormLabel>Profile Picture</FormLabel>
-              <Input type="file" onChange={handleFileChange} accept="image/*" />
+              <Input
+                type="file"
+                name="profilePicture"
+                onChange={handleFileChange}
+                accept="image/*"
+              />
             </FormControl>
           ) : (
             <Button
@@ -365,7 +376,7 @@ export default function EditForm(props) {
             >
               Change Profile Picture
             </Button>
-          )} */}
+          )}
 
           <Button type="submit" mt={4} colorScheme="blue" w="12vw" mx="auto">
             Submit

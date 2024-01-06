@@ -5,6 +5,7 @@ import {
   FormControl,
   FormLabel,
   Button,
+  Select,
   HStack,
   Flex,
 } from "@chakra-ui/react";
@@ -15,7 +16,7 @@ import {
 } from "../../components/axiosInstance.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 import FormDialog from "./formDialog.jsx";
-const CreateChild = () => {
+const CreateMember = () => {
   const { parent } = useParams();
   const data = JSON.parse(localStorage.getItem("userKaData"));
   let child;
@@ -26,22 +27,32 @@ const CreateChild = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [errorTitle, setErrorTitle] = useState(null);
   const [errorType, setErrorType] = useState(null);
+  const [gender, setGender] = useState("select");
+  const [bloodGroup, setBloodGroup] = useState("select");
   const [formData, setFormData] = useState({
     name: "",
     sonOf: "",
     DOB: "",
     joiningDate: "",
     aadharNumber: "",
+    prof: "",
     mobileNumber: "",
     email: "",
     password: "",
     confirmPassword: "",
     stateResiding: "",
+    districtResiding: "",
+    pincodeResiding: "",
+    idProofType: "",
     cityResiding: "",
     addressResiding: "",
     qualification: "",
     designation: "",
-    profilePicture: null,
+    adharCardImage: null,
+    idProofImage: null,
+    panCardImage: null,
+    assignCode: "",
+    profilePic: null,
   });
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -57,28 +68,33 @@ const CreateChild = () => {
     const storedToken = localStorage.getItem("jwtToken");
     setAuthToken(storedToken);
     const formData = new FormData(e.target);
-    console.log(formData.get("profilePicture"));
+    console.log(formData.get("profilePic"));
     // Perform form submission logic with formData
 
     setFormData((prev) => {
       return {
         ...prev,
-        profilePicture: formData.get("profilePicture"),
+        profilePic: formData.get("profilePic"),
+        adharCardImage: formData.get("adharCardImage"),
+        idProofImage: formData.get("idProofImage"),
+        panCardImage: formData.get("panCardImage"),
+        // .{error<<>>>>dfa}
       };
     });
+    let url = `/${parent}/crud/${child}`;
     console.log(formData);
     axiosInstance
-      .post(`/${parent}/crud/${child}`, formData)
+      .post(url, formData)
       .then((response) => {
         console.log(response);
-        const res = response.data.data.user;
+        let res = response.data.data.member;
         let titles = `Successfully Created ${child} with UserName: ${res["userName"]}`;
         setErrorTitle(titles);
         setErrorType("mini");
         setIsOpen(true);
       })
       .catch((error) => {
-        console.log(`Failed to create ${child}:`, error);
+        console.log(`Failed to create State: ${child}`, error);
         setErrorTitle(error.response.data.message);
         setErrorType("error");
         setIsOpen(true);
@@ -97,8 +113,9 @@ const CreateChild = () => {
         <Flex
           flexDirection="column"
           mx="auto"
+          w="90vw"
           shadow="2xl"
-          h="105vh"
+          //   h="105vh"
           px="4"
           py="2"
           bg="white"
@@ -106,46 +123,6 @@ const CreateChild = () => {
           m="4"
           justifyContent="space-evenly"
         >
-          <HStack>
-            <FormControl visibility="hidden" position="absolute">
-              <FormLabel>stateReferenceId *</FormLabel>
-              <Input
-                type="text"
-                name="stateReferenceId"
-                value={parent == "state" ? data._id : data.stateReferenceId}
-                border="1px"
-                borderColor="blue.500"
-                required
-              />
-            </FormControl>
-            {parent != "state" && (
-              <FormControl visibility="hidden" position="absolute">
-                <FormLabel>districtReferenceId *</FormLabel>
-                <Input
-                  type="text"
-                  name="districtReferenceId"
-                  value={
-                    parent == "district" ? data._id : data.districtReferenceId
-                  }
-                  border="1px"
-                  borderColor="blue.500"
-                  required
-                />
-              </FormControl>
-            )}
-            {parent != "state" && parent != "district" && (
-              <FormControl visibility="hidden" position="absolute">
-                <FormLabel>tehsilReferenceId *</FormLabel>
-                <Input
-                  type="text"
-                  name="tehsilReferenceId"
-                  value={parent == "tehsil" ? data._id : data.tehsilReferenceId}
-                  border="1px"
-                  borderColor="blue.500"
-                />
-              </FormControl>
-            )}
-          </HStack>
           <HStack>
             <FormControl>
               <FormLabel>Full Name *</FormLabel>
@@ -160,10 +137,30 @@ const CreateChild = () => {
               />
             </FormControl>
             <FormControl>
+              <FormLabel>Gender *</FormLabel>
+              <Select
+                name="gender"
+                onChange={(e) => {
+                  setGender(e.target.value);
+                }}
+                value={gender}
+              >
+                <option key={0} value={"Male"}>
+                  {"Male"}
+                </option>
+                <option key={1} value={"Female"}>
+                  {"Female"}
+                </option>
+                <option key={2} value={"Other"}>
+                  {"Other"}
+                </option>
+              </Select>
+            </FormControl>
+            <FormControl>
               <FormLabel>S/O *</FormLabel>
               <Input
                 type="text"
-                name="sonOf"
+                name="fatherName"
                 border="1px"
                 borderColor="blue.500"
                 value={formData.sonOf}
@@ -186,21 +183,38 @@ const CreateChild = () => {
                 required
               />
             </FormControl>
-
-            <FormControl>
-              <FormLabel>Joining Date *</FormLabel>
-              <Input
-                type="date"
-                name="joiningDate"
-                border="1px"
-                borderColor="blue.500"
-                w="13vw"
-                value={formData.joiningDate}
-                onChange={handleInputChange}
-                required
-              />
-            </FormControl>
           </HStack>
+          <FormControl>
+            <FormLabel>Profession *</FormLabel>
+            <Input
+              type="text"
+              name="profession"
+              border="1px"
+              borderColor="blue.500"
+              value={formData.prof}
+              onChange={handleInputChange}
+              required
+            />
+          </FormControl>
+          <FormControl>
+            <FormLabel>Blood Group *</FormLabel>
+            <Select
+              name="bloodGroup"
+              onChange={(e) => {
+                setBloodGroup(e.target.value);
+              }}
+              value={bloodGroup}
+            >
+              <option value={"A+"}>A+</option>
+              <option value={"A-"}>A-</option>
+              <option value={"B+"}>B+</option>
+              <option value={"B-"}>B-</option>
+              <option value={"AB+"}>AB+</option>
+              <option value={"AB-"}>AB-</option>
+              <option value={"O+"}>O+</option>
+              <option value={"O-"}>O-</option>
+            </Select>
+          </FormControl>
           <HStack spacing="8">
             <FormControl>
               <FormLabel>Aadhar Number *</FormLabel>
@@ -227,47 +241,19 @@ const CreateChild = () => {
                 required
               />
             </FormControl>
-
-            <FormControl>
-              <FormLabel>Email *</FormLabel>
-              <Input
-                type="email"
-                name="email"
-                border="1px"
-                borderColor="blue.500"
-                value={formData.email}
-                onChange={handleInputChange}
-                required
-              />
-            </FormControl>
           </HStack>
           <HStack>
             <FormControl>
-              <FormLabel>Password *</FormLabel>
-              <Input
-                type="password"
-                name="password"
+              <FormLabel>Address</FormLabel>
+              <Textarea
+                name="addressResiding"
                 border="1px"
                 borderColor="blue.500"
-                w="20vw"
-                value={formData.password}
+                value={formData.addressResiding}
                 onChange={handleInputChange}
-                required
+                placeholder="Enter your address"
               />
             </FormControl>
-            <FormControl>
-              <FormLabel>Assign Code *</FormLabel>
-              <Input
-                type="text"
-                name="assignCode"
-                border="1px"
-                w="20vw"
-                borderColor="blue.500"
-                required
-              />
-            </FormControl>
-          </HStack>
-          <HStack>
             <FormControl>
               <FormLabel>State *</FormLabel>
               <Input
@@ -285,11 +271,26 @@ const CreateChild = () => {
               <FormLabel>City *</FormLabel>
               <Input
                 type="text"
-                name="cityResiding"
+                name="districtResiding"
                 border="1px"
                 w="20vw"
                 borderColor="blue.500"
-                value={formData.cityResiding}
+                value={formData.districtResiding}
+                onChange={handleInputChange}
+                required
+              />
+            </FormControl>
+          </HStack>
+          <HStack>
+            <FormControl>
+              <FormLabel>Pin Code *</FormLabel>
+              <Input
+                type="text"
+                name="pincodeResiding"
+                border="1px"
+                w="20vw"
+                borderColor="blue.500"
+                value={formData.pincodeResiding}
                 onChange={handleInputChange}
                 required
               />
@@ -321,20 +322,75 @@ const CreateChild = () => {
               />
             </FormControl>
           </HStack>
-          <FormControl>
-            <FormLabel>Address</FormLabel>
-            <Textarea
-              name="addressResiding"
-              border="1px"
-              borderColor="blue.500"
-              value={formData.addressResiding}
-              onChange={handleInputChange}
-              placeholder="Enter your address"
-            />
-          </FormControl>
+          <HStack>
+            <FormControl>
+              <FormLabel>Email *</FormLabel>
+              <Input
+                type="email"
+                name="email"
+                border="1px"
+                w="20vw"
+                borderColor="blue.500"
+                value={formData.email}
+                onChange={handleInputChange}
+                required
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>Password *</FormLabel>
+              <Input
+                type="password"
+                name="password"
+                border="1px"
+                borderColor="blue.500"
+                w="20vw"
+                value={formData.password}
+                onChange={handleInputChange}
+                required
+              />
+            </FormControl>
+          </HStack>
+          <HStack>
+            <FormControl>
+              <FormLabel>Assign Code *</FormLabel>
+              <Input
+                type="text"
+                name="assignCode"
+                value={formData.assignCode}
+                border="1px"
+                w="20vw"
+                borderColor="blue.500"
+                required
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>Id Proof Type *</FormLabel>
+              <Input
+                type="text"
+                name="idProofType"
+                value={formData.idProofType}
+                border="1px"
+                w="20vw"
+                borderColor="blue.500"
+                required
+              />
+            </FormControl>
+          </HStack>
           <FormControl>
             <FormLabel>Profile Picture</FormLabel>
-            <Input type="file" name="profilePicture" accept="image/*" />
+            <Input type="file" name="profilePic" accept="image/*" />
+          </FormControl>
+          <FormControl>
+            <FormLabel>adharCardImage</FormLabel>
+            <Input type="file" name="adharCardImage" accept="image/*" />
+          </FormControl>
+          <FormControl>
+            <FormLabel>idProofImage</FormLabel>
+            <Input type="file" name="idProofImage" accept="image/*" />
+          </FormControl>
+          <FormControl>
+            <FormLabel>panCardImage</FormLabel>
+            <Input type="file" name="panCardImage" accept="image/*" />
           </FormControl>
           <Button type="submit" mt={4} colorScheme="blue" w="12vw" mx="auto">
             Submit
@@ -344,4 +400,4 @@ const CreateChild = () => {
     </Root>
   );
 };
-export default CreateChild;
+export default CreateMember;

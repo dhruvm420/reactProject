@@ -4,6 +4,7 @@ import Header from "../components/header";
 import {
   Card,
   CardHeader,
+  Select,
   Button,
   CardBody,
   CardFooter,
@@ -41,6 +42,11 @@ export default function Minidashboard() {
         <Link to="/appletter">
           <Button colorScheme="teal">Appointment Letter</Button>
         </Link>
+        {type == "panchayat" && (
+          <Link to="/createMember/panchayat">
+            <Button colorScheme="green">Create Member</Button>
+          </Link>
+        )}
       </HStack>
       <Card align="center">
         <CardHeader>

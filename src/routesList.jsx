@@ -44,6 +44,7 @@ import MiniID from "./routes/miniID.jsx";
 import MiniAppLetter from "./routes/miniappointment.jsx";
 import MiniCertificate from "./routes/miniCertificate.jsx";
 import CreateChild from "./routes/Forms/createChild.jsx";
+import CreateMember from "./routes/Forms/createMember.jsx";
 export let routesList = [
   {
     path: "/",
@@ -229,6 +230,10 @@ export let routesList = [
   {
     path: "/createChild/:parent",
     element: <CreateChild />,
+  },
+  {
+    path: "/createMember/:parent",
+    element: <CreateMember />,
   },
   {
     path: "/minilogout",
