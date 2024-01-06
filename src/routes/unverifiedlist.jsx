@@ -47,7 +47,7 @@ export default function UnVerifiedList() {
   };
   function putinDummy(obj, d) {
     let dataItem = {};
-
+    dataItem["USER ID"] = obj["_id"];
     dataItem.USER_ID = obj["userName"];
     dataItem.NAME = obj.name;
     dataItem.DOB = getCorrectDate(obj["DOB"]);
@@ -66,6 +66,7 @@ export default function UnVerifiedList() {
       } else {
         // url = `/${parent}/crud/${child}?page=${currentPage}&limit=10&sort=name&${parent}ReferenceId=${refId}`;
         url = `/${parent}/crud/${child}?page=${currentPage}&limit=10`;
+        console.log(url);
         // if (searchVal != "")
         // url = `/superadmin/crud/search?roleName=district&searchQuery=${searchVal}&page=${currentPage}&limit=10`;
       }

@@ -123,6 +123,17 @@ const CreateMember = () => {
           justifyContent="space-evenly"
         >
           <HStack>
+            <FormControl visibility="hidden" position="absolute">
+              <FormLabel>panchayatReferenceId *</FormLabel>
+              <Input
+                type="text"
+                name="panchayatReferenceId"
+                value={data._id}
+                border="1px"
+                borderColor="blue.500"
+                required
+              />
+            </FormControl>
             <FormControl>
               <FormLabel>Full Name *</FormLabel>
               <Input
@@ -231,7 +242,7 @@ const CreateMember = () => {
             <FormControl>
               <FormLabel>Mobile Number *</FormLabel>
               <Input
-                type="tel"
+                type="number"
                 name="mobileNumber"
                 border="1px"
                 borderColor="blue.500"
@@ -351,7 +362,7 @@ const CreateMember = () => {
           </HStack>
           <HStack>
             <FormControl>
-              <FormLabel>Assign Code *</FormLabel>
+              <FormLabel>Assign Unique Code *</FormLabel>
               <Input
                 type="text"
                 name="assignCode"

@@ -49,7 +49,7 @@ export default function MiniTable({ data }) {
         }}
       >
         <Td>{header}</Td>
-        <Td>{data[header]}</Td>
+        <Td w="1">{data[header]}</Td>
       </Tr>
     );
   });
