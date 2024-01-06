@@ -5,6 +5,7 @@ import {
   FormControl,
   FormLabel,
   Button,
+  Flex,
   Box,
   Stack,
   HStack,
@@ -168,10 +169,18 @@ export default function EditForm(props) {
         setIsOpen={setIsOpen}
         type={errorType}
       />
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <Stack p="6" spacing="0">
-          <HStack>
-            <FormControl>
+      <form onSubmit={(e) => handleSubmit(e)} style={{ margin: "auto" }}>
+        <Flex
+          flexDirection="column"
+          px="10"
+          py="8"
+          bg="white"
+          borderRadius="3xl"
+          m="4"
+          justifyContent="space-evenly"
+        >
+          <Flex flexWrap="wrap">
+            <FormControl w="56" m="2">
               <FormLabel>Full Name *</FormLabel>
               <Input
                 type="text"
@@ -183,7 +192,7 @@ export default function EditForm(props) {
                 required
               />
             </FormControl>
-            <FormControl>
+            <FormControl w="56" m="2">
               <FormLabel>S/O *</FormLabel>
               <Input
                 type="text"
@@ -195,38 +204,34 @@ export default function EditForm(props) {
                 required
               />
             </FormControl>
-          </HStack>
-          <HStack>
-            <FormControl>
+            <FormControl w="56" m="2">
               <FormLabel>Date of Birth *</FormLabel>
               <Input
                 type="date"
                 name="DOB"
                 border="1px"
                 borderColor="blue.500"
-                w="13vw"
                 value={formData.DOB}
                 onChange={handleInputChange}
                 required
               />
             </FormControl>
 
-            <FormControl>
+            <FormControl w="56" m="2">
               <FormLabel>Joining Date *</FormLabel>
               <Input
                 type="date"
                 name="joiningDate"
                 border="1px"
                 borderColor="blue.500"
-                w="13vw"
                 value={formData.joiningDate}
                 onChange={handleInputChange}
                 required
               />
             </FormControl>
-          </HStack>
-          <HStack spacing="8">
-            <FormControl>
+          </Flex>
+          <Flex flexWrap="wrap">
+            <FormControl w="56" m="2">
               <FormLabel>Aadhar Number *</FormLabel>
               <Input
                 type="number"
@@ -239,7 +244,7 @@ export default function EditForm(props) {
               />
             </FormControl>
 
-            <FormControl>
+            <FormControl w="56" m="2">
               <FormLabel>Mobile Number *</FormLabel>
               <Input
                 type="number"
@@ -252,7 +257,7 @@ export default function EditForm(props) {
               />
             </FormControl>
 
-            <FormControl>
+            <FormControl w="56" m="2">
               <FormLabel>Email *</FormLabel>
               <Input
                 type="email"
@@ -264,16 +269,15 @@ export default function EditForm(props) {
                 required
               />
             </FormControl>
-          </HStack>
-          {/* {changePassword === true ? (
-            <FormControl>
+            {/* {changePassword === true ? (
+            <FormControl w="56" m="2">
               <FormLabel>Password *</FormLabel>
               <Input
                 type="password"
                 name="password"
                 border="1px"
                 borderColor="blue.500"
-                w="20vw"
+                
                 value={formData.password}
                 onChange={handleInputChange}
                 required
@@ -285,78 +289,76 @@ export default function EditForm(props) {
                 setChangePassword(true);
               }}
               colorScheme="blue"
-              w="15vw"
               my="2"
             >
               Change Password
             </Button>
           )} */}
-          <HStack>
-            <FormControl>
+            <FormControl w="56" m="2">
               <FormLabel>State *</FormLabel>
               <Input
                 type="text"
                 name="stateResiding"
                 border="1px"
-                w="20vw"
                 borderColor="blue.500"
                 value={formData.stateResiding}
                 onChange={handleInputChange}
                 required
               />
             </FormControl>
-            <FormControl>
+          </Flex>
+
+          <Flex flexWrap="wrap">
+            <FormControl w="56" m="2">
               <FormLabel>City *</FormLabel>
               <Input
                 type="text"
                 name="cityResiding"
                 border="1px"
-                w="20vw"
                 borderColor="blue.500"
                 value={formData.cityResiding}
                 onChange={handleInputChange}
                 required
               />
             </FormControl>
-            <FormControl>
+            <FormControl w="56" m="2">
               <FormLabel>Qualification *</FormLabel>
               <Input
                 type="text"
                 name="qualification"
                 border="1px"
                 borderColor="blue.500"
-                w="20vw"
                 value={formData.qualification}
                 onChange={handleInputChange}
                 required
               />
             </FormControl>
-          </HStack>
-          <FormControl>
-            <FormLabel>Designation *</FormLabel>
-            <Input
-              type="text"
-              name="designation"
-              border="1px"
-              borderColor="blue.500"
-              w="20vw"
-              value={formData.designation}
-              onChange={handleInputChange}
-              required
-            />
-          </FormControl>
-          <FormControl>
-            <FormLabel>Address</FormLabel>
-            <Textarea
-              name="addressResiding"
-              border="1px"
-              borderColor="blue.500"
-              value={formData.addressResiding}
-              onChange={handleInputChange}
-            />
-          </FormControl>
+            <FormControl w="56" m="2">
+              <FormLabel>Designation *</FormLabel>
+              <Input
+                type="text"
+                name="designation"
+                border="1px"
+                borderColor="blue.500"
+                value={formData.designation}
+                onChange={handleInputChange}
+                required
+              />
+            </FormControl>
+            <FormControl w="56" m="2">
+              <FormLabel>Address</FormLabel>
+              <Textarea
+                name="addressResiding"
+                border="1px"
+                borderColor="blue.500"
+                value={formData.addressResiding}
+                onChange={handleInputChange}
+              />
+            </FormControl>
+          </Flex>
+
           {changeProfilePic === true ? (
-            <FormControl>
+            <FormControl w="56" m="2">
               <FormLabel>Profile Picture</FormLabel>
               <Input
                 type="file"
@@ -381,7 +383,7 @@ export default function EditForm(props) {
           <Button type="submit" mt={4} colorScheme="blue" w="12vw" mx="auto">
             Submit
           </Button>
-        </Stack>
+        </Flex>
       </form>
     </>
   );

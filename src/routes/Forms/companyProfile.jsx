@@ -101,21 +101,19 @@ const CompanyProfile = () => {
         setIsOpen={setIsOpen}
         type={errorType}
       />
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={(e) => handleSubmit(e)} style={{ margin: "auto" }}>
         <Flex
           flexDirection="column"
-          mx="auto"
           shadow="2xl"
-          // h="105vh"
-          px="4"
-          py="2"
+          px="10"
+          py="8"
           bg="white"
           borderRadius="3xl"
           m="4"
           justifyContent="space-evenly"
         >
-          <HStack marginBottom="3vh">
-            <FormControl>
+          <Flex flexWrap="wrap">
+            <FormControl w="60" m="2">
               <FormLabel>Brand Name *</FormLabel>
               <Input
                 type="text"
@@ -126,7 +124,7 @@ const CompanyProfile = () => {
                 required
               />
             </FormControl>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>email *</FormLabel>
               <Input
                 type="email"
@@ -137,9 +135,7 @@ const CompanyProfile = () => {
                 required
               />
             </FormControl>
-          </HStack>
-          <HStack marginBottom="3vh">
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>website Name *</FormLabel>
               <Input
                 type="text"
@@ -150,7 +146,7 @@ const CompanyProfile = () => {
                 required
               />
             </FormControl>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>website Link *</FormLabel>
               <Input
                 type="text"
@@ -161,7 +157,9 @@ const CompanyProfile = () => {
                 required
               />
             </FormControl>
-            <FormControl>
+          </Flex>
+          <Flex flexWrap="wrap">
+            <FormControl w="60" m="2">
               <FormLabel>facebook Link *</FormLabel>
               <Input
                 type="text"
@@ -172,9 +170,7 @@ const CompanyProfile = () => {
                 required
               />
             </FormControl>
-          </HStack>
-          <HStack marginBottom="3vh">
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>twitter Link *</FormLabel>
               <Input
                 type="text"
@@ -185,7 +181,7 @@ const CompanyProfile = () => {
                 required
               />
             </FormControl>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>instagram Link *</FormLabel>
               <Input
                 type="text"
@@ -196,7 +192,7 @@ const CompanyProfile = () => {
                 required
               />
             </FormControl>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>youtube Link *</FormLabel>
               <Input
                 type="text"
@@ -207,9 +203,9 @@ const CompanyProfile = () => {
                 required
               />
             </FormControl>
-          </HStack>
-          <HStack marginBottom="3vh">
-            <FormControl>
+          </Flex>
+          <Flex flexWrap="wrap">
+            <FormControl w="60" m="2">
               <FormLabel>playStoreApp Link*</FormLabel>
               <Input
                 type="text"
@@ -220,7 +216,7 @@ const CompanyProfile = () => {
                 required
               />
             </FormControl>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>facebookIframe *</FormLabel>
               <Input
                 type="text"
@@ -231,7 +227,7 @@ const CompanyProfile = () => {
                 required
               />
             </FormControl>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>whatsAppLink Number *</FormLabel>
               <Input
                 type="tel"
@@ -242,9 +238,7 @@ const CompanyProfile = () => {
                 required
               />
             </FormControl>
-          </HStack>
-          <HStack marginBottom="3vh">
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>Mobile Number *</FormLabel>
               <Input
                 type="tel"
@@ -255,7 +249,9 @@ const CompanyProfile = () => {
                 required
               />
             </FormControl>
-            <FormControl>
+          </Flex>
+          <Flex flexWrap="wrap">
+            <FormControl w="60" m="2">
               <FormLabel>siteKey *</FormLabel>
               <Input
                 type="text"
@@ -266,7 +262,7 @@ const CompanyProfile = () => {
                 required
               />
             </FormControl>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>secretKey *</FormLabel>
               <Input
                 type="text"
@@ -277,20 +273,19 @@ const CompanyProfile = () => {
                 required
               />
             </FormControl>
-          </HStack>
 
-          <FormControl>
-            <FormLabel>Address</FormLabel>
-            <Textarea
-              name="addressResiding"
-              border="1px"
-              borderColor="blue.500"
-              //placeholder={formData.addressResiding}
-              required
-            />
-          </FormControl>
-          <HStack marginBottom="3vh">
-            <FormControl>
+            <FormControl w="60" m="2">
+              <FormLabel>Address</FormLabel>
+              <Input
+                type="text"
+                name="addressResiding"
+                border="1px"
+                borderColor="blue.500"
+                //placeholder={formData.addressResiding}
+                required
+              />
+            </FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>aboutUs *</FormLabel>
               <Input
                 type="text"
@@ -301,7 +296,10 @@ const CompanyProfile = () => {
                 required
               />
             </FormControl>
-            <FormControl>
+          </Flex>
+
+          <Flex flexWrap="wrap">
+            <FormControl w="60" m="2">
               <FormLabel>privacyPolicy *</FormLabel>
               <Input
                 type="text"
@@ -312,7 +310,7 @@ const CompanyProfile = () => {
                 required
               />
             </FormControl>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>termsAndConditions *</FormLabel>
               <Input
                 type="text"
@@ -323,9 +321,7 @@ const CompanyProfile = () => {
                 required
               />
             </FormControl>
-          </HStack>
-          <HStack marginBottom="3vh">
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>disclaimer *</FormLabel>
               <Input
                 type="text"
@@ -336,7 +332,7 @@ const CompanyProfile = () => {
                 required
               />
             </FormControl>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>refundPolicy *</FormLabel>
               <Input
                 type="text"
@@ -347,7 +343,9 @@ const CompanyProfile = () => {
                 required
               />
             </FormControl>
-            <FormControl>
+          </Flex>
+          <Flex flexWrap="wrap">
+            <FormControl w="60" m="2">
               <FormLabel>slider *</FormLabel>
               <Select
                 onChange={(e) => {
@@ -359,9 +357,7 @@ const CompanyProfile = () => {
                 <option value={"deactivate"}>{"deactivate"}</option>
               </Select>
             </FormControl>
-          </HStack>
-          <HStack marginBottom="3vh">
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>youtubeVideo1Link *</FormLabel>
               <Input
                 type="text"
@@ -372,7 +368,7 @@ const CompanyProfile = () => {
                 required
               />
             </FormControl>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>youtubeVideo2Link *</FormLabel>
               <Input
                 type="text"
@@ -383,7 +379,7 @@ const CompanyProfile = () => {
                 required
               />
             </FormControl>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>presidentMessage *</FormLabel>
               <Input
                 type="text"
@@ -394,9 +390,9 @@ const CompanyProfile = () => {
                 required
               />
             </FormControl>
-          </HStack>
-          <HStack marginBottom="3vh">
-            <FormControl>
+          </Flex>
+          <Flex flexWrap="wrap">
+            <FormControl w="60" m="2">
               <FormLabel>memberShipChargesDetails *</FormLabel>
               <Input
                 type="text"
@@ -407,7 +403,7 @@ const CompanyProfile = () => {
                 required
               />
             </FormControl>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>paymentGatewayLink *</FormLabel>
               <Input
                 type="text"
@@ -418,7 +414,7 @@ const CompanyProfile = () => {
                 required
               />
             </FormControl>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>paymentDetails *</FormLabel>
               <Input
                 type="text"
@@ -429,7 +425,11 @@ const CompanyProfile = () => {
                 required
               />
             </FormControl>
-          </HStack>
+            <FormControl w="60" m="2">
+              <FormLabel>qrCodeImage</FormLabel>
+              <Input type="file" name="qrCodeImageLink" accept="image/*" />
+            </FormControl>
+          </Flex>
 
           <FormControl visibility="hidden" position="absolute">
             <FormLabel>Sliderd *</FormLabel>
@@ -443,48 +443,42 @@ const CompanyProfile = () => {
             />
           </FormControl>
 
-          <HStack marginBottom="3vh">
-            <FormControl>
-              <FormLabel>qrCodeImage</FormLabel>
-              <Input type="file" name="qrCodeImageLink" accept="image/*" />
-            </FormControl>
-            <FormControl>
+          <Flex flexWrap="wrap">
+            <FormControl w="60" m="2">
               <FormLabel>websiteLogo</FormLabel>
               <Input type="file" name="websiteLogoLink" accept="image/*" />
             </FormControl>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>signature</FormLabel>
               <Input type="file" name="signatureLink" accept="image/*" />
             </FormControl>
-          </HStack>
-          <HStack marginBottom="3vh">
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>idFront</FormLabel>
               <Input type="file" name="idFrontLink" accept="image/*" />
             </FormControl>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>idBack</FormLabel>
               <Input type="file" name="idBackLink" accept="image/*" />
             </FormControl>
-            <FormControl>
+          </Flex>
+          <Flex flexWrap="wrap">
+            <FormControl w="60" m="2">
               <FormLabel>certificateLink</FormLabel>
               <Input type="file" name="certificateLink" accept="image/*" />
             </FormControl>
-          </HStack>
-          <HStack marginBottom="3vh">
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>aboutUsPhotoLink</FormLabel>
               <Input type="file" name="aboutUsPhotoLink" accept="image/*" />
             </FormControl>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>slipImageLink</FormLabel>
               <Input type="file" name="slipImageLink" accept="image/*" />
             </FormControl>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>presidentImageLink</FormLabel>
               <Input type="file" name="presidentImageLink" accept="image/*" />
             </FormControl>
-          </HStack>
+          </Flex>
           <Button type="submit" mt={4} colorScheme="blue" w="12vw" mx="auto">
             Submit
           </Button>

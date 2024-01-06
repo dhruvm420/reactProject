@@ -108,21 +108,18 @@ const CreateMember = () => {
         setIsOpen={setIsOpen}
         type={errorType}
       />
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={(e) => handleSubmit(e)} style={{ margin: "auto" }}>
         <Flex
           flexDirection="column"
-          mx="auto"
-          w="90vw"
           shadow="2xl"
-          //   h="105vh"
-          px="4"
-          py="2"
+          px="10"
+          py="8"
           bg="white"
           borderRadius="3xl"
           m="4"
           justifyContent="space-evenly"
         >
-          <HStack>
+          <Flex flexWrap="wrap">
             <FormControl visibility="hidden" position="absolute">
               <FormLabel>panchayatReferenceId *</FormLabel>
               <Input
@@ -134,7 +131,7 @@ const CreateMember = () => {
                 required
               />
             </FormControl>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>Full Name *</FormLabel>
               <Input
                 type="text"
@@ -146,7 +143,7 @@ const CreateMember = () => {
                 required
               />
             </FormControl>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>Gender *</FormLabel>
               <Select
                 name="gender"
@@ -166,7 +163,7 @@ const CreateMember = () => {
                 </option>
               </Select>
             </FormControl>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>S/O *</FormLabel>
               <Input
                 type="text"
@@ -178,55 +175,52 @@ const CreateMember = () => {
                 required
               />
             </FormControl>
-          </HStack>
-          <HStack>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>Date of Birth *</FormLabel>
               <Input
                 type="date"
                 name="DOB"
                 border="1px"
                 borderColor="blue.500"
-                w="13vw"
                 value={formData.DOB}
                 onChange={handleInputChange}
                 required
               />
             </FormControl>
-          </HStack>
-          <FormControl>
-            <FormLabel>Profession *</FormLabel>
-            <Input
-              type="text"
-              name="profession"
-              border="1px"
-              borderColor="blue.500"
-              value={formData.profession}
-              onChange={handleInputChange}
-              required
-            />
-          </FormControl>
-          <FormControl>
-            <FormLabel>Blood Group *</FormLabel>
-            <Select
-              name="bloodGroup"
-              onChange={(e) => {
-                setBloodGroup(e.target.value);
-              }}
-              value={bloodGroup}
-            >
-              <option value={"A+"}>A+</option>
-              <option value={"A-"}>A-</option>
-              <option value={"B+"}>B+</option>
-              <option value={"B-"}>B-</option>
-              <option value={"AB+"}>AB+</option>
-              <option value={"AB-"}>AB-</option>
-              <option value={"O+"}>O+</option>
-              <option value={"O-"}>O-</option>
-            </Select>
-          </FormControl>
-          <HStack spacing="8">
-            <FormControl>
+          </Flex>
+          <Flex flexWrap="wrap">
+            <FormControl w="60" m="2">
+              <FormLabel>Profession *</FormLabel>
+              <Input
+                type="text"
+                name="profession"
+                border="1px"
+                borderColor="blue.500"
+                value={formData.profession}
+                onChange={handleInputChange}
+                required
+              />
+            </FormControl>
+            <FormControl w="60" m="2">
+              <FormLabel>Blood Group *</FormLabel>
+              <Select
+                name="bloodGroup"
+                onChange={(e) => {
+                  setBloodGroup(e.target.value);
+                }}
+                value={bloodGroup}
+              >
+                <option value={"A+"}>A+</option>
+                <option value={"A-"}>A-</option>
+                <option value={"B+"}>B+</option>
+                <option value={"B-"}>B-</option>
+                <option value={"AB+"}>AB+</option>
+                <option value={"AB-"}>AB-</option>
+                <option value={"O+"}>O+</option>
+                <option value={"O-"}>O-</option>
+              </Select>
+            </FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>Aadhar Number *</FormLabel>
               <Input
                 type="number"
@@ -239,7 +233,7 @@ const CreateMember = () => {
               />
             </FormControl>
 
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>Mobile Number *</FormLabel>
               <Input
                 type="number"
@@ -251,9 +245,9 @@ const CreateMember = () => {
                 required
               />
             </FormControl>
-          </HStack>
-          <HStack>
-            <FormControl>
+          </Flex>
+          <Flex flexWrap="wrap">
+            <FormControl w="60" m="2">
               <FormLabel>Address</FormLabel>
               <Textarea
                 name="addressResiding"
@@ -264,104 +258,95 @@ const CreateMember = () => {
                 placeholder="Enter your address"
               />
             </FormControl>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>State *</FormLabel>
               <Input
                 type="text"
                 name="stateResiding"
                 border="1px"
-                w="20vw"
                 borderColor="blue.500"
                 value={formData.stateResiding}
                 onChange={handleInputChange}
                 required
               />
             </FormControl>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>City *</FormLabel>
               <Input
                 type="text"
                 name="districtResiding"
                 border="1px"
-                w="20vw"
                 borderColor="blue.500"
                 value={formData.districtResiding}
                 onChange={handleInputChange}
                 required
               />
             </FormControl>
-          </HStack>
-          <HStack>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>Pin Code *</FormLabel>
               <Input
                 type="number"
                 name="pincodeResiding"
                 border="1px"
-                w="20vw"
                 borderColor="blue.500"
                 value={formData.pincodeResiding}
                 onChange={handleInputChange}
                 required
               />
             </FormControl>
-            <FormControl>
+          </Flex>
+          <Flex flexWrap="wrap">
+            <FormControl w="60" m="2">
               <FormLabel>Qualification *</FormLabel>
               <Input
                 type="text"
                 name="qualification"
                 border="1px"
                 borderColor="blue.500"
-                w="20vw"
                 value={formData.qualification}
                 onChange={handleInputChange}
                 required
               />
             </FormControl>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>Designation *</FormLabel>
               <Input
                 type="text"
                 name="designation"
                 border="1px"
                 borderColor="blue.500"
-                w="20vw"
                 value={formData.designation}
                 onChange={handleInputChange}
                 required
               />
             </FormControl>
-          </HStack>
-          <HStack>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>Email *</FormLabel>
               <Input
                 type="email"
                 name="email"
                 border="1px"
-                w="20vw"
                 borderColor="blue.500"
                 value={formData.email}
                 onChange={handleInputChange}
                 required
               />
             </FormControl>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>Password *</FormLabel>
               <Input
                 type="password"
                 name="password"
                 border="1px"
                 borderColor="blue.500"
-                w="20vw"
                 value={formData.password}
                 onChange={handleInputChange}
                 required
               />
             </FormControl>
-          </HStack>
-          <HStack>
-            <FormControl>
+          </Flex>
+          <Flex flexWrap="wrap">
+            <FormControl w="60" m="2">
               <FormLabel>Assign Unique Code *</FormLabel>
               <Input
                 type="text"
@@ -369,41 +354,41 @@ const CreateMember = () => {
                 value={formData.assignCode}
                 onChange={handleInputChange}
                 border="1px"
-                w="20vw"
                 borderColor="blue.500"
                 required
               />
             </FormControl>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>Id Proof Type *</FormLabel>
               <Input
                 type="text"
                 name="idProofType"
                 value={formData.idProofType}
                 border="1px"
-                w="20vw"
                 onChange={handleInputChange}
                 borderColor="blue.500"
                 required
               />
             </FormControl>
-          </HStack>
-          <FormControl>
-            <FormLabel>Profile Picture</FormLabel>
-            <Input type="file" name="profilePic" accept="image/*" />
-          </FormControl>
-          <FormControl>
-            <FormLabel>adharCardImage</FormLabel>
-            <Input type="file" name="adharCardImage" accept="image/*" />
-          </FormControl>
-          <FormControl>
-            <FormLabel>idProofImage</FormLabel>
-            <Input type="file" name="idProofImage" accept="image/*" />
-          </FormControl>
-          <FormControl>
-            <FormLabel>panCardImage</FormLabel>
-            <Input type="file" name="panCardImage" accept="image/*" />
-          </FormControl>
+            <FormControl w="60" m="2">
+              <FormLabel>Profile Picture</FormLabel>
+              <Input type="file" name="profilePic" accept="image/*" />
+            </FormControl>
+            <FormControl w="60" m="2">
+              <FormLabel>adharCardImage</FormLabel>
+              <Input type="file" name="adharCardImage" accept="image/*" />
+            </FormControl>
+          </Flex>
+          <Flex flexWrap="wrap">
+            <FormControl w="60" m="2">
+              <FormLabel>idProofImage</FormLabel>
+              <Input type="file" name="idProofImage" accept="image/*" />
+            </FormControl>
+            <FormControl w="60" m="2">
+              <FormLabel>panCardImage</FormLabel>
+              <Input type="file" name="panCardImage" accept="image/*" />
+            </FormControl>
+          </Flex>
           <Button type="submit" mt={4} colorScheme="blue" w="12vw" mx="auto">
             Submit
           </Button>

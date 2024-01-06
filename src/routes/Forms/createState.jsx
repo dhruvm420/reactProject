@@ -88,21 +88,19 @@ const CreateState = () => {
         setIsOpen={setIsOpen}
         type={errorType}
       />
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={(e) => handleSubmit(e)} style={{ margin: "auto" }}>
         <Flex
           flexDirection="column"
-          mx="auto"
           shadow="2xl"
-          h="105vh"
-          px="4"
-          py="2"
+          px="10"
+          py="8"
           bg="white"
           borderRadius="3xl"
           m="4"
           justifyContent="space-evenly"
         >
-          <HStack>
-            <FormControl>
+          <Flex flexWrap="wrap" p="1">
+            <FormControl w="60" m="2">
               <FormLabel>Full Name *</FormLabel>
               <Input
                 type="text"
@@ -114,7 +112,7 @@ const CreateState = () => {
                 required
               />
             </FormControl>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>S/O *</FormLabel>
               <Input
                 type="text"
@@ -126,38 +124,33 @@ const CreateState = () => {
                 required
               />
             </FormControl>
-          </HStack>
-          <HStack>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>Date of Birth *</FormLabel>
               <Input
                 type="date"
                 name="DOB"
                 border="1px"
                 borderColor="blue.500"
-                w="13vw"
                 value={formData.DOB}
                 onChange={handleInputChange}
                 required
               />
             </FormControl>
-
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>Joining Date *</FormLabel>
               <Input
                 type="date"
                 name="joiningDate"
                 border="1px"
                 borderColor="blue.500"
-                w="13vw"
                 value={formData.joiningDate}
                 onChange={handleInputChange}
                 required
               />
             </FormControl>
-          </HStack>
-          <HStack spacing="8">
-            <FormControl>
+          </Flex>
+          <Flex flexWrap="wrap">
+            <FormControl w="60" m="2">
               <FormLabel>Aadhar Number *</FormLabel>
               <Input
                 type="number"
@@ -170,7 +163,7 @@ const CreateState = () => {
               />
             </FormControl>
 
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>Mobile Number *</FormLabel>
               <Input
                 type="tel"
@@ -182,8 +175,7 @@ const CreateState = () => {
                 required
               />
             </FormControl>
-
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>Email *</FormLabel>
               <Input
                 type="email"
@@ -195,102 +187,102 @@ const CreateState = () => {
                 required
               />
             </FormControl>
-          </HStack>
-          <HStack>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>Password *</FormLabel>
               <Input
                 type="password"
                 name="password"
                 border="1px"
                 borderColor="blue.500"
-                w="20vw"
+                w="60"
                 value={formData.password}
                 onChange={handleInputChange}
                 required
               />
             </FormControl>
-            <FormControl>
+          </Flex>
+          <Flex flexWrap="wrap" spacing="8">
+            <FormControl w="60" m="2">
               <FormLabel>Assign Code *</FormLabel>
               <Input
                 type="text"
                 name="assignCode"
                 border="1px"
-                w="20vw"
+                w="60"
                 borderColor="blue.500"
                 required
               />
             </FormControl>
-          </HStack>
-          <HStack>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>State *</FormLabel>
               <Input
                 type="text"
                 name="stateResiding"
                 border="1px"
-                w="20vw"
+                w="60"
                 borderColor="blue.500"
                 value={formData.stateResiding}
                 onChange={handleInputChange}
                 required
               />
             </FormControl>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>City *</FormLabel>
               <Input
                 type="text"
                 name="cityResiding"
                 border="1px"
-                w="20vw"
+                w="60"
                 borderColor="blue.500"
                 value={formData.cityResiding}
                 onChange={handleInputChange}
                 required
               />
             </FormControl>
-            <FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>Qualification *</FormLabel>
               <Input
                 type="text"
                 name="qualification"
                 border="1px"
                 borderColor="blue.500"
-                w="20vw"
+                w="60"
                 value={formData.qualification}
                 onChange={handleInputChange}
                 required
               />
             </FormControl>
-            <FormControl>
+          </Flex>
+          <Flex flexWrap="wrap">
+            <FormControl w="60" m="2">
               <FormLabel>Designation *</FormLabel>
               <Input
                 type="text"
                 name="designation"
                 border="1px"
                 borderColor="blue.500"
-                w="20vw"
+                w="60"
                 value={formData.designation}
                 onChange={handleInputChange}
                 required
               />
             </FormControl>
-          </HStack>
-          <FormControl>
-            <FormLabel>Address</FormLabel>
-            <Textarea
-              name="addressResiding"
-              border="1px"
-              borderColor="blue.500"
-              value={formData.addressResiding}
-              onChange={handleInputChange}
-              placeholder="Enter your address"
-            />
-          </FormControl>
-          <FormControl>
-            <FormLabel>Profile Picture</FormLabel>
-            <Input type="file" name="profilePicture" accept="image/*" />
-          </FormControl>
+            <FormControl w="60" m="2">
+              <FormLabel>Address</FormLabel>
+              <Textarea
+                name="addressResiding"
+                border="1px"
+                borderColor="blue.500"
+                value={formData.addressResiding}
+                onChange={handleInputChange}
+                placeholder="Enter your address"
+              />
+            </FormControl>
+            <FormControl w="60" m="2">
+              <FormLabel>Profile Picture</FormLabel>
+              <Input type="file" name="profilePicture" accept="image/*" />
+            </FormControl>
+          </Flex>
           <Button type="submit" mt={4} colorScheme="blue" w="12vw" mx="auto">
             Submit
           </Button>

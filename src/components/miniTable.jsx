@@ -14,6 +14,12 @@ export default function MiniTable({ data }) {
   let rows = headers.map((header, index) => {
     if (
       header == "profilePictureLink" ||
+      header == "idProofPictureLink" ||
+      header == "aadharPictureLink" ||
+      header == "profilePictureLink" ||
+      header == "isVerified" ||
+      header == "panCardPictureLink" ||
+      header == "idProofType" ||
       header == "_id" ||
       header == "stateResiding" ||
       header == "cityResiding" ||

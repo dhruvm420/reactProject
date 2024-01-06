@@ -11,6 +11,7 @@ import { useState } from "react";
 import Header from "../components/header";
 export default function MiniID() {
   const userData = JSON.parse(localStorage.getItem("userKaData"));
+  if (userData["fatherName"]) userData.sonOf = userData["fatherName"];
   const [cardImage, setCardImage] = useState("");
   const handleDownload = () => {
     const idCardElement = document.getElementById("id-card");
