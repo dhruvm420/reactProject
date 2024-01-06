@@ -130,6 +130,7 @@ export default function TehsilList() {
       <ActionPopUp
         formName={"tehsil"}
         action={action}
+        parent={parent}
         modifyId={id}
         isOpen={dialogIsOpen}
         setIsOpen={setDialogIsOpen}
@@ -170,6 +171,7 @@ export default function TehsilList() {
             data={tehsilData}
             title="Tehsil"
             setIsOpen={setDialogIsOpen}
+            parent={parent}
             setAction={setAction}
             setId={setId}
             actionItems={actionitems}

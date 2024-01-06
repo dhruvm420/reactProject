@@ -108,6 +108,7 @@ export default function StateList() {
         formName={"state"}
         action={action}
         modifyId={id}
+        parent={parent}
         isOpen={dialogIsOpen}
         setIsOpen={setDialogIsOpen}
       />
@@ -136,6 +137,7 @@ export default function StateList() {
             data={stateData}
             title="State"
             setIsOpen={setDialogIsOpen}
+            parent={parent}
             setAction={setAction}
             setId={setId}
             actionItems={[

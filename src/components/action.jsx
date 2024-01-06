@@ -12,6 +12,7 @@ export default function Action(props) {
   const setId = props.setId;
   const setIsOpen = props.setIsOpen;
   const setAction = props.setAction;
+  const parent = props.parent;
   const items = props.items;
   return (
     <Flex wrap="wrap" w="12vw" alignItems="center">

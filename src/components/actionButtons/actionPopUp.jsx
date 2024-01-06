@@ -8,6 +8,7 @@ export default function ActionPopUp({
   modifyId,
   isOpen,
   setIsOpen,
+  parent,
 }) {
   function closeHandler() {
     setIsOpen(!isOpen);
@@ -27,6 +28,7 @@ export default function ActionPopUp({
     return (
       <EditAction
         isOpen={isOpen}
+        parent={parent}
         closeHandler={closeHandler}
         modifyId={modifyId}
         formName={formName}
@@ -49,6 +51,7 @@ export default function ActionPopUp({
         modifyId={modifyId}
         setIsOpen={setIsOpen}
         formName={formName}
+        parent={parent}
       />
     );
   return <></>;

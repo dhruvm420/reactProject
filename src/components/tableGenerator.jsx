@@ -13,6 +13,7 @@ export default function TableGenerator({
   data,
   title,
   setIsOpen,
+  parent,
   setAction,
   setId,
   actionItems,
@@ -85,6 +86,7 @@ export default function TableGenerator({
           <Td>
             <Action
               name={title}
+              parent={parent}
               id={dataItem["USER ID"]}
               setIsOpen={setIsOpen}
               setId={setId}

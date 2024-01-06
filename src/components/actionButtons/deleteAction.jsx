@@ -17,12 +17,19 @@ export default function DeleteAction({
   modifyId,
   formName,
   setIsOpen,
+  parent,
 }) {
   const navigate = useNavigate();
+  let child;
+  if (parent == "state") child = "district";
+  else if (parent == "district") child = "tehsil";
+  else if (parent == "tehsil") child = "panchayat";
+  else child = "member";
   async function deleteLogic() {
     // delete modifyId user from formName-list
     const storedToken = localStorage.getItem("jwtToken"); // Fetch the stored token
-    const url = `/superadmin/crud/${formName}/${modifyId}`;
+    let url = `/superadmin/crud/${formName}/${modifyId}`;
+    if (parent != "superadmin") url = `/${parent}/crud/${child}/${modifyId}`;
     if (storedToken) {
       // Set the token in the Axios headers before making the request
       setAuthToken(storedToken);
@@ -31,8 +38,7 @@ export default function DeleteAction({
       await axiosInstance
         .delete(url)
         .then(() => {
-          console.log("Successfully Deleted !!");
-          navigate("/dashboard");
+          navigate(-1);
         })
         .catch((error) => {
           console.error("Error Deleting data:", error);

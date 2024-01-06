@@ -144,6 +144,7 @@ export default function DistrictList() {
         modifyId={id}
         isOpen={dialogIsOpen}
         setIsOpen={setDialogIsOpen}
+        parent={parent}
       />
 
       <Root
@@ -185,6 +186,7 @@ export default function DistrictList() {
             setAction={setAction}
             setId={setId}
             actionItems={actionitems}
+            parent={parent}
           />
           <Pagination
             handlePageChange={handlePageChange}

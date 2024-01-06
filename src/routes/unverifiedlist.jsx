@@ -127,9 +127,10 @@ export default function UnVerifiedList() {
     >
       <Flex direction="column" mx="auto" mt="4">
         <ActionPopUp
-          formName={"unverified"}
+          formName={"member"}
           action={action}
           modifyId={id}
+          parent={parent}
           isOpen={dialogIsOpen}
           setIsOpen={setDialogIsOpen}
         />
@@ -149,9 +150,10 @@ export default function UnVerifiedList() {
         )}
         <TableGenerator
           data={unVerifiedData}
-          title="Unverified Members"
+          title="member"
           setIsOpen={setDialogIsOpen}
           setAction={setAction}
+          parent={parent}
           setId={setId}
           actionItems={["verify", "delete"]}
         />
