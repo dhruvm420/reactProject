@@ -26,7 +26,7 @@ export default function DashboardCards({ dashboardData }) {
       <MyCard
         title="Verified Members"
         count={dashboardData.verifiedmembers}
-        link="/verifiedmembers"
+        link="/verifiedmembers/superadmin"
       />
       <MyCard
         title="Unverified Members"

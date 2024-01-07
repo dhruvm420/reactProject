@@ -14,6 +14,8 @@ import { useState, useEffect } from "react";
 import ActionPopUp from "../components/actionButtons/actionPopUp";
 import { SearchIcon } from "@chakra-ui/icons";
 import { setAuthToken, axiosInstance } from "../components/axiosInstance.jsx";
+import { getCorrectDate } from "../components/date.jsx";
+import { useParams } from "react-router-dom";
 
 let dummyData = [
   {
@@ -40,6 +42,7 @@ let dummyData = [
 ];
 
 export default function VerifiedList() {
+  const { parent } = useParams();
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
   const [id, setId] = useState("");
   const [dataLoaded, setDataLoaded] = useState(false);
@@ -58,18 +61,13 @@ export default function VerifiedList() {
     // You can perform filtering or any other actions based on the search value here
   };
   function putinDummy(obj, d) {
-    let dataItem = {
-      "USER ID": "0134",
-      NAME: "KESHAW DAS",
-      MOBILE: "9999889999",
-      CITY: "Kawardha",
-      AUTHORITY: "Member",
-    };
+    let dataItem = {};
     dataItem["USER ID"] = obj["_id"];
+    dataItem.USERNAME = obj.userName;
     dataItem.NAME = obj.name;
-    dataItem.MOBILE = obj.mobile;
-    dataItem.CITY = obj.city;
-    dataItem.AUTHORITY = obj.authority;
+    dataItem.DOB = getCorrectDate(obj.DOB);
+    dataItem.MOBILE = obj.mobileNumber;
+    dataItem.CITY = obj.districtResiding;
     d.push(dataItem);
   }
   const fetch = async () => {
@@ -136,6 +134,7 @@ export default function VerifiedList() {
           modifyId={id}
           isOpen={dialogIsOpen}
           setIsOpen={setDialogIsOpen}
+          parent={parent}
         />
         <Box alignSelf="flex-end">
           <InputGroup my="2">
@@ -153,6 +152,7 @@ export default function VerifiedList() {
           data={verifiedData}
           title="Verified Members"
           setIsOpen={setDialogIsOpen}
+          parent={parent}
           setAction={setAction}
           setId={setId}
           actionItems={["id", "certificate", "appointment", "delete", "edit"]}

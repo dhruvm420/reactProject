@@ -81,7 +81,7 @@ export let routesList = [
     element: <PanchayatList />,
   },
   {
-    path: "/verifiedmembers",
+    path: "/verifiedmembers/:parent",
     element: <VerifiedList />,
   },
   {
