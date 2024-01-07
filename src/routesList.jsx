@@ -61,7 +61,7 @@ export let routesList = [
     errorElement: <ErrorPage />,
   },
   {
-    path: "/statelist",
+    path: "/statelist/:parent",
     element: <StateList />,
   },
   {

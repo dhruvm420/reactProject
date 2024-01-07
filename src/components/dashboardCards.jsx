@@ -3,7 +3,11 @@ export default function DashboardCards({ dashboardData }) {
   console.log(dashboardData);
   return (
     <>
-      <MyCard title="State" count={dashboardData.state} link="/statelist" />
+      <MyCard
+        title="State"
+        count={dashboardData.state}
+        link="/statelist/superadmin"
+      />
       <MyCard
         title="District"
         count={dashboardData.district}

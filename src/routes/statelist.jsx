@@ -18,6 +18,7 @@ import { setAuthToken, axiosInstance } from "../components/axiosInstance.jsx";
 import Pagination from "../components/pagination";
 import { getCorrectDate } from "../components/date.jsx";
 export default function StateList() {
+  const { parent } = useParams();
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
   const [id, setId] = useState("");
   const [action, setAction] = useState("");
