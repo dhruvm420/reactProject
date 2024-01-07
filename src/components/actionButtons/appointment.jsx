@@ -26,7 +26,7 @@ export default function Appointment() {
           setDataLoaded(true);
         })
         .catch((error) => {
-          setStateData({
+          setUserData({
             "USER ID": null,
             IMAGE: null,
             NAME: null,

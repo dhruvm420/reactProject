@@ -24,7 +24,7 @@ export default function Minidashboard() {
   if (type == "state") url = "/districtlist/state";
   else if (type == "district") url = "/tehsillist/district";
   else if (type == "tehsil") url = "/panchayatlist/tehsil";
-  else url = "/unverifiedmembers/panchayat";
+  else url = "/verifiedmembers/panchayat";
   const data = JSON.parse(localStorage.getItem("userKaData"));
   return (
     <>

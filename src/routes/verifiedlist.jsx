@@ -17,34 +17,22 @@ import { setAuthToken, axiosInstance } from "../components/axiosInstance.jsx";
 import { getCorrectDate } from "../components/date.jsx";
 import { useParams } from "react-router-dom";
 
-let dummyData = [
-  {
-    USER_ID: "0226",
-    NAME: "KESHAW DAS",
-    MOBILE: "9999889999",
-    CITY: "Kawardha",
-    AUTHORITY: "Member",
-  },
-  {
-    USER_ID: "0227",
-    NAME: "GOPAL DAS",
-    MOBILE: "9999889999",
-    CITY: "Kawardha",
-    AUTHORITY: "Member",
-  },
-  {
-    USER_ID: "0226",
-    NAME: "KESHAW DAS",
-    MOBILE: "9999889999",
-    CITY: "Kawardha",
-    AUTHORITY: "Member",
-  },
-];
-
 export default function VerifiedList() {
   const { parent } = useParams();
+  let child;
+  if (parent == "state") child = "district";
+  else if (parent == "district") child = "tehsil";
+  else if (parent == "tehsil") child = "panchayat";
+  else child = "member";
+  const actionitems =
+    parent == "superadmin"
+      ? ["id", "certificate", "appointment", "delete", "edit"]
+      : ["delete", "edit"];
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
   const [id, setId] = useState("");
+  const data = JSON.parse(localStorage.getItem("userKaData"));
+  let refId;
+  if (parent != "superadmin") refId = data._id;
   const [dataLoaded, setDataLoaded] = useState(false);
   const [action, setAction] = useState("");
   const storedValuesString = localStorage.getItem("myValues");
@@ -62,6 +50,8 @@ export default function VerifiedList() {
   };
   function putinDummy(obj, d) {
     let dataItem = {};
+    dataItem.IMAGE =
+      "https://sksk-backend.onrender.com/" + obj["profilePictureLink"];
     dataItem["USER ID"] = obj["_id"];
     dataItem.USERNAME = obj.userName;
     dataItem.NAME = obj.name;
@@ -76,11 +66,18 @@ export default function VerifiedList() {
       // Set the token in the Axios headers before making the request
       setAuthToken(storedToken);
       // Make an authenticated request using axiosInstance
+      let url;
+      if (parent == "superadmin") {
+        url = `superadmin/crud/member?isVerified=true&limit=10&fields=${searchVal}&page=${currentPage}`;
+      } else {
+        // url = `/${parent}/crud/${child}?page=${currentPage}&limit=10&sort=name&${parent}ReferenceId=${refId}`;
+        url = `/${parent}/crud/${child}?page=${currentPage}&limit=10`;
+        console.log(url);
+        // if (searchVal != "")
+        // url = `/superadmin/crud/search?roleName=district&searchQuery=${searchVal}&page=${currentPage}&limit=10`;
+      }
       await axiosInstance
-
-        .get(
-          `superadmin/crud/member?isVerified=true&limit=10&fields=${searchVal}&page=${currentPage}`
-        )
+        .get(url)
         .then((response) => {
           console.log(response);
           if (response.status != "fail") {
@@ -126,36 +123,41 @@ export default function VerifiedList() {
       </>
     );
   return (
-    <Root title="Verified Members">
+    <Root
+      title={parent == "superadmin" ? "Verified Members" : "Members"}
+      noSideBar={parent == "superadmin" ? null : true}
+    >
       <Flex direction="column" mx="auto" mt="4">
         <ActionPopUp
-          formName={"verified"}
+          formName={"member"}
           action={action}
           modifyId={id}
           isOpen={dialogIsOpen}
           setIsOpen={setDialogIsOpen}
           parent={parent}
         />
-        <Box alignSelf="flex-end">
-          <InputGroup my="2">
-            <InputRightElement pointerEvents="none">
-              <SearchIcon />
-            </InputRightElement>
-            <Input
-              placeholder="Search"
-              value={searchVal}
-              onChange={handleInputChange}
-            />
-          </InputGroup>
-        </Box>
+        {parent == "superadmin" && (
+          <Box alignSelf="flex-end">
+            <InputGroup my="2">
+              <InputRightElement pointerEvents="none">
+                <SearchIcon />
+              </InputRightElement>
+              <Input
+                placeholder="Search"
+                value={searchVal}
+                onChange={handleInputChange}
+              />
+            </InputGroup>
+          </Box>
+        )}
         <TableGenerator
           data={verifiedData}
-          title="Verified Members"
+          title="member"
           setIsOpen={setDialogIsOpen}
           parent={parent}
           setAction={setAction}
           setId={setId}
-          actionItems={["id", "certificate", "appointment", "delete", "edit"]}
+          actionItems={actionitems}
         />
         <Pagination
           handlePageChange={handlePageChange}

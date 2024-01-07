@@ -1,8 +1,8 @@
 export let sideBarRoutes = {
   "DASHBOARD ": "/dashboard",
-  "UNVERIFIED MEMBERS": "/unverifiedmembers",
-  "VERIFIED MEMBERS": "/verifiedmembers",
-  "PANCHAYAT LIST": "/panchayatlist",
+  "UNVERIFIED MEMBERS": "/unverifiedmembers/superadmin",
+  "VERIFIED MEMBERS": "/verifiedmembers/superadmin",
+  "PANCHAYAT LIST": "/panchayatlist/superadmin",
   "PANCHAYAT REPORT": "/panchayatreport",
   "SEAT BOOKED": "/eventbooking",
   "ALL EVENT": "/event",

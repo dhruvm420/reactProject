@@ -11,18 +11,14 @@ import {
   HStack,
   Heading,
   position,
+  Select,
   Text,
   Center,
   Spinner,
 } from "@chakra-ui/react";
-import CreateTestimonial from "../../routes/Forms/testimonialForm";
-import ManagementForm from "../../routes/Forms/managementForm";
-import DonationForm from "../../routes/Forms/donationForm";
-import SliderForm from "../../routes/Forms/createSlider";
-import ObjectiveForm from "../../routes/Forms/createObjective";
 import FormDialog from "../../routes/Forms/formDialog";
 import { axiosInstance, setAuthToken } from "../axiosInstance";
-import EditMember from "./editMember";
+import { useNavigate } from "react-router-dom";
 const formatDateForInput = (dateString) => {
   const date = new Date(dateString);
   const year = date.getFullYear();
@@ -32,38 +28,42 @@ const formatDateForInput = (dateString) => {
   day = day < 10 ? `0${day}` : day; // Adding leading zero if needed
   return `${year}-${month}-${day}`;
 };
-export default function EditForm(props) {
-  let formName = props.formName;
-  let modifyId = props.modifyId;
-  let parent = props.parent;
+export default function EditMember({ modifyId, formName, parent }) {
   let child;
   if (parent == "state") child = "district";
   else if (parent == "district") child = "tehsil";
   else if (parent == "tehsil") child = "panchayat";
   else child = "member";
-  const [changePassword, setChangePassword] = useState(false);
-  const [changeProfilePic, setchangeProfilePic] = useState(false);
   const [dataLoaded, setDataLoaded] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [idpanchayat, setIdPanchayat] = useState("");
   const [errorTitle, setErrorTitle] = useState(null);
   const [errorType, setErrorType] = useState(null);
+  const [gender, setGender] = useState("select");
+  const [bloodGroup, setBloodGroup] = useState("select");
   const [formData, setFormData] = useState({
-    fullName: "",
-    sonOf: "",
-    dob: "",
+    name: "",
+    fatherName: "",
+    DOB: "",
     joiningDate: "",
     aadharNumber: "",
+    profession: "",
     mobileNumber: "",
     email: "",
-    password: "",
-    state: "",
-    city: "",
-    address: "",
+    stateResiding: "",
+    districtResiding: "",
+    pincodeResiding: "",
+    idProofType: "",
+    cityResiding: "",
+    addressResiding: "",
     qualification: "",
     designation: "",
-    profilePicture: null,
+    adharCardImage: null,
+    idProofImage: null,
+    panCardImage: null,
+    assignCode: "",
+    profilePic: null,
   });
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -71,48 +71,12 @@ export default function EditForm(props) {
       [name]: value,
     });
   };
-
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setFormData({
-      ...formData,
-      profilePicture: file,
-    });
-  };
-  //modifyId is the id of person whose data is to be modified
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const storedToken = localStorage.getItem("jwtToken");
-    setAuthToken(storedToken);
-    const formData = new FormData(e.target);
-    setFormData((prev) => {
-      return {
-        ...prev,
-        profilePicture: formData.get("profilePicture"),
-      };
-    });
-    let url = `/superadmin/crud/${formName}/${modifyId}`;
-    if (parent != "superadmin") url = `/${parent}/crud/${child}/${modifyId}`;
-    // Perform form submission logic with formData
-    axiosInstance
-      .patch(url, formData)
-      .then((response) => {
-        setErrorTitle(`Successfully Edited!!!`);
-        setErrorType("d");
-        setIsOpen(true);
-      })
-      .catch((error) => {
-        console.log("Failed to create State:\n", error);
-        setErrorTitle(error.response.data.message);
-        setErrorType("error");
-        setIsOpen(true);
-      });
-  };
-
+  const navigate = useNavigate();
   const fetch = async () => {
     const storedToken = localStorage.getItem("jwtToken"); // Fetch the stored token
     let url = `/superadmin/crud/${formName}/${modifyId}`;
     if (parent != "superadmin") url = `/${parent}/crud/${child}/${modifyId}`;
+    console.log("url", url);
     if (storedToken) {
       // Set the token in the Axios headers before making the request
       setAuthToken(storedToken);
@@ -125,8 +89,9 @@ export default function EditForm(props) {
           let obj = response.data.data.response[0];
           console.log(obj);
           obj.DOB = formatDateForInput(obj.DOB);
-          obj.joiningDate = formatDateForInput(obj.joiningDate);
-          obj.password = "";
+          setIdPanchayat(obj.panchayatReferenceId);
+          obj.profilePic = null;
+          console.log(obj);
           setFormData(obj);
           setDataLoaded(true);
         })
@@ -140,30 +105,41 @@ export default function EditForm(props) {
   useEffect(() => {
     fetch();
   }, []);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const storedToken = localStorage.getItem("jwtToken");
+    setAuthToken(storedToken);
+    const formData = new FormData(e.target);
+    // Perform form submission logic with formData
 
-  if (!dataLoaded)
-    return (
-      <>
-        <Center height="100vh">
-          <Spinner size="xl" color="blue.500" />
-          <Text px="2"> Loading... </Text>
-        </Center>
-      </>
-    );
-  if (formName == "member")
-    return (
-      <EditMember parent={parent} modifyId={modifyId} formName={formName} />
-    );
-  if (formName == "testimonial")
-    return <CreateTestimonial edit={true} modifyId={modifyId} />;
-  if (formName == "management")
-    return <ManagementForm edit={true} modifyId={modifyId} />;
-  if (formName == "donation")
-    return <DonationForm edit={true} modifyId={modifyId} />;
-  if (formName == "slider")
-    return <SliderForm edit={true} modifyId={modifyId} />;
-  if (formName == "objective")
-    return <ObjectiveForm edit={true} modifyId={modifyId} />;
+    setFormData((prev) => {
+      return {
+        ...prev,
+        profilePic: formData.get("profilePic"),
+      };
+    });
+    let url = `/superadmin/crud/${formName}/${modifyId}`;
+    if (parent != "superadmin") url = `/${parent}/crud/${child}/${modifyId}`;
+    console.log("url", url);
+    console.log(formData);
+    axiosInstance
+      .patch(url, formData)
+      .then((response) => {
+        console.log(response);
+        let res = response.data.data.member;
+        let titles = `Successfully edited`;
+        setErrorTitle(titles);
+        setErrorType("mini");
+        setIsOpen(true);
+      })
+      .catch((error) => {
+        console.log(`Failed to edit: ${child}`, error);
+        setErrorTitle(error.response.data.message);
+        setErrorType("error");
+        setIsOpen(true);
+      });
+  };
+
   return (
     <>
       <FormDialog
@@ -183,6 +159,18 @@ export default function EditForm(props) {
           justifyContent="space-evenly"
         >
           <Flex flexWrap="wrap">
+            {/* <FormControl visibility="hidden" position="absolute">
+              <FormLabel>panchayatReferenceId *</FormLabel>
+              <Input
+                type="text"
+                name="panchayatReferenceId"
+                value={idpanchayat}
+                onChange={handleInputChange}
+                border="1px"
+                borderColor="blue.500"
+                required
+              />
+            </FormControl> */}
             <FormControl w="56" m="2">
               <FormLabel>Full Name *</FormLabel>
               <Input
@@ -196,13 +184,33 @@ export default function EditForm(props) {
               />
             </FormControl>
             <FormControl w="56" m="2">
+              <FormLabel>Gender *</FormLabel>
+              <Select
+                name="gender"
+                onChange={(e) => {
+                  setGender(e.target.value);
+                }}
+                value={gender}
+              >
+                <option key={0} value={"Male"}>
+                  {"Male"}
+                </option>
+                <option key={1} value={"Female"}>
+                  {"Female"}
+                </option>
+                <option key={2} value={"Other"}>
+                  {"Other"}
+                </option>
+              </Select>
+            </FormControl>
+            <FormControl w="56" m="2">
               <FormLabel>S/O *</FormLabel>
               <Input
                 type="text"
-                name="sonOf"
+                name="fatherName"
                 border="1px"
                 borderColor="blue.500"
-                value={formData.sonOf}
+                value={formData.fatherName}
                 onChange={handleInputChange}
                 required
               />
@@ -219,21 +227,39 @@ export default function EditForm(props) {
                 required
               />
             </FormControl>
-
+          </Flex>
+          <Flex flexWrap="wrap">
             <FormControl w="56" m="2">
-              <FormLabel>Joining Date *</FormLabel>
+              <FormLabel>Profession *</FormLabel>
               <Input
-                type="date"
-                name="joiningDate"
+                type="text"
+                name="profession"
                 border="1px"
                 borderColor="blue.500"
-                value={formData.joiningDate}
+                value={formData.profession}
                 onChange={handleInputChange}
                 required
               />
             </FormControl>
-          </Flex>
-          <Flex flexWrap="wrap">
+            <FormControl w="56" m="2">
+              <FormLabel>Blood Group *</FormLabel>
+              <Select
+                name="bloodGroup"
+                onChange={(e) => {
+                  setBloodGroup(e.target.value);
+                }}
+                value={bloodGroup}
+              >
+                <option value={"A+"}>A+</option>
+                <option value={"A-"}>A-</option>
+                <option value={"B+"}>B+</option>
+                <option value={"B-"}>B-</option>
+                <option value={"AB+"}>AB+</option>
+                <option value={"AB-"}>AB-</option>
+                <option value={"O+"}>O+</option>
+                <option value={"O-"}>O-</option>
+              </Select>
+            </FormControl>
             <FormControl w="56" m="2">
               <FormLabel>Aadhar Number *</FormLabel>
               <Input
@@ -259,44 +285,19 @@ export default function EditForm(props) {
                 required
               />
             </FormControl>
-
+          </Flex>
+          <Flex flexWrap="wrap">
             <FormControl w="56" m="2">
-              <FormLabel>Email *</FormLabel>
-              <Input
-                type="email"
-                name="email"
+              <FormLabel>Address</FormLabel>
+              <Textarea
+                name="addressResiding"
                 border="1px"
                 borderColor="blue.500"
-                value={formData.email}
+                value={formData.addressResiding}
                 onChange={handleInputChange}
-                required
+                placeholder="Enter your address"
               />
             </FormControl>
-            {/* {changePassword === true ? (
-            <FormControl w="56" m="2">
-              <FormLabel>Password *</FormLabel>
-              <Input
-                type="password"
-                name="password"
-                border="1px"
-                borderColor="blue.500"
-                
-                value={formData.password}
-                onChange={handleInputChange}
-                required
-              />
-            </FormControl>
-          ) : (
-            <Button
-              onClick={() => {
-                setChangePassword(true);
-              }}
-              colorScheme="blue"
-              my="2"
-            >
-              Change Password
-            </Button>
-          )} */}
             <FormControl w="56" m="2">
               <FormLabel>State *</FormLabel>
               <Input
@@ -309,21 +310,32 @@ export default function EditForm(props) {
                 required
               />
             </FormControl>
-          </Flex>
-
-          <Flex flexWrap="wrap">
             <FormControl w="56" m="2">
               <FormLabel>City *</FormLabel>
               <Input
                 type="text"
-                name="cityResiding"
+                name="districtResiding"
                 border="1px"
                 borderColor="blue.500"
-                value={formData.cityResiding}
+                value={formData.districtResiding}
                 onChange={handleInputChange}
                 required
               />
             </FormControl>
+            <FormControl w="56" m="2">
+              <FormLabel>Pin Code *</FormLabel>
+              <Input
+                type="number"
+                name="pincodeResiding"
+                border="1px"
+                borderColor="blue.500"
+                value={formData.pincodeResiding}
+                onChange={handleInputChange}
+                required
+              />
+            </FormControl>
+          </Flex>
+          <Flex flexWrap="wrap">
             <FormControl w="56" m="2">
               <FormLabel>Qualification *</FormLabel>
               <Input
@@ -349,39 +361,48 @@ export default function EditForm(props) {
               />
             </FormControl>
             <FormControl w="56" m="2">
-              <FormLabel>Address</FormLabel>
-              <Textarea
-                name="addressResiding"
+              <FormLabel>Email *</FormLabel>
+              <Input
+                type="email"
+                name="email"
                 border="1px"
                 borderColor="blue.500"
-                value={formData.addressResiding}
+                value={formData.email}
                 onChange={handleInputChange}
+                required
               />
             </FormControl>
           </Flex>
-
-          {changeProfilePic === true ? (
+          <Flex flexWrap="wrap">
             <FormControl w="56" m="2">
-              <FormLabel>Profile Picture</FormLabel>
+              <FormLabel>Assign Unique Code *</FormLabel>
               <Input
-                type="file"
-                name="profilePicture"
-                onChange={handleFileChange}
-                accept="image/*"
+                type="text"
+                name="assignCode"
+                value={formData.assignCode}
+                onChange={handleInputChange}
+                border="1px"
+                borderColor="blue.500"
+                required
               />
             </FormControl>
-          ) : (
-            <Button
-              onClick={() => {
-                setchangeProfilePic(true);
-              }}
-              colorScheme="blue"
-              w="15vw"
-              my="2"
-            >
-              Change Profile Picture
-            </Button>
-          )}
+            <FormControl w="56" m="2">
+              <FormLabel>Id Proof Type *</FormLabel>
+              <Input
+                type="text"
+                name="idProofType"
+                value={formData.idProofType}
+                border="1px"
+                onChange={handleInputChange}
+                borderColor="blue.500"
+                required
+              />
+            </FormControl>
+            <FormControl w="56" m="2">
+              <FormLabel>Profile Picture</FormLabel>
+              <Input type="file" name="profilePic" accept="image/*" />
+            </FormControl>
+          </Flex>
 
           <Button type="submit" mt={4} colorScheme="blue" w="12vw" mx="auto">
             Submit
