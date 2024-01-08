@@ -61,7 +61,7 @@ export default function Letter({ data }) {
             </strong>{" "}
             पुत्र/पुत्री{" "}
             <strong>
-              <span>{data.sonOf}</span>
+              <span>{data.fatherName ? data.fatherName : data.sonOf}</span>
             </strong>{" "}
             आपके सामाजिक कार्यो के प्रति आपकी निष्ठा को देखते हुए अपार हर्ष के
             साथ सूचित किया जाता है कि <span>"एस के एस के फाउंडेशन "</span> में

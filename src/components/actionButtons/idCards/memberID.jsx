@@ -102,7 +102,11 @@ export default function MemberId({ userId, listName }) {
                     margin="auto"
                     my="0"
                   >
-                    <img src={p} alt="user-image" />
+                    <img
+                      src={`https://sksk-backend.onrender.com/${userData.profilePictureLink}`}
+                      alt="user-image"
+                      crossOrigin="anonymous"
+                    />
                   </Box>
                   <Text fontSize="xl" my="1" px="2" textAlign="center">
                     {userData.name}

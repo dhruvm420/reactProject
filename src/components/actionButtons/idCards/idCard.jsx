@@ -114,7 +114,8 @@ export default function IDCard({ userId, listName }) {
                     <img
                       src={`https://sksk-backend.onrender.com/${userData.profilePictureLink}`}
                       alt="user-image"
-                      crossorigin="anonymous"
+                      crossOrigin="anonymous"
+                      // crossorigin="anonymous"
                     />
                   </Box>
                   <Text fontSize="xl" my="1" px="2" textAlign="center">
