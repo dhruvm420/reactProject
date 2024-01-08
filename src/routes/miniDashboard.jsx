@@ -15,6 +15,7 @@ import {
   Heading,
   Flex,
   HStack,
+  Mark,
 } from "@chakra-ui/react";
 import MiniTable from "../components/miniTable";
 import { getCorrectDate } from "../components/date";
@@ -29,39 +30,52 @@ export default function Minidashboard() {
   return (
     <>
       <Header title={`${type.toUpperCase()} Dashboard`} noHamburger={true} />
-      <HStack m="2" spacing="2">
+      <Flex wrap={"wrap"}>
         <Link to="/minilogout">
-          <Button colorScheme="red">Log Out</Button>
+          <Button colorScheme="red" m="2" fontSize={["12", "14", "18"]}>
+            Log Out
+          </Button>
         </Link>
         <Link to="/id">
-          <Button colorScheme="teal">ID Card</Button>
+          <Button colorScheme="teal" m="2" fontSize={["12", "14", "18"]}>
+            ID Card
+          </Button>
         </Link>
         <Link to="/certifcate">
-          <Button colorScheme="teal">Certificate</Button>
+          <Button colorScheme="teal" m="2" fontSize={["12", "14", "18"]}>
+            Certificate
+          </Button>
         </Link>
         <Link to="/appletter">
-          <Button colorScheme="teal">Appointment Letter</Button>
+          <Button colorScheme="teal" m="2" fontSize={["12", "14", "18"]}>
+            Appointment Letter
+          </Button>
         </Link>
         {type == "panchayat" && (
           <Link to="/createMember/panchayat">
-            <Button colorScheme="green">Create Member</Button>
+            <Button colorScheme="green" m="2" fontSize={["12", "14", "18"]}>
+              Create Member
+            </Button>
           </Link>
         )}
-      </HStack>
+      </Flex>
       <Card align="center">
         <CardHeader>
-          <Flex justifyContent="space-between" w="30vw">
-            <Box>
+          <Flex justifyContent="space-between" flexDirection={"column"}>
+            <Box p="2">
               <img
                 crossOrigin="anonymous"
                 src={`https://sksk-backend.onrender.com/${data["profilePictureLink"]}`}
                 alt=""
                 width="150px"
                 height="150px"
+                style={{ margin: "auto" }}
               />
             </Box>
-            <Box>
-              <Heading>{data["name"]}</Heading>
+            <Box p="2">
+              <Heading as="h1" fontSize={["20", "24", "36"]}>
+                {data["name"]}
+              </Heading>
             </Box>
           </Flex>
         </CardHeader>

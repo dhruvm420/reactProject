@@ -15,23 +15,25 @@ export default function Action(props) {
   const parent = props.parent;
   const items = props.items;
   return (
-    <Flex wrap="wrap" w="12vw" alignItems="center">
+    <Flex wrap="wrap" alignItems="center">
       {items.includes("id") && (
         <Link to={`/idcard/${name.toLowerCase()}/${id}`}>
-          <img src={idCard} alt="" width="30px" />
+          <Box p="0">
+            <img src={idCard} alt="" className="image-type-2" />
+          </Box>
         </Link>
       )}
       {items.includes("appointment") && (
         <Link to={`/appointment/${name.toLowerCase()}/${id}`}>
-          <Box m="0" p="0" backgroundColor="yellow">
-            <img src={idCard} alt="" width="30px" />
+          <Box p="0" backgroundColor="yellow">
+            <img src={idCard} alt="" className="image-type-2" />
           </Box>
         </Link>
       )}
       {items.includes("certificate") && (
         <Link to={`/certificate/${name.toLowerCase()}/${id}`}>
-          <Box m="0" p="0" backgroundColor="skyblue">
-            <img src={idCard} alt="" width="30px" />
+          <Box p="0" backgroundColor="skyblue">
+            <img src={idCard} alt="" className="image-type-2" />
           </Box>
         </Link>
       )}
@@ -39,14 +41,13 @@ export default function Action(props) {
         <Button
           colorScheme="white"
           p="0"
-          mx="-1"
           onClick={() => {
             setId(id);
             setAction("edit");
             setIsOpen(true);
           }}
         >
-          <img src={edit} alt="" width="25px" />
+          <img src={edit} alt="" className="image-type-1" />
         </Button>
       )}
 
@@ -54,42 +55,39 @@ export default function Action(props) {
         <Button
           colorScheme="white"
           p="0"
-          mx="-1"
           onClick={() => {
             setId(id);
             setAction("verify");
             setIsOpen(true);
           }}
         >
-          <img src={approve} alt="" width="25px" />
+          <img src={approve} alt="" className="image-type-1" />
         </Button>
       )}
       {items.includes("delete") && (
         <Button
           colorScheme="white"
           p="0"
-          mx="-1"
           onClick={() => {
             setId(id);
             setAction("delete");
             setIsOpen(true);
           }}
         >
-          <img src={del} alt="" width="25px" />
+          <img src={del} alt="" className="image-type-1" />
         </Button>
       )}
       {items.includes("menu") && (
         <Button
           colorScheme="white"
           p="0"
-          mx="-1"
           onClick={() => {
             setId(id);
             setAction("menu");
             setIsOpen(true);
           }}
         >
-          <img src={menu} alt="" width="30px" />
+          <img src={menu} alt="" className="image-type-2" />
         </Button>
       )}
     </Flex>

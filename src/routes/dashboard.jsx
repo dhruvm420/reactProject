@@ -88,9 +88,9 @@ export default function Dashboard() {
     );
   return (
     <Root title="Admin Dashboard">
-      <Box w="85vw" p="6">
-        <Flex padding="4" justifyContent="space-between" wrap="wrap">
-          <Flex wrap={"wrap"} p="0" m="0">
+      <Box p="6">
+        <Flex wrap="wrap">
+          <Flex justifyContent={"center"} wrap={"wrap"} p="0" m="0">
             <DashboardCards dashboardData={dashboardData} />
           </Flex>
           {postPreview} {complaintsPreview}

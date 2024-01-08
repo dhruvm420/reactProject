@@ -144,6 +144,7 @@ export default function VerifiedList() {
               </InputRightElement>
               <Input
                 placeholder="Search"
+                fontSize={["6", "9", "14"]}
                 value={searchVal}
                 onChange={handleInputChange}
               />

@@ -9,7 +9,7 @@ export default function SideBarItem(props) {
     <Box
       as="li"
       py="2"
-      fontSize="sm"
+      fontSize={["8", "10", "14"]}
       fontWeight="bold"
       color="gray.500"
       textAlign="center"
@@ -35,7 +35,7 @@ export default function SideBarItem(props) {
       <Box
         as="li"
         py="2"
-        fontSize="sm"
+        fontSize={["8", "10", "14"]}
         fontWeight="bold"
         color="gray.500"
         textAlign="center"

@@ -172,6 +172,7 @@ export default function DistrictList() {
                   <SearchIcon />
                 </InputRightElement>
                 <Input
+                  fontSize={["6", "9", "14"]}
                   placeholder="Search"
                   value={searchVal}
                   onChange={handleInputChange}

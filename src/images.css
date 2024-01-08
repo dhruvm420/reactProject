@@ -1,0 +1,89 @@
+/* For images with sizes 15, 20, 25 pixels */
+.image-type-2 {
+  /* Default size for smaller screens */
+  width: 20px;
+  margin: 0;
+}
+
+@media screen and (min-width: 600px) {
+  /* Adjust size for medium screens */
+  .image-type-2 {
+    width: 25px;
+    margin: 0;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  /* Adjust size for larger screens */
+  .image-type-2 {
+    width: 28px;
+    margin: 0;
+  }
+}
+@media screen and (min-width: 1200px) {
+  /* Adjust size for larger screens */
+  .image-type-2 {
+    width: 30px;
+    margin: 0;
+  }
+}
+
+/* For images with sizes 20, 25, 30 pixels */
+.image-type-1 {
+  /* Default size for smaller screens */
+  width: 12px;
+  margin: 0;
+}
+
+@media screen and (min-width: 600px) {
+  /* Adjust size for medium screens */
+  .image-type-1 {
+    width: 20px;
+    margin: 0;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  /* Adjust size for larger screens */
+  .image-type-1 {
+    width: 23px;
+    margin: 0px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  /* Adjust size for larger screens */
+  .image-type-1 {
+    width: 25px;
+    margin: 0;
+  }
+}
+
+.profile-pic {
+  /* Default size for smaller screens */
+  width: 25px;
+  height: 25px;
+}
+
+@media screen and (min-width: 600px) {
+  /* Adjust size for medium screens */
+  .profile-pic {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  /* Adjust size for larger screens */
+  .profile-pic {
+    width: 50px;
+    height: 50px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  /* Adjust size for larger screens */
+  .profile-pic {
+    width: 60px;
+    height: 60px;
+  }
+}

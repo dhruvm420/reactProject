@@ -37,6 +37,7 @@ export default function MiniTable({ data }) {
           <Tr
             key={index}
             bg="white"
+            fontSize={["12", "14", "18"]}
             _hover={{
               bg: "gray.200",
             }}
@@ -50,6 +51,7 @@ export default function MiniTable({ data }) {
       <Tr
         key={index}
         bg="white"
+        fontSize={["12", "14", "18"]}
         _hover={{
           bg: "gray.200",
         }}

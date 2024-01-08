@@ -158,6 +158,7 @@ export default function PanchayatList() {
                 <Input
                   placeholder="Search"
                   value={searchVal}
+                  fontSize={["6", "9", "14"]}
                   onChange={handleInputChange}
                 />
               </InputGroup>

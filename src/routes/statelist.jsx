@@ -130,6 +130,7 @@ export default function StateList() {
               <Input
                 placeholder="Search"
                 value={searchVal}
+                fontSize={["6", "9", "14"]}
                 onChange={handleInputChange}
               />
             </InputGroup>

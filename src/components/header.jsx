@@ -36,7 +36,7 @@ export default function Header(props) {
             <HamburgerIcon />
           </Flex>
         )}
-        <Heading as="h1" color="white">
+        <Heading as="h1" fontSize={["18", "24", "36"]} color="white">
           {props.title}
         </Heading>
       </Flex>

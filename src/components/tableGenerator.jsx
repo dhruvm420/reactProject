@@ -28,7 +28,7 @@ export default function TableGenerator({
   let rows;
   if (noData) {
     rows = (
-      <Tr>
+      <Tr fontSize={["5", "9", "13"]}>
         <Td
           colSpan={actionItems.length ? headers.length + 1 : headers.length}
           textAlign="center"
@@ -40,6 +40,7 @@ export default function TableGenerator({
   } else {
     rows = data.map((dataItem, index) => (
       <Tr
+        fontSize={["5", "9", "13"]}
         key={index}
         bg="white"
         _hover={{
@@ -47,7 +48,7 @@ export default function TableGenerator({
         }}
       >
         {headers.map((header, i) => (
-          <Td key={i}>
+          <Td key={i} px={["1", "1", "2"]}>
             {header === "IMAGE" || header === "TIMELINE POST" ? (
               title == "objective" ? (
                 <img
@@ -72,8 +73,7 @@ export default function TableGenerator({
                   crossorigin="anonymous"
                   src={dataItem[header]}
                   alt=""
-                  width="50px"
-                  height="50px"
+                  className="profile-pic"
                   p="0"
                 />
               )
@@ -83,7 +83,7 @@ export default function TableGenerator({
           </Td>
         ))}
         {actionItems.length > 0 && (
-          <Td>
+          <Td px={["1", "1", "2"]}>
             <Action
               name={title}
               parent={parent}
@@ -112,9 +112,15 @@ export default function TableGenerator({
         <Thead>
           <Tr>
             {headers.map((header, index) => (
-              <Th key={index}>{header}</Th>
+              <Th key={index} px={["1", "1", "2"]} fontSize={["7", "9", "13"]}>
+                {header}
+              </Th>
             ))}
-            {actionItems.length > 0 && <Th>ACTION</Th>}
+            {actionItems.length > 0 && (
+              <Th fontSize={["7", "9", "13"]} p="0">
+                ACTION
+              </Th>
+            )}
           </Tr>
         </Thead>
         <Tbody>{rows}</Tbody>
