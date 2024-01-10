@@ -9,7 +9,6 @@ export default function Sidebar() {
   return (
     <Box
       py="3"
-      w="100vw"
       position={"absolute"}
       zIndex={"10"}
       backgroundColor="rgba(250, 255, 255, 0.5)"

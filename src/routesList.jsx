@@ -45,6 +45,7 @@ import MiniAppLetter from "./routes/miniappointment.jsx";
 import MiniCertificate from "./routes/miniCertificate.jsx";
 import CreateChild from "./routes/Forms/createChild.jsx";
 import CreateMember from "./routes/Forms/createMember.jsx";
+import AboutUsList from "./routes/aboutusposts.jsx";
 export let routesList = [
   {
     path: "/",
@@ -190,6 +191,11 @@ export let routesList = [
   {
     path: "/createPost",
     element: <CreatePost />,
+  },
+
+  {
+    path: "/aboutus",
+    element: <AboutUsList />,
   },
   {
     path: "/companyprofile",
