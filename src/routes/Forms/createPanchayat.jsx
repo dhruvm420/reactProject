@@ -31,6 +31,7 @@ export default function CreatePanchayat() {
   const [selectedState, setSelectedState] = useState("");
   const [stateId, setStateId] = useState(null);
   const [districtList, setDistrictList] = useState([]);
+  const [bloodGroup, setBloodGroup] = useState("select");
   const [objectDistrictList, setObjectDistrictList] = useState([]);
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const [districtId, setDistrictId] = useState(null);
@@ -429,6 +430,37 @@ export default function CreatePanchayat() {
             </FormControl>
           </Flex>
           <Flex flexWrap="wrap">
+            <FormControl w="60" m="2">
+              <FormLabel>Work Place *</FormLabel>
+              <Input
+                type="text"
+                name="workPlace"
+                // value={formData.workPlace}
+                border="1px"
+                borderColor="blue.500"
+                // onChange={handleInputChange}
+                required
+              />
+            </FormControl>
+            <FormControl w="56" m="2">
+              <FormLabel>Blood Group *</FormLabel>
+              <Select
+                name="bloodGroup"
+                onChange={(e) => {
+                  setBloodGroup(e.target.value);
+                }}
+                value={bloodGroup}
+              >
+                <option value={"A+"}>A+</option>
+                <option value={"A-"}>A-</option>
+                <option value={"B+"}>B+</option>
+                <option value={"B-"}>B-</option>
+                <option value={"AB+"}>AB+</option>
+                <option value={"AB-"}>AB-</option>
+                <option value={"O+"}>O+</option>
+                <option value={"O-"}>O-</option>
+              </Select>
+            </FormControl>
             <FormControl w="60" m="2">
               <FormLabel>Address</FormLabel>
               <Textarea

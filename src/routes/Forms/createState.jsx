@@ -5,6 +5,7 @@ import {
   FormControl,
   FormLabel,
   Button,
+  Select,
   HStack,
   Flex,
 } from "@chakra-ui/react";
@@ -20,6 +21,7 @@ const CreateState = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [errorTitle, setErrorTitle] = useState(null);
   const [errorType, setErrorType] = useState(null);
+  const [bloodGroup, setBloodGroup] = useState("select");
   const [formData, setFormData] = useState({
     name: "",
     sonOf: "",
@@ -255,6 +257,37 @@ const CreateState = () => {
           </Flex>
           <Flex flexWrap="wrap">
             <FormControl w="60" m="2">
+              <FormLabel>Work Place *</FormLabel>
+              <Input
+                type="text"
+                name="workPlace"
+                value={formData.workPlace}
+                border="1px"
+                borderColor="blue.500"
+                onChange={handleInputChange}
+                required
+              />
+            </FormControl>
+            <FormControl w="60" m="2">
+              <FormLabel>Blood Group *</FormLabel>
+              <Select
+                name="bloodGroup"
+                onChange={(e) => {
+                  setBloodGroup(e.target.value);
+                }}
+                value={bloodGroup}
+              >
+                <option value={"A+"}>A+</option>
+                <option value={"A-"}>A-</option>
+                <option value={"B+"}>B+</option>
+                <option value={"B-"}>B-</option>
+                <option value={"AB+"}>AB+</option>
+                <option value={"AB-"}>AB-</option>
+                <option value={"O+"}>O+</option>
+                <option value={"O-"}>O-</option>
+              </Select>
+            </FormControl>
+            <FormControl w="60" m="2">
               <FormLabel>Designation *</FormLabel>
               <Input
                 type="text"
@@ -278,11 +311,11 @@ const CreateState = () => {
                 placeholder="Enter your address"
               />
             </FormControl>
-            <FormControl w="60" m="2">
-              <FormLabel>Profile Picture</FormLabel>
-              <Input type="file" name="profilePicture" accept="image/*" />
-            </FormControl>
           </Flex>
+          <FormControl w="60" m="2">
+            <FormLabel>Profile Picture</FormLabel>
+            <Input type="file" name="profilePicture" accept="image/*" />
+          </FormControl>
           <Button type="submit" mt={4} colorScheme="blue" w="12vw" mx="auto">
             Submit
           </Button>

@@ -7,6 +7,7 @@ import {
   Button,
   Flex,
   Box,
+  Select,
   Stack,
   HStack,
   Heading,
@@ -47,6 +48,7 @@ export default function EditForm(props) {
   const [isOpen, setIsOpen] = useState(false);
   const [errorTitle, setErrorTitle] = useState(null);
   const [errorType, setErrorType] = useState(null);
+  const [bloodGroup, setBloodGroup] = useState("select");
   const [formData, setFormData] = useState({
     fullName: "",
     sonOf: "",
@@ -360,29 +362,73 @@ export default function EditForm(props) {
             </FormControl>
           </Flex>
 
-          {changeProfilePic === true ? (
-            <FormControl w="56" m="2">
-              <FormLabel>Profile Picture</FormLabel>
+          <Flex flexWrap="wrap">
+            <FormControl w="60" m="2">
+              <FormLabel>Work Place *</FormLabel>
               <Input
-                type="file"
-                name="profilePicture"
-                onChange={handleFileChange}
-                accept="image/*"
+                type="text"
+                name="workPlace"
+                value={formData.workPlace}
+                border="1px"
+                borderColor="blue.500"
+                onChange={handleInputChange}
+                required
               />
             </FormControl>
-          ) : (
-            <Button
-              onClick={() => {
-                setchangeProfilePic(true);
-              }}
-              colorScheme="blue"
-              w="15vw"
-              my="2"
-            >
-              Change Profile Picture
-            </Button>
-          )}
-
+            <FormControl w="56" m="2">
+              <FormLabel>Blood Group *</FormLabel>
+              <Select
+                name="bloodGroup"
+                onChange={(e) => {
+                  setBloodGroup(e.target.value);
+                }}
+                value={bloodGroup}
+              >
+                <option value={"A+"}>A+</option>
+                <option value={"A-"}>A-</option>
+                <option value={"B+"}>B+</option>
+                <option value={"B-"}>B-</option>
+                <option value={"AB+"}>AB+</option>
+                <option value={"AB-"}>AB-</option>
+                <option value={"O+"}>O+</option>
+                <option value={"O-"}>O-</option>
+              </Select>
+            </FormControl>
+            <FormControl w="60" m="2">
+              <FormLabel>Assign Unique Code *</FormLabel>
+              <Input
+                type="text"
+                name="assignCode"
+                value={formData.assignCode}
+                onChange={handleInputChange}
+                border="1px"
+                borderColor="blue.500"
+                required
+              />
+            </FormControl>
+            {changeProfilePic === true ? (
+              <FormControl w="56" m="2">
+                <FormLabel>Profile Picture</FormLabel>
+                <Input
+                  type="file"
+                  name="profilePicture"
+                  onChange={handleFileChange}
+                  accept="image/*"
+                />
+              </FormControl>
+            ) : (
+              <Button
+                onClick={() => {
+                  setchangeProfilePic(true);
+                }}
+                colorScheme="blue"
+                w="15vw"
+                my="2"
+              >
+                Change Profile Picture
+              </Button>
+            )}
+          </Flex>
           <Button type="submit" mt={4} colorScheme="blue" w="12vw" mx="auto">
             Submit
           </Button>

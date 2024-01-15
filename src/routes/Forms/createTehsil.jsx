@@ -25,6 +25,7 @@ function getIdByName(inputArray, namey) {
 }
 export default function CreateTehsil() {
   const [isOpen, setIsOpen] = useState(false);
+  const [bloodGroup, setBloodGroup] = useState("select");
   const [errorTitle, setErrorTitle] = useState(null);
   const [stateList, setStateList] = useState([]);
   const [objectStateList, setObjectStateList] = useState([]);
@@ -369,6 +370,37 @@ export default function CreateTehsil() {
             </FormControl>
           </Flex>
           <Flex flexWrap="wrap">
+            <FormControl w="60" m="2">
+              <FormLabel>Work Place *</FormLabel>
+              <Input
+                type="text"
+                name="workPlace"
+                // value={formData.workPlace}
+                border="1px"
+                borderColor="blue.500"
+                // onChange={handleInputChange}
+                required
+              />
+            </FormControl>
+            <FormControl w="56" m="2">
+              <FormLabel>Blood Group *</FormLabel>
+              <Select
+                name="bloodGroup"
+                onChange={(e) => {
+                  setBloodGroup(e.target.value);
+                }}
+                value={bloodGroup}
+              >
+                <option value={"A+"}>A+</option>
+                <option value={"A-"}>A-</option>
+                <option value={"B+"}>B+</option>
+                <option value={"B-"}>B-</option>
+                <option value={"AB+"}>AB+</option>
+                <option value={"AB-"}>AB-</option>
+                <option value={"O+"}>O+</option>
+                <option value={"O-"}>O-</option>
+              </Select>
+            </FormControl>
             <FormControl w="60" m="2">
               <FormLabel>Address</FormLabel>
               <Textarea
