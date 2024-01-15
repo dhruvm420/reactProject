@@ -152,7 +152,7 @@ export default function MemberId({ userId, listName }) {
             </Flex>
             <Box textAlign="center" mt="4">
               <Button onClick={handleDownload} colorScheme="teal">
-                Download ID Card
+                <Text fontSize={["sm", "base", "lg"]}>Download ID Card</Text>
               </Button>
             </Box>
           </Flex>

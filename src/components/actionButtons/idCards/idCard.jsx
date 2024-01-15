@@ -12,9 +12,14 @@ import FrontID from "./frontID";
 import BackID from "./backID";
 import bg from "../../../assets/bg.png";
 import qr from "../../../assets/qr.png";
-import seal from "../../../assets/sksk_seal.png";
-import sign from "../../../assets/sign.png";
-import p from "../../../assets/p.jpg";
+import state_front from "../../../assets/state-front.png";
+import state_back from "../../../assets/state-back.png";
+import district_front from "../../../assets/district-front.png";
+import district_back from "../../../assets/district-back.png";
+import tehsil_front from "../../../assets/tehsil-front.png";
+import tehsil_back from "../../../assets/tehsil-back.png";
+import panchayat_front from "../../../assets/panchayat-front.png";
+import panchayat_back from "../../../assets/panchayat-back.png";
 import html2canvas from "html2canvas";
 import { useEffect, useState } from "react";
 import { getCorrectDate } from "../../date";
@@ -69,6 +74,20 @@ export default function IDCard({ userId, listName }) {
       });
     }
   };
+  let bg_front, bg_back;
+  if (listName == "state") {
+    bg_front = state_front;
+    bg_back = state_back;
+  } else if (listName == "district") {
+    bg_front = district_front;
+    bg_back = district_back;
+  } else if (listName == "tehsil") {
+    bg_front = tehsil_front;
+    bg_back = tehsil_back;
+  } else if (listName == "panchayat") {
+    bg_front = panchayat_front;
+    bg_back = panchayat_back;
+  }
   if (!dataLoaded)
     return (
       <>
@@ -86,6 +105,7 @@ export default function IDCard({ userId, listName }) {
             <Flex
               justifyContent="space-around"
               py="8"
+              px="2"
               wrap="wrap"
               mx="auto"
               id="id-card"
@@ -93,14 +113,14 @@ export default function IDCard({ userId, listName }) {
               <Flex flexDirection="column">
                 <Flex
                   id="front-side"
-                  w="360px"
+                  w="340px"
                   h="550px"
                   flexDirection="column"
                   justifyContent="end"
                   px="6"
-                  pb="8"
-                  backgroundImage={bg}
-                  backgroundPosition="center"
+                  pb="24"
+                  backgroundImage={bg_front}
+                  backgroundPosition="cover"
                   backgroundSize="cover"
                 >
                   <Box
@@ -110,6 +130,7 @@ export default function IDCard({ userId, listName }) {
                     overflow="auto"
                     margin="auto"
                     my="0"
+                    p="2"
                   >
                     <img
                       src={`https://sksk-backend.onrender.com/${userData.profilePictureLink}`}
@@ -119,24 +140,21 @@ export default function IDCard({ userId, listName }) {
                     />
                   </Box>
                   <Text fontSize="xl" my="1" px="2" textAlign="center">
-                    {userData.name}
+                    {userData.name.toUpperCase()}
                   </Text>
                   <FrontID userData={userData} />
-                  <Flex justifyContent="end">
-                    <img src={sign} alt="" width="90px" />
-                  </Flex>
                 </Flex>
               </Flex>
               <Flex flexDirection="column" mx="4">
                 <Flex
                   id="back-side"
-                  w="360px"
+                  w="340px"
                   h="550px"
                   flexDirection="column"
-                  justifyContent="end"
+                  justifyContent="center"
                   px="6"
-                  pb="8"
-                  backgroundImage={bg}
+                  pb="14"
+                  backgroundImage={bg_back}
                   backgroundPosition="center"
                   backgroundSize="cover"
                 >
@@ -147,19 +165,17 @@ export default function IDCard({ userId, listName }) {
                     overflow="auto"
                     margin="auto"
                     my="0"
+                    p="2"
                   >
                     <img src={qr} alt="user-image" />
                   </Box>
                   <BackID userData={userData} />
-                  <Flex justifyContent="end">
-                    <img src={seal} alt="" width="90px" />
-                  </Flex>
                 </Flex>
               </Flex>
             </Flex>
             <Box textAlign="center" mt="4">
               <Button onClick={handleDownload} colorScheme="teal">
-                Download ID Card
+                <Text fontSize={["sm", "base", "lg"]}>Download ID Card</Text>
               </Button>
             </Box>
           </Flex>

@@ -115,6 +115,7 @@ export default function EditForm(props) {
     const storedToken = localStorage.getItem("jwtToken"); // Fetch the stored token
     let url = `/superadmin/crud/${formName}/${modifyId}`;
     if (parent != "superadmin") url = `/${parent}/crud/${child}/${modifyId}`;
+    console.log("parent ", parent);
     if (storedToken) {
       // Set the token in the Axios headers before making the request
       setAuthToken(storedToken);

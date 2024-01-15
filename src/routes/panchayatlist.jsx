@@ -128,6 +128,7 @@ export default function PanchayatList() {
         formName={"panchayat"}
         action={action}
         modifyId={id}
+        parent={parent}
         isOpen={dialogIsOpen}
         setIsOpen={setDialogIsOpen}
       />
@@ -169,6 +170,7 @@ export default function PanchayatList() {
             title="Panchayat"
             setIsOpen={setDialogIsOpen}
             setAction={setAction}
+            parent={parent}
             setId={setId}
             actionItems={actionitems}
           />
