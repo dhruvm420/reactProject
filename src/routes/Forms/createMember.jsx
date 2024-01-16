@@ -99,6 +99,7 @@ const CreateMember = () => {
         setIsOpen(true);
       });
   };
+  console.log("panchayatReferenceId ", data._id);
 
   return (
     <Root title={`${child} Form`} noSideBar={true}>
@@ -124,7 +125,7 @@ const CreateMember = () => {
               <FormLabel>panchayatReferenceId *</FormLabel>
               <Input
                 type="text"
-                name="panchayatReferenceId"
+                name="panchayatRefrenceId"
                 value={data._id}
                 border="1px"
                 borderColor="blue.500"

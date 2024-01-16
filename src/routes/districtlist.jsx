@@ -52,7 +52,7 @@ export default function DistrictList() {
   const actionitems =
     parent == "superadmin"
       ? ["id", "appointment", "certificate", "delete", "menu", "edit"]
-      : ["delete", "edit"];
+      : ["delete"];
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };

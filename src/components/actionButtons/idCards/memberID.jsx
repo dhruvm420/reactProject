@@ -2,10 +2,9 @@ import { Flex, Box, Text, Button, Spinner, Center } from "@chakra-ui/react";
 import Root from "../../../routes/root";
 import MemberBackData from "./memberBackData";
 import MemberFrontData from "./memberFrontData";
-import bg from "../../../assets/bg.png";
+import bgFront from "../../../assets/member-front.png";
+import bgBack from "../../../assets/member-back.png";
 import qr from "../../../assets/qr.png";
-import seal from "../../../assets/sksk_seal.png";
-import sign from "../../../assets/sign.png";
 import html2canvas from "html2canvas";
 import { useEffect, useState } from "react";
 import { axiosInstance, setAuthToken } from "../../axiosInstance";
@@ -80,73 +79,63 @@ export default function MemberId({ userId, listName }) {
               mx="auto"
               id="id-card"
             >
-              <Flex flexDirection="column">
-                <Flex
-                  id="front-side"
-                  w="360px"
-                  h="550px"
-                  flexDirection="column"
-                  justifyContent="end"
-                  px="6"
-                  pb="8"
-                  backgroundImage={bg}
-                  backgroundPosition="center"
-                  backgroundSize="cover"
-                >
-                  <Box
-                    w="150px"
-                    h="150px"
-                    borderRadius="xl"
-                    overflow="auto"
-                    margin="auto"
-                    my="0"
-                  >
-                    <img
-                      src={`https://sksk-backend.onrender.com/${userData.profilePictureLink}`}
-                      alt="user-image"
-                      crossOrigin="anonymous"
-                    />
-                  </Box>
-                  <Text fontSize="xl" my="1" px="2" textAlign="center">
-                    {userData.name}
-                  </Text>
-                  <Text fontSize="lg" px="2" textAlign="center">
-                    MEMBER
-                  </Text>
+              <Flex
+                id="front-side"
+                w="582px"
+                h="350px"
+                alignItems={"flex-end"}
+                justifyContent={"space-between"}
+                px="6"
+                pb="16"
+                backgroundImage={bgFront}
+                backgroundPosition="center"
+                backgroundSize="cover"
+                m="1"
+              >
+                <Box w="300px">
                   <MemberFrontData userData={userData} />
-                  <Flex justifyContent="end">
-                    <img src={sign} alt="" width="90px" />
-                  </Flex>
-                </Flex>
-              </Flex>
-              <Flex flexDirection="column" mx="4">
-                <Flex
-                  id="back-side"
-                  w="360px"
-                  h="550px"
-                  flexDirection="column"
-                  justifyContent="end"
-                  px="6"
-                  pb="8"
-                  backgroundImage={bg}
-                  backgroundPosition="center"
-                  backgroundSize="cover"
+                </Box>
+                <Box
+                  w="150px"
+                  h="150px"
+                  borderRadius="xl"
+                  overflow="auto"
+                  my="0"
+                  m="0"
                 >
-                  <Box
-                    w="150px"
-                    h="150px"
-                    borderRadius="xl"
-                    overflow="auto"
-                    margin="auto"
-                    my="0"
-                  >
-                    <img src={qr} alt="user-image" />
-                  </Box>
+                  <img
+                    src={`https://sksk-backend.onrender.com/${userData.profilePictureLink}`}
+                    alt="user-image"
+                    crossOrigin="anonymous"
+                  />
+                </Box>
+              </Flex>
+              <Flex
+                id="back-side"
+                backgroundImage={bgBack}
+                w="582px"
+                h="350px"
+                alignItems={"center"}
+                justifyContent={"space-between"}
+                px="6"
+                pb="20"
+                backgroundPosition="center"
+                backgroundSize="cover"
+                m="1"
+              >
+                <Box w="300px">
                   <MemberBackData userData={userData} />
-                  <Flex justifyContent="end">
-                    <img src={seal} alt="" width="90px" />
-                  </Flex>
-                </Flex>
+                </Box>
+                <Box
+                  w="150px"
+                  h="150px"
+                  borderRadius="xl"
+                  overflow="auto"
+                  margin="auto"
+                  my="0"
+                >
+                  <img src={qr} alt="user-image" />
+                </Box>
               </Flex>
             </Flex>
             <Box textAlign="center" mt="4">

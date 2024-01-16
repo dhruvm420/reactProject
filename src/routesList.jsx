@@ -46,6 +46,7 @@ import MiniCertificate from "./routes/miniCertificate.jsx";
 import CreateChild from "./routes/Forms/createChild.jsx";
 import CreateMember from "./routes/Forms/createMember.jsx";
 import AboutUsList from "./routes/aboutusposts.jsx";
+import MemberID from "./routes/miniMemberID.jsx";
 export let routesList = [
   {
     path: "/",
@@ -206,8 +207,12 @@ export let routesList = [
     element: <Id />,
   },
   {
-    path: "/id",
+    path: "/id/:listName",
     element: <MiniID />,
+  },
+  {
+    path: "/memberID",
+    element: <MemberID />,
   },
   {
     path: "/appointment/:listName/:userId",

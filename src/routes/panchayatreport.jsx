@@ -7,6 +7,7 @@ import { getCorrectDate } from "../components/date.jsx";
 import { Center, Spinner, Text } from "@chakra-ui/react";
 export default function PanchayatReport() {
   const [panchayatList, setPanchayatList] = useState([]);
+  const [userCount, setUserCount] = useState(0);
   const [dataLoaded, setDataLoaded] = useState(false);
   const [selectedOption, setSelectedOption] = useState("select-panchayat");
   const [panchayatData, setPanchayatData] = useState([]);
@@ -79,12 +80,17 @@ export default function PanchayatReport() {
     if (selectedOption == "select-panchayat") return;
     console.log(selectedOption);
     const storedToken = localStorage.getItem("jwtToken"); // Fetch the stored token
-    // const selectedId = panchayatData.find(
-    //   (item) => panchayatData[item].NAME === selectedOption
-    // )["USER ID"];
-    // console.log(selectedId);
+    console.log(panchayatData);
+    let selectedId;
+    for (let panchayat in panchayatData) {
+      if (panchayatData[panchayat].NAME == selectedOption) {
+        selectedId = panchayatData[panchayat]["USER ID"];
+      }
+    }
+    console.log(selectedId);
     // let url = `/superadmin/crud/tehsil/${selectedId}`;
-    let url = `/superadmin/crud/member`;
+    let url = `/superadmin/crud/member/?panchayatRefrenceId=${selectedId}`;
+    console.log(url);
     if (storedToken) {
       // Set the token in the Axios headers before making the request
       setAuthToken(storedToken);
@@ -101,6 +107,7 @@ export default function PanchayatReport() {
               processTehsilData(obj[element], dumm);
             });
             console.log("dumm tehsil", dumm);
+            setUserCount(Object.keys(dumm).length);
             setTehsilData(dumm);
           }
           setDataLoaded(true);
@@ -170,11 +177,11 @@ export default function PanchayatReport() {
               title="Panchayat"
               actionItems={[]}
             />
-            {/* 
+
             <Box my="4" mx="auto">
-              Total User - {userCount}
-            </Box> */}
-            <TableGenerator data={tehsilData} title="User" actionItems={[]} />
+              Total Members - {userCount}
+            </Box>
+            <TableGenerator data={tehsilData} title="Member" actionItems={[]} />
           </>
         )}
       </Flex>

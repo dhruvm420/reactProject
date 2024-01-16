@@ -36,7 +36,7 @@ export default function Minidashboard() {
             Log Out
           </Button>
         </Link>
-        <Link to="/id">
+        <Link to={type == "member" ? "/memberID" : `/id/${type}`}>
           <Button colorScheme="teal" m="2" fontSize={["12", "14", "18"]}>
             ID Card
           </Button>
@@ -46,11 +46,13 @@ export default function Minidashboard() {
             Certificate
           </Button>
         </Link>
-        <Link to="/appletter">
-          <Button colorScheme="teal" m="2" fontSize={["12", "14", "18"]}>
-            Appointment Letter
-          </Button>
-        </Link>
+        {type != "member" && (
+          <Link to="/appletter">
+            <Button colorScheme="teal" m="2" fontSize={["12", "14", "18"]}>
+              Appointment Letter
+            </Button>
+          </Link>
+        )}
         {type == "panchayat" && (
           <Link to="/createMember/panchayat">
             <Button colorScheme="green" m="2" fontSize={["12", "14", "18"]}>

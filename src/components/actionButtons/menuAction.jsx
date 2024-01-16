@@ -40,7 +40,8 @@ export default function MenuAction({
     if (childLevel == "tehsil")
       dataItem["Total Panchayat"] = obj["totalPanchayat"];
     dataItem.DESIGNATION = obj["designation"];
-    dataItem.DATE = getCorrectDate(obj["joiningDate"]);
+    dataItem.DOB = getCorrectDate(obj["DOB"]);
+    if (obj.joiningDate) dataItem.DATE = getCorrectDate(obj["joiningDate"]);
     d.push(dataItem);
   }
   const fetchList = async (listName) => {
@@ -49,7 +50,9 @@ export default function MenuAction({
     // Set the token in the Axios headers before making the request
     setAuthToken(storedToken);
     // Make an authenticated request using axiosInstance
-    const url = `/superadmin/crud/${childLevel}?${formName}ReferenceId=${modifyId}`;
+    let url = `/superadmin/crud/${childLevel}?${formName}ReferenceId=${modifyId}`;
+    if (childLevel == "member")
+      url = `/superadmin/crud/${childLevel}/?panchayatRefrenceId=${modifyId}`;
     console.log("url ", url);
     await axiosInstance
       .get(url)

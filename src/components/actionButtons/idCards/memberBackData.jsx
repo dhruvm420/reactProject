@@ -5,23 +5,23 @@ export default function MemberBackData({ userData }) {
     <Flex flexDirection="column" my="2" fontSize="sm">
       <Flex>
         <Text w="50%">S/D/W of</Text>
-        <Text>:</Text>
+        <Text>-</Text>
         <Text w="50%" textAlign="right">
-          {userData.fatherName}
+          {userData.fatherName.toUpperCase()}
         </Text>
       </Flex>
       <Flex justifyContent="space-between">
         <Text w="50%">DOB</Text>
-        <Text>:</Text>
+        <Text>-</Text>
         <Text w="50%" textAlign="right">
           {getCorrectDate(userData.DOB)}
         </Text>
       </Flex>
       <Flex justifyContent="space-between">
         <Text w="50%">Address</Text>
-        <Text>: </Text>
+        <Text>- </Text>
         <Text w="50%" textAlign="right">
-          {userData.addressResiding}
+          {userData.addressResiding.toUpperCase()}
         </Text>
       </Flex>
     </Flex>

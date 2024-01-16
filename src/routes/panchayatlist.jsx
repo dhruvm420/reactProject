@@ -30,7 +30,7 @@ export default function PanchayatList() {
   const actionitems =
     parent == "superadmin"
       ? ["id", "appointment", "certificate", "delete", "menu", "edit"]
-      : ["delete", "edit"];
+      : ["delete"];
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
   const [id, setId] = useState("");
   const [action, setAction] = useState("");

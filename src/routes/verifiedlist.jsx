@@ -27,7 +27,7 @@ export default function VerifiedList() {
   const actionitems =
     parent == "superadmin"
       ? ["id", "certificate", "appointment", "delete", "edit"]
-      : ["delete", "edit"];
+      : ["delete"];
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
   const [id, setId] = useState("");
   const data = JSON.parse(localStorage.getItem("userKaData"));
@@ -71,7 +71,7 @@ export default function VerifiedList() {
         url = `superadmin/crud/member?isVerified=true&limit=10&fields=${searchVal}&page=${currentPage}`;
       } else {
         // url = `/${parent}/crud/${child}?page=${currentPage}&limit=10&sort=name&${parent}ReferenceId=${refId}`;
-        url = `/${parent}/crud/${child}?page=${currentPage}&limit=10`;
+        url = `/${parent}/crud/${child}?${parent}RefrenceId=${refId}&page=${currentPage}&limit=10`;
         console.log(url);
         // if (searchVal != "")
         // url = `/superadmin/crud/search?roleName=district&searchQuery=${searchVal}&page=${currentPage}&limit=10`;
