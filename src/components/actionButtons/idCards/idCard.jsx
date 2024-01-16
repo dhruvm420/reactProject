@@ -10,7 +10,6 @@ import {
 import Root from "../../../routes/root";
 import FrontID from "./frontID";
 import BackID from "./backID";
-import bg from "../../../assets/bg.png";
 import qr from "../../../assets/qr.png";
 import state_front from "../../../assets/state-front.png";
 import state_back from "../../../assets/state-back.png";
@@ -123,18 +122,14 @@ export default function IDCard({ userId, listName }) {
                   backgroundPosition="cover"
                   backgroundSize="cover"
                 >
-                  <Box
-                    w="150px"
-                    h="150px"
-                    borderRadius="xl"
-                    overflow="auto"
-                    margin="auto"
-                    my="0"
-                    p="2"
-                  >
+                  <Box borderRadius="xl" overflow="auto" margin="auto" my="0">
                     <img
                       src={`https://sksk-backend.onrender.com/${userData.profilePictureLink}`}
                       alt="user-image"
+                      style={{
+                        width: "140px",
+                        height: "140px",
+                      }}
                       crossOrigin="anonymous"
                       // crossorigin="anonymous"
                     />

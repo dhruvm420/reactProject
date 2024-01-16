@@ -1,30 +1,22 @@
 import { useState } from "react";
 import bg from "../assets/certificate.png";
-import sign from "../assets/sign.png";
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  FormControl,
-  Input,
-  useDisclosure,
-} from "@chakra-ui/react";
 import html2canvas from "html2canvas";
 import { Box, Flex, Text, Button, Heading } from "@chakra-ui/react";
+import { getCorrectDate } from "./date";
 export default function MakeCertificate({ data }) {
   const [cardImage, setCardImage] = useState("");
-  const [content, setContent] = useState("");
-  const [isOpen, setIsOpen] = useState(true);
-  const handleInputChange = (e) => {
-    setContent(e.target.value);
-  };
-  const handleClose = () => {
-    setIsOpen(!isOpen);
-  };
+  const content = (
+    <>
+      <p>
+        has been appointed As SKSKF Has been duly trained during training
+        session head on {getCorrectDate(data.joiningDate)} and has beet
+        authorized to act as SKSKF with efect from{" "}
+        {getCorrectDate(data.joiningDate)} until further notice.
+      </p>
+      <br />
+      We wish you a healthy wealthy and successful life.
+    </>
+  );
   const handleDownload = () => {
     const idCardElement = document.getElementById("certificate");
     if (idCardElement) {
@@ -47,65 +39,32 @@ export default function MakeCertificate({ data }) {
   };
   return (
     <>
-      <Modal blockScrollOnMount={true} isOpen={isOpen} onClose={handleClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Enter Detail</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <FormControl>
-              <Input
-                type="text"
-                name="content"
-                borderColor="blue.500"
-                value={content}
-                onChange={handleInputChange}
-                required
-              />
-            </FormControl>
-          </ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={handleClose}>
-              Submit
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-      <Flex mx="auto" p="4" flexDirection="column">
+      <Flex mx="auto" p="20px" flexDirection="column">
         <Flex
           flexDirection="column"
-          justifyContent="center"
+          justifyContent="end"
           backgroundImage={bg}
           backgroundPosition="center"
           backgroundSize="cover"
           w="1200px"
-          px="16"
+          px="40px"
           pt="300px"
           id="certificate"
           h="840px"
           mx="auto"
         >
-          <Box mx="auto">
-            <Heading>{data.name}</Heading>
+          <Box mx="auto" mb="89px">
+            <Text fontSize="25px">{data.name.toUpperCase()}</Text>
           </Box>
           <Box>
-            <Text fontSize="3xl" textAlign="center">
-              has
-            </Text>
-            <Text fontSize="3xl" textAlign="center">
+            <Text fontSize="20px" textAlign="center" mb="150px" px="120px">
               {content}
             </Text>
           </Box>
-          <Flex justifyContent="end" p="16">
-            <Box my="4">
-              <img src={sign} alt="" />
-            </Box>
-          </Flex>
         </Flex>
         <Box mx="auto" my="2">
           <Button onClick={handleDownload} w="10vw" colorScheme="teal">
-            Download
+            <Text fontSize={["sm", "base", "lg"]}>Download</Text>
           </Button>
         </Box>
       </Flex>

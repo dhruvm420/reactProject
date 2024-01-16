@@ -62,6 +62,8 @@ export default function Certificate() {
         </Center>
       </>
     );
+  // if(listName == "member")
+  //   return
   return (
     <>
       <MakeCertificate data={userData} />

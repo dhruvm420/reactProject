@@ -95,18 +95,15 @@ export default function MemberId({ userId, listName }) {
                 <Box w="300px">
                   <MemberFrontData userData={userData} />
                 </Box>
-                <Box
-                  w="150px"
-                  h="150px"
-                  borderRadius="xl"
-                  overflow="auto"
-                  my="0"
-                  m="0"
-                >
+                <Box borderRadius="xl" overflow="auto" my="0" m="0">
                   <img
                     src={`https://sksk-backend.onrender.com/${userData.profilePictureLink}`}
                     alt="user-image"
                     crossOrigin="anonymous"
+                    style={{
+                      width: "140px",
+                      height: "140px",
+                    }}
                   />
                 </Box>
               </Flex>
