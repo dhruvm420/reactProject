@@ -41,15 +41,22 @@ export default function Minidashboard() {
             ID Card
           </Button>
         </Link>
-        <Link to="/certifcate">
+        <Link to={`/certifcate/${type}`}>
           <Button colorScheme="teal" m="2" fontSize={["12", "14", "18"]}>
             Certificate
           </Button>
         </Link>
         {type != "member" && (
-          <Link to="/appletter">
+          <Link to={`/appletter/${type}`}>
             <Button colorScheme="teal" m="2" fontSize={["12", "14", "18"]}>
               Appointment Letter
+            </Button>
+          </Link>
+        )}
+        {type != "member" && (
+          <Link to={`/joinletter/${type}`}>
+            <Button colorScheme="teal" m="2" fontSize={["12", "14", "18"]}>
+              Joining Letter
             </Button>
           </Link>
         )}

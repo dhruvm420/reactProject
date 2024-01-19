@@ -37,6 +37,13 @@ export default function Action(props) {
           </Box>
         </Link>
       )}
+      {items.includes("joining") && (
+        <Link to={`/joining/${name.toLowerCase()}/${id}`}>
+          <Box p="0" backgroundColor="orange">
+            <img src={idCard} alt="" className="image-type-2" />
+          </Box>
+        </Link>
+      )}
       {items.includes("edit") && (
         <Button
           colorScheme="white"

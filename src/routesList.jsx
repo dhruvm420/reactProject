@@ -47,6 +47,8 @@ import CreateChild from "./routes/Forms/createChild.jsx";
 import CreateMember from "./routes/Forms/createMember.jsx";
 import AboutUsList from "./routes/aboutusposts.jsx";
 import MemberID from "./routes/miniMemberID.jsx";
+import Joining from "./components/joining.jsx";
+import MiniJoinLetter from "./routes/miniJoining.jsx";
 export let routesList = [
   {
     path: "/",
@@ -219,15 +221,23 @@ export let routesList = [
     element: <Appointment />,
   },
   {
-    path: "/appletter",
+    path: "/joining/:listName/:userId",
+    element: <Joining />,
+  },
+  {
+    path: "/appletter/:type",
     element: <MiniAppLetter />,
+  },
+  {
+    path: "/joinletter/:type",
+    element: <MiniJoinLetter />,
   },
   {
     path: "/certificate/:listName/:userId",
     element: <Certificate />,
   },
   {
-    path: "/certifcate",
+    path: "/certifcate/:type",
     element: <MiniCertificate />,
   },
   {

@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
-import Letter from "../components/letter";
-export default function MiniAppLetter() {
+import JoinLetter from "../components/makeJoiningLetter";
+export default function MiniJoinLetter() {
   const { type } = useParams();
   const userData = JSON.parse(localStorage.getItem("userKaData"));
   if (userData["fatherName"]) userData.sonOf = userData["fatherName"];
-  return <Letter data={userData} type={type} />;
+  return <JoinLetter data={userData} type={type} />;
 }

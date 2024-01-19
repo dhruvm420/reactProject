@@ -360,7 +360,7 @@ const CreateMember = () => {
               />
             </FormControl>
             <FormControl w="60" m="2">
-              <FormLabel>Id Proof Type *</FormLabel>
+              <FormLabel>Id Proof Type</FormLabel>
               <Input
                 type="text"
                 name="idProofType"
@@ -368,12 +368,11 @@ const CreateMember = () => {
                 border="1px"
                 onChange={handleInputChange}
                 borderColor="blue.500"
-                required
               />
             </FormControl>
             <FormControl w="60" m="2">
-              <FormLabel>Profile Picture</FormLabel>
-              <Input type="file" name="profilePic" accept="image/*" />
+              <FormLabel>Profile Picture *</FormLabel>
+              <Input type="file" name="profilePic" accept="image/*" required />
             </FormControl>
             <FormControl w="60" m="2">
               <FormLabel>adharCardImage</FormLabel>
@@ -388,6 +387,18 @@ const CreateMember = () => {
             <FormControl w="60" m="2">
               <FormLabel>panCardImage</FormLabel>
               <Input type="file" name="panCardImage" accept="image/*" />
+            </FormControl>
+            <FormControl w="60" m="2">
+              <FormLabel>Joining Date *</FormLabel>
+              <Input
+                type="date"
+                name="joiningDate"
+                border="1px"
+                borderColor="blue.500"
+                value={formData.joiningDate}
+                onChange={handleInputChange}
+                required
+              />
             </FormControl>
           </Flex>
           <Button type="submit" mt={4} colorScheme="blue" w="12vw" mx="auto">

@@ -148,6 +148,7 @@ export default function StateList() {
               "appointment",
               "delete",
               "menu",
+              "joining",
               "edit",
             ]}
           />

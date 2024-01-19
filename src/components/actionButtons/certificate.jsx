@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import MakeCertificate from "../makeCertificate";
 import { axiosInstance, setAuthToken } from "../axiosInstance";
+import MemberCertificate from "../membCertificate";
 export default function Certificate() {
   const { listName, userId } = useParams();
   const [userData, setUserData] = useState({});
@@ -62,8 +63,8 @@ export default function Certificate() {
         </Center>
       </>
     );
-  // if(listName == "member")
-  //   return
+  if(listName == "member")
+    return  <MemberCertificate data = {userData} />
   return (
     <>
       <MakeCertificate data={userData} />

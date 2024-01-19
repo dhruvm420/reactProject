@@ -26,8 +26,8 @@ export default function VerifiedList() {
   else child = "member";
   const actionitems =
     parent == "superadmin"
-      ? ["id", "certificate", "appointment", "delete", "edit"]
-      : ["delete"];
+      ? ["id", "certificate", "delete", "edit"]
+      : [];
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
   const [id, setId] = useState("");
   const data = JSON.parse(localStorage.getItem("userKaData"));

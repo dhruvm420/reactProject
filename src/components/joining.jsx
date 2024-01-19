@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Letter from "../letter";
 import { Center, Spinner, Text } from "@chakra-ui/react";
-import { axiosInstance, setAuthToken } from "../axiosInstance";
-export default function Appointment() {
+import { axiosInstance, setAuthToken } from "./axiosInstance";
+import JoinLetter from "./makeJoiningLetter";
+export default function Joining() {
   const { listName, userId } = useParams();
   const [userData, setUserData] = useState({});
   const [dataLoaded, setDataLoaded] = useState(false);
@@ -54,5 +54,5 @@ export default function Appointment() {
         </Center>
       </>
     );
-  return <Letter data={userData} type = {listName} />;
+  return <JoinLetter data={userData} type = {listName} />;
 }

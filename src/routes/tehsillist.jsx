@@ -27,8 +27,8 @@ export default function TehsilList() {
   else child = "member";
   const actionitems =
     parent == "superadmin"
-      ? ["id", "appointment", "certificate", "delete", "menu", "edit"]
-      : ["delete"];
+      ? ["id", "appointment", "certificate", "delete", "menu", "edit", "joining"]
+      : [];
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
   const [dataLoaded, setDataLoaded] = useState(false);
   const [id, setId] = useState("");
