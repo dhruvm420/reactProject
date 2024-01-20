@@ -11,17 +11,17 @@ export default function MemberBackData({ userData }) {
         </Text>
       </Flex>
       <Flex justifyContent="space-between">
-        <Text w="50%">DOB</Text>
-        <Text>-</Text>
-        <Text w="50%" textAlign="right">
-          {getCorrectDate(userData.DOB)}
-        </Text>
-      </Flex>
-      <Flex justifyContent="space-between">
         <Text w="50%">Address</Text>
         <Text>- </Text>
         <Text w="50%" textAlign="right">
           {userData.addressResiding.toUpperCase()}
+        </Text>
+      </Flex>
+      <Flex justifyContent="space-between">
+        <Text w="50%">REG DATE.</Text>
+        <Text>-</Text>
+        <Text w="50%" textAlign="right">
+          {getCorrectDate(userData.joiningDate)}
         </Text>
       </Flex>
     </Flex>

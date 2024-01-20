@@ -6,5 +6,5 @@ export default function MiniCertificate() {
   const userData = JSON.parse(localStorage.getItem("userKaData"));
   const {type} = useParams();
   if(type == "member")  return <MemberCertificate data= {userData} />
-  return <MakeCertificate data={userData} />;
+  return <MakeCertificate data={userData} type = {type} />;
 }

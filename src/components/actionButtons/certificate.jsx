@@ -67,7 +67,7 @@ export default function Certificate() {
     return  <MemberCertificate data = {userData} />
   return (
     <>
-      <MakeCertificate data={userData} />
+      <MakeCertificate data={userData} type = {listName} />
     </>
   );
 }

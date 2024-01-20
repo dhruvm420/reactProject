@@ -3,7 +3,7 @@ import bg from "../assets/certificate.png";
 import html2canvas from "html2canvas";
 import { Box, Flex, Text, Button, Heading } from "@chakra-ui/react";
 import { getCorrectDate } from "./date";
-export default function MakeCertificate({ data }) {
+export default function MakeCertificate({ data , type }) {
   const [cardImage, setCardImage] = useState("");
   const content = (
     <>
@@ -53,6 +53,9 @@ export default function MakeCertificate({ data }) {
           h="840px"
           mx="auto"
         >
+          <Box mx="auto" mb="52px" pr = "53px">
+            <Text fontSize="18px">{type.toUpperCase()}</Text>
+          </Box>
           <Box mx="auto" mb="89px">
             <Text fontSize="25px">{data.name.toUpperCase()}</Text>
           </Box>
