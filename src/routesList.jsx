@@ -52,11 +52,15 @@ import MiniJoinLetter from "./routes/miniJoining.jsx";
 export let routesList = [
   {
     path: "/",
-    element: <LogIn coordinator={true}/>,
+    element: <LogIn coordinator={true} />,
     errorElement: <ErrorPage />,
   },
   {
     path: "/login",
+    element: <LogIn coordinator={true} />,
+  },
+  {
+    path: "/admin",
     element: <LogIn />,
   },
   {
