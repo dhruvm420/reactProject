@@ -21,8 +21,8 @@ import ManagementForm from "../../routes/Forms/managementForm";
 import DonationForm from "../../routes/Forms/donationForm";
 import SliderForm from "../../routes/Forms/createSlider";
 import ObjectiveForm from "../../routes/Forms/createObjective";
-import FormDialog from "../../routes/Forms/formDialog";
-import { axiosInstance, setAuthToken } from "../axiosInstance";
+import FormDialog from "../formDialog";
+import { axiosInstance, setAuthToken } from "../../utilities/axiosInstance";
 import EditMember from "./editMember";
 const formatDateForInput = (dateString) => {
   const date = new Date(dateString);

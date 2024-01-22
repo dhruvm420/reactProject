@@ -9,13 +9,13 @@ import {
 } from "@chakra-ui/react";
 import { Center, Spinner } from "@chakra-ui/react";
 import Pagination from "../components/pagination";
-import Root from "./root";
+import Root from "../components/root.jsx";
 import TableGenerator from "../components/tableGenerator";
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import ActionPopUp from "../components/actionButtons/actionPopUp";
 import { SearchIcon } from "@chakra-ui/icons";
-import { setAuthToken, axiosInstance } from "../components/axiosInstance.jsx";
+import { setAuthToken, axiosInstance } from "../utilities/axiosInstance.jsx";
 
 const sample = [
   {
@@ -28,7 +28,7 @@ const sample = [
     DATE: null,
   },
 ];
-import { getCorrectDate } from "../components/date.jsx";
+import { getCorrectDate } from "../utilities/date.jsx";
 export default function DistrictList() {
   const { parent } = useParams();
   let child;

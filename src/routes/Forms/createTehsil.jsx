@@ -9,10 +9,10 @@ import {
   Flex,
   HStack,
 } from "@chakra-ui/react";
-import Root from "../root";
-import { axiosInstance, setAuthToken } from "../../components/axiosInstance";
+import Root from "../../components/root";
+import { axiosInstance, setAuthToken } from "../../utilities/axiosInstance";
 import { useNavigate } from "react-router-dom";
-import FormDialog from "./formDialog";
+import FormDialog from "../../components/formDialog";
 function extractNames(inputArray) {
   return inputArray.map((item) => item.name);
 }

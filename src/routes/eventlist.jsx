@@ -1,12 +1,12 @@
 import { Flex, Button, Box, Text } from "@chakra-ui/react";
 import ActionPopUp from "../components/actionButtons/actionPopUp";
-import Root from "./root";
+import Root from "../components/root.jsx";
 import TableGenerator from "../components/tableGenerator";
 import { Link } from "react-router-dom";
 import { Center, Spinner } from "@chakra-ui/react";
-import { setAuthToken, axiosInstance } from "../components/axiosInstance.jsx";
+import { setAuthToken, axiosInstance } from "../utilities/axiosInstance.jsx";
 import { useState, useEffect } from "react";
-import { getCorrectDate } from "../components/date.jsx";
+import { getCorrectDate } from "../utilities/date.jsx";
 let dumy = [
   {
     IMAGE: null,

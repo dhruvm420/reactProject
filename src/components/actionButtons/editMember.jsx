@@ -16,8 +16,8 @@ import {
   Center,
   Spinner,
 } from "@chakra-ui/react";
-import FormDialog from "../../routes/Forms/formDialog";
-import { axiosInstance, setAuthToken } from "../axiosInstance";
+import FormDialog from "../formDialog";
+import { axiosInstance, setAuthToken } from "../../utilities/axiosInstance";
 import { useNavigate } from "react-router-dom";
 const formatDateForInput = (dateString) => {
   const date = new Date(dateString);

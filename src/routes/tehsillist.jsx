@@ -11,13 +11,13 @@ import { Center, Spinner } from "@chakra-ui/react";
 import Pagination from "../components/pagination";
 import TableGenerator from "../components/tableGenerator";
 import { Link, useParams } from "react-router-dom";
-import Root from "./root";
+import Root from "../components/root.jsx";
 import { useState, useEffect } from "react";
 import ActionPopUp from "../components/actionButtons/actionPopUp";
 import { SearchIcon } from "@chakra-ui/icons";
-import { setAuthToken, axiosInstance } from "../components/axiosInstance.jsx";
+import { setAuthToken, axiosInstance } from "../utilities/axiosInstance.jsx";
 
-import { getCorrectDate } from "../components/date.jsx";
+import { getCorrectDate } from "../utilities/date.jsx";
 export default function TehsilList() {
   const { parent } = useParams();
   let child;

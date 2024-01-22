@@ -7,7 +7,7 @@ import {
   Center,
   Spinner,
 } from "@chakra-ui/react";
-import Root from "../../../routes/root";
+import Root from "../../root";
 import FrontID from "./frontID";
 import BackID from "./backID";
 import qr from "../../../assets/qr.png";
@@ -21,8 +21,8 @@ import panchayat_front from "../../../assets/panchayat-front.png";
 import panchayat_back from "../../../assets/panchayat-back.jpg";
 import html2canvas from "html2canvas";
 import { useEffect, useState } from "react";
-import { getCorrectDate } from "../../date";
-import { axiosInstance, setAuthToken } from "../../axiosInstance";
+import { getCorrectDate } from "../../../utilities/date";
+import { axiosInstance, setAuthToken } from "../../../utilities/axiosInstance";
 export default function IDCard({ userId, listName }) {
   const [cardImage, setCardImage] = useState("");
   const [dataLoaded, setDataLoaded] = useState(false);

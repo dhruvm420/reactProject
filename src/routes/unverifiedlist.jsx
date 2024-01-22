@@ -12,10 +12,10 @@ import { Center, Spinner } from "@chakra-ui/react";
 import TableGenerator from "../components/tableGenerator";
 import { useState, useEffect } from "react";
 import ActionPopUp from "../components/actionButtons/actionPopUp";
-import { setAuthToken, axiosInstance } from "../components/axiosInstance.jsx";
-import Root from "./root";
+import { setAuthToken, axiosInstance } from "../utilities/axiosInstance.jsx";
+import Root from "../components/root.jsx";
 import { useParams } from "react-router-dom";
-import { getCorrectDate } from "../components/date.jsx";
+import { getCorrectDate } from "../utilities/date.jsx";
 export default function UnVerifiedList() {
   const { parent } = useParams();
   let child;

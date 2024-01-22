@@ -8,15 +8,15 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { Center, Spinner } from "@chakra-ui/react";
-import Root from "./root";
+import Root from "../components/root.jsx";
 import { Link, useParams } from "react-router-dom";
 import TableGenerator from "../components/tableGenerator";
 import { useState, useEffect } from "react";
 import ActionPopUp from "../components/actionButtons/actionPopUp";
 import { SearchIcon } from "@chakra-ui/icons";
-import { setAuthToken, axiosInstance } from "../components/axiosInstance.jsx";
+import { setAuthToken, axiosInstance } from "../utilities/axiosInstance.jsx";
 import Pagination from "../components/pagination";
-import { getCorrectDate } from "../components/date.jsx";
+import { getCorrectDate } from "../utilities/date.jsx";
 export default function StateList() {
   const { parent } = useParams();
   const [dialogIsOpen, setDialogIsOpen] = useState(false);

@@ -9,7 +9,7 @@ import {
   Stack,
   HStack,
 } from "@chakra-ui/react";
-import Root from "../root";
+import Root from "../../components/root";
 export default function DonationForm({ edit = false, modifyId = null }) {
   const [formData, setFormData] = useState({
     name: "",

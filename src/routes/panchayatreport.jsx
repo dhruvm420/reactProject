@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { FormControl, FormLabel, Select, Flex, Box } from "@chakra-ui/react";
-import Root from "./root";
+import Root from "../components/root.jsx";
 import TableGenerator from "../components/tableGenerator";
-import { setAuthToken, axiosInstance } from "../components/axiosInstance.jsx";
-import { getCorrectDate } from "../components/date.jsx";
+import { setAuthToken, axiosInstance } from "../utilities/axiosInstance.jsx";
+import { getCorrectDate } from "../utilities/date.jsx";
 import { Center, Spinner, Text } from "@chakra-ui/react";
 export default function PanchayatReport() {
   const [panchayatList, setPanchayatList] = useState([]);

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Center, Spinner, Text } from "@chakra-ui/react";
-import { axiosInstance, setAuthToken } from "./axiosInstance";
+import { axiosInstance, setAuthToken } from "../utilities/axiosInstance";
 import JoinLetter from "./makeJoiningLetter";
 export default function Joining() {
   const { listName, userId } = useParams();

@@ -1,7 +1,7 @@
 import { Box, Flex } from "@chakra-ui/react";
-import Header from "../components/header";
-import Sidebar from "../components/sidebar";
-import ScrollToTop from "../components/scrollToTop";
+import Header from "./header";
+import Sidebar from "./sidebar";
+import ScrollToTop from "./scrollToTop";
 import { useState } from "react";
 export default function Root({ children, title, noSideBar }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);

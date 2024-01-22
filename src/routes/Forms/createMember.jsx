@@ -9,13 +9,13 @@ import {
   HStack,
   Flex,
 } from "@chakra-ui/react";
-import Root from "../root.jsx";
+import Root from "../../components/root.jsx";
 import {
   axiosInstance,
   setAuthToken,
-} from "../../components/axiosInstance.jsx";
+} from "../../utilities/axiosInstance.jsx";
 import { useNavigate, useParams } from "react-router-dom";
-import FormDialog from "./formDialog.jsx";
+import FormDialog from "../../components/formDialog.jsx";
 const CreateMember = () => {
   const { parent } = useParams();
   const data = JSON.parse(localStorage.getItem("userKaData"));

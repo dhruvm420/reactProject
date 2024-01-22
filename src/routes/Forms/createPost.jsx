@@ -11,7 +11,7 @@ import {
   Stack,
   Box,
 } from "@chakra-ui/react";
-import Root from "../root";
+import Root from "../../components/root";
 
 export default function CreatePost() {
   const [formData, setFormData] = useState({

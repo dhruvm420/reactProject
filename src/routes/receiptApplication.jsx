@@ -1,5 +1,5 @@
 import { Flex } from "@chakra-ui/react";
-import Root from "./root";
+import Root from "../components/root";
 import TableGenerator from "../components/tableGenerator";
 let receiptData = [
   {

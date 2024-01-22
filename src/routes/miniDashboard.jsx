@@ -18,7 +18,7 @@ import {
   Mark,
 } from "@chakra-ui/react";
 import MiniTable from "../components/miniTable";
-import { getCorrectDate } from "../components/date";
+import { getCorrectDate } from "../utilities/date";
 export default function Minidashboard() {
   const { type } = useParams();
   let url;

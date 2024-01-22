@@ -9,7 +9,7 @@ import {
   Textarea,
   Box,
 } from "@chakra-ui/react";
-import Root from "../root";
+import Root from "../../components/root";
 
 export default function CreateEvent() {
   const [formData, setFormData] = useState({

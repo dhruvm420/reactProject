@@ -2,7 +2,7 @@ import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import bg from "../assets/joining.png";
 import html2canvas from "html2canvas";
-import { getCorrectDate } from "./date";
+import { getCorrectDate } from "../utilities/date";
 
 export default function JoinLetter({ data, type }) {
   const [cardImage, setCardImage] = useState("");

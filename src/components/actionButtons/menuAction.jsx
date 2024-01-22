@@ -11,8 +11,8 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import TableGenerator from "../tableGenerator";
-import { getCorrectDate } from "../date";
-import { axiosInstance, setAuthToken } from "../axiosInstance";
+import { getCorrectDate } from "../../utilities/date";
+import { axiosInstance, setAuthToken } from "../../utilities/axiosInstance";
 export default function MenuAction({
   isOpen,
   closeHandler,

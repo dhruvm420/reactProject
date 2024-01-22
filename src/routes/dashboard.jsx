@@ -1,8 +1,8 @@
 import { Box, Heading, Flex, Text } from "@chakra-ui/react";
 import ListPreview from "../components/listPreview.jsx";
 import { Center, Spinner } from "@chakra-ui/react";
-import Root from "./root.jsx";
-import { setAuthToken, axiosInstance } from "../components/axiosInstance.jsx";
+import Root from "../components/root.jsx";
+import { setAuthToken, axiosInstance } from "../utilities/axiosInstance.jsx";
 import { useState, useEffect } from "react";
 import DashboardCards from "../components/dashboardCards.jsx";
 let posts = [];

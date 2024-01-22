@@ -1,5 +1,5 @@
 import { Flex, Box, Text, Button, Spinner, Center } from "@chakra-ui/react";
-import Root from "../../../routes/root";
+import Root from "../../root";
 import MemberBackData from "./memberBackData";
 import MemberFrontData from "./memberFrontData";
 import bgFront from "../../../assets/member-front.png";
@@ -7,7 +7,7 @@ import bgBack from "../../../assets/member-back.jpg";
 import qr from "../../../assets/qr.png";
 import html2canvas from "html2canvas";
 import { useEffect, useState } from "react";
-import { axiosInstance, setAuthToken } from "../../axiosInstance";
+import { axiosInstance, setAuthToken } from "../../../utilities/axiosInstance";
 export default function MemberId({ userId, listName }) {
   const [cardImage, setCardImage] = useState("");
   const [dataLoaded, setDataLoaded] = useState(false);

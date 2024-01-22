@@ -7,16 +7,16 @@ import {
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/react";
-import { getCorrectDate } from "../components/date.jsx";
+import { getCorrectDate } from "../utilities/date.jsx";
 import { Center, Spinner } from "@chakra-ui/react";
-import Root from "./root";
+import Root from "../components/root.jsx";
 import TableGenerator from "../components/tableGenerator";
 import Pagination from "../components/pagination";
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import ActionPopUp from "../components/actionButtons/actionPopUp";
 import { SearchIcon } from "@chakra-ui/icons";
-import { setAuthToken, axiosInstance } from "../components/axiosInstance.jsx";
+import { setAuthToken, axiosInstance } from "../utilities/axiosInstance.jsx";
 export default function PanchayatList() {
   const { parent } = useParams();
   let child;

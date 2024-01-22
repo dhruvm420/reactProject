@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Letter from "../letter";
 import { Center, Spinner, Text } from "@chakra-ui/react";
-import { axiosInstance, setAuthToken } from "../axiosInstance";
+import { axiosInstance, setAuthToken } from "../../utilities/axiosInstance";
 export default function Appointment() {
   const { listName, userId } = useParams();
   const [userData, setUserData] = useState({});

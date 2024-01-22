@@ -1,10 +1,10 @@
-import Root from "./root";
+import Root from "../components/root.jsx";
 import { Flex, Button, Box, Text } from "@chakra-ui/react";
 import TableGenerator from "../components/tableGenerator";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Center, Spinner } from "@chakra-ui/react";
-import { setAuthToken, axiosInstance } from "../components/axiosInstance.jsx";
+import { setAuthToken, axiosInstance } from "../utilities/axiosInstance.jsx";
 let dmy = [
   {
     "TIMELINE POST": null,

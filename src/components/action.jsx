@@ -1,5 +1,4 @@
 import { HStack, Box, Button, Flex } from "@chakra-ui/react";
-import toggle from "../assets/toggle.svg";
 import edit from "../assets/edit.svg";
 import del from "../assets/delete.svg";
 import approve from "../assets/approve.svg";

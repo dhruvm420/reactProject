@@ -1,4 +1,4 @@
-import Root from "./root";
+import Root from "../components/root";
 import { Flex } from "@chakra-ui/react";
 import TableGenerator from "../components/tableGenerator";
 let messageData = [

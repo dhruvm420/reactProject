@@ -1,5 +1,5 @@
 import { Flex, Button, Box } from "@chakra-ui/react";
-import Root from "./root";
+import Root from "../components/root";
 import TableGenerator from "../components/tableGenerator";
 import { useState } from "react";
 import { Link } from "react-router-dom";

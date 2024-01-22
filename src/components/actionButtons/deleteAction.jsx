@@ -9,7 +9,7 @@ import {
   Text,
   ModalCloseButton,
 } from "@chakra-ui/react";
-import { axiosInstance, setAuthToken } from "../axiosInstance";
+import { axiosInstance, setAuthToken } from "../../utilities/axiosInstance";
 import { useNavigate } from "react-router-dom";
 export default function DeleteAction({
   isOpen,

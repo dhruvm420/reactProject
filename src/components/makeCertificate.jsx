@@ -2,7 +2,7 @@ import { useState } from "react";
 import bg from "../assets/certificate.png";
 import html2canvas from "html2canvas";
 import { Box, Flex, Text, Button, Heading } from "@chakra-ui/react";
-import { getCorrectDate } from "./date";
+import { getCorrectDate } from "../utilities/date";
 export default function MakeCertificate({ data , type }) {
   const [cardImage, setCardImage] = useState("");
   const content = (

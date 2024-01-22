@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 import {
   axiosInstance,
   setAuthToken,
-} from "../../components/axiosInstance.jsx";
+} from "../../utilities/axiosInstance.jsx";
 
 const LogIn = ({ coordinator }) => {
   const initialValues = {

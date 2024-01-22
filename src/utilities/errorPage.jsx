@@ -1,5 +1,5 @@
 import { useRouteError } from "react-router-dom";
-import Root from "../routes/root";
+import Root from "../components/root";
 import { Flex, Heading } from "@chakra-ui/react";
 export default function ErrorPage() {
   const error = useRouteError();

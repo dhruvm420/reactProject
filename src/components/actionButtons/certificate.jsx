@@ -10,7 +10,7 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import MakeCertificate from "../makeCertificate";
-import { axiosInstance, setAuthToken } from "../axiosInstance";
+import { axiosInstance, setAuthToken } from "../../utilities/axiosInstance";
 import MemberCertificate from "../membCertificate";
 export default function Certificate() {
   const { listName, userId } = useParams();

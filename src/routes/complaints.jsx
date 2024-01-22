@@ -1,4 +1,4 @@
-import Root from "./root";
+import Root from "../components/root.jsx";
 import {
   Flex,
   Text,
@@ -11,7 +11,7 @@ import { SearchIcon } from "@chakra-ui/icons";
 import TableGenerator from "../components/tableGenerator";
 import Pagination from "../components/pagination";
 import { useParams } from "react-router-dom";
-import { setAuthToken, axiosInstance } from "../components/axiosInstance.jsx";
+import { setAuthToken, axiosInstance } from "../utilities/axiosInstance.jsx";
 import { useState, useEffect } from "react";
 import { Center, Spinner } from "@chakra-ui/react";
 let dummyy = [

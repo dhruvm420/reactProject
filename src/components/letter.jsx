@@ -3,7 +3,7 @@ import { useState } from "react";
 import bg from "../assets/appointment1.png";
 import bg2 from "../assets/appointment2.png";
 import html2canvas from "html2canvas";
-import { getCorrectDate } from "./date";
+import { getCorrectDate } from "../utilities/date";
 
 export default function Letter({ data, type }) {
   const [cardImage, setCardImage] = useState("");

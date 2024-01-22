@@ -11,13 +11,13 @@ import {
   Center,
   Spinner,
 } from "@chakra-ui/react";
-import Root from "../root.jsx";
+import Root from "../../components/root.jsx";
 import {
   axiosInstance,
   setAuthToken,
-} from "../../components/axiosInstance.jsx";
+} from "../../utilities/axiosInstance.jsx";
 import { useNavigate } from "react-router-dom";
-import FormDialog from "./formDialog.jsx";
+import FormDialog from "../../components/formDialog.jsx";
 
 const CompanyProfile = () => {
   const [isOpen, setIsOpen] = useState(false);

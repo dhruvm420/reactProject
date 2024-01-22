@@ -8,7 +8,7 @@ import {
   Td,
   TableCaption,
 } from "@chakra-ui/react";
-import { getCorrectDate } from "./date";
+import { getCorrectDate } from "../utilities/date";
 export default function MiniTable({ data }) {
   const headers = Object.keys(data);
   let rows = headers.map((header, index) => {

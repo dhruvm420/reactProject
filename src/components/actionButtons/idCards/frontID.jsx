@@ -1,5 +1,5 @@
 import { Flex, Text } from "@chakra-ui/react";
-import { getCorrectDate } from "../../date";
+import { getCorrectDate } from "../../../utilities/date";
 export default function FrontID({ userData }) {
   return (
     <Flex flexDirection="column" my="2" fontSize="sm">

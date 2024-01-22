@@ -6,10 +6,10 @@ import {
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/react";
-import Root from "./root";
+import Root from "../components/root.jsx";
 import { SearchIcon } from "@chakra-ui/icons";
 import TableGenerator from "../components/tableGenerator";
-import { setAuthToken, axiosInstance } from "../components/axiosInstance.jsx";
+import { setAuthToken, axiosInstance } from "../utilities/axiosInstance.jsx";
 import Pagination from "../components/pagination";
 import { Center, Spinner } from "@chakra-ui/react";
 import { useState, useEffect } from "react";

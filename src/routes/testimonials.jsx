@@ -8,9 +8,9 @@ import {
   InputRightElement,
 } from "@chakra-ui/react";
 import TableGenerator from "../components/tableGenerator";
-import Root from "./root";
+import Root from "../components/root.jsx";
 import ActionPopUp from "../components/actionButtons/actionPopUp";
-import { setAuthToken, axiosInstance } from "../components/axiosInstance.jsx";
+import { setAuthToken, axiosInstance } from "../utilities/axiosInstance.jsx";
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Pagination from "../components/pagination";

@@ -8,9 +8,9 @@ import {
   InputRightElement,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
-import Root from "./root";
+import Root from "../components/root.jsx";
 import TableGenerator from "../components/tableGenerator";
-import { setAuthToken, axiosInstance } from "../components/axiosInstance.jsx";
+import { setAuthToken, axiosInstance } from "../utilities/axiosInstance.jsx";
 import { Link } from "react-router-dom";
 import ActionPopUp from "../components/actionButtons/actionPopUp";
 import { useState, useEffect } from "react";
