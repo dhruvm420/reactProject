@@ -2,7 +2,7 @@ import { Flex, Box, Text, Button, list } from "@chakra-ui/react";
 import qr from "../assets/qr.png";
 import html2canvas from "html2canvas";
 import bgFront from "../assets/member-front.png";
-import bgBack from "../assets/member-back.png";
+import bgBack from "../assets/member-back.jpg";
 import { useState } from "react";
 import Header from "../components/header";
 import MemberFrontData from "../components/actionButtons/idCards/memberFrontData";

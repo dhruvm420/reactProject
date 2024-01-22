@@ -13,18 +13,17 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import Header from "../../components/header";
 import {
   axiosInstance,
   setAuthToken,
 } from "../../components/axiosInstance.jsx";
 
-const LogIn = () => {
+const LogIn = ({ coordinator }) => {
   const initialValues = {
     email: "",
     password: "",
   };
-  const [loginType, setLoginType] = useState("superadmin");
+  const [loginType, setLoginType] = useState("state");
   const [loginError, setLoginError] = useState(null);
   const [loginStatus, setLoginStatus] = useState(false);
   let navigate = useNavigate();
@@ -75,14 +74,9 @@ const LogIn = () => {
 
     return errors;
   };
-  const loginlist = [
-    "superadmin",
-    "state",
-    "district",
-    "tehsil",
-    "panchayat",
-    "member",
-  ];
+  const loginlist = coordinator
+    ? ["state", "district", "tehsil", "panchayat", "member"]
+    : ["superadmin", "state", "district", "tehsil", "panchayat", "member"];
   if (loginStatus)
     return (
       <>

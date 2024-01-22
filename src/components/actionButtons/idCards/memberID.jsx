@@ -3,7 +3,7 @@ import Root from "../../../routes/root";
 import MemberBackData from "./memberBackData";
 import MemberFrontData from "./memberFrontData";
 import bgFront from "../../../assets/member-front.png";
-import bgBack from "../../../assets/member-back.png";
+import bgBack from "../../../assets/member-back.jpg";
 import qr from "../../../assets/qr.png";
 import html2canvas from "html2canvas";
 import { useEffect, useState } from "react";
