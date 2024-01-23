@@ -7,6 +7,7 @@ import { useState } from "react";
 import Header from "../components/header";
 import MemberFrontData from "../components/actionButtons/idCards/memberFrontData";
 import MemberBackData from "../components/actionButtons/idCards/memberBackData";
+import { baseUrl } from "../utilities/baseURL";
 export default function MemberID() {
   const userData = JSON.parse(localStorage.getItem("userKaData"));
   if (userData["fatherName"]) userData.sonOf = userData["fatherName"];
@@ -68,7 +69,7 @@ export default function MemberID() {
                 m="0"
               >
                 <img
-                  src={`https://sksk-backend.onrender.com/${userData.profilePictureLink}`}
+                  src={`${baseUrl}/${userData.profilePictureLink}`}
                   alt="user-image"
                   crossOrigin="anonymous"
                 />

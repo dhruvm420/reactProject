@@ -9,7 +9,7 @@ export default function ErrorPage() {
     <Root title="PAGE NOT FOUND">
       <Flex flexDirection="column" w="86vw" py="8">
         <Heading textAlign="center" color="gray.600">
-          NOT YET IMPLEMENTED !!!!
+          PAGE NOT FOUND !!!!
         </Heading>
       </Flex>
     </Root>

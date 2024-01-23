@@ -17,6 +17,7 @@ import { SearchIcon } from "@chakra-ui/icons";
 import { setAuthToken, axiosInstance } from "../utilities/axiosInstance.jsx";
 import Pagination from "../components/pagination";
 import { getCorrectDate } from "../utilities/date.jsx";
+import { baseUrl } from "../utilities/baseURL.jsx";
 export default function StateList() {
   const { parent } = useParams();
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
@@ -40,7 +41,7 @@ export default function StateList() {
     dataItem["USER NAME"] = obj["userName"];
     dataItem["USER ID"] = obj["_id"];
     dataItem.IMAGE =
-      "https://sksk-backend.onrender.com/" + obj["profilePictureLink"];
+    `${baseUrl}/` + obj["profilePictureLink"];
     dataItem.NAME = obj.name;
     dataItem.EMAIL = obj["email"];
     dataItem["Total District"] = obj["totalDistrict"];

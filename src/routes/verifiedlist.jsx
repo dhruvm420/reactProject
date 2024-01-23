@@ -16,6 +16,7 @@ import { SearchIcon } from "@chakra-ui/icons";
 import { setAuthToken, axiosInstance } from "../utilities/axiosInstance.jsx";
 import { getCorrectDate } from "../utilities/date.jsx";
 import { useParams } from "react-router-dom";
+import { baseUrl } from "../utilities/baseURL.jsx";
 
 export default function VerifiedList() {
   const { parent } = useParams();
@@ -51,7 +52,7 @@ export default function VerifiedList() {
   function putinDummy(obj, d) {
     let dataItem = {};
     dataItem.IMAGE =
-      "https://sksk-backend.onrender.com/" + obj["profilePictureLink"];
+    `${baseUrl}/` + obj["profilePictureLink"];
     dataItem["USER ID"] = obj["_id"];
     dataItem.USERNAME = obj.userName;
     dataItem.NAME = obj.name;

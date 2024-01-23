@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import TableGenerator from "../tableGenerator";
 import { getCorrectDate } from "../../utilities/date";
 import { axiosInstance, setAuthToken } from "../../utilities/axiosInstance";
+import { baseUrl } from "../../utilities/baseURL";
 export default function MenuAction({
   isOpen,
   closeHandler,
@@ -31,7 +32,7 @@ export default function MenuAction({
     let dataItem = {};
     dataItem["USER ID"] = obj["userName"];
     dataItem.IMAGE =
-      "https://sksk-backend.onrender.com/" + obj["profilePictureLink"];
+      `${baseUrl}/` + obj["profilePictureLink"];
     dataItem.NAME = obj.name;
     dataItem.EMAIL = obj["email"];
     if (childLevel == "state")

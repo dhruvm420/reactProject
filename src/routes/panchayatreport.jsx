@@ -5,6 +5,7 @@ import TableGenerator from "../components/tableGenerator";
 import { setAuthToken, axiosInstance } from "../utilities/axiosInstance.jsx";
 import { getCorrectDate } from "../utilities/date.jsx";
 import { Center, Spinner, Text } from "@chakra-ui/react";
+import { baseUrl } from "../utilities/baseURL.jsx";
 export default function PanchayatReport() {
   const [panchayatList, setPanchayatList] = useState([]);
   const [userCount, setUserCount] = useState(0);
@@ -16,7 +17,7 @@ export default function PanchayatReport() {
     let dataItem = {};
     dataItem["USER ID"] = obj["_id"];
     dataItem.IMAGE =
-      "https://sksk-backend.onrender.com/" + obj["profilePictureLink"];
+      `${baseUrl}/` + obj["profilePictureLink"];
     dataItem.NAME = obj.name;
     dataItem.EMAIL = obj["email"];
     dataItem.DESIGNATION = obj["designation"];
@@ -28,7 +29,7 @@ export default function PanchayatReport() {
     dataItem["USER NAME"] = obj["userName"];
     dataItem["USER ID"] = obj["_id"];
     dataItem.IMAGE =
-      "https://sksk-backend.onrender.com/" + obj["profilePictureLink"];
+      `${baseUrl}/` + obj["profilePictureLink"];
     dataItem.NAME = obj.name;
     dataItem.EMAIL = obj["email"];
     dataItem.DESIGNATION = obj["designation"];

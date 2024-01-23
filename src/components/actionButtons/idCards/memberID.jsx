@@ -8,6 +8,7 @@ import qr from "../../../assets/qr.png";
 import html2canvas from "html2canvas";
 import { useEffect, useState } from "react";
 import { axiosInstance, setAuthToken } from "../../../utilities/axiosInstance";
+import { baseUrl } from "../../../utilities/baseURL";
 export default function MemberId({ userId, listName }) {
   const [cardImage, setCardImage] = useState("");
   const [dataLoaded, setDataLoaded] = useState(false);
@@ -97,7 +98,7 @@ export default function MemberId({ userId, listName }) {
                 </Box>
                 <Box borderRadius="xl" overflow="auto" my="0" m="0">
                   <img
-                    src={`https://sksk-backend.onrender.com/${userData.profilePictureLink}`}
+                    src={`${baseUrl}/${userData.profilePictureLink}`}
                     alt="user-image"
                     crossOrigin="anonymous"
                     style={{

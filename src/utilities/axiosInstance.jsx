@@ -1,8 +1,9 @@
 import axios from "axios";
+import { baseUrl } from "./baseURL";
 
 // Create a new Axios instance with custom configuration (optional)
 const axiosInstance = axios.create({
-  baseURL: "https://sksk-backend.onrender.com", // Your API base URL
+  baseURL: baseUrl, // Your API base URL
 });
 
 // Set up Axios interceptor to include JWT token in the header

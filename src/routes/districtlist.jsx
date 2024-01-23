@@ -29,6 +29,7 @@ const sample = [
   },
 ];
 import { getCorrectDate } from "../utilities/date.jsx";
+import { baseUrl } from "../utilities/baseURL.jsx";
 export default function DistrictList() {
   const { parent } = useParams();
   let child;
@@ -65,7 +66,7 @@ export default function DistrictList() {
     dataItem["USER NAME"] = obj["userName"];
     dataItem["USER ID"] = obj["_id"];
     dataItem.IMAGE =
-      "https://sksk-backend.onrender.com/" + obj["profilePictureLink"];
+    `${baseUrl}/` + obj["profilePictureLink"];
     dataItem.NAME = obj.name;
     dataItem.EMAIL = obj["email"];
     dataItem["Total Tehsil"] = obj["totalTehsil"];

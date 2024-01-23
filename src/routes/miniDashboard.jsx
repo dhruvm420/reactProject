@@ -19,6 +19,7 @@ import {
 } from "@chakra-ui/react";
 import MiniTable from "../components/miniTable";
 import { getCorrectDate } from "../utilities/date";
+import { baseUrl } from "../utilities/baseURL";
 export default function Minidashboard() {
   const { type } = useParams();
   let url;
@@ -74,7 +75,7 @@ export default function Minidashboard() {
             <Box p="2">
               <img
                 crossOrigin="anonymous"
-                src={`https://sksk-backend.onrender.com/${data["profilePictureLink"]}`}
+                src={`${baseUrl}/${data["profilePictureLink"]}`}
                 alt=""
                 width="150px"
                 height="150px"

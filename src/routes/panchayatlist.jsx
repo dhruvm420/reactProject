@@ -17,6 +17,7 @@ import { useState, useEffect } from "react";
 import ActionPopUp from "../components/actionButtons/actionPopUp";
 import { SearchIcon } from "@chakra-ui/icons";
 import { setAuthToken, axiosInstance } from "../utilities/axiosInstance.jsx";
+import { baseUrl } from "../utilities/baseURL.jsx";
 export default function PanchayatList() {
   const { parent } = useParams();
   let child;
@@ -53,7 +54,7 @@ export default function PanchayatList() {
     dataItem["USER NAME"] = obj["userName"];
     dataItem["USER ID"] = obj["_id"];
     dataItem.IMAGE =
-      "https://sksk-backend.onrender.com/" + obj["profilePictureLink"];
+    `${baseUrl}/` + obj["profilePictureLink"];
     dataItem.NAME = obj.name;
     dataItem.EMAIL = obj["email"];
     dataItem.DESIGNATION = obj["designation"];

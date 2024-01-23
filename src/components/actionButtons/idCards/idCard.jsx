@@ -23,6 +23,7 @@ import html2canvas from "html2canvas";
 import { useEffect, useState } from "react";
 import { getCorrectDate } from "../../../utilities/date";
 import { axiosInstance, setAuthToken } from "../../../utilities/axiosInstance";
+import { baseUrl } from "../../../utilities/baseURL";
 export default function IDCard({ userId, listName }) {
   const [cardImage, setCardImage] = useState("");
   const [dataLoaded, setDataLoaded] = useState(false);
@@ -124,7 +125,7 @@ export default function IDCard({ userId, listName }) {
                 >
                   <Box borderRadius="xl" overflow="auto" margin="auto" my="0">
                     <img
-                      src={`https://sksk-backend.onrender.com/${userData.profilePictureLink}`}
+                      src={`${baseUrl}/${userData.profilePictureLink}`}
                       alt="user-image"
                       style={{
                         width: "140px",

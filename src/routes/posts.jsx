@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Center, Spinner } from "@chakra-ui/react";
 import { setAuthToken, axiosInstance } from "../utilities/axiosInstance.jsx";
 import ActionPopUp from "../components/actionButtons/actionPopUp";
+import { baseUrl } from "../utilities/baseURL.jsx";
 // let postsData = [
 //   {
 //     "POST DATE": "2023-09-07 16:22:24",
@@ -40,7 +41,7 @@ export default function Posts() {
       VENUE: null,
     };
     dataItem["TIMELINE POST"] =
-      "https://sksk-backend.onrender.com/" + obj["photoLink"];
+    `${baseUrl}/` + obj["photoLink"];
     dataItem.TITLE = obj.title;
     dataItem.DESCRIPTION = obj.description;
     dataItem.VENUE = obj.venue;

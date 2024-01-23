@@ -15,6 +15,7 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Pagination from "../components/pagination";
 import { Center, Spinner } from "@chakra-ui/react";
+import { baseUrl } from "../utilities/baseURL.jsx";
 let dummyji = [
   {
     IMAGE: null,
@@ -50,7 +51,7 @@ export default function Testimonials() {
     dataItem.NAME = obj.name;
     dataItem.MESSAGE = obj.message;
     dataItem.DESIGNATION = obj.designation;
-    dataItem.IMAGE = "https://sksk-backend.onrender.com/" + obj["photoLink"];
+    dataItem.IMAGE = `${baseUrl}/` + obj["photoLink"];
     d.push(dataItem);
   }
   const fetch = async () => {

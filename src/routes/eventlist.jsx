@@ -7,6 +7,7 @@ import { Center, Spinner } from "@chakra-ui/react";
 import { setAuthToken, axiosInstance } from "../utilities/axiosInstance.jsx";
 import { useState, useEffect } from "react";
 import { getCorrectDate } from "../utilities/date.jsx";
+import { baseUrl } from "../utilities/baseURL.jsx";
 let dumy = [
   {
     IMAGE: null,
@@ -33,7 +34,7 @@ export default function EventList() {
       "EVENT DATE": null,
     };
     dataItem.IMAGE =
-      "https://sksk-backend.onrender.com/" + obj["eventImageLink"];
+    `${baseUrl}/` + obj["eventImageLink"];
     dataItem.TITLE = obj.title;
     dataItem.DESCRIPTION = obj.description;
     dataItem.VENUE = obj.venue;

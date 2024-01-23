@@ -14,6 +14,7 @@ import html2canvas from "html2canvas";
 import { useState } from "react";
 import Header from "../components/header";
 import { useParams } from "react-router-dom";
+import { baseUrl } from "../utilities/baseURL";
 export default function MiniID() {
   const { listName } = useParams();
   const userData = JSON.parse(localStorage.getItem("userKaData"));
@@ -89,7 +90,7 @@ export default function MiniID() {
                   p="2"
                 >
                   <img
-                    src={`https://sksk-backend.onrender.com/${userData.profilePictureLink}`}
+                    src={`${baseUrl}/${userData.profilePictureLink}`}
                     alt="user-image"
                     crossOrigin="anonymous"
                     // crossorigin="anonymous"

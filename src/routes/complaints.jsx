@@ -14,6 +14,7 @@ import { useParams } from "react-router-dom";
 import { setAuthToken, axiosInstance } from "../utilities/axiosInstance.jsx";
 import { useState, useEffect } from "react";
 import { Center, Spinner } from "@chakra-ui/react";
+import { baseUrl } from "../utilities/baseURL.jsx";
 let dummyy = [
   {
     NAME: null,
@@ -50,7 +51,7 @@ export default function Complaints() {
     dataItem.MESSAGE = obj["message"];
     dataItem.MOBILE = obj.mobileNumber;
     dataItem.IMAGE =
-      "https://sksk-backend.onrender.com/" + obj["uploadDocumentLink"];
+      `${baseUrl}/` + obj["uploadDocumentLink"];
     dataItem.DESCRIPTION = obj["description"];
 
     d.push(dataItem);

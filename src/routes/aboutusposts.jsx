@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Center, Spinner } from "@chakra-ui/react";
 import { setAuthToken, axiosInstance } from "../utilities/axiosInstance.jsx";
+import { baseUrl } from "../utilities/baseURL.jsx";
 let dmy = [
   {
     "TIMELINE POST": null,
@@ -28,7 +29,7 @@ export default function AboutUsList() {
       VENUE: null,
     };
     dataItem["TIMELINE POST"] =
-      "https://sksk-backend.onrender.com/" + obj["photoLink"];
+      `${baseUrl}/` + obj["photoLink"];
     dataItem.TITLE = obj.title;
     dataItem.DESCRIPTION = obj.description;
     dataItem.VENUE = obj.venue;
