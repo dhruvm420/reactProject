@@ -41,7 +41,6 @@ export default function SliderForm({ edit = false, modifyId = null }) {
     } else {
       // create new
     }
-    console.log(formData);
   };
   return (
     <Box

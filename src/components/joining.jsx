@@ -18,10 +18,7 @@ export default function Joining() {
       await axiosInstance
         .get(url)
         .then((response) => {
-          console.log(response);
           let obj = response.data.data.response[0];
-          console.log("obj");
-          console.log(obj);
           setUserData(obj);
           setDataLoaded(true);
         })

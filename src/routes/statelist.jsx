@@ -63,7 +63,6 @@ export default function StateList() {
       await axiosInstance
         .get(url)
         .then((response) => {
-          console.log(response);
           let obj = response.data.data.response;
           let arr = Object.keys(obj);
           let dumm = [];

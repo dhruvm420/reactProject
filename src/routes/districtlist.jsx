@@ -94,7 +94,6 @@ export default function DistrictList() {
       await axiosInstance
         .get(url)
         .then((response) => {
-          console.log(response);
           if (response.status != "fail") {
             let obj = response.data.data.response;
             let arr = Object.keys(obj);

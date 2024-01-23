@@ -73,14 +73,12 @@ export default function VerifiedList() {
       } else {
         // url = `/${parent}/crud/${child}?page=${currentPage}&limit=10&sort=name&${parent}ReferenceId=${refId}`;
         url = `/${parent}/crud/${child}?${parent}RefrenceId=${refId}&page=${currentPage}&limit=10`;
-        console.log(url);
         // if (searchVal != "")
         // url = `/superadmin/crud/search?roleName=district&searchQuery=${searchVal}&page=${currentPage}&limit=10`;
       }
       await axiosInstance
         .get(url)
         .then((response) => {
-          console.log(response);
           if (response.status != "fail") {
             let obj = response.data.data.response;
             let arr = Object.keys(obj);

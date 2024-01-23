@@ -45,7 +45,6 @@ export default function DonationForm({ edit = false, modifyId = null }) {
     } else {
       // create a new donation of person
     }
-    console.log(formData);
   };
 
   return (

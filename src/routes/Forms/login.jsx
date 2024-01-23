@@ -32,19 +32,15 @@ const LogIn = ({ coordinator }) => {
     if (loginType == "superadmin") navigatePath = "/dashboard";
     else navigatePath = `/minidashboard/${loginType}`;
     setLoginStatus(true);
-    console.log("Form values:", values);
     axiosInstance
       .post(`/${loginType}/auth/login`, values)
       .then((response) => {
-        console.log(response);
         const token = response.data.token;
         localStorage.setItem("jwtToken", token);
         if (loginType != "superadmin") {
           const data = response.data.user;
           localStorage.setItem("userKaData", JSON.stringify(data));
         }
-        console.log(JSON.parse(localStorage.getItem("userKaData")));
-        console.log("token " + localStorage.getItem("jwtToken"));
         setAuthToken(token);
         navigate(navigatePath);
       })

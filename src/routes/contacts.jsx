@@ -71,7 +71,6 @@ export default function Contact() {
       await axiosInstance
         .get(url)
         .then((response) => {
-          console.log(response);
           let obj = response.data.data.contactUs;
           let arr = Object.keys(obj);
           let dumm = [];

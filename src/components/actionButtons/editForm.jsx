@@ -104,7 +104,6 @@ export default function EditForm(props) {
         setIsOpen(true);
       })
       .catch((error) => {
-        console.log("Failed to create State:\n", error);
         setErrorTitle(error.response.data.message);
         setErrorType("error");
         setIsOpen(true);
@@ -115,7 +114,6 @@ export default function EditForm(props) {
     const storedToken = localStorage.getItem("jwtToken"); // Fetch the stored token
     let url = `/superadmin/crud/${formName}/${modifyId}`;
     if (parent != "superadmin") url = `/${parent}/crud/${child}/${modifyId}`;
-    console.log("parent ", parent);
     if (storedToken) {
       // Set the token in the Axios headers before making the request
       setAuthToken(storedToken);
@@ -124,9 +122,7 @@ export default function EditForm(props) {
       await axiosInstance
         .get(url)
         .then((response) => {
-          console.log(response);
           let obj = response.data.data.response[0];
-          console.log(obj);
           obj.DOB = formatDateForInput(obj.DOB);
           obj.joiningDate = formatDateForInput(obj.joiningDate);
           obj.password = "";

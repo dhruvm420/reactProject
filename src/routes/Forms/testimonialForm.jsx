@@ -41,7 +41,6 @@ export default function CreateTestimonial({ edit = false, modifyId = null }) {
     } else {
       // create new
     }
-    console.log(formData);
   };
 
   return (

@@ -46,7 +46,6 @@ export default function Dashboard() {
       await axiosInstance
         .get("/superadmin/crud/dashboard")
         .then((response) => {
-          console.log(response.data.data);
           let obj = response.data.data.stats;
           let arr = Object.keys(obj);
           arr.forEach((element) => {

@@ -43,7 +43,6 @@ export default function ManagementForm({ edit = false, modifyId = null }) {
     } else {
       // create new
     }
-    console.log(formData);
   };
   const allstates = [
     "International",

@@ -60,7 +60,6 @@ export default function Donors() {
       await axiosInstance
         .get(url)
         .then((response) => {
-          console.log(response);
           let obj = response.data.data.donations;
           let arr = Object.keys(obj);
           let dumm = [];

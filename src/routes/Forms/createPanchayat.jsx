@@ -92,13 +92,9 @@ export default function CreatePanchayat() {
     fetchList("state");
   }, []);
   useEffect(() => {
-    console.log("fetching district");
-    console.log(stateId);
     fetchList("district");
   }, [selectedState]);
   useEffect(() => {
-    console.log("fetching tehsil");
-    console.log(districtId);
     fetchList("tehsil");
   }, [selectedDistrict]);
 
@@ -119,7 +115,6 @@ export default function CreatePanchayat() {
     if (typeof sri == "object") sri = sri[0];
     setDistrictId(sri);
 
-    console.log("districtId set to ", sri);
   };
   const handleTehsilChange = (e) => {
     let sl = tehsilList;
@@ -128,7 +123,6 @@ export default function CreatePanchayat() {
     let sri = getIdByName(objectTehsilList, e.target.value);
     if (typeof sri == "object") sri = sri[0];
     setTehsilId(sri);
-    console.log("tehsilId set to ", sri);
   };
 
   const handleSubmit = (e) => {
@@ -138,13 +132,11 @@ export default function CreatePanchayat() {
   };
 
   const postData = (data) => {
-    // console.log("<>----<>form data", formData);
     const storedToken = localStorage.getItem("jwtToken");
     setAuthToken(storedToken);
     axiosInstance
       .post("/superadmin/crud/panchayat", data)
       .then((response) => {
-        console.log(response);
         const res = response.data.data.response;
         setErrorTitle(
           `Successfully Created Panchayat\nUserName: ${res["userName"]}`
@@ -153,10 +145,6 @@ export default function CreatePanchayat() {
         setIsOpen(true);
       })
       .catch((error) => {
-        console.log(
-          "Failed to create Panchayat:\n",
-          error.response.data.message
-        );
         setErrorTitle(error.response.data.message);
         setErrorType("error");
         setIsOpen(true);
@@ -188,7 +176,6 @@ export default function CreatePanchayat() {
                 onChange={(e) => {
                   setSelectedState(e.target.value);
                   handleStateChange(e);
-                  // console.log(formData);
                 }}
                 value={selectedState}
               >
@@ -216,7 +203,6 @@ export default function CreatePanchayat() {
                 onChange={(e) => {
                   setSelectedDistrict(e.target.value);
                   handleDistrictChange(e);
-                  // console.log(formData);
                 }}
                 value={selectedDistrict}
               >
@@ -244,7 +230,6 @@ export default function CreatePanchayat() {
                 onChange={(e) => {
                   setSelectedTehsil(e.target.value);
                   handleTehsilChange(e);
-                  // console.log(formData);
                 }}
                 value={selectedTehsil}
               >

@@ -53,9 +53,7 @@ export default function CreateDistrict() {
     sl.shift();
     setStateList(sl);
     let sri = getIdByName(objectList, e.target.value);
-    console.log(typeof sri);
     if (typeof sri == "object") sri = sri[0];
-    console.log("sri " + sri);
     setStateId(sri);
   };
 
@@ -120,21 +118,16 @@ export default function CreateDistrict() {
       };
     });
 
-    console.log("formData");
-    console.log(formData);
     // Perform form submission logic with formData
-    console.log("🔥", formDataLocal.entries());
     postData(formDataLocal);
   };
 
   const postData = (data) => {
-    console.log("<>----<>form data", formData);
     const storedToken = localStorage.getItem("jwtToken");
     setAuthToken(storedToken);
     axiosInstance
       .post("/superadmin/crud/district", data)
       .then((response) => {
-        console.log(response);
         const res = response.data.data.response;
         setErrorTitle(
           `Successfully Created District\nUserName: ${res["userName"]}`
@@ -143,10 +136,6 @@ export default function CreateDistrict() {
         setIsOpen(true);
       })
       .catch((error) => {
-        console.log(
-          "Failed to create District:\n",
-          error.response.data.message
-        );
         setErrorTitle(error.response.data.message);
         setErrorType("error");
         setIsOpen(true);
@@ -179,7 +168,6 @@ export default function CreateDistrict() {
                 onChange={(e) => {
                   setSelectedState(e.target.value);
                   handleOptionChange(e);
-                  console.log(formData);
                 }}
                 value={selectedState}
               >

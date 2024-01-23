@@ -24,7 +24,6 @@ export default function MemberId({ userId, listName }) {
       await axiosInstance
         .get(url)
         .then((response) => {
-          console.log(response);
           let obj = response.data.data.response;
           setUserData(obj[0]);
           setDataLoaded(true);

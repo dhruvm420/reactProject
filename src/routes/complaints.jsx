@@ -69,7 +69,6 @@ export default function Complaints() {
       await axiosInstance
         .get(url)
         .then((response) => {
-          console.log(response);
           let obj = response.data.data.complaints;
           let arr = Object.keys(obj);
           let dumm = [];

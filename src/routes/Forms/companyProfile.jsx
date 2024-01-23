@@ -73,12 +73,10 @@ const CompanyProfile = () => {
     axiosInstance
       .patch("/superadmin/cms/companyProfile", formData)
       .then((response) => {
-        console.log(response);
         alert("Submitted");
         navigate("/dashboard");
       })
       .catch((error) => {
-        console.log("Failed to create State:\n", error);
         setErrorTitle(error.response.data.message);
         setErrorType("error");
         setIsOpen(true);

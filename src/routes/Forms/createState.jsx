@@ -53,7 +53,6 @@ const CreateState = () => {
     const storedToken = localStorage.getItem("jwtToken");
     setAuthToken(storedToken);
     const formData = new FormData(e.target);
-    console.log(formData.get("profilePicture"));
     // Perform form submission logic with formData
 
     setFormData((prev) => {
@@ -62,11 +61,9 @@ const CreateState = () => {
         profilePicture: formData.get("profilePicture"),
       };
     });
-    console.log(formData);
     axiosInstance
       .post("/superadmin/crud/state", formData)
       .then((response) => {
-        console.log(response);
         const res = response.data.data.response;
         setErrorTitle(
           `Successfully Created State\nUserName: ${res["userName"]}`
@@ -75,7 +72,6 @@ const CreateState = () => {
         setIsOpen(true);
       })
       .catch((error) => {
-        console.log("Failed to create State:\n", error);
         setErrorTitle(error.response.data.message);
         setErrorType("error");
         setIsOpen(true);

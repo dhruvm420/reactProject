@@ -55,11 +55,9 @@ export default function Posts() {
       setAuthToken(storedToken);
 
       // Make an authenticated request using axiosInstance
-      console.log("making call ");
       await axiosInstance
         .get(url)
         .then((response) => {
-          console.log(response);
           let obj = response.data.data.timelinePosts;
           let arr = Object.keys(obj);
           let dumm = [];
@@ -73,7 +71,6 @@ export default function Posts() {
           setPostsData(dmy);
           setDataLoaded(true);
           // Handle error, e.g., unauthorized access
-          console.log("Error fetching data:", error);
         });
     }
   };

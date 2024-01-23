@@ -54,11 +54,9 @@ export default function MenuAction({
     let url = `/superadmin/crud/${childLevel}?${formName}ReferenceId=${modifyId}`;
     if (childLevel == "member")
       url = `/superadmin/crud/${childLevel}/?panchayatRefrenceId=${modifyId}`;
-    console.log("url ", url);
     await axiosInstance
       .get(url)
       .then((response) => {
-        console.log(response.data.data);
         let obj = response.data.data.response;
         let arr = Object.keys(obj);
         let dumm = [];
@@ -86,7 +84,6 @@ export default function MenuAction({
   };
   useEffect(() => {
     setDataLoaded(false);
-    console.log("fetching child Data");
     fetchList(formName);
   }, [isOpen]);
   if (!dataLoaded) return <>Loading....</>;

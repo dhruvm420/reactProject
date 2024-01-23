@@ -38,7 +38,6 @@ export default function CreateTehsil() {
   const [districtId, setDistrictId] = useState(null);
   const fetchList = async (listName) => {
     if (listName == "district" && stateId == null) return;
-    console.log(stateId);
     const storedToken = localStorage.getItem("jwtToken"); // Fetch the stored token
 
     // Set the token in the Axios headers before making the request
@@ -81,7 +80,6 @@ export default function CreateTehsil() {
     fetchList("state");
   }, []);
   useEffect(() => {
-    console.log("fetching district");
     fetchList("district");
   }, [selectedState]);
   const navigate = useNavigate();
@@ -109,13 +107,11 @@ export default function CreateTehsil() {
   };
 
   const postData = (data) => {
-    // console.log("<>----<>form data", formData);
     const storedToken = localStorage.getItem("jwtToken");
     setAuthToken(storedToken);
     axiosInstance
       .post("/superadmin/crud/tehsil", data)
       .then((response) => {
-        console.log(response);
         const res = response.data.data.response;
         setErrorTitle(
           `Successfully Created Tehsil\nUserName: ${res["userName"]}`
@@ -124,7 +120,6 @@ export default function CreateTehsil() {
         setIsOpen(true);
       })
       .catch((error) => {
-        console.log("Failed to create Tehsil:\n", error.response.data.message);
         setErrorTitle(error.response.data.message);
         setErrorType("error");
         setIsOpen(true);
@@ -156,7 +151,7 @@ export default function CreateTehsil() {
                 onChange={(e) => {
                   setSelectedState(e.target.value);
                   handleStateChange(e);
-                  // console.log(formData);
+                  
                 }}
                 value={selectedState}
               >
@@ -184,7 +179,7 @@ export default function CreateTehsil() {
                 onChange={(e) => {
                   setSelectedDistrict(e.target.value);
                   handleDistrictChange(e);
-                  // console.log(formData);
+                  
                 }}
                 value={selectedDistrict}
               >

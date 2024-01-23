@@ -52,7 +52,6 @@ export default function EventList() {
       await axiosInstance
         .get(url)
         .then((response) => {
-          console.log(response);
           let obj = response.data.data.events;
           let arr = Object.keys(obj);
           let dumm = [];

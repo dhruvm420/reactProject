@@ -40,7 +40,6 @@ export default function ObjectiveForm({ edit = false, modifyId = null }) {
     } else {
       // create new
     }
-    console.log(formData);
   };
   return (
     <Box

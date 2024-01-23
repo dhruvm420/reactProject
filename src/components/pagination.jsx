@@ -5,7 +5,6 @@ export default function Pagination({
   currentPage,
   totalPages,
 }) {
-  console.log("totalPages " + totalPages);
   let startPage = Math.max(1, currentPage - 2);
   let endPage = Math.min(totalPages, currentPage + 3);
 

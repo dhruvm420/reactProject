@@ -76,7 +76,6 @@ export default function EditMember({ modifyId, formName, parent }) {
     const storedToken = localStorage.getItem("jwtToken"); // Fetch the stored token
     let url = `/superadmin/crud/${formName}/${modifyId}`;
     if (parent != "superadmin") url = `/${parent}/crud/${child}/${modifyId}`;
-    console.log("url", url);
     if (storedToken) {
       // Set the token in the Axios headers before making the request
       setAuthToken(storedToken);
@@ -85,13 +84,10 @@ export default function EditMember({ modifyId, formName, parent }) {
       await axiosInstance
         .get(url)
         .then((response) => {
-          console.log(response);
           let obj = response.data.data.response[0];
-          console.log(obj);
           obj.DOB = formatDateForInput(obj.DOB);
           setIdPanchayat(obj.panchayatReferenceId);
           obj.profilePic = null;
-          console.log(obj);
           setFormData(obj);
           setDataLoaded(true);
         })
@@ -120,12 +116,9 @@ export default function EditMember({ modifyId, formName, parent }) {
     });
     let url = `/superadmin/crud/${formName}/${modifyId}`;
     if (parent != "superadmin") url = `/${parent}/crud/${child}/${modifyId}`;
-    console.log("url", url);
-    console.log(formData);
     axiosInstance
       .patch(url, formData)
       .then((response) => {
-        console.log(response);
         let res = response.data.data.member;
         let titles = `Successfully edited`;
         setErrorTitle(titles);
@@ -133,7 +126,6 @@ export default function EditMember({ modifyId, formName, parent }) {
         setIsOpen(true);
       })
       .catch((error) => {
-        console.log(`Failed to edit: ${child}`, error);
         setErrorTitle(error.response.data.message);
         setErrorType("error");
         setIsOpen(true);

@@ -44,7 +44,6 @@ export default function CreatePost() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Perform form submission logic with formData
-    console.log(formData);
   };
 
   return (

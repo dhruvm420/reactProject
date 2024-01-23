@@ -47,7 +47,6 @@ export default function PanchayatReport() {
       await axiosInstance
         .get(url)
         .then((response) => {
-          console.log(response);
           if (response.status != "fail") {
             let obj = response.data.data.response;
             let arr = Object.keys(obj);
@@ -63,7 +62,6 @@ export default function PanchayatReport() {
             list.unshift("select-panchayat");
             setPanchayatList(list);
             setPanchayatData(dumm);
-            console.log("panachay", dumm);
             setDataLoaded(true);
           }
         })
@@ -79,19 +77,15 @@ export default function PanchayatReport() {
 
   const getTehsilData = async () => {
     if (selectedOption == "select-panchayat") return;
-    console.log(selectedOption);
     const storedToken = localStorage.getItem("jwtToken"); // Fetch the stored token
-    console.log(panchayatData);
     let selectedId;
     for (let panchayat in panchayatData) {
       if (panchayatData[panchayat].NAME == selectedOption) {
         selectedId = panchayatData[panchayat]["USER ID"];
       }
     }
-    console.log(selectedId);
     // let url = `/superadmin/crud/tehsil/${selectedId}`;
     let url = `/superadmin/crud/member/?panchayatRefrenceId=${selectedId}`;
-    console.log(url);
     if (storedToken) {
       // Set the token in the Axios headers before making the request
       setAuthToken(storedToken);
@@ -99,7 +93,6 @@ export default function PanchayatReport() {
       await axiosInstance
         .get(url)
         .then((response) => {
-          console.log(response);
           if (response.status != "fail") {
             let obj = response.data.data.response;
             let arr = Object.keys(obj);
@@ -107,7 +100,6 @@ export default function PanchayatReport() {
             arr.forEach((element) => {
               processTehsilData(obj[element], dumm);
             });
-            console.log("dumm tehsil", dumm);
             setUserCount(Object.keys(dumm).length);
             setTehsilData(dumm);
           }
@@ -147,7 +139,6 @@ export default function PanchayatReport() {
     const option = event.target.value;
     setDataLoaded(false);
     setSelectedOption(option);
-    console.log(option);
   };
 
   if (!dataLoaded)

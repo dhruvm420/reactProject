@@ -68,7 +68,6 @@ const CreateMember = () => {
     const storedToken = localStorage.getItem("jwtToken");
     setAuthToken(storedToken);
     const formData = new FormData(e.target);
-    console.log(formData.get("profilePic"));
     // Perform form submission logic with formData
 
     setFormData((prev) => {
@@ -81,11 +80,9 @@ const CreateMember = () => {
       };
     });
     let url = `/${parent}/crud/${child}`;
-    console.log(formData);
     axiosInstance
       .post(url, formData)
       .then((response) => {
-        console.log(response);
         let res = response.data.data.member;
         let titles = `Successfully Created ${child} with UserName: ${res["userName"]}`;
         setErrorTitle(titles);
@@ -93,13 +90,11 @@ const CreateMember = () => {
         setIsOpen(true);
       })
       .catch((error) => {
-        console.log(`Failed to create State: ${child}`, error);
         setErrorTitle(error.response.data.message);
         setErrorType("error");
         setIsOpen(true);
       });
   };
-  console.log("panchayatReferenceId ", data._id);
 
   return (
     <Root title={`${child} Form`} noSideBar={true}>

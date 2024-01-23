@@ -53,7 +53,6 @@ const RegistrationForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Perform form submission logic with formData
-    console.log(formData);
   };
   let stateList, stateInput;
   let districtList, districtInput;

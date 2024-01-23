@@ -57,7 +57,6 @@ const CreateChild = () => {
     const storedToken = localStorage.getItem("jwtToken");
     setAuthToken(storedToken);
     const formData = new FormData(e.target);
-    console.log(formData.get("profilePicture"));
     // Perform form submission logic with formData
 
     setFormData((prev) => {
@@ -66,11 +65,9 @@ const CreateChild = () => {
         profilePicture: formData.get("profilePicture"),
       };
     });
-    console.log(formData);
     axiosInstance
       .post(`/${parent}/crud/${child}`, formData)
       .then((response) => {
-        console.log(response);
         const res = response.data.data.user;
         let titles = `Successfully Created ${child} with UserName: ${res["userName"]}`;
         setErrorTitle(titles);
@@ -78,7 +75,6 @@ const CreateChild = () => {
         setIsOpen(true);
       })
       .catch((error) => {
-        console.log(`Failed to create ${child}:`, error);
         setErrorTitle(error.response.data.message);
         setErrorType("error");
         setIsOpen(true);
