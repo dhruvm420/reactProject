@@ -13,17 +13,14 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import {
-  axiosInstance,
-  setAuthToken,
-} from "../../utilities/axiosInstance.jsx";
+import { axiosInstance, setAuthToken } from "../../utilities/axiosInstance.jsx";
 
 const LogIn = ({ coordinator }) => {
   const initialValues = {
     email: "",
     password: "",
   };
-  const [loginType, setLoginType] = useState("state");
+  const [loginType, setLoginType] = useState(coordinator?"state":"superadmin");
   const [loginError, setLoginError] = useState(null);
   const [loginStatus, setLoginStatus] = useState(false);
   let navigate = useNavigate();
@@ -97,8 +94,8 @@ const LogIn = ({ coordinator }) => {
           Log In
         </Heading>
       </Flex>
-      <Box mx="auto" w="15vw" my="0" p="0">
-        <FormControl w="15vw" my="4">
+      <Box maxW="md" mx="auto" mt="10" px="4">
+        <FormControl mb="2">
           <FormLabel>Select LogIn Type:-</FormLabel>
           <Select
             onChange={(e) => {
@@ -113,8 +110,6 @@ const LogIn = ({ coordinator }) => {
             ))}
           </Select>
         </FormControl>
-      </Box>
-      <Box maxW="md" mx="auto" mt="20">
         <Formik
           initialValues={initialValues}
           onSubmit={onSubmit}
